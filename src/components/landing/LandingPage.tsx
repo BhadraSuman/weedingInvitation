@@ -343,9 +343,21 @@ export const LandingPage: React.FC = () => {
                   Ideal for Annaprashan, 1st Birthdays &amp; Griha Pravesh
                 </p>
 
-                <div className="my-6">
+                <div className="my-5">
                   <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#8B181B]">₹999</span>
                   <span className="text-xs text-stone-500 font-serif ml-1">one-time</span>
+                </div>
+
+                {/* Timeline & Turnaround Pill */}
+                <div className="mb-6 p-3 bg-amber-50/70 rounded-xl border border-amber-200/80 space-y-1 text-xs font-serif">
+                  <div className="flex items-center gap-1.5 text-[#8B181B] font-bold">
+                    <Clock className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <span>Turnaround: Ready in 24 Hours</span>
+                  </div>
+                  <div className="flex items-center justify-between text-stone-600 text-[11px] pt-0.5">
+                    <span>⏳ Link: 1 Year Active</span>
+                    <span>✏️ Edits: 2 Free Rounds</span>
+                  </div>
                 </div>
 
                 <ul className="space-y-3 text-xs font-serif text-[#4A3B32]">
@@ -399,9 +411,21 @@ export const LandingPage: React.FC = () => {
                   Full cultural wedding suite (Bengali, Marwari, South Indian)
                 </p>
 
-                <div className="my-6">
+                <div className="my-5">
                   <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#8B181B]">₹2,499</span>
                   <span className="text-xs text-stone-500 font-serif ml-1">one-time</span>
+                </div>
+
+                {/* Timeline & Turnaround Pill */}
+                <div className="mb-6 p-3 bg-amber-50 rounded-xl border border-amber-300 space-y-1 text-xs font-serif">
+                  <div className="flex items-center gap-1.5 text-[#8B181B] font-bold">
+                    <Clock className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <span>Turnaround: Fast 12–24 Hours</span>
+                  </div>
+                  <div className="flex items-center justify-between text-stone-700 text-[11px] pt-0.5">
+                    <span>⏳ Link: Lifetime Forever</span>
+                    <span>✏️ Edits: Unlimited</span>
+                  </div>
                 </div>
 
                 <ul className="space-y-3 text-xs font-serif text-[#4A3B32]">
@@ -455,9 +479,21 @@ export const LandingPage: React.FC = () => {
                   Destination weddings &amp; custom multi-event extravaganzas
                 </p>
 
-                <div className="my-6">
+                <div className="my-5">
                   <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#8B181B]">₹4,999</span>
                   <span className="text-xs text-stone-500 font-serif ml-1">one-time</span>
+                </div>
+
+                {/* Timeline & Turnaround Pill */}
+                <div className="mb-6 p-3 bg-purple-50/70 rounded-xl border border-purple-200 space-y-1 text-xs font-serif">
+                  <div className="flex items-center gap-1.5 text-purple-900 font-bold">
+                    <Clock className="w-3.5 h-3.5 text-purple-600" />
+                    <span>Turnaround: VIP Express 6–12 Hours</span>
+                  </div>
+                  <div className="flex items-center justify-between text-stone-700 text-[11px] pt-0.5">
+                    <span>⏳ Link: Lifetime + Cloud</span>
+                    <span>✏️ Edits: Instant On-Call</span>
+                  </div>
                 </div>
 
                 <ul className="space-y-3 text-xs font-serif text-[#4A3B32]">
@@ -479,7 +515,7 @@ export const LandingPage: React.FC = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>Priority 12-hour express turnaround</span>
+                    <span>Priority express turnaround</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -498,6 +534,71 @@ export const LandingPage: React.FC = () => {
               </a>
             </div>
 
+          </div>
+
+          {/* Order-to-Delivery Process Timeline */}
+          <div className="mt-14 pt-10 border-t border-[#D4AF37]/40">
+            <div className="text-center mb-8">
+              <span className="text-xs font-serif uppercase tracking-widest text-[#8B181B] font-bold">
+                Order-To-Launch Timeline
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1810] mt-1">
+                From Booking to WhatsApp Sharing in 24 Hours
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 font-serif max-w-md mx-auto mt-1">
+                Zero complicated software or tech hurdles. Suman personally coordinates with your family.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-white p-5 rounded-2xl border border-[#D4AF37]/50 shadow-sm space-y-2 relative">
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#8B181B] text-[#F3E5AB] text-[10px] font-bold font-serif">
+                  Hour 00:00 • Step 01
+                </span>
+                <h4 className="font-bold font-serif text-sm text-[#2C1810]">
+                  Share Details on WhatsApp
+                </h4>
+                <p className="text-xs text-stone-600 font-serif leading-relaxed">
+                  Send bride/groom/baby names, rituals schedule, venue Google Map, and favorite photos directly on WhatsApp.
+                </p>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-[#D4AF37]/50 shadow-sm space-y-2 relative">
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#8B181B] text-[#F3E5AB] text-[10px] font-bold font-serif">
+                  Hour 06:00 • Step 02
+                </span>
+                <h4 className="font-bold font-serif text-sm text-[#2C1810]">
+                  Bespoke Crafting &amp; Staging
+                </h4>
+                <p className="text-xs text-stone-600 font-serif leading-relaxed">
+                  We design your custom theme with audio shehnai, Google Maps, RSVP counter, and digital shagun E-lifafa.
+                </p>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-[#D4AF37]/50 shadow-sm space-y-2 relative">
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#8B181B] text-[#F3E5AB] text-[10px] font-bold font-serif">
+                  Hour 12–18 • Step 03
+                </span>
+                <h4 className="font-bold font-serif text-sm text-[#2C1810]">
+                  Family Review &amp; Edits
+                </h4>
+                <p className="text-xs text-stone-600 font-serif leading-relaxed">
+                  Preview your live staging link with family on phone. We perform any text, photo, or music tweaks within 2 hours.
+                </p>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-emerald-400 bg-gradient-to-b from-white to-emerald-50/40 shadow-sm space-y-2 relative">
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-emerald-700 text-white text-[10px] font-bold font-serif">
+                  Within 24 Hrs • Step 04
+                </span>
+                <h4 className="font-bold font-serif text-sm text-emerald-950">
+                  Ready to Blast on WhatsApp!
+                </h4>
+                <p className="text-xs text-stone-600 font-serif leading-relaxed">
+                  Your final link <code className="bg-white px-1 text-[11px] rounded text-emerald-800 border border-emerald-200">utsavpatra.com/your-event</code> is live forever, ready for 500+ guests!
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
