@@ -7,7 +7,7 @@ export const PersonalizedLinkSandbox: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   const coupleName = selectedEvent === 'sandeep-weds-priya' ? 'Sandeep & Priya' : 'Anirban & Deboleena';
-  const eventCulture = selectedEvent === 'sandeep-weds-priya' ? 'Bihari & Marwari Vivah' : 'Bengali Shubh Bibaha';
+  const eventCulture = selectedEvent === 'sandeep-weds-priya' ? 'Shubh Vivah — North Indian Traditions' : 'Bengali Shubh Bibaha';
   
   const generatedUrl = `https://utsavpatra.vercel.app/${selectedEvent}?to=${encodeURIComponent(guestName.trim() || 'Respected Guest')}`;
 
@@ -98,7 +98,7 @@ export const PersonalizedLinkSandbox: React.FC = () => {
                       : 'border-stone-200 text-stone-600 hover:bg-stone-50'
                   }`}
                 >
-                  🚩 Sandeep &amp; Priya (Bihari &amp; Marwari)
+                  🚩 Sandeep &amp; Priya (Shubh Vivah — North Indian)
                 </button>
                 <button
                   type="button"

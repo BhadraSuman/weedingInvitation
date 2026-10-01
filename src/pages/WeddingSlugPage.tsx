@@ -77,7 +77,7 @@ export const WeddingSlugPage: React.FC = () => {
             to="/sandeep-weds-priya"
             className="px-4 py-2 rounded-full bg-[#0D4A36] text-[#E5C158] font-serif text-xs font-bold shadow hover:bg-[#042017]"
           >
-            🚩 Bihari &amp; Marwari Vivah
+            🚩 Shubh Vivah — North Indian Traditions
           </Link>
           <Link
             to="/aarav-annaprashan"

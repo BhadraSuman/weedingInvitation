@@ -28,8 +28,8 @@ export default function handler(req, res) {
       summary: 'বাঙালি শুভ বিবাহ | Sacred Lagna Patrika, 1-tap Google Maps to Rajbari Bawali, and Digital Ashirbaad.'
     },
     'sandeep-weds-priya': {
-      title: 'Sandeep & Priya — Bihari & Marwari Royal Vivah',
-      category: 'Bihari & Marwari Royal Wedding',
+      title: 'Sandeep & Priya — Shubh Vivah — North Indian Royal Vivah',
+      category: 'Shubh Vivah — North Indian Royal Wedding',
       date: '28th November 2026',
       venue: 'Patliputra Heritage Palace, Patna',
       image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&h=630&q=80',

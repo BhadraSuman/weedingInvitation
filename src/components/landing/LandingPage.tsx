@@ -59,7 +59,7 @@ export const LandingPage: React.FC = () => {
     },
     {
       question: "Can UtsavPatra be customized for regional traditions across India?",
-      answer: "Absolutely! We do not believe in one generic template. We craft radically differentiated cultural universes: Bengali Vivah (Parchment scrolls, wooden finials, Topor, Alpona, Shehnai audio), Bihari & Marwari Shubh Vivah (Emerald-Gold Darbar architecture with pure Sanskrit/Hindi verses), Annaprashan (First Rice Ceremony with silver Payesh bowl and interactive Thali Pariksha game), and 1st Birthday Galas (interactive cake cutting & balloon burst). South Indian and Pan-Indian themes are also fully supported."
+      answer: "Absolutely! We do not believe in one generic template. We craft radically differentiated cultural universes: Bengali Vivah (Parchment scrolls, wooden finials, Topor, Alpona, Shehnai audio), Shubh Vivah — North Indian Shubh Vivah (Emerald-Gold Darbar architecture with pure Sanskrit/Hindi verses), Annaprashan (First Rice Ceremony with silver Payesh bowl and interactive Thali Pariksha game), and 1st Birthday Galas (interactive cake cutting & balloon burst). South Indian and Pan-Indian themes are also fully supported."
     },
     {
       question: "How does the Digital Shagun (Online UPI E-Lifafa) feature work?",
@@ -215,7 +215,7 @@ export const LandingPage: React.FC = () => {
             to="/sandeep-weds-priya"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
           >
-            <span>🚩 Bihari &amp; Marwari Vivah</span>
+            <span>🚩 Shubh Vivah — North Indian Traditions</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#E5C158]" />
           </Link>
 

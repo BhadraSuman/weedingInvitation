@@ -33,11 +33,11 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
   },
   'sandeep-weds-priya': {
     slug: 'sandeep-weds-priya',
-    title: 'Sandeep & Priya — Bihari & Marwari Wedding Invitation',
+    title: 'Sandeep & Priya — Shubh Vivah — North Indian Wedding Invitation',
     coupleNames: 'Sandeep & Priya',
     category: 'wedding',
     cultureType: 'bihari_marwari',
-    cultureName: 'बिहारी एवं मारवाड़ी पावन विवाह (Bihari-Marwari Vivah)',
+    cultureName: 'बिहारी एवं मारवाड़ी पावन विवाह (North Indian Vivah)',
     badgeEmoji: '🚩',
     template: bihariMarwariTemplate,
     previewImage: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80'
@@ -78,7 +78,7 @@ export const getWeddingBySlug = (slug: string): EventSlugEntry | null => {
   if (cleanSlug === 'bengali' || cleanSlug === 'bengali-demo' || cleanSlug === 'anirban') {
     return weddingsRegistry['anirban-weds-deboleena'];
   }
-  if (cleanSlug === 'bihari' || cleanSlug === 'marwari' || cleanSlug === 'bihari-marwari-demo' || cleanSlug === 'sandeep') {
+  if (cleanSlug === 'bihari' || cleanSlug === 'marwari' || cleanSlug === 'North Indian-demo' || cleanSlug === 'sandeep') {
     return weddingsRegistry['sandeep-weds-priya'];
   }
   if (cleanSlug === 'annaprashan' || cleanSlug === 'mukhebhaat' || cleanSlug === 'mukhe-bhaat' || cleanSlug === 'aarav') {

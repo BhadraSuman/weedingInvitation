@@ -150,7 +150,7 @@ export const HostDashboardPage: React.FC = () => {
   );
 
   const coupleTitle = selectedEventSlug === 'sandeep-weds-priya' 
-    ? 'Sandeep & Priya (Bihari & Marwari Vivah)'
+    ? 'Sandeep & Priya (Shubh Vivah — North Indian Traditions)'
     : 'Anirban & Deboleena (Bengali Lagna Patrika)';
   
   const eventDate = selectedEventSlug === 'sandeep-weds-priya' ? '28 Nov 2026' : '18 Dec 2026';
@@ -287,7 +287,7 @@ export const HostDashboardPage: React.FC = () => {
             onChange={(e) => setSelectedEventSlug(e.target.value)}
             className="text-xs font-serif font-bold bg-stone-100 text-stone-800 rounded-xl px-3 py-1.5 border border-stone-300 outline-none"
           >
-            <option value="sandeep-weds-priya">Sandeep &amp; Priya (Bihari &amp; Marwari)</option>
+            <option value="sandeep-weds-priya">Sandeep &amp; Priya (Shubh Vivah — North Indian)</option>
             <option value="anirban-weds-deboleena">Anirban &amp; Deboleena (Bengali)</option>
           </select>
 

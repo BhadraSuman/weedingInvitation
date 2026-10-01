@@ -257,7 +257,7 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
             {isHindi ? quotes.nativeWeddingTitle : quotes.weddingTitle}
           </h1>
           <p className="text-xs sm:text-sm uppercase font-serif tracking-[0.3em] text-[#E5C158] font-semibold">
-            {isHindi ? 'बिहारी एवं मारवाड़ी पावन विवाह संस्कार' : 'Bihari & Marwari Royal Wedding Celebration'}
+            {isHindi ? 'बिहारी एवं मारवाड़ी पावन विवाह संस्कार' : 'Shubh Vivah — North Indian Royal Wedding Celebration'}
           </p>
         </div>
 

@@ -246,7 +246,7 @@ export const BotanicalDivider: React.FC<{ className?: string; color?: string }> 
 );
 
 // -------------------------------------------------------------
-// 5. BIHARI & MARWARI MOTIFS
+// 5. Shubh Vivah — North Indian MOTIFS
 // -------------------------------------------------------------
 
 export const MaurIcon: React.FC<{ className?: string; color?: string }> = ({
@@ -254,7 +254,7 @@ export const MaurIcon: React.FC<{ className?: string; color?: string }> = ({
   color = "#D4AF37",
 }) => (
   <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    {/* Traditional Bihari/Marwari Groom's Maur (मौर) with conical top and dangling moti strings */}
+    {/* Traditional North Indian Groom's Maur (मौर) with conical top and dangling moti strings */}
     <path d="M40 6L24 40H56L40 6Z" fill="#8B0000" stroke={color} strokeWidth="2.2" strokeLinejoin="round" />
     <circle cx="40" cy="4" r="2.5" fill={color} />
     {/* Peacock Feather / Kalgi on Top */}

@@ -29,7 +29,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 't-2',
     coupleName: 'Vikram & Pooja Sharma',
     location: 'Patna & Bengaluru',
-    eventType: 'Bihari & Marwari Royal Vivah',
+    eventType: 'Shubh Vivah — North Indian Royal Vivah',
     culturalBadge: '🚩 बिहारी-मारवाड़ी विवाह',
     stars: 5,
     highlight: 'Host Dashboard saved our caterer from overcooking by 60 plates',

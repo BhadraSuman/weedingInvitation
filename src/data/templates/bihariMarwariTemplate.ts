@@ -2,7 +2,7 @@ import { CulturalTemplate } from '../../types/wedding';
 
 export const bihariMarwariTemplate: CulturalTemplate = {
   id: 'bihari_marwari',
-  name: 'Bihari & Marwari Vivah',
+  name: 'Shubh Vivah — North Indian Traditions',
   nativeName: 'विवाह उत्सव (बिहारी एवं मारवाड़ी परंपरा)',
   cultureLabel: 'बिहारी एवं मारवाड़ी पावन विवाह',
   cultureTagline: 'मटकोर, मौर, तोरण द्वार, घूमर एवं सात फेरे',

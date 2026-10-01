@@ -251,7 +251,7 @@ export const TryoutPage: React.FC = () => {
                 </div>
               </button>
 
-              {/* Bihari & Marwari Vivah */}
+              {/* Shubh Vivah — North Indian Traditions */}
               <button
                 type="button"
                 onClick={() => handleThemeChange('bihari_marwari')}
@@ -265,7 +265,7 @@ export const TryoutPage: React.FC = () => {
                   🚩
                 </div>
                 <div>
-                  <h4 className="font-serif font-bold text-sm text-[#2C1810]">Bihari &amp; Marwari Vivah</h4>
+                  <h4 className="font-serif font-bold text-sm text-[#2C1810]">Shubh Vivah — North Indian Traditions</h4>
                   <p className="text-[11px] font-serif text-stone-500 mt-0.5">
                     Emerald Darbar, Pure Sanskrit &amp; Hindi shlokas
                   </p>
