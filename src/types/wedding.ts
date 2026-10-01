@@ -1,6 +1,6 @@
 export type Language = 'native' | 'en';
 
-export type TemplateId = 'bengali' | 'royal_north' | 'south_indian' | 'modern_minimal';
+export type TemplateId = 'bengali' | 'royal_north' | 'south_indian' | 'modern_minimal' | 'bihari_marwari';
 
 export interface CoupleMember {
   name: string;

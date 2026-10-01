@@ -1,53 +1,74 @@
-# 💍 শুভ বিবাহ & Shubh Vivah — Multi-Cultural Wedding Invitations
+# 💍 WeedingInv.com — Cultural Digital Wedding Invitation Platform
 
-An authentic, ultra-modern digital wedding invitation platform supporting **multiple Indian and contemporary cultural themes**, built with **React 19, TypeScript, and Tailwind CSS v4**.
+India's premier digital wedding invitation micro-site platform. Say goodbye to heavy paper cards and 50MB WhatsApp videos. We craft enchanting, lightning-fast cultural wedding micro-sites hosted on **clean, SEO-friendly subpaths (`weedinginv.com/[couple-slug]`)**.
 
 ---
 
-## 🎨 Supported Cultural Wedding Templates
+## 🌐 Platform Architecture
 
-You can preview each cultural style directly via query parameters or using the interactive in-app **Cultural Style Switcher**:
+```
+                               ┌────────────────────────────────────────┐
+                               │            weedinginv.com              │
+                               │        (Company Landing Page)          │
+                               │  • Portfolio, Pricing, WhatsApp CTA    │
+                               └───────────────────┬────────────────────┘
+                                                   │
+                                                   ▼
+                               ┌────────────────────────────────────────┐
+                               │        Dynamic Slug Routing            │
+                               │      weedinginv.com/[couple-slug]      │
+                               └───────────┬────────────────┬───────────┘
+                                           │                │
+                        ┌──────────────────┴──┐          ┌──┴──────────────────┐
+                        ▼                     ▼          ▼                     ▼
+             /anirban-weds-deboleena      /sandeep-weds-priya      /client-03          ...
+              (Bengali Patrika UI)       (Bihari & Marwari UI)   (Next Client)
+```
 
-| Template | Culture / Tradition | Key Motifs & Aesthetics | URL Preview |
+---
+
+## 🚀 Live Slugs in this Implementation
+
+| Route | Culture & Tradition | UI Design & Aesthetics | Key Rituals |
 | :--- | :--- | :--- | :--- |
-| **Bengali Heritage** | শুভ বিবাহ (বাঙালি ঐতিহ্য) | Alpona, Topor & Mukut, Shankho, Paan Pata, Rabindra Verses | `?template=bengali` |
-| **Royal Rajputana** | शाही शुभ विवाह (उत्तर भारतीय) | Jharokhas, Royal Elephants, Fort Gold, Ganesha Shlokas, Dhol | `?template=royal_north` |
-| **South Indian Kalyanam** | சுப கல்யாணம் (தமிழ் மரபு) | Kolam Art, Temple Lamps, Kanjeevaram Maroon, Nadaswaram, Thaali | `?template=south_indian` |
-| **Contemporary Minimalist** | Forever & Always (Modern Luxe) | Botanical Wreaths, Sunset Vows, Champagne Rose Gold, Violins | `?template=modern_minimal` |
+| **`/`** | **WeedingInv Platform** | High-converting Agency Landing Page | Live demos, pricing tiers, feature comparison & WhatsApp booking |
+| **`/anirban-weds-deboleena`** | **বাঙালি শুভ বিবাহ (Bengali)** | Authentic "Lagna Patrika" scroll with red textile border & Alpona | *Aiburobhat, Gaye Holud & Tattva, Saat Paak, Shubho Drishti, Bou Bhaat* |
+| **`/sandeep-weds-priya`** | **बिहारी एवं मारवाड़ी पावन विवाह** | Royal Mithila & Marwar Vivah card with Maur, Toran & Jharokhas | *Tilak, Matkor (soil digging), Mahila Sangeet & Ghoomar, Toran, Saat Phere, Bahu Bhoj* |
 
 ---
 
-## ✨ Features
+## ✨ Dynamic Guest Personalization
 
-- 💌 **3D Tactile Envelope Opening**: Culture-specific wax seals, authentic envelope folding animation, and synchronized marigold/gold confetti burst (`canvas-confetti`).
-- 🎵 **Curated Music & Audio Engine**: Traditional Shehnai, Nadaswaram, and acoustic wedding tracks with floating glass equalizer controls and procedural Web Audio API fallback.
-- 🌐 **Dynamic Bilingual Support**: Instant toggle between English and the culture's native language (**বাংলা / हिन्दी / தமிழ் / Classic**).
-- ⏳ **Auspicious Lagna Countdown**: Real-time countdown to the wedding ceremony with native numeral conversion.
-- 🪔 **Authentic Cultural Itineraries**:
-  - **Bengali**: *Aiburobhat, Gaye Holud & Tattva, Shubho Bibaho, Bou Bhaat*
-  - **Royal North**: *Haldi Carnival, Sangeet & Ring Ceremony, Baraat & Shubh Vivah*
-  - **South Indian**: *Oonjal & Jaanavasam, Subha Muhurtham & Mangalya Dharanam*
-  - **Modern Minimal**: *Welcome Sunset Cocktails, The Ceremony & Written Vows*
-- 📅 **1-Tap Google Calendar**: One-click button generates a pre-filled calendar entry for each ceremony.
-- 📍 **Venue & Navigation**: Embedded interactive Google Map, turn-by-turn directions, and Uber/Ola ride booking shortcuts.
-- 💖 **Digital "Ashirbaad" Guestbook**: Interactive blessings wall with persistent localStorage storage, heart reactions, and quick wish suggestions.
-- 📲 **1-Tap WhatsApp RSVP**: Instant WhatsApp message generator for quick attendance confirmation.
-- 🏷️ **Guest Personalization (`?to=...`)**: Dynamic guest names displayed on the envelope and hero banner (e.g. `?template=royal_north&to=Sharma+Family`).
-- 🎨 **Live Floating Template Switcher**: Switch cultural themes on the fly with live color swatches and instant styling updates.
+You can personalize any invitation for a specific guest or family by adding `?to=...`:
+* **Bengali Invite for a relative**: `/anirban-weds-deboleena?to=Joydeep+Da+and+Family`
+* **Bihari/Marwari Invite for a family**: `/sandeep-weds-priya?to=Sharma+Ji+and+Family`
+
+The guest’s name is dynamically honored on the envelope wax seal, welcome banner, and WhatsApp preview!
 
 ---
 
-## 🚀 Getting Started
+## 📞 Business Contact & Coordination
 
-### Installation
+- **Lead Designer & Developer**: Suman Bhadra
+- **WhatsApp / Phone**: `+91 6291898703`
+- **Email**: `bhadrasuman04@gmail.com`
+- **Studio**: Kolkata, West Bengal • Serving families across India & worldwide
+
+---
+
+## 🛠️ Technology Stack
+
+- **Framework**: React 19, TypeScript, React Router
+- **Styling**: Tailwind CSS v4 (with custom `@theme` tokens)
+- **Icons & Motion**: Lucide React, Canvas Confetti
+- **Audio Engine**: Curated Shehnai / Flute background audio with procedural Web Audio API fallback
+- **Performance**: Sub-second load time, optimized for mobile WhatsApp in-app browser
+
+---
+
+## 💻 Running Locally
 
 ```bash
-# Clone the repository
-git clone https://github.com/BhadraSuman/weedingInvitation.git
-
-# Navigate to the project directory
-cd weedingInvitation
-
 # Install dependencies
 npm install
 
@@ -55,19 +76,12 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:5173/` in your browser.
-
----
-
-## 📦 Production Build
-
-```bash
-npm run build
-```
-
-Generates optimized, self-contained production files in `dist/`.
+Visit:
+- **`http://localhost:5173/`** for the Company Landing Page
+- **`http://localhost:5173/anirban-weds-deboleena`** for the Bengali Wedding Invitation
+- **`http://localhost:5173/sandeep-weds-priya`** for the Bihari & Marwari Wedding Invitation
 
 ---
 
 ## 📜 License
-MIT © 2026 Suman Bhadra
+MIT © 2026 Suman Bhadra • WeedingInv.com

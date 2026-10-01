@@ -246,6 +246,61 @@ export const BotanicalDivider: React.FC<{ className?: string; color?: string }> 
 );
 
 // -------------------------------------------------------------
+// 5. BIHARI & MARWARI MOTIFS
+// -------------------------------------------------------------
+
+export const MaurIcon: React.FC<{ className?: string; color?: string }> = ({
+  className = "w-14 h-14",
+  color = "#D4AF37",
+}) => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Traditional Bihari/Marwari Groom's Maur (मौर) with conical top and dangling moti strings */}
+    <path d="M40 6L24 40H56L40 6Z" fill="#8B0000" stroke={color} strokeWidth="2.2" strokeLinejoin="round" />
+    <circle cx="40" cy="4" r="2.5" fill={color} />
+    {/* Peacock Feather / Kalgi on Top */}
+    <ellipse cx="40" cy="14" rx="4" ry="7" fill="#0D5C3A" stroke={color} strokeWidth="1" />
+    <circle cx="40" cy="14" r="2" fill="#D4AF37" />
+    {/* Golden Filigree Bands */}
+    <path d="M28 26H52" stroke={color} strokeWidth="1.8" />
+    <path d="M26 34H54" stroke={color} strokeWidth="1.8" />
+    {/* Traditional Red Tilak / Swastik */}
+    <circle cx="40" cy="30" r="2.5" fill="#F3A712" />
+    {/* Hanging Moti / Golden Tassels (लटकन) */}
+    <path d="M26 40L22 56M32 40L30 58M40 40V62M48 40L50 58M54 40L58 56" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeDasharray="1 3" />
+    <circle cx="22" cy="56" r="1.5" fill="#8B0000" />
+    <circle cx="30" cy="58" r="1.5" fill="#8B0000" />
+    <circle cx="40" cy="62" r="2" fill="#8B0000" />
+    <circle cx="50" cy="58" r="1.5" fill="#8B0000" />
+    <circle cx="58" cy="56" r="1.5" fill="#8B0000" />
+  </svg>
+);
+
+export const MadhubaniDivider: React.FC<{ className?: string; color?: string }> = ({
+  className = "w-full h-8",
+  color = "#D4AF37",
+}) => (
+  <div className={`flex items-center justify-center gap-2 overflow-hidden ${className}`}>
+    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#8B0000]/40 to-[#D4AF37]" />
+    <svg viewBox="0 0 160 32" className="h-7 w-auto shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Traditional Mithila Fish & Lotus geometric pattern */}
+      <circle cx="80" cy="16" r="6" stroke="#8B0000" strokeWidth="1.8" fill={color} fillOpacity="0.3" />
+      <circle cx="80" cy="16" r="2.5" fill="#8B0000" />
+      {/* Lotus Petals */}
+      <path d="M80 4C76 10 76 12 80 16C84 12 84 10 80 4Z" fill="#8B0000" />
+      <path d="M80 28C76 22 76 20 80 16C84 20 84 22 80 28Z" fill="#8B0000" />
+      <path d="M68 16C74 12 76 12 80 16C76 20 74 20 68 16Z" fill="#8B0000" />
+      <path d="M92 16C86 12 84 12 80 16C84 20 86 20 92 16Z" fill="#8B0000" />
+      {/* Surrounding auspicious dots */}
+      <circle cx="58" cy="16" r="2" fill={color} />
+      <circle cx="48" cy="16" r="1.5" fill="#8B0000" />
+      <circle cx="102" cy="16" r="2" fill={color} />
+      <circle cx="112" cy="16" r="1.5" fill="#8B0000" />
+    </svg>
+    <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[#8B0000]/40 to-[#D4AF37]" />
+  </div>
+);
+
+// -------------------------------------------------------------
 // DYNAMIC DISPATCHER
 // -------------------------------------------------------------
 
@@ -258,6 +313,8 @@ export const CulturalMotifBadge: React.FC<{ templateId: TemplateId; className?: 
       return <ToporMukutIcon className={className} />;
     case 'royal_north':
       return <RoyalElephantIcon className={className} />;
+    case 'bihari_marwari':
+      return <MaurIcon className={className} />;
     case 'south_indian':
       return <TempleLampIcon className={className} />;
     case 'modern_minimal':
@@ -275,6 +332,8 @@ export const CulturalDivider: React.FC<{ templateId: TemplateId; className?: str
       return <AlponaDivider className={className} color={color} />;
     case 'royal_north':
       return <JharokhaDivider className={className} color={color} />;
+    case 'bihari_marwari':
+      return <MadhubaniDivider className={className} color={color} />;
     case 'south_indian':
       return <KolamDivider className={className} color={color} />;
     case 'modern_minimal':

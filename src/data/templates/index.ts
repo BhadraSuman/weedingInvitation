@@ -3,9 +3,11 @@ import { bengaliTemplate } from './bengaliTemplate';
 import { royalNorthTemplate } from './royalNorthTemplate';
 import { southIndianTemplate } from './southIndianTemplate';
 import { modernMinimalTemplate } from './modernMinimalTemplate';
+import { bihariMarwariTemplate } from './bihariMarwariTemplate';
 
 export const templatesList: CulturalTemplate[] = [
   bengaliTemplate,
+  bihariMarwariTemplate,
   royalNorthTemplate,
   southIndianTemplate,
   modernMinimalTemplate,
@@ -13,6 +15,7 @@ export const templatesList: CulturalTemplate[] = [
 
 export const templatesMap: Record<TemplateId, CulturalTemplate> = {
   bengali: bengaliTemplate,
+  bihari_marwari: bihariMarwariTemplate,
   royal_north: royalNorthTemplate,
   south_indian: southIndianTemplate,
   modern_minimal: modernMinimalTemplate,
@@ -27,6 +30,7 @@ export const getTemplateById = (id: string | null): CulturalTemplate => {
 
 export {
   bengaliTemplate,
+  bihariMarwariTemplate,
   royalNorthTemplate,
   southIndianTemplate,
   modernMinimalTemplate,
