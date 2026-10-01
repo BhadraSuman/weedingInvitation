@@ -53,7 +53,7 @@ export const royalNorthTemplate: CulturalTemplate = {
     grandparents: 'Grandson of Late Shri Chanduram & Late Smt. Ranibai Kshatriya',
     nativeGrandparents: 'पौत्र: स्व. श्री चंदूराम - स्व. श्रीमती रानीबाई क्षत्रिय',
     location: 'Jabalpur, Madhya Pradesh',
-    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?auto=compress&cs=tinysrgb&w=800',
     about: 'Entrepreneur, sports fanatic, and someone who believes celebrations are best when shared with family.',
     nativeAbout: 'उद्यमी, खेलप्रेमी एवं पारिवारिक परंपराओं को सहेजकर चलने वाले।'
   },
@@ -67,7 +67,7 @@ export const royalNorthTemplate: CulturalTemplate = {
     grandparents: 'Granddaughter of Late Shri Kishanchand & Late Smt. Dayawanti Paruthi',
     nativeGrandparents: 'पौत्री: स्व. श्री किशनचंद - स्व. श्रीमती दयावंती पारुथी',
     location: 'Indore, Madhya Pradesh',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/8888997/pexels-photo-8888997.jpeg?auto=compress&cs=tinysrgb&w=800',
     about: 'Interior designer, avid traveler, and creator of joy wherever she steps.',
     nativeAbout: 'इंटीरियर डिज़ाइनर, प्रकृति प्रेमी और अपने सौम्य स्वभाव से सबका दिल जीतने वाली।'
   },

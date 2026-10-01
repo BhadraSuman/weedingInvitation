@@ -58,7 +58,7 @@ export const FloatingPetals: React.FC<FloatingPetalsProps> = ({
           triggerPetalBurst();
         }}
         title="Turn on Flower Shower"
-        className="fixed bottom-20 left-4 z-40 p-2.5 rounded-full bg-white/90 backdrop-blur-md border border-[#D4AF37] text-stone-700 hover:text-[#8B181B] shadow-lg transition-all"
+        className="fixed bottom-32 right-4 sm:bottom-20 sm:right-6 z-40 p-2.5 rounded-full bg-white/90 backdrop-blur-md border border-[#D4AF37] text-stone-700 hover:text-[#8B181B] shadow-lg transition-all"
       >
         <Sparkles className="w-4 h-4 text-[#D4AF37]" />
       </button>
@@ -106,7 +106,7 @@ export const FloatingPetals: React.FC<FloatingPetalsProps> = ({
       </div>
 
       {/* Floating Toggle & Burst Button */}
-      <div className="fixed bottom-20 left-4 z-40 flex items-center gap-2">
+      <div className="fixed bottom-32 right-4 sm:bottom-20 sm:right-6 z-40 flex items-center gap-2">
         <button
           onClick={triggerPetalBurst}
           title="Shower Flowers on Couple (পুষ্পবৃষ্টি)"

@@ -53,7 +53,7 @@ export const bihariMarwariTemplate: CulturalTemplate = {
     grandparents: 'Grandson of Late Seth Ramlal & Late Smt. Bhagwati Devi Agarwal',
     nativeGrandparents: 'पौत्र: स्व. सेठ रामलाल अग्रवाल एवं स्व. श्रीमती भगवती देवी',
     location: 'Patna, Bihar (Origins: Marwar, Rajasthan)',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&w=800',
     about: 'Tech entrepreneur, family-first person with deep respect for Marwari roots and Bihar heritage.',
     nativeAbout: 'उद्यमी, पारिवारिक मूल्यों के प्रति समर्पित एवं परंपराओं को सहेजने वाले।'
   },
@@ -67,7 +67,7 @@ export const bihariMarwariTemplate: CulturalTemplate = {
     grandparents: 'Granddaughter of Late Shri Kedar Nath & Late Smt. Sharda Devi',
     nativeGrandparents: 'पौत्री: स्व. श्री केदार नाथ एवं स्व. श्रीमती शारदा देवी',
     location: 'Muzaffarpur / Patna, Bihar',
-    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/5087010/pexels-photo-5087010.jpeg?auto=compress&cs=tinysrgb&w=800',
     about: 'Civil services researcher, classical singer with a deep love for Mithila paintings and folk culture.',
     nativeAbout: 'शोधार्थी, शास्त्रीय संगीत में रुचि रखने वाली एवं मिथिला कला की पारखी।'
   },

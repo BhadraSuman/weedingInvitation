@@ -36,7 +36,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Kolkata',
     upiId: 'subhajit@okaxis',
     whatsappNumber: '916203868358',
-    customPhotoUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80'
+    customPhotoUrl: 'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   bihari_marwari: {
     theme: 'bihari_marwari',
@@ -49,7 +49,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Patna',
     upiId: 'aditya@okhdfcbank',
     whatsappNumber: '916203868358',
-    customPhotoUrl: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80'
+    customPhotoUrl: 'https://images.pexels.com/photos/2959192/pexels-photo-2959192.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   annaprashan: {
     theme: 'annaprashan',

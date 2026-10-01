@@ -53,7 +53,7 @@ export const modernMinimalTemplate: CulturalTemplate = {
     grandparents: 'Grandson of Late Dr. Ranajit Roy',
     nativeGrandparents: 'Grandson of Late Dr. Ranajit Roy',
     location: 'Bandra, Mumbai',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800',
     about: 'Product designer, vinyl collector, and avid coastal surfer who loves brewing pour-over coffee.',
     nativeAbout: 'Designer, music curator, and coffee enthusiast.'
   },
@@ -67,7 +67,7 @@ export const modernMinimalTemplate: CulturalTemplate = {
     grandparents: 'Granddaughter of Late Shri Hasmukh Mehta',
     nativeGrandparents: 'Granddaughter of Late Shri Hasmukh Mehta',
     location: 'Colaba, Mumbai',
-    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/3731256/pexels-photo-3731256.jpeg?auto=compress&cs=tinysrgb&w=800',
     about: 'Architectural journalist, pottery artist, and sun-chaser with a passion for slow travels.',
     nativeAbout: 'Architectural journalist and ceramics artist.'
   },

@@ -23,18 +23,18 @@ const TESTIMONIALS: Testimonial[] = [
     stars: 5,
     highlight: 'Saved ₹45,000 on printing & overseas courier to London',
     review: 'We were dreading physical card printing deadlines and expensive overseas couriers to our family in the UK and USA. UtsavPatra delivered our custom Lagna Patrika in 24 hours. The NRI timezone converter meant our relatives in London watched our live stream at the exact right hour without any confusion!',
-    avatar: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=200&h=200&q=80'
+    avatar: 'https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200&h=200'
   },
   {
     id: 't-2',
     coupleName: 'Vikram & Pooja Sharma',
     location: 'Patna & Bengaluru',
     eventType: 'Shubh Vivah — North Indian Royal Vivah',
-    culturalBadge: '🚩 बिहारी-मारवाड़ी विवाह',
+    culturalBadge: '🚩 उत्तर भारतीय पावन विवाह',
     stars: 5,
     highlight: 'Host Dashboard saved our caterer from overcooking by 60 plates',
     review: 'The Host Dashboard is what truly separates UtsavPatra from a basic image card. We could see who opened the link and sent polite 1-click WhatsApp reminders to pending relatives. We had our exact Veg/Non-Veg headcount confirmed a week in advance, saving us huge catering expenses.',
-    avatar: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=200&h=200&q=80'
+    avatar: 'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&w=200&h=200'
   },
   {
     id: 't-3',
@@ -45,7 +45,7 @@ const TESTIMONIALS: Testimonial[] = [
     stars: 5,
     highlight: 'Grandparents zoomed in easily, 1-tap Google Maps meant 0 lost guests',
     review: 'Our biggest worry was whether our elderly relatives could navigate a digital invite. Because UtsavPatra supports clean pinch-to-zoom and 1-tap Google Maps navigation, even our 80-year-old grandfather arrived at the venue without asking anyone for directions!',
-    avatar: 'https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=200&h=200&q=80'
+    avatar: 'https://images.pexels.com/photos/7648057/pexels-photo-7648057.jpeg?auto=compress&cs=tinysrgb&w=200&h=200'
   },
   {
     id: 't-4',
@@ -67,7 +67,7 @@ const TESTIMONIALS: Testimonial[] = [
     stars: 5,
     highlight: 'We white-label UtsavPatra for all luxury high-budget clients',
     review: 'We manage high-profile weddings in Udaipur, Jaipur, and Kolkata. Physical card reprints when a muhurat shifts are a nightmare. UtsavPatra gives our clients instant revisions, personalized guest links with wax seals, and an executive RSVP portal. Essential for modern Indian weddings.',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80'
+    avatar: 'https://images.pexels.com/photos/3881185/pexels-photo-3881185.jpeg?auto=compress&cs=tinysrgb&w=200&h=200'
   }
 ];
 

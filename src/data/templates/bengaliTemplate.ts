@@ -53,7 +53,7 @@ export const bengaliTemplate: CulturalTemplate = {
     grandparents: 'Grandson of Late Priyanath & Late Binapani Mukherjee',
     nativeGrandparents: 'স্বর্গীয় প্রিয়নাথ মুখোপাধ্যায় ও স্বর্গীয়া বীণাপাণি মুখোপাধ্যায়ের পৌত্র',
     location: 'Ballygunge, Kolkata',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800',
     about: 'Software Architect with a heart for old Kolkata lanes, Rabindrasangeet on vinyl, and weekend football.',
     nativeAbout: 'প্রযুক্তিপ্রেমী, সান্ধ্য রবিগান আর সাবেক কলকাতার গলিঘুঁজির একনিষ্ঠ রসিক।'
   },
@@ -67,7 +67,7 @@ export const bengaliTemplate: CulturalTemplate = {
     grandparents: 'Granddaughter of Late Bimal Krishna & Late Kalyani Banerjee',
     nativeGrandparents: 'স্বর্গীয় বিমলকৃষ্ণ বন্দ্যোপাধ্যায় ও স্বর্গীয়া কল্যাণী বন্দ্যোপাধ্যায়ের পৌত্রী',
     location: 'Salt Lake, Kolkata',
-    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=800',
     about: 'Classical dancer, literature enthusiast, and creator of warmth wherever she goes.',
     nativeAbout: 'কথক নৃত্যশিল্পী, কথাসাহিত্যের মুগ্ধ পাঠক এবং হাসিখুশি প্রাণোচ্ছ্বল এক মন।'
   },

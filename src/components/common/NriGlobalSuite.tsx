@@ -171,12 +171,12 @@ export const NriGlobalSuite: React.FC<NriGlobalSuiteProps> = ({
               <span>{isNative ? 'প্রবাসী ও বৈশ্বিক আত্মীয় পরিজন' : 'NRI & Global Family Suite'}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900">
-              {isNative ? 'লাইভ সম্প্রচার ও গ্লোবাল টাইমজোন' : 'Live Stream Broadcast & Global Timezones'}
+              {isNative ? 'গ্লোবাল টাইমজোন ও শুভ লগ্ন সূচি' : 'Global Timezone & Ceremony Schedule'}
             </h2>
             <p className="text-xs sm:text-sm font-serif text-stone-600 mt-1 max-w-xl">
               {isNative
-                ? 'দূর দেশে থাকা সমস্ত প্রিয়জনদের জন্য সরাসরি সম্প্রচার এবং আপনার স্থানীয় সময়ের শুভ লগ্ন সূচি।'
-                : 'For our beloved family and friends across the globe — experience every sacred ritual in real-time, converted to your local time zone.'}
+                ? 'দূর দেশে থাকা সমস্ত প্রিয়জনদের জন্য আপনার স্থানীয় সময়ের শুভ লগ্ন সূচি ও শুভেচ্ছা বার্তা।'
+                : 'For our beloved family and friends across the globe — ceremony timings automatically converted to your local time zone with personalized greetings.'}
             </p>
           </div>
 
@@ -201,73 +201,65 @@ export const NriGlobalSuite: React.FC<NriGlobalSuiteProps> = ({
         {/* 2-Column Main Section: Live Stream Hub + Converted Schedule */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
           
-          {/* Column 1: Live Stream Player Box (7 Cols) */}
-          <div className="lg:col-span-7 flex flex-col justify-between rounded-2xl overflow-hidden border border-stone-300 bg-stone-900 text-white relative shadow-lg">
-            
-            {/* Mock Player Header */}
-            <div className="p-4 bg-stone-950/80 backdrop-blur-md flex items-center justify-between border-b border-stone-800 z-10">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-xs font-mono uppercase tracking-wider font-bold text-red-400">
-                  Exclusive Live Broadcast
+          {/* Column 1: Clean Remote Guest & Blessing Action Card (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl p-6 border border-stone-200 bg-stone-50/80 shadow-sm">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-xs font-serif uppercase tracking-wider font-bold text-stone-700">
+                  {isNative ? 'দূরবর্তী উপস্থিতি ও শুভকামনা' : 'Remote Guest Portal'}
                 </span>
               </div>
-              <span className="text-[11px] font-mono text-stone-400">
-                1080p Ultra HD • 360° Audio
-              </span>
-            </div>
 
-            {/* Video Placeholder with Play Action */}
-            <div className="relative aspect-video flex flex-col items-center justify-center p-6 bg-gradient-to-t from-black via-stone-900 to-black overflow-hidden group">
-              <img
-                src={template.groom.image || "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80"}
-                alt="Live Stream Preview"
-                className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:scale-105 transition-transform duration-700"
-              />
-              
-              <div className="relative z-10 text-center max-w-sm">
-                <div className="w-16 h-16 rounded-full bg-red-600/90 text-white flex items-center justify-center mx-auto mb-3 shadow-[0_0_24px_rgba(220,38,38,0.8)] group-hover:scale-110 transition-transform">
-                  <Play className="w-8 h-8 fill-current ml-1" />
-                </div>
-                <h3 className="font-serif text-lg font-bold text-stone-100">
-                  {template.groom.name} &amp; {template.bride.name}
-                </h3>
-                <p className="text-xs font-serif text-stone-300 mt-1">
-                  Sacred Wedding Ceremony &amp; Saptapadi
-                </p>
-                <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[11px] text-[#F3E5AB] font-mono">
-                  <Clock className="w-3 h-3" />
-                  <span>Scheduled in your timezone: {convertIstToLocal(19, 0, selectedTz)} ({selectedTz})</span>
+              <h3 className="font-serif text-xl font-bold text-stone-900 mb-2">
+                {template.groom.name} &amp; {template.bride.name}
+              </h3>
+              <p className="text-xs font-serif text-stone-600 leading-relaxed">
+                {isNative
+                  ? 'দূর দেশে থেকেও আমাদের আনন্দঘন মুহূর্তে যুক্ত থাকুন। আপনার স্থানীয় সময় অনুযায়ী শুভ মুহূর্ত উপভোগ করুন এবং ভিডিও বার্তা পাঠান।'
+                  : 'Join our sacred celebrations from anywhere in the world. Experience every auspicious muhurat adjusted to your local time and share your personal video wishes with the family.'}
+              </p>
+
+              {/* Local Time Highlight Banner */}
+              <div className="mt-4 p-3.5 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center gap-3">
+                <Clock className="w-5 h-5 text-amber-700 shrink-0" />
+                <div>
+                  <span className="text-[11px] font-serif uppercase tracking-wider text-amber-900 font-bold block">
+                    {TIMEZONES[selectedTz]?.city} ({selectedTz})
+                  </span>
+                  <span className="text-xs font-serif text-amber-800">
+                    Ceremonies start at {convertIstToLocal(19, 0, selectedTz)} local time
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Stream Footer Actions */}
-            <div className="p-4 bg-stone-950 flex flex-wrap items-center justify-between gap-3 border-t border-stone-800">
+            {/* Quick Action Buttons */}
+            <div className="mt-6 pt-4 border-t border-stone-200 flex flex-col sm:flex-row lg:flex-col gap-2.5">
+              <button
+                type="button"
+                onClick={() => setIsVideoModalOpen(true)}
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif text-xs font-bold transition-all shadow-sm active:scale-95"
+              >
+                <Mic className="w-4 h-4 text-[#D4AF37]" />
+                <span>Send Video / Voice Blessing 🎥</span>
+              </button>
+
               <a
                 href={liveStreamUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-serif text-xs font-bold shadow-md transition-all"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-serif text-xs font-semibold transition-all shadow-sm"
               >
-                <Video className="w-4 h-4" />
-                <span>Open Official Live Stream</span>
-                <ExternalLink className="w-3 h-3 opacity-80" />
+                <Video className="w-4 h-4 text-red-600" />
+                <span>Open Virtual Stream Link</span>
+                <ExternalLink className="w-3 h-3 text-stone-400" />
               </a>
-
-              <button
-                type="button"
-                onClick={() => setIsVideoModalOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-[#F3E5AB] border border-amber-400/40 font-serif text-xs font-bold transition-all"
-              >
-                <Mic className="w-4 h-4 text-[#D4AF37]" />
-                <span>Send Video Blessing 🎥</span>
-              </button>
             </div>
           </div>
 
-          {/* Column 2: Ceremony Schedule Converted to Local Time (5 Cols) */}
-          <div className="lg:col-span-5 flex flex-col justify-between bg-stone-50 rounded-2xl p-5 border border-stone-200">
+          {/* Column 2: Ceremony Schedule Converted to Local Time (7 Cols) */}
+          <div className="lg:col-span-7 flex flex-col justify-between bg-white rounded-2xl p-6 border border-stone-200 shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-stone-200">
                 <span className="text-xs font-serif font-bold uppercase tracking-wider text-stone-700">

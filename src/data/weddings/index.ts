@@ -29,7 +29,7 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     cultureName: 'বাঙালি শুভ বিবাহ (Bengali Lagna Patrika)',
     badgeEmoji: '🪔',
     template: bengaliTemplate,
-    previewImage: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80'
+    previewImage: 'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   'sandeep-weds-priya': {
     slug: 'sandeep-weds-priya',
@@ -37,10 +37,10 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     coupleNames: 'Sandeep & Priya',
     category: 'wedding',
     cultureType: 'bihari_marwari',
-    cultureName: 'बिहारी एवं मारवाड़ी पावन विवाह (North Indian Vivah)',
+    cultureName: 'शुभ विवाह — उत्तर भारतीय परंपरा (North Indian Vivah)',
     badgeEmoji: '🚩',
     template: bihariMarwariTemplate,
-    previewImage: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80'
+    previewImage: 'https://images.pexels.com/photos/2959192/pexels-photo-2959192.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   'aarav-annaprashan': {
     slug: 'aarav-annaprashan',
