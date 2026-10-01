@@ -20,11 +20,18 @@ import {
   Baby,
   Cake,
   Heart,
-  UtensilsCrossed
+  UtensilsCrossed,
+  Handshake,
+  ChevronDown,
+  Building2,
+  Percent,
+  Award,
+  HelpCircle
 } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<'all' | EventCategory>('all');
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const whatsappInquiryUrl = (packageTitle: string = "Celebration Invitation") => {
     const text = encodeURIComponent(
@@ -32,6 +39,40 @@ export const LandingPage: React.FC = () => {
     );
     return `https://wa.me/916291898703?text=${text}`;
   };
+
+  const agencyInquiryUrl = () => {
+    const text = encodeURIComponent(
+      "Hello Suman! I represent an Event Management / Wedding Planning Agency / Photography Studio and would like to partner with UtsavPatra for white-label client digital invitations."
+    );
+    return `https://wa.me/916291898703?text=${text}`;
+  };
+
+  const faqItems = [
+    {
+      question: "How does the UtsavPatra ordering and delivery process work?",
+      answer: "Zero complex software or tech hurdles! Simply share your event details, ceremony timings, photos, and Google Maps venue link with Suman directly on WhatsApp. We design your personalized interactive invitation, provide a live staging preview for family review, and make any revisions within 2 hours. Your final invitation link (utsavpatra.com/your-event) is ready to share with 500+ guests within 24 hours."
+    },
+    {
+      question: "Can UtsavPatra be customized for regional traditions across India?",
+      answer: "Absolutely! We do not believe in one generic template. We craft radically differentiated cultural universes: Bengali Vivah (Parchment scrolls, wooden finials, Topor, Alpona, Shehnai audio), Bihari & Marwari Shubh Vivah (Emerald-Gold Darbar architecture with pure Sanskrit/Hindi verses), Annaprashan (First Rice Ceremony with silver Payesh bowl and interactive Thali Pariksha game), and 1st Birthday Galas (interactive cake cutting & balloon burst). South Indian and Pan-Indian themes are also fully supported."
+    },
+    {
+      question: "How does the Digital Shagun (Online UPI E-Lifafa) feature work?",
+      answer: "Guests can send auspicious blessings and shagun directly to your bank account via UPI (Google Pay, PhonePe, Paytm, BHIM) with 0% platform commission. We configure authentic +₹1 auspicious presets (₹501, ₹1,001, ₹2,101, ₹5,001) and dynamic instant QR codes, making gifting effortless for out-of-town and NRI relatives."
+    },
+    {
+      question: "How do guests RSVP and how do we track headcount?",
+      answer: "Guests click the interactive RSVP button, select attendance status, specify guest counts, and submit diet preferences. You receive structured real-time RSVP updates on WhatsApp, allowing your banquet and catering team to accurately prepare with zero food waste."
+    },
+    {
+      question: "How does the Agency & Wedding Planner Partnership Program work?",
+      answer: "We partner with wedding planners, photography studios, event management firms, and print card vendors across India. Partners receive 20%–30% wholesale margins, white-label client delivery (your agency logo & custom domain), express 6-hour turnaround, and a dedicated WhatsApp coordinator for rapid proofing."
+    },
+    {
+      question: "What if our ceremony timing or venue changes after sharing?",
+      answer: "Unlike printed paper cards where reprints cost thousands, UtsavPatra digital invitations update instantly! Simply message us on WhatsApp with the new venue or muhurat time, and we update the live link in minutes. Every guest automatically sees the updated information."
+    }
+  ];
 
   const allEvents = Object.values(weddingsRegistry);
   const filteredEvents = selectedCategory === 'all'
@@ -61,6 +102,11 @@ export const LandingPage: React.FC = () => {
           <a href="#demos" className="hover:text-[#8B181B] transition-colors">Celebration Demos</a>
           <a href="#why-digital" className="hover:text-[#8B181B] transition-colors">Why Digital?</a>
           <a href="#pricing" className="hover:text-[#8B181B] transition-colors">Pricing</a>
+          <a href="#partners" className="text-[#8B181B] font-bold hover:text-[#5E0B0E] transition-colors flex items-center gap-1">
+            <Handshake className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span>Agency Partners</span>
+          </a>
+          <a href="#faq" className="hover:text-[#8B181B] transition-colors">FAQ</a>
           <a href="#contact" className="hover:text-[#8B181B] transition-colors">Contact</a>
         </nav>
 
@@ -92,6 +138,29 @@ export const LandingPage: React.FC = () => {
           From grand <strong>Weddings</strong> to baby's <strong>Annaprashan</strong> (First Rice Ceremony) and joyous <strong>1st Birthdays</strong>. 
           Share authentic cultural rituals, 1-tap Google Maps directions, and automated WhatsApp RSVPs with zero paper courier hassles.
         </p>
+
+        {/* Pan-India Geographic Trust Pill */}
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 text-[11px] font-serif text-[#7A6A60] max-w-2xl mx-auto">
+          <span className="inline-flex items-center gap-1 font-bold text-[#8B181B]">
+            <MapPin className="w-3 h-3 text-[#D4AF37]" />
+            Serving Pan-India:
+          </span>
+          <span className="hover:text-[#8B181B] transition-colors">Kolkata</span>
+          <span>•</span>
+          <span className="hover:text-[#8B181B] transition-colors">Delhi NCR</span>
+          <span>•</span>
+          <span className="hover:text-[#8B181B] transition-colors">Patna</span>
+          <span>•</span>
+          <span className="hover:text-[#8B181B] transition-colors">Mumbai</span>
+          <span>•</span>
+          <span className="hover:text-[#8B181B] transition-colors">Jaipur</span>
+          <span>•</span>
+          <span className="hover:text-[#8B181B] transition-colors">Bengaluru</span>
+          <span>•</span>
+          <span className="hover:text-[#8B181B] transition-colors">Hyderabad</span>
+          <span>•</span>
+          <span className="font-semibold text-stone-700">NRI Diaspora Worldwide</span>
+        </div>
 
         {/* Hero Quick Demos Buttons */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3 max-w-2xl mx-auto">
@@ -603,6 +672,158 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
+      {/* 5B. Agency & Wedding Planner Partnership Program */}
+      <section className="py-20 px-4 sm:px-6 bg-gradient-to-b from-[#2C1810] via-[#381B15] to-[#20100C] text-[#F3E5AB] relative overflow-hidden" id="partners">
+        {/* Ambient atmospheric glows */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#8B181B]/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/50 text-xs font-serif font-bold text-[#F3E5AB] uppercase tracking-wider mb-4">
+              <Handshake className="w-4 h-4 text-[#D4AF37]" />
+              <span>B2B &amp; Agency Partner Program</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-serif font-extrabold text-[#FDFBF7] tracking-tight leading-tight">
+              Grow Your Event Business with <br className="hidden sm:inline" />
+              <span className="text-[#E5C158] italic font-normal">White-Label Digital E-Patras</span>
+            </h2>
+            <p className="mt-4 text-xs sm:text-sm text-stone-300 font-serif leading-relaxed">
+              Designed for <strong>Wedding Planners, Event Management Agencies, Photography Studios, and Card Printers</strong> across India.
+              Offer luxury interactive celebration websites to your clients with zero tech hassle, 6-hour express turnaround, and high-margin partner earnings.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Feature 1 */}
+            <div className="bg-white/5 border border-[#D4AF37]/30 rounded-2xl p-6 backdrop-blur-sm hover:border-[#D4AF37] transition-all group">
+              <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/20 border border-[#D4AF37]/50 flex items-center justify-center text-[#E5C158] mb-4 group-hover:scale-110 transition-transform">
+                <Building2 className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-white mb-2">
+                100% White-Label
+              </h3>
+              <p className="text-xs font-serif text-stone-300 leading-relaxed">
+                Deliver under your own agency branding or co-branded with your logo. Your clients experience a bespoke digital service directly from your firm.
+              </p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="bg-white/5 border border-[#D4AF37]/30 rounded-2xl p-6 backdrop-blur-sm hover:border-[#D4AF37] transition-all group">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-110 transition-transform">
+                <Percent className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-white mb-2">
+                25%+ Partner Margins
+              </h3>
+              <p className="text-xs font-serif text-stone-300 leading-relaxed">
+                Wholesale discounted tier pricing allows your agency to bundle digital invitations into client packages and earn high-margin incremental revenue.
+              </p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="bg-white/5 border border-[#D4AF37]/30 rounded-2xl p-6 backdrop-blur-sm hover:border-[#D4AF37] transition-all group">
+              <div className="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400/50 flex items-center justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">
+                <Zap className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-white mb-2">
+                Express 6-Hour Delivery
+              </h3>
+              <p className="text-xs font-serif text-stone-300 leading-relaxed">
+                VIP queue status for agency partners. Staged links ready within hours for client presentations, urgent RSVP blasts, or sudden date changes.
+              </p>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="bg-white/5 border border-[#D4AF37]/30 rounded-2xl p-6 backdrop-blur-sm hover:border-[#D4AF37] transition-all group">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 mb-4 group-hover:scale-110 transition-transform">
+                <Award className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-white mb-2">
+                Dedicated WhatsApp Desk
+              </h3>
+              <p className="text-xs font-serif text-stone-300 leading-relaxed">
+                Direct channel with founder Suman Bhadra. Send client assets, request instant tweaks, and coordinate multi-event client rosters effortlessly.
+              </p>
+            </div>
+          </div>
+
+          {/* Agency Partnership CTA Box */}
+          <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-[#D4AF37]/20 via-[#8B181B]/40 to-[#D4AF37]/20 border border-[#D4AF37]/50 text-center max-w-3xl mx-auto">
+            <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+              Ready to Partner with India’s Premier Cultural E-Patra Studio?
+            </h3>
+            <p className="text-xs sm:text-sm font-serif text-[#F3E5AB]/90 max-w-lg mx-auto mb-6">
+              Whether you are an established wedding planner or a boutique photographer, let’s collaborate to delight your clients and grow revenue.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={agencyInquiryUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold shadow-lg transition-all active:scale-95"
+              >
+                <MessageCircle className="w-4 h-4 fill-white" />
+                <span>Join Agency Partner Network</span>
+              </a>
+              <a
+                href="tel:+916291898703"
+                className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-white/10 hover:bg-white/20 border border-[#D4AF37] text-[#F3E5AB] text-xs sm:text-sm font-serif font-semibold transition-all"
+              >
+                <Phone className="w-4 h-4 text-[#D4AF37]" />
+                <span>Call +91 6291898703</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5C. Interactive FAQ Section (Generative Engine Optimization & Conversion) */}
+      <section className="py-20 px-4 sm:px-6 max-w-4xl mx-auto" id="faq">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#8B181B]/10 border border-[#D4AF37]/50 text-xs font-serif font-bold text-[#8B181B] uppercase tracking-wider mb-3">
+            <HelpCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span>Frequently Asked Questions</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#8B181B]">
+            Everything You Need to Know
+          </h2>
+          <p className="text-xs sm:text-sm text-stone-600 font-serif max-w-md mx-auto mt-2">
+            Clear answers on turnaround delivery times, Pan-India cultural customization, Digital Shagun safety, and agency partnerships.
+          </p>
+        </div>
+
+        <div className="space-y-3.5">
+          {faqItems.map((item, index) => {
+            const isOpen = openFaq === index;
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-2xl border border-[#D4AF37]/40 shadow-sm overflow-hidden transition-all"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  className="w-full py-4 px-5 sm:px-6 text-left flex items-center justify-between gap-4 font-serif font-bold text-sm sm:text-base text-[#2C1810] hover:text-[#8B181B] transition-colors"
+                >
+                  <span>{item.question}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-[#D4AF37] shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-[#8B181B]' : ''
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm font-serif text-[#6E5D53] leading-relaxed border-t border-amber-100 bg-[#FFFDF9]">
+                    {item.answer}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* 6. Contact & WhatsApp Call to Action */}
       <section className="py-20 px-4 sm:px-6 max-w-4xl mx-auto text-center" id="contact">
         <div className="bg-gradient-to-b from-[#FFFDF9] to-[#FAF6EE] rounded-3xl p-8 sm:p-12 border-2 border-[#D4AF37] shadow-xl">
@@ -645,26 +866,29 @@ export const LandingPage: React.FC = () => {
             </a>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-stone-200 text-xs font-serif text-[#7A6A60] flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-8 pt-6 border-t border-stone-200 text-xs font-serif text-[#7A6A60] flex flex-wrap items-center justify-center gap-3">
             <span>✨ Coordinated by <strong>Suman Bhadra</strong></span>
             <span>•</span>
-            <span>📍 Kolkata, West Bengal</span>
+            <span>📍 HQ: Kolkata, West Bengal</span>
             <span>•</span>
-            <span>🇮🇳 Serving clients nationwide &amp; globally</span>
+            <span>🇮🇳 Serving Pan-India (Kolkata, Delhi NCR, Mumbai, Patna, Jaipur, Bengaluru, Hyderabad) &amp; Global NRI Families</span>
           </div>
         </div>
       </section>
 
       {/* 7. Footer */}
-      <footer className="py-8 text-center text-xs font-serif text-stone-500 border-t border-stone-200">
-        <p className="font-semibold text-stone-700">
-          UtsavPatra.com — उत्सवपत्र • Cultural Digital Celebrations
+      <footer className="py-10 text-center text-xs font-serif text-stone-500 border-t border-stone-200 bg-white/60">
+        <p className="font-semibold text-stone-800 text-sm">
+          UtsavPatra.com — उत्सवपत्र • Cultural Digital Celebrations &amp; Invitations
         </p>
-        <p className="mt-1 text-[11px] opacity-80">
-          Weddings • Annaprashan (Rice Ceremony) • Birthdays • Griha Pravesh
+        <p className="mt-1 text-[11px] text-stone-600 max-w-xl mx-auto">
+          Sacred E-Patras for Indian Weddings (Bengali, Bihari, Marwari, South Indian), Annaprashan (Rice Ceremony), 1st Birthdays, and Griha Pravesh.
         </p>
-        <p className="mt-2 text-[10px] opacity-60">
-          © {new Date().getFullYear()} UtsavPatra. All rights reserved.
+        <p className="mt-2 text-[10px] text-stone-500">
+          Pan-India Delivery: Kolkata • Delhi NCR • Patna • Mumbai • Jaipur • Bengaluru • Hyderabad • Pune • Lucknow • NRI Diaspora (USA, UK, Canada, UAE)
+        </p>
+        <p className="mt-3 text-[10px] opacity-60">
+          © {new Date().getFullYear()} UtsavPatra. All rights reserved. • Founder &amp; Lead: Suman Bhadra (+91 6291898703)
         </p>
       </footer>
 
