@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sindoor: #8b181b;
+  --color-sindoor-dark: #5e0b0e;
+  --color-sindoor-light: #ad2327;
+  --color-alta: #c0262d;
+  --color-gold: #d4af37;
+  --color-gold-light: #f3e5ab;
+  --color-gold-dark: #997819;
+  --color-sandesh: #fbf7ee;
+  --color-parchment: #f6efe2;
+  --color-terracotta: #c3523b;
+  --color-haldi: #f59e0b;
+  --color-haldi-light: #fef3c7;
+  --color-charcoal: #231815;
+
+  --font-bengali: 'Noto Serif Bengali', serif;
+  --font-bengali-display: 'Galada', cursive;
+  --font-bengali-sans: 'Hind Siliguri', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-royal: 'Cinzel', serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #fbf7ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b181b;
+}
+
+/* Texture overlay for royal parchment feel */
+.bg-parchment-pattern {
+  background-color: #fbf7ee;
+  background-image: radial-gradient(#d4af37 0.75px, transparent 0.75px), radial-gradient(#8b181b 0.75px, #fbf7ee 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  background-opacity: 0.04;
+}
+
+/* Bengali Alpona border utility */
+.alpona-border-top {
+  background-image: radial-gradient(circle at 50% 0%, #d4af37 4px, transparent 5px);
+  background-size: 16px 8px;
+  background-repeat: repeat-x;
+}
+
+/* Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
+/* 3D Envelope perspective */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
