@@ -1,32 +1,45 @@
 import React from 'react';
-import { Language } from '../types/wedding';
+import { CulturalTemplate, Language } from '../types/wedding';
 
 interface LanguageToggleProps {
   currentLang: Language;
+  template: CulturalTemplate;
   onToggle: (lang: Language) => void;
 }
 
-export const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLang, onToggle }) => {
+export const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLang, template, onToggle }) => {
   return (
     <div className="fixed top-4 left-4 z-40">
-      <div className="flex items-center bg-[#FBF7EE]/90 backdrop-blur-md rounded-full border border-[#D4AF37]/50 p-1 shadow-md">
+      <div
+        className="flex items-center backdrop-blur-md rounded-full border p-1 shadow-md"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          borderColor: `${template.colors.accent}80`
+        }}
+      >
         <button
-          onClick={() => onToggle('bn')}
+          onClick={() => onToggle('native')}
           className={`px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${
-            currentLang === 'bn'
-              ? 'bg-[#8B181B] text-[#F3E5AB] shadow-sm'
-              : 'text-[#8B181B] hover:text-[#5C0C0F]'
+            currentLang === 'native'
+              ? 'text-white shadow-sm'
+              : 'text-stone-700 hover:text-black'
           }`}
+          style={{
+            backgroundColor: currentLang === 'native' ? template.colors.primary : 'transparent'
+          }}
         >
-          বাংলা
+          {template.nativeLanguageLabel}
         </button>
         <button
           onClick={() => onToggle('en')}
           className={`px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${
             currentLang === 'en'
-              ? 'bg-[#8B181B] text-[#F3E5AB] shadow-sm'
-              : 'text-[#8B181B] hover:text-[#5C0C0F]'
+              ? 'text-white shadow-sm'
+              : 'text-stone-700 hover:text-black'
           }`}
+          style={{
+            backgroundColor: currentLang === 'en' ? template.colors.primary : 'transparent'
+          }}
         >
           ENG
         </button>

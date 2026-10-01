@@ -1,31 +1,43 @@
-# 💍 শুভ বিবাহ | Shubho Bibaho — Modern Bengali Wedding Invitation
+# 💍 শুভ বিবাহ & Shubh Vivah — Multi-Cultural Wedding Invitations
 
-An authentic, modern, high-performance digital wedding invitation website built with **React 19, TypeScript, and Tailwind CSS v4**.
+An authentic, ultra-modern digital wedding invitation platform supporting **multiple Indian and contemporary cultural themes**, built with **React 19, TypeScript, and Tailwind CSS v4**.
 
-Designed with rich Bengali cultural heritage (**Alpona, Topor & Mukut, Shankha-Pola, Paan Pata, and Mangal Ghot**) combined with modern mobile-first interactive features.
+---
+
+## 🎨 Supported Cultural Wedding Templates
+
+You can preview each cultural style directly via query parameters or using the interactive in-app **Cultural Style Switcher**:
+
+| Template | Culture / Tradition | Key Motifs & Aesthetics | URL Preview |
+| :--- | :--- | :--- | :--- |
+| **Bengali Heritage** | শুভ বিবাহ (বাঙালি ঐতিহ্য) | Alpona, Topor & Mukut, Shankho, Paan Pata, Rabindra Verses | `?template=bengali` |
+| **Royal Rajputana** | शाही शुभ विवाह (उत्तर भारतीय) | Jharokhas, Royal Elephants, Fort Gold, Ganesha Shlokas, Dhol | `?template=royal_north` |
+| **South Indian Kalyanam** | சுப கல்யாணம் (தமிழ் மரபு) | Kolam Art, Temple Lamps, Kanjeevaram Maroon, Nadaswaram, Thaali | `?template=south_indian` |
+| **Contemporary Minimalist** | Forever & Always (Modern Luxe) | Botanical Wreaths, Sunset Vows, Champagne Rose Gold, Violins | `?template=modern_minimal` |
 
 ---
 
 ## ✨ Features
 
-- 💌 **3D Tactile Envelope Opening**: Authentic Bengali "শুভ বিবাহ" wax seal and auspicious envelope unfolding animation with marigold confetti burst (`canvas-confetti`).
-- 🎵 **Audio Experience**: Background Shehnai / flute wedding melody with a floating glassmorphic equalizer controller and procedural Web Audio API harmonic synthesizer fallback.
-- 🌐 **Bilingual Support (বাংলা & English)**: Seamless one-click switch between authentic Bengali and English text.
-- ⏳ **Auspicious Lagna Countdown**: Real-time countdown to the wedding date with dynamic Bengali numeral conversion (`০-৯`).
-- 🪔 **Authentic Bengali Itinerary**: Dedicated cards for **Aiburobhat**, **Gaye Holud & Tattva**, **Shubho Bibaho**, and **Bou Bhaat & Preeti Bhoj**, featuring suggested attire and **1-Tap Add to Google Calendar** integration.
-- 📍 **Venue & Live Navigation**: Raajkutir (Swabhumi, Kolkata) details, embedded interactive Google Maps, turn-by-turn directions, and Uber/Ola ride booking deep link.
-- 💖 **Digital "Ashirbaad" Guestbook**: Interactive blessings wall where guests can leave messages without login, use quick wish suggestions, and send hearts.
-- 📲 **1-Tap WhatsApp RSVP**: Direct confirmation via WhatsApp with pre-filled guest messages, plus direct phone call links for family elders.
-- 🏷️ **Guest Personalization (`?to=...`)**: Share personalized invite links (e.g. `?to=Subhashis+Da+and+Family`) to display custom guest greetings on the envelope and hero banner.
-- 📱 **Mobile Sticky Navigation Bar**: Quick-access bottom action bar for mobile guests.
+- 💌 **3D Tactile Envelope Opening**: Culture-specific wax seals, authentic envelope folding animation, and synchronized marigold/gold confetti burst (`canvas-confetti`).
+- 🎵 **Curated Music & Audio Engine**: Traditional Shehnai, Nadaswaram, and acoustic wedding tracks with floating glass equalizer controls and procedural Web Audio API fallback.
+- 🌐 **Dynamic Bilingual Support**: Instant toggle between English and the culture's native language (**বাংলা / हिन्दी / தமிழ் / Classic**).
+- ⏳ **Auspicious Lagna Countdown**: Real-time countdown to the wedding ceremony with native numeral conversion.
+- 🪔 **Authentic Cultural Itineraries**:
+  - **Bengali**: *Aiburobhat, Gaye Holud & Tattva, Shubho Bibaho, Bou Bhaat*
+  - **Royal North**: *Haldi Carnival, Sangeet & Ring Ceremony, Baraat & Shubh Vivah*
+  - **South Indian**: *Oonjal & Jaanavasam, Subha Muhurtham & Mangalya Dharanam*
+  - **Modern Minimal**: *Welcome Sunset Cocktails, The Ceremony & Written Vows*
+- 📅 **1-Tap Google Calendar**: One-click button generates a pre-filled calendar entry for each ceremony.
+- 📍 **Venue & Navigation**: Embedded interactive Google Map, turn-by-turn directions, and Uber/Ola ride booking shortcuts.
+- 💖 **Digital "Ashirbaad" Guestbook**: Interactive blessings wall with persistent localStorage storage, heart reactions, and quick wish suggestions.
+- 📲 **1-Tap WhatsApp RSVP**: Instant WhatsApp message generator for quick attendance confirmation.
+- 🏷️ **Guest Personalization (`?to=...`)**: Dynamic guest names displayed on the envelope and hero banner (e.g. `?template=royal_north&to=Sharma+Family`).
+- 🎨 **Live Floating Template Switcher**: Switch cultural themes on the fly with live color swatches and instant styling updates.
 
 ---
 
 ## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v18+)
-- npm or pnpm
 
 ### Installation
 
@@ -39,22 +51,11 @@ cd weedingInvitation
 # Install dependencies
 npm install
 
-# Start the local development server
+# Start development server
 npm run dev
 ```
 
 Visit `http://localhost:5173/` in your browser.
-
----
-
-## 🎨 Customization
-
-All wedding details can be easily updated in a single file:
-- **`src/data/weddingData.ts`**:
-  - Groom & Bride names, lineages, bios, and portraits
-  - Event dates, times, venues, and descriptions
-  - RSVP phone numbers and WhatsApp contacts
-  - Auspicious quotes and shlokas
 
 ---
 
@@ -64,7 +65,7 @@ All wedding details can be easily updated in a single file:
 npm run build
 ```
 
-The output will be generated in the `dist/` directory, ready to deploy for free on **Vercel**, **Cloudflare Pages**, or **GitHub Pages**.
+Generates optimized, self-contained production files in `dist/`.
 
 ---
 

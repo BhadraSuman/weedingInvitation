@@ -1,65 +1,77 @@
 import React from 'react';
-import { venueDetails } from '../data/weddingData';
-import { Language } from '../types/wedding';
-import { AlponaDivider, ShankhoIcon } from './AlponaMotifs';
-import { MapPin, Navigation, Car, PhoneCall, ExternalLink } from 'lucide-react';
+import { CulturalTemplate, Language } from '../types/wedding';
+import { CulturalDivider } from './CulturalMotifs';
+import { MapPin, Navigation, Car, ExternalLink } from 'lucide-react';
 
 interface VenueLocationProps {
+  template: CulturalTemplate;
   lang: Language;
 }
 
-export const VenueLocation: React.FC<VenueLocationProps> = ({ lang }) => {
+export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) => {
+  const { venue, colors } = template;
+
   return (
     <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto" id="venue">
       <div className="text-center mb-10">
         <div className="flex items-center justify-center gap-2 mb-2">
-          <MapPin className="w-5 h-5 text-[#8B181B]" />
-          <span className="font-royal text-xs uppercase tracking-widest text-[#8B181B] font-semibold">
-            {lang === 'bn' ? 'অনুষ্ঠানস্থল ও অবস্থান' : 'Venue & Directions'}
+          <span className="font-serif text-xs uppercase tracking-widest font-semibold" style={{ color: colors.primary }}>
+            {lang === 'native' ? 'অনুষ্ঠানস্থল ও অবস্থান / स्थल' : 'Venue & Directions'}
           </span>
-          <MapPin className="w-5 h-5 text-[#8B181B]" />
         </div>
-        <h2 className="font-bengali text-3xl sm:text-4xl text-[#8B181B] font-bold">
-          {lang === 'bn' ? 'কীভাবে পৌঁছাবেন' : 'Our Wedding Venue'}
+        <h2 className="text-3xl sm:text-4xl font-bold font-serif" style={{ color: colors.primary }}>
+          {lang === 'native' ? 'কীভাবে পৌঁছাবেন' : 'Our Wedding Venue'}
         </h2>
-        <AlponaDivider className="my-3 max-w-xs mx-auto" />
+        <CulturalDivider templateId={template.id} color={colors.accent} />
       </div>
 
-      <div className="bg-gradient-to-b from-[#FFFDF9] to-[#FBF7EE] rounded-3xl p-6 sm:p-8 border-2 border-[#D4AF37]/50 shadow-xl overflow-hidden">
+      <div
+        className="rounded-3xl p-6 sm:p-8 border-2 shadow-xl overflow-hidden"
+        style={{
+          backgroundColor: colors.bgCard,
+          borderColor: `${colors.accent}66`
+        }}
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* Venue Information Column */}
           <div className="lg:col-span-5 space-y-5">
             <div>
-              <span className="px-3 py-1 bg-[#8B181B]/10 text-[#8B181B] font-royal text-xs font-semibold rounded-full uppercase tracking-wider">
-                {lang === 'bn' ? 'প্রধান বিবাহ বাসর' : 'The Celebration Grounds'}
+              <span
+                className="px-3 py-1 font-serif text-xs font-semibold rounded-full uppercase tracking-wider inline-block"
+                style={{
+                  backgroundColor: `${colors.primary}1A`,
+                  color: colors.primary
+                }}
+              >
+                {lang === 'native' ? 'প্রধান বিবাহ বাসর' : 'The Celebration Grounds'}
               </span>
-              <h3 className="font-bengali text-2xl sm:text-3xl font-bold text-[#8B181B] mt-2">
-                {lang === 'bn' ? venueDetails.bengaliName : venueDetails.name}
+              <h3 className="text-2xl sm:text-3xl font-bold font-serif mt-2" style={{ color: colors.primary }}>
+                {lang === 'native' ? venue.nativeName : venue.name}
               </h3>
             </div>
 
-            <div className="space-y-3 text-xs sm:text-sm text-[#4A3B32]">
+            <div className="space-y-3 text-xs sm:text-sm" style={{ color: colors.textColor }}>
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#8B181B] shrink-0 mt-0.5" />
-                <p className="font-bengali leading-relaxed">
-                  {lang === 'bn' ? venueDetails.bengaliAddress : venueDetails.address}
+                <MapPin className="w-5 h-5 shrink-0 mt-0.5" style={{ color: colors.primary }} />
+                <p className="font-serif leading-relaxed">
+                  {lang === 'native' ? venue.nativeAddress : venue.address}
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
-                <Navigation className="w-5 h-5 text-[#997819] shrink-0 mt-0.5" />
-                <p className="font-bengali text-[#5C0C0F]">
-                  <strong className="text-[#8B181B]">{lang === 'bn' ? 'ল্যান্ডমার্ক: ' : 'Landmark: '}</strong>
-                  {lang === 'bn' ? venueDetails.bengaliLandmark : venueDetails.landmark}
+                <Navigation className="w-5 h-5 shrink-0 mt-0.5" style={{ color: colors.accent }} />
+                <p className="font-serif">
+                  <strong style={{ color: colors.primary }}>{lang === 'native' ? 'ল্যান্ডমার্ক: ' : 'Landmark: '}</strong>
+                  {lang === 'native' ? venue.nativeLandmark : venue.landmark}
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
-                <Car className="w-5 h-5 text-[#997819] shrink-0 mt-0.5" />
-                <p className="font-bengali text-[#5C0C0F]">
-                  <strong className="text-[#8B181B]">{lang === 'bn' ? 'পার্কিং: ' : 'Parking: '}</strong>
-                  {lang === 'bn' ? venueDetails.bengaliParking : venueDetails.parking}
+                <Car className="w-5 h-5 shrink-0 mt-0.5" style={{ color: colors.accent }} />
+                <p className="font-serif">
+                  <strong style={{ color: colors.primary }}>{lang === 'native' ? 'পার্কিং: ' : 'Parking: '}</strong>
+                  {lang === 'native' ? venue.nativeParking : venue.parking}
                 </p>
               </div>
             </div>
@@ -67,39 +79,48 @@ export const VenueLocation: React.FC<VenueLocationProps> = ({ lang }) => {
             {/* Direct Google Maps Action Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row gap-3">
               <a
-                href={venueDetails.mapsUrl}
+                href={venue.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 bg-[#8B181B] hover:bg-[#5C0C0F] text-[#F3E5AB] font-serif font-bold text-sm rounded-xl shadow-md transition-all duration-200"
+                className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 text-white font-serif font-bold text-sm rounded-xl shadow-md transition-opacity hover:opacity-90"
+                style={{ backgroundColor: colors.primary }}
               >
-                <Navigation className="w-4 h-4 text-[#D4AF37]" />
-                <span>{lang === 'bn' ? 'গুগল ম্যাপে দিকনির্দেশ' : 'Open in Google Maps'}</span>
+                <Navigation className="w-4 h-4" style={{ color: colors.accentLight }} />
+                <span>{lang === 'native' ? 'গুগল ম্যাপে দিকনির্দেশ' : 'Open in Google Maps'}</span>
               </a>
 
               <a
-                href={`https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[formatted_address]=Raajkutir%20Kolkata`}
+                href={`https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[formatted_address]=${encodeURIComponent(venue.name)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#F4ECD8] hover:bg-[#EBDDC0] text-[#5C0C0F] font-serif text-sm font-semibold rounded-xl border border-[#D4AF37]/50 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border text-sm font-semibold transition-opacity hover:opacity-90"
+                style={{
+                  backgroundColor: colors.bgParchment,
+                  borderColor: `${colors.accent}66`,
+                  color: colors.primary
+                }}
               >
-                <ExternalLink className="w-4 h-4 text-[#8B181B]" />
-                <span>{lang === 'bn' ? 'ক্যাব বুক করুন' : 'Book Uber / Ola'}</span>
+                <ExternalLink className="w-4 h-4" style={{ color: colors.primary }} />
+                <span>{lang === 'native' ? 'ক্যাব বুক করুন' : 'Book Ride'}</span>
               </a>
             </div>
           </div>
 
           {/* Interactive Map Embed */}
-          <div className="lg:col-span-7 h-72 sm:h-96 rounded-2xl overflow-hidden border-2 border-[#D4AF37]/60 shadow-inner relative group">
+          <div
+            className="lg:col-span-7 h-72 sm:h-96 rounded-2xl overflow-hidden border-2 shadow-inner relative group"
+            style={{ borderColor: `${colors.accent}66` }}
+          >
             <iframe
               title="Wedding Venue Location Map"
-              src={venueDetails.embedUrl}
+              src={venue.embedUrl}
               className="w-full h-full border-0"
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="absolute bottom-2 right-2 pointer-events-none bg-white/90 backdrop-blur-sm px-3 py-1 rounded-md text-[11px] font-serif text-[#8B181B] border border-[#D4AF37]/40 shadow-sm">
-              Raajkutir, Kolkata
+            <div className="absolute bottom-2 right-2 pointer-events-none bg-white/90 backdrop-blur-sm px-3 py-1 rounded-md text-[11px] font-serif shadow-sm">
+              {venue.name}
             </div>
           </div>
 

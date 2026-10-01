@@ -1,123 +1,147 @@
 import React from 'react';
-import { AlponaDivider, ToporMukutIcon, ShankhoIcon, MangalGhotIcon, CornerAlpona } from './AlponaMotifs';
-import { auspiciousQuotes } from '../data/weddingData';
-import { Language } from '../types/wedding';
+import { CulturalMotifBadge, CulturalDivider } from './CulturalMotifs';
+import { CulturalTemplate, Language } from '../types/wedding';
 import { Calendar, MapPin, Sparkles } from 'lucide-react';
 
 interface HeroSectionProps {
+  template: CulturalTemplate;
   lang: Language;
   guestName?: string;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ lang, guestName }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ template, lang, guestName }) => {
   return (
     <section className="relative pt-20 pb-16 px-4 sm:px-6 max-w-4xl mx-auto text-center">
-      {/* Corner Alpona Ornaments */}
-      <CornerAlpona position="tl" className="absolute top-8 left-4 w-12 h-12 sm:w-16 sm:h-16" />
-      <CornerAlpona position="tr" className="absolute top-8 right-4 w-12 h-12 sm:w-16 sm:h-16" />
-
       {/* Auspicious Shloka Card */}
-      <div className="inline-block bg-[#F4ECD8]/70 border border-[#D4AF37]/50 rounded-2xl px-6 py-4 shadow-sm backdrop-blur-sm mb-8 max-w-lg">
-        <div className="flex items-center justify-center gap-2 mb-2 text-[#8B181B]">
-          <ShankhoIcon size={18} />
-          <span className="font-bengali text-xs tracking-widest font-semibold uppercase">
-            || শ্রী শ্রী দুর্গা সহায় ||
+      <div
+        className="inline-block rounded-2xl px-6 py-4 shadow-sm backdrop-blur-sm mb-8 max-w-lg border"
+        style={{
+          backgroundColor: `${template.colors.bgCard}E6`,
+          borderColor: `${template.colors.accent}66`
+        }}
+      >
+        <div className="flex items-center justify-center gap-2 mb-2" style={{ color: template.colors.primary }}>
+          <span className="font-serif text-xs tracking-widest font-semibold uppercase">
+            {template.quotes.invocation}
           </span>
-          <ShankhoIcon size={18} />
         </div>
-        <p className="font-bengali text-xs sm:text-sm text-[#5C0C0F] whitespace-pre-line leading-relaxed font-medium">
-          {auspiciousQuotes.shloka}
+        <p
+          className="text-xs sm:text-sm whitespace-pre-line leading-relaxed font-serif font-medium"
+          style={{ color: template.colors.primary }}
+        >
+          {template.quotes.verse}
         </p>
+        {template.quotes.verseAuthor && (
+          <p className="text-xs text-right mt-1.5 font-semibold opacity-80" style={{ color: template.colors.accent }}>
+            {template.quotes.verseAuthor}
+          </p>
+        )}
       </div>
 
       {/* Personalized Welcome Banner if query parameter is provided */}
       {guestName && (
-        <div className="mb-8 mx-auto max-w-md bg-gradient-to-r from-[#8B181B]/10 via-[#D4AF37]/20 to-[#8B181B]/10 border-y border-[#D4AF37]/60 py-3 px-6 rounded-lg">
-          <p className="font-royal text-xs text-[#8B181B] tracking-wider uppercase">
-            {lang === 'bn' ? 'সাদর আহ্বান' : 'Cordially Invited'}
+        <div
+          className="mb-8 mx-auto max-w-md border-y py-3 px-6 rounded-lg"
+          style={{
+            borderColor: `${template.colors.accent}80`,
+            backgroundColor: `${template.colors.primary}12`
+          }}
+        >
+          <p className="font-serif text-xs tracking-wider uppercase font-semibold" style={{ color: template.colors.primary }}>
+            {lang === 'native' ? 'সাদর আহ্বান / हार्दिक स्वागत' : 'Cordially Invited'}
           </p>
-          <p className="font-serif text-xl sm:text-2xl text-[#8B181B] font-bold mt-0.5">
+          <p className="font-serif text-xl sm:text-2xl font-bold mt-0.5" style={{ color: template.colors.primary }}>
             {guestName}
           </p>
-          <p className="font-bengali text-xs text-[#5C0C0F] mt-1">
-            {lang === 'bn' 
-              ? 'আমাদের এই আনন্দপূর্ণ দিনে আপনার ও আপনার পরিবারের শুভাগমন একান্ত কাম্য।' 
-              : 'Your gracious presence with your family will make our celebration complete.'}
+          <p className="text-xs mt-1" style={{ color: template.colors.textColor }}>
+            {lang === 'native' ? template.quotes.nativeWelcomeNotice : template.quotes.welcomeNotice}
           </p>
         </div>
       )}
 
-      {/* Topor & Mukut Iconic Centerpiece */}
+      {/* Cultural Motif Centerpiece */}
       <div className="flex justify-center items-center gap-4 mb-4">
-        <div className="w-12 h-[1px] bg-[#D4AF37]" />
-        <ToporMukutIcon className="w-20 h-16 transform hover:scale-105 transition-transform duration-300" />
-        <div className="w-12 h-[1px] bg-[#D4AF37]" />
+        <div className="w-12 h-[1px]" style={{ backgroundColor: template.colors.accent }} />
+        <CulturalMotifBadge templateId={template.id} className="w-16 h-14 transform hover:scale-105 transition-transform duration-300" />
+        <div className="w-12 h-[1px]" style={{ backgroundColor: template.colors.accent }} />
       </div>
 
-      {/* Shubho Bibaho Typography */}
+      {/* Wedding Title Typography */}
       <div className="space-y-1 mb-6">
-        <h1 className="font-bengali text-4xl sm:text-6xl text-[#8B181B] font-extrabold tracking-wide drop-shadow-sm">
-          শুভ বিবাহ
+        <h1
+          className="text-4xl sm:text-6xl font-extrabold tracking-wide drop-shadow-sm font-serif"
+          style={{ color: template.colors.primary }}
+        >
+          {lang === 'native' ? template.quotes.nativeWeddingTitle : template.quotes.weddingTitle}
         </h1>
-        <p className="font-royal text-base sm:text-lg tracking-[0.3em] text-[#997819] uppercase font-semibold">
-          Shubho Bibaho
+        <p
+          className="text-sm sm:text-base tracking-[0.3em] uppercase font-semibold font-serif"
+          style={{ color: template.colors.accent }}
+        >
+          {template.cultureLabel}
         </p>
       </div>
 
-      {/* Alpona Divider */}
-      <AlponaDivider className="my-6 max-w-md mx-auto" />
+      {/* Cultural Divider */}
+      <CulturalDivider templateId={template.id} color={template.colors.accent} />
 
       {/* The Couple Names */}
       <div className="my-8">
-        <p className="font-royal text-xs sm:text-sm tracking-widest text-[#8B181B] uppercase mb-2">
-          {lang === 'bn' ? 'শুভ পরিণয় বন্ধনে আবদ্ধ হইতে চলেছেন' : 'Together with their families, invite you to celebrate the wedding of'}
+        <p className="font-serif text-xs sm:text-sm tracking-widest uppercase mb-2" style={{ color: template.colors.primary }}>
+          {lang === 'native' ? 'শুভ পরিণয় বন্ধনে আবদ্ধ হতে চলেছেন' : 'Together with their families, invite you to celebrate the wedding of'}
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-3xl sm:text-5xl font-bengali text-[#2C1810]">
-          <span className="font-bold text-[#8B181B] hover:text-[#5C0C0F] transition-colors">
-            {lang === 'bn' ? 'অনির্বাণ' : 'Anirban'}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-3xl sm:text-5xl font-serif">
+          <span className="font-bold hover:opacity-90 transition-opacity" style={{ color: template.colors.primary }}>
+            {lang === 'native' ? template.groom.nativeName : template.groom.name}
           </span>
-          <span className="font-serif italic text-2xl sm:text-4xl text-[#D4AF37]">
+          <span className="italic text-2xl sm:text-4xl" style={{ color: template.colors.accent }}>
             &amp;
           </span>
-          <span className="font-bold text-[#8B181B] hover:text-[#5C0C0F] transition-colors">
-            {lang === 'bn' ? 'দেবলীনা' : 'Deboleena'}
+          <span className="font-bold hover:opacity-90 transition-opacity" style={{ color: template.colors.primary }}>
+            {lang === 'native' ? template.bride.nativeName : template.bride.name}
           </span>
         </div>
-        <p className="font-serif italic text-sm sm:text-base text-[#6B5A55] mt-2">
-          Mukherjee &amp; Banerjee
-        </p>
       </div>
 
-      {/* Rabindranath Tagore Couplet */}
-      <div className="my-8 max-w-lg mx-auto bg-[#F6EFE2] rounded-xl p-5 border border-[#D4AF37]/40 shadow-inner">
-        <p className="font-bengali text-sm sm:text-base text-[#5C0C0F] italic leading-relaxed whitespace-pre-line font-medium">
-          "{auspiciousQuotes.rabindraCouplet}"
-        </p>
-        <p className="font-bengali text-xs text-[#997819] text-right mt-2 font-semibold">
-          {auspiciousQuotes.rabindraAuthor}
-        </p>
-      </div>
-
-      {/* Main Wedding Date & Venue Snapshot Badge */}
+      {/* Wedding Date & Venue Snapshot Badge */}
       <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-        <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#8B181B] text-[#F3E5AB] shadow-md border border-[#D4AF37]/50">
-          <Calendar className="w-4 h-4 text-[#D4AF37]" />
+        <div
+          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-white shadow-md border"
+          style={{
+            backgroundColor: template.colors.primary,
+            borderColor: `${template.colors.accent}80`
+          }}
+        >
+          <Calendar className="w-4 h-4" style={{ color: template.colors.accent }} />
           <span className="font-serif text-sm sm:text-base font-semibold">
-            {lang === 'bn' ? '১২ই অগ্রহায়ণ, ১৪৩৩ | ২৮ নভেম্বর ২০২৬' : 'Saturday, 28th November 2026'}
+            {lang === 'native' ? template.targetDateNative : template.targetDate.split('T')[0]}
           </span>
         </div>
 
-        <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F4ECD8] text-[#5C0C0F] shadow-sm border border-[#D4AF37]">
-          <MapPin className="w-4 h-4 text-[#8B181B]" />
+        <div
+          className="flex items-center gap-2 px-5 py-2.5 rounded-full shadow-sm border"
+          style={{
+            backgroundColor: template.colors.bgCard,
+            borderColor: template.colors.accent,
+            color: template.colors.primary
+          }}
+        >
+          <MapPin className="w-4 h-4" style={{ color: template.colors.primary }} />
           <span className="font-serif text-sm sm:text-base font-semibold">
-            {lang === 'bn' ? 'রাজকুটির স্বভূমি, কলকাতা' : 'Raajkutir Swabhumi, Kolkata'}
+            {lang === 'native' ? template.venue.nativeName : template.venue.name}
           </span>
         </div>
       </div>
 
       {/* Downward indicator */}
       <div className="mt-12 flex justify-center">
-        <div className="w-8 h-8 rounded-full border border-[#D4AF37] flex items-center justify-center text-[#8B181B] animate-bounce">
+        <div
+          className="w-8 h-8 rounded-full border flex items-center justify-center animate-bounce"
+          style={{
+            borderColor: template.colors.accent,
+            color: template.colors.primary
+          }}
+        >
           <Sparkles className="w-4 h-4" />
         </div>
       </div>
