@@ -232,5 +232,17 @@ export const bengaliTemplate: CulturalTemplate = {
       'May your bond grow stronger with each passing day!',
       'Heartiest congratulations to both families on this joyous union.'
     ]
+  },
+  shagunConfig: {
+    enabled: true,
+    recipientName: 'Anirban & Deboleena',
+    nativeRecipientName: 'অনির্বাণ ও দেবলীনা',
+    upiId: '6291898703@paytm',
+    phoneNumber: '6291898703',
+    title: 'Auspicious Wedding Shagun & E-Lifafa',
+    nativeTitle: 'মাঙ্গলিক আশীর্বাদী লেফাফা ও শুভ শগুন',
+    description: 'For family and friends wishing to bless the newlyweds with an auspicious token of love from afar.',
+    nativeDescription: 'দূর-দূরান্ত থেকে যে সকল আত্মীয়-স্বজন ও শুভাকাঙ্ক্ষী নবদম্পতিকে স্নেহের আশীর্বাদ ও মাঙ্গলিক শগুন পাঠাতে চান।',
+    defaultAmounts: [501, 1001, 2101, 5001]
   }
 };

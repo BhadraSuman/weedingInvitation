@@ -131,4 +131,18 @@ export interface CulturalTemplate {
     native: string[];
     en: string[];
   };
+  shagunConfig?: ShagunConfig;
+}
+
+export interface ShagunConfig {
+  enabled: boolean;
+  recipientName: string;
+  nativeRecipientName?: string;
+  upiId: string;
+  phoneNumber?: string;
+  title?: string;
+  nativeTitle?: string;
+  description?: string;
+  nativeDescription?: string;
+  defaultAmounts?: number[];
 }

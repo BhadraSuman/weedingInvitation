@@ -256,5 +256,17 @@ export const bihariMarwariTemplate: CulturalTemplate = {
       'May your journey ahead be blessed with immense joy and prosperity!',
       'Looking forward to celebrating all the rituals with the family!'
     ]
+  },
+  shagunConfig: {
+    enabled: true,
+    recipientName: 'Sandeep & Priya',
+    nativeRecipientName: 'संदीप एवं प्रिया',
+    upiId: '6291898703@paytm',
+    phoneNumber: '6291898703',
+    title: 'Shagun & Mangal E-Lifafa',
+    nativeTitle: 'पावन शगुन ई-लिफाफा एवं नेग',
+    description: 'For loved ones joining our celebration from afar who wish to send an auspicious token of blessings.',
+    nativeDescription: 'सस्नेह दूर-दराज से जुड़े प्रियजनों के लिए नवदंपति को पावन शगुन एवं आशीर्वाद प्रेषित करने हेतु।',
+    defaultAmounts: [501, 1101, 2101, 5101]
   }
 };

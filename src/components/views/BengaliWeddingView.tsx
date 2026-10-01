@@ -6,6 +6,7 @@ import { VenueLocation } from '../VenueLocation';
 import { WishesGuestbook } from '../WishesGuestbook';
 import { RsvpSection } from '../RsvpSection';
 import { Footer } from '../Footer';
+import { DigitalShagunSection } from '../DigitalShagunSection';
 import { Calendar, MapPin, Sparkles, Heart } from 'lucide-react';
 
 interface BengaliWeddingViewProps {
@@ -244,7 +245,10 @@ export const BengaliWeddingView: React.FC<BengaliWeddingViewProps> = ({
       {/* 5. Digital Ashirbaad Guestbook */}
       <WishesGuestbook template={template} lang={lang} />
 
-      {/* 6. RSVP & Suman Bhadra Contact Coordination */}
+      {/* 6. Auspicious Shagun & E-Lifafa */}
+      <DigitalShagunSection template={template} lang={lang} />
+
+      {/* 7. RSVP & Suman Bhadra Contact Coordination */}
       <RsvpSection template={template} lang={lang} />
 
       {/* 7. Footer */}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CulturalTemplate, Language, GuestWish } from '../../types/wedding';
 import { CountdownTimer } from '../CountdownTimer';
+import { DigitalShagunSection } from '../DigitalShagunSection';
 import {
   Sparkles,
   Heart,
@@ -749,6 +750,9 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
           </div>
         </div>
       </section>
+
+      {/* 8B. Birthday Blessing E-Lifafa & Gifts (জন্মদিনের লেফাফা ও উপহার) */}
+      <DigitalShagunSection template={template} lang={lang} />
 
       {/* 9. RSVP & Direct Family Contact */}
       <section className="bg-gradient-to-r from-purple-50 via-white to-pink-50 rounded-3xl p-6 sm:p-10 border-2 border-purple-300 shadow-xl text-center space-y-6">

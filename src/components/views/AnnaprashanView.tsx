@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CulturalTemplate, Language, GuestWish } from '../../types/wedding';
 import { CountdownTimer } from '../CountdownTimer';
+import { DigitalShagunSection } from '../DigitalShagunSection';
 import {
   Sparkles,
   Heart,
@@ -830,6 +831,9 @@ export const AnnaprashanView: React.FC<AnnaprashanViewProps> = ({
           </div>
         </div>
       </section>
+
+      {/* 8B. Auspicious Shagun & E-Lifafa (আশীর্বাদী লেফাফা) */}
+      <DigitalShagunSection template={template} lang={lang} />
 
       {/* 9. RSVP & Direct Family Contact */}
       <section className="bg-gradient-to-r from-amber-50 via-[#FFFDF5] to-emerald-50 rounded-3xl p-6 sm:p-10 border-2 border-amber-300 shadow-xl text-center space-y-6 font-bengali">

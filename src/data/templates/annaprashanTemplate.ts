@@ -256,5 +256,17 @@ export const annaprashanTemplate: CulturalTemplate = {
       'May your journey ahead be blessed with pure happiness and divine grace!',
       'Congratulations to proud parents Sourav and Priyanka on this sweet milestone!'
     ]
+  },
+  shagunConfig: {
+    enabled: true,
+    recipientName: 'Baby Aarav Roy',
+    nativeRecipientName: 'বাবু আরভ রায়',
+    upiId: '6291898703@paytm',
+    phoneNumber: '6291898703',
+    title: 'Baby Aarav’s Blessing E-Lifafa',
+    nativeTitle: 'ছোট্ট আরভের আশীর্বাদী লেফাফা ও শগুন',
+    description: 'For relatives and well-wishers wishing to send their loving blessings and shagun for little Aarav’s first rice ceremony.',
+    nativeDescription: 'দূর-দূরান্ত থেকে যারা ছোট্ট আরভের মুখে ভাত অনুষ্ঠানে স্নেহের আশীর্বাদ ও উপহার পাঠাতে চান।',
+    defaultAmounts: [501, 1001, 2101, 5001]
   }
 };

@@ -208,5 +208,17 @@ export const birthdayTemplate: CulturalTemplate = {
       'Happy Birthday little darling! You make the world so much sweeter!',
       'Big hugs and tons of love to our favorite one-year-old!'
     ]
+  },
+  shagunConfig: {
+    enabled: true,
+    recipientName: 'Princess Ananya Sen',
+    nativeRecipientName: 'রাজকন্যা অনন্যা সেন',
+    upiId: '6291898703@paytm',
+    phoneNumber: '6291898703',
+    title: 'Princess Ananya’s Birthday Gift & Lifafa',
+    nativeTitle: 'অনন্যার ১ম জন্মদিনের শুভ উপহার ও লেফাফা',
+    description: 'Send your warm wishes and blessing gifts to the birthday princess from anywhere.',
+    nativeDescription: 'রাজকন্যা অনন্যার ১ম জন্মদিনের আনন্দঘন লগ্নে দূর থেকে আপনার স্নেহাশিস ও উপহার পাঠান।',
+    defaultAmounts: [501, 1001, 2001, 5001]
   }
 };

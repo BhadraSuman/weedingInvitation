@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CulturalTemplate, Language, GuestWish } from '../../types/wedding';
 import { GaneshaIcon, MaurIcon, MadhubaniDivider } from '../CulturalMotifs';
+import { DigitalShagunSection } from '../DigitalShagunSection';
 import {
   Sparkles,
   Calendar,
@@ -838,6 +839,11 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
 
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 6B. AUSPICIOUS DIGITAL SHAGUN & E-LIFAFA (पावन शगुन ई-लिफाफा)             */}
+      {/* ========================================================================= */}
+      <DigitalShagunSection template={template} lang={lang} />
 
       {/* ========================================================================= */}
       {/* 7. RSVP DESK: SUMAN BHADRA COORDINATION (अतिथि सत्कार एवं उपस्थिति)      */}
