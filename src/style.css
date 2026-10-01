@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* ── Cultural Color Palette ── */
   --color-sindoor: #8b181b;
   --color-sindoor-dark: #5e0b0e;
   --color-sindoor-light: #ad2327;
@@ -15,17 +16,72 @@
   --color-haldi-light: #fef3c7;
   --color-charcoal: #231815;
 
-  --font-bengali: 'Noto Serif Bengali', serif;
+  /* ── Typography System ── */
+  /* Cultural / Editorial (Invitation cards, hero headings, section labels) */
+  --font-bengali:         'Noto Serif Bengali', serif;
   --font-bengali-display: 'Galada', cursive;
-  --font-bengali-sans: 'Hind Siliguri', sans-serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-royal: 'Cinzel', serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-bengali-sans:    'Hind Siliguri', sans-serif;
+  --font-serif:           'Cormorant Garamond', Georgia, serif;
+  --font-royal:           'Cinzel', serif;
+  /* Product / UI (Buttons, navigation, tags, dashboard, form labels) */
+  --font-sans:            'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* ── Type Scale (rem-based for accessibility) ── */
+  --text-display: 3.5rem;    /* 56px — Hero H1 */
+  --text-h1:      2.5rem;    /* 40px — Section H1 */
+  --text-h2:      1.875rem;  /* 30px — Section H2 */
+  --text-h3:      1.25rem;   /* 20px — Card headings */
+  --text-body-lg: 1rem;      /* 16px — Main body paragraphs */
+  --text-body:    0.9375rem; /* 15px — Secondary body */
+  --text-small:   0.8125rem; /* 13px — Captions, meta */
+  --text-label:   0.75rem;   /* 12px — Labels, badges */
+  --text-micro:   0.6875rem; /* 11px — Timestamps, fine print */
 }
 
-/* Custom Scrollbar */
+/* ── Base Typography ── */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  color: #2C1810;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Cultural landing page body override ── */
+/* Sections using font-serif on LandingPage should have a comfortable reading size */
+.font-serif {
+  font-family: var(--font-serif);
+  font-feature-settings: "liga", "kern";
+}
+
+/* ── Improve Cormorant Garamond legibility at small sizes ── */
+/* Body text inside feature cards, FAQs etc. should be 14px min */
+.font-serif p,
+.font-serif li,
+section p {
+  font-size: max(0.875rem, 1em);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* ── Landing Page: Feature card body text uplift ── */
+/* Ensure xs/sm description text reads at a comfortable 13–14px minimum */
+.feature-card-body {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.7;
+  color: #5c4a40;
+}
+
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: #fbf7ee;
@@ -38,66 +94,83 @@
   background: #8b181b;
 }
 
-/* Texture overlay for royal parchment feel */
+/* ── Parchment texture ── */
 .bg-parchment-pattern {
   background-color: #fbf7ee;
-  background-image: radial-gradient(#d4af37 0.75px, transparent 0.75px), radial-gradient(#8b181b 0.75px, #fbf7ee 0.75px);
+  background-image:
+    radial-gradient(#d4af37 0.75px, transparent 0.75px),
+    radial-gradient(#8b181b 0.75px, #fbf7ee 0.75px);
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
-  background-opacity: 0.04;
 }
 
-/* Bengali Alpona border utility */
+/* ── Alpona border ── */
 .alpona-border-top {
   background-image: radial-gradient(circle at 50% 0%, #d4af37 4px, transparent 5px);
   background-size: 16px 8px;
   background-repeat: repeat-x;
 }
 
-/* Animations */
+/* ── Animations ── */
 @keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(2deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(2deg); }
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
-  }
+  0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.35); }
+  50%       { box-shadow: 0 0 28px rgba(212, 175, 55, 0.75); }
 }
 
 @keyframes spinSlow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.animate-float-slow {
-  animation: floatSlow 6s ease-in-out infinite;
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
 }
 
-.animate-pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.animate-spin-slow {
-  animation: spinSlow 12s linear infinite;
+@keyframes scalePop {
+  0%   { transform: scale(0.92); opacity: 0; }
+  60%  { transform: scale(1.04); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-/* 3D Envelope perspective */
-.perspective-1000 {
-  perspective: 1000px;
+.animate-float-slow  { animation: floatSlow 6s ease-in-out infinite; }
+.animate-pulse-glow  { animation: pulseGlow 3s ease-in-out infinite; }
+.animate-spin-slow   { animation: spinSlow 12s linear infinite; }
+.animate-fade-in-up  { animation: fadeInUp 0.5s ease-out both; }
+.animate-scale-pop   { animation: scalePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.animate-shimmer     {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
+  background-size: 400px 100%;
+  animation: shimmer 1.8s infinite linear;
 }
-.transform-style-preserve-3d {
-  transform-style: preserve-3d;
+
+/* ── 3D Perspective ── */
+.perspective-1000       { perspective: 1000px; }
+.transform-style-3d     { transform-style: preserve-3d; }
+
+/* ── Focus ring (accessibility) ── */
+:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* ── Selection highlight ── */
+::selection {
+  background: #8b181b;
+  color: #f3e5ab;
+}
+
+/* ── Smooth scroll ── */
+html {
+  scroll-behavior: smooth;
 }

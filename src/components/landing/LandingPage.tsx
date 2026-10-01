@@ -103,7 +103,7 @@ export const LandingPage: React.FC = () => {
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center gap-5 text-xs font-serif font-semibold text-[#5C0C0F]">
+        <nav className="hidden md:flex items-center gap-5 text-sm font-sans font-medium text-[#5C0C0F]">
           <a href="#demos" className="hover:text-[#8B181B] transition-colors">Demos</a>
           <a href="#personalization-engine" className="hover:text-[#8B181B] transition-colors">Personalized Links</a>
           <Link to="/host-dashboard" className="text-[#8B181B] font-bold hover:text-[#5E0B0E] transition-colors flex items-center gap-1">
@@ -251,7 +251,7 @@ export const LandingPage: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#2C1810] mt-1">
               Select Your Celebration Category
             </h2>
-            <p className="text-xs sm:text-sm text-[#7A6A60] font-serif max-w-md mx-auto mt-2">
+            <p className="text-sm sm:text-base text-[#7A6A60] font-serif max-w-md mx-auto mt-2">
               Every client gets a clean, dedicated URL like <code className="bg-white px-2 py-0.5 rounded text-[#8B181B] font-mono">utsavpatra.com/your-event</code> to send directly on WhatsApp.
             </p>
           </div>
@@ -381,7 +381,7 @@ export const LandingPage: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#2C1810] mt-1">
             Why Modern Families Prefer UtsavPatra
           </h2>
-          <p className="text-xs sm:text-sm text-[#6E5D53] font-serif max-w-lg mx-auto mt-2">
+          <p className="text-sm sm:text-base text-[#6E5D53] font-serif max-w-lg mx-auto mt-2">
             Eliminate all friction for out-of-town guests and make event coordination effortless.
           </p>
         </div>
@@ -393,7 +393,7 @@ export const LandingPage: React.FC = () => {
               <MapPin className="w-5 h-5" />
             </div>
             <h3 className="font-serif font-bold text-base text-[#2C1810]">1-Tap Google Navigation</h3>
-            <p className="text-xs text-[#6E5D53] leading-relaxed font-serif">
+            <p className="text-sm text-[#6E5D53] leading-relaxed font-serif">
               No lost relatives calling you 20 times asking for directions. One tap opens turn-by-turn navigation &amp; Uber/Ola ride booking.
             </p>
           </div>
@@ -403,7 +403,7 @@ export const LandingPage: React.FC = () => {
               <Calendar className="w-5 h-5" />
             </div>
             <h3 className="font-serif font-bold text-base text-[#2C1810]">1-Tap Calendar Reminder</h3>
-            <p className="text-xs text-[#6E5D53] leading-relaxed font-serif">
+            <p className="text-sm text-[#6E5D53] leading-relaxed font-serif">
               Guests easily forget paper dates. Our 1-click button adds the muhurat with alarm reminders straight to Google &amp; Apple calendars.
             </p>
           </div>
@@ -413,7 +413,7 @@ export const LandingPage: React.FC = () => {
               <MessageCircle className="w-5 h-5" />
             </div>
             <h3 className="font-serif font-bold text-base text-[#2C1810]">Instant WhatsApp RSVPs</h3>
-            <p className="text-xs text-[#6E5D53] leading-relaxed font-serif">
+            <p className="text-sm text-[#6E5D53] leading-relaxed font-serif">
               Know your exact guest headcounts in advance. Guests confirm attendance directly to your coordinator’s WhatsApp with pre-filled respectful messages.
             </p>
           </div>
@@ -423,7 +423,7 @@ export const LandingPage: React.FC = () => {
               <Share2 className="w-5 h-5" />
             </div>
             <h3 className="font-serif font-bold text-base text-[#2C1810]">VIP Guest Link Generator</h3>
-            <p className="text-xs text-[#6E5D53] leading-relaxed font-serif">
+            <p className="text-sm text-[#6E5D53] leading-relaxed font-serif">
               Make honored guests feel special. Generate tailored links that greet relatives personally with their family title on top.
             </p>
           </div>
@@ -433,7 +433,7 @@ export const LandingPage: React.FC = () => {
               <Music className="w-5 h-5" />
             </div>
             <h3 className="font-serif font-bold text-base text-[#2C1810]">Sacred Shehnai &amp; Melodies</h3>
-            <p className="text-xs text-[#6E5D53] leading-relaxed font-serif">
+            <p className="text-sm text-[#6E5D53] leading-relaxed font-serif">
               Envelope unfolds with traditional Indian Shehnai, flutes, and auspicious wedding chimes, setting an emotional festive mood.
             </p>
           </div>
@@ -443,7 +443,7 @@ export const LandingPage: React.FC = () => {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <h3 className="font-serif font-bold text-base text-[#2C1810]">Eco-Friendly &amp; Instant</h3>
-            <p className="text-xs text-[#6E5D53] leading-relaxed font-serif">
+            <p className="text-sm text-[#6E5D53] leading-relaxed font-serif">
               Save thousands on paper printing, envelope stamps, and courier losses. Share your personalized site across WhatsApp in 1 second.
             </p>
           </div>
@@ -464,7 +464,7 @@ export const LandingPage: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#2C1810] mt-1">
               Celebration Packages
             </h2>
-            <p className="text-xs sm:text-sm text-[#7A6A60] font-serif max-w-md mx-auto mt-2">
+            <p className="text-sm sm:text-base text-[#7A6A60] font-serif max-w-md mx-auto mt-2">
               Ready within 24 hours. Custom URL, unlimited WhatsApp shares, and live forever.
             </p>
           </div>
@@ -480,7 +480,7 @@ export const LandingPage: React.FC = () => {
                 <h3 className="text-xl font-serif font-bold text-[#2C1810] mt-1">
                   Milestone Celebrations
                 </h3>
-                <p className="text-xs text-stone-500 font-serif mt-1">
+                <p className="text-sm text-stone-500 font-sans mt-1">
                   Ideal for Annaprashan, 1st Birthdays &amp; Griha Pravesh
                 </p>
 
@@ -501,7 +501,7 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </div>
 
-                <ul className="space-y-3 text-xs font-serif text-[#4A3B32]">
+                <ul className="space-y-3 text-sm font-sans text-[#4A3B32]">
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>Dedicated slug: utsavpatra.com/your-name</span>
@@ -529,7 +529,7 @@ export const LandingPage: React.FC = () => {
                 href={whatsappInquiryUrl("Silver Package (₹999)")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 w-full py-3 px-4 rounded-xl border border-[#8B181B] text-[#8B181B] font-serif font-bold text-xs text-center hover:bg-[#8B181B] hover:text-white transition-colors"
+                className="mt-8 w-full py-3 px-4 rounded-xl border border-[#8B181B] text-[#8B181B] font-sans font-semibold text-sm text-center hover:bg-[#8B181B] hover:text-white transition-colors"
               >
                 Book Silver Package
               </a>
@@ -548,7 +548,7 @@ export const LandingPage: React.FC = () => {
                 <h3 className="text-xl font-serif font-bold text-[#2C1810] mt-1">
                   Traditional Shubh Vivah
                 </h3>
-                <p className="text-xs text-stone-500 font-serif mt-1">
+                <p className="text-sm text-stone-500 font-sans mt-1">
                   Full cultural wedding suite (Bengali, Marwari, South Indian)
                 </p>
 
@@ -569,7 +569,7 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </div>
 
-                <ul className="space-y-3 text-xs font-serif text-[#4A3B32]">
+                <ul className="space-y-3 text-sm font-sans text-[#4A3B32]">
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>Everything in Silver package</span>
@@ -601,7 +601,7 @@ export const LandingPage: React.FC = () => {
                 href={whatsappInquiryUrl("Gold Wedding Package (₹2,499)")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#8B181B] text-[#F3E5AB] font-serif font-bold text-xs text-center shadow-lg hover:bg-[#5E0B0E] transition-colors"
+                className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#8B181B] text-[#F3E5AB] font-sans font-semibold text-sm text-center shadow-lg hover:bg-[#5E0B0E] transition-colors"
               >
                 Book Gold Wedding Package
               </a>
@@ -616,7 +616,7 @@ export const LandingPage: React.FC = () => {
                 <h3 className="text-xl font-serif font-bold text-[#2C1810] mt-1">
                   Royal Multi-Day Grand Gala
                 </h3>
-                <p className="text-xs text-stone-500 font-serif mt-1">
+                <p className="text-sm text-stone-500 font-sans mt-1">
                   Destination weddings &amp; custom multi-event extravaganzas
                 </p>
 
@@ -637,7 +637,7 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </div>
 
-                <ul className="space-y-3 text-xs font-serif text-[#4A3B32]">
+                <ul className="space-y-3 text-sm font-sans text-[#4A3B32]">
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>Everything in Gold package</span>
@@ -669,7 +669,7 @@ export const LandingPage: React.FC = () => {
                 href={whatsappInquiryUrl("Platinum Royal Package (₹4,999)")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 w-full py-3 px-4 rounded-xl border border-[#8B181B] text-[#8B181B] font-serif font-bold text-xs text-center hover:bg-[#8B181B] hover:text-white transition-colors"
+                className="mt-8 w-full py-3 px-4 rounded-xl border border-[#8B181B] text-[#8B181B] font-sans font-semibold text-sm text-center hover:bg-[#8B181B] hover:text-white transition-colors"
               >
                 Book Platinum Package
               </a>
