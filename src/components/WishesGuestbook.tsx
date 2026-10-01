@@ -49,6 +49,30 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
 
   const quickWishes = lang === 'native' ? template.quickWishes.native : template.quickWishes.en;
 
+  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
+
+  const t = {
+    justNow: lang === 'en' ? 'Just now' : isHindi ? 'अभी-अभी' : 'এইমাত্র',
+    badge: lang === 'en' ? 'Digital Guestbook & Blessings' : isHindi ? 'आशीर्वाद एवं शुभकामनाएं' : 'স্নেহাশিস ও শুভবার্তা',
+    title: lang === 'en' ? 'Shower Your Blessings' : isHindi ? 'नवदंपति को शुभाशीर्वाद दें' : 'দাম্পত্য জীবনের আশীর্বাদ',
+    subtitle: lang === 'en'
+      ? 'Leave your loving blessings and heartfelt words for the couple.'
+      : isHindi
+      ? 'वर-वधू के नव दांपत्य जीवन हेतु अपने मंगल आशीष एवं शुभकामनाएं प्रेषित करें।'
+      : 'নবদম্পতির শুভ সূচনালগ্নে আপনার অন্তরের আশীর্বাদ ও ভালোবাসার বার্তা রেখে যান।',
+    formTitle: lang === 'en' ? 'Send Your Blessings' : isHindi ? 'शुभकामना संदेश भेजें' : 'আশীর্বাদপত্র লিখুন',
+    nameLabel: lang === 'en' ? 'Your Name *' : isHindi ? 'आपका शुभ नाम *' : 'আপনার শুভ নাম *',
+    namePlaceholder: lang === 'en' ? 'e.g., Subhashis Sengupta' : isHindi ? 'जैसे: राहुल अग्रवाल' : 'যেমন: জয়দীপ মুখার্জী',
+    relationLabel: lang === 'en' ? 'Relation / City (Optional)' : isHindi ? 'संबंध / शहर (वैकल्पिक)' : 'সম্পর্ক / পরিচয় (ঐচ্ছিক)',
+    relationPlaceholder: lang === 'en' ? 'e.g., College Friend / Aunt' : isHindi ? 'जैसे: मित्र / परिवारजन' : 'যেমন: বন্ধু / আত্মীয়',
+    quickLabel: lang === 'en' ? 'Quick Ideas:' : isHindi ? 'सुझावित संदेश:' : 'চটজলদি বার্তা:',
+    messageLabel: lang === 'en' ? 'Your Warm Message *' : isHindi ? 'आपका शुभकामना संदेश *' : 'আপনার শুভেচ্ছাবার্তা *',
+    messagePlaceholder: lang === 'en' ? 'Write your loving message here...' : isHindi ? 'अपने मंगल आशीष एवं शुभकामनाएं यहां लिखें...' : 'আপনার সুন্দর বার্তাটি এখানে লিখুন...',
+    submitting: lang === 'en' ? 'Submitting...' : isHindi ? 'संदेश भेजा जा रहा है...' : 'পাঠানো হচ্ছে...',
+    submitBtn: lang === 'en' ? 'Post Blessings' : isHindi ? 'शुभकामनाएं भेजें' : 'শুভবার্তা পাঠান',
+    sacredBlessing: lang === 'en' ? 'Sacred blessing' : isHindi ? 'मंगल आशीष' : 'মাঙ্গলিক আশীর্বাদ'
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!authorName.trim() || !message.trim()) return;
@@ -60,7 +84,7 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
       name: authorName.trim(),
       relation: relation.trim() || undefined,
       message: message.trim(),
-      timestamp: lang === 'native' ? 'এইমাত্র / अभी' : 'Just now',
+      timestamp: t.justNow,
       hearts: 1
     };
 
@@ -96,18 +120,16 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
         <div className="flex items-center justify-center gap-2 mb-2">
           <MessageCircleHeart className="w-5 h-5" style={{ color: colors.primary }} />
           <span className="font-serif text-xs uppercase tracking-widest font-semibold" style={{ color: colors.primary }}>
-            {lang === 'native' ? 'স্নেহাশিস ও শুভবার্তা / शुभकामनाएं' : 'Digital Guestbook & Blessings'}
+            {t.badge}
           </span>
           <MessageCircleHeart className="w-5 h-5" style={{ color: colors.primary }} />
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold font-serif" style={{ color: colors.primary }}>
-          {lang === 'native' ? 'দাম্পত্য জীবনের আশীর্বাদ' : 'Shower Your Blessings'}
+          {t.title}
         </h2>
         <CulturalDivider templateId={template.id} color={colors.accent} />
         <p className="text-xs sm:text-sm font-serif max-w-md mx-auto opacity-80" style={{ color: colors.textColor }}>
-          {lang === 'native'
-            ? 'নবদম্পতির শুভ সূচনালগ্নে আপনার অন্তরের আশীর্বাদ ও ভালোবাসার বার্তা রেখে যান।'
-            : 'Leave your loving blessings and heartfelt words for the couple.'}
+          {t.subtitle}
         </p>
       </div>
 
@@ -124,21 +146,21 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
           <div className="flex items-center gap-2 mb-4" style={{ color: colors.primary }}>
             <Sparkles className="w-4 h-4" style={{ color: colors.accent }} />
             <h3 className="font-serif text-lg font-bold">
-              {lang === 'native' ? 'আশীর্বাদপত্র লিখুন / संदेश भेजें' : 'Send Your Blessings'}
+              {t.formTitle}
             </h3>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-xs font-serif font-semibold mb-1" style={{ color: colors.primary }}>
-                {lang === 'native' ? 'আপনার শুভ নাম *' : 'Your Name *'}
+                {t.nameLabel}
               </label>
               <input
                 type="text"
                 required
                 value={authorName}
                 onChange={e => setAuthorName(e.target.value)}
-                placeholder={lang === 'native' ? 'যেমন: জয়দীপ / राहुल' : 'e.g., Subhashis Sengupta'}
+                placeholder={t.namePlaceholder}
                 className="w-full px-3.5 py-2.5 rounded-xl border bg-white/90 text-xs sm:text-sm focus:outline-none focus:ring-2"
                 style={{
                   borderColor: `${colors.accent}66`,
@@ -149,13 +171,13 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
 
             <div>
               <label className="block text-xs font-serif font-semibold mb-1" style={{ color: colors.primary }}>
-                {lang === 'native' ? 'সম্পর্ক / পরিচয় (ঐচ্ছিক)' : 'Relation / City (Optional)'}
+                {t.relationLabel}
               </label>
               <input
                 type="text"
                 value={relation}
                 onChange={e => setRelation(e.target.value)}
-                placeholder={lang === 'native' ? 'বন্ধু / আত্মীয়' : 'e.g., College Friend / Aunt'}
+                placeholder={t.relationPlaceholder}
                 className="w-full px-3.5 py-2.5 rounded-xl border bg-white/90 text-xs sm:text-sm focus:outline-none focus:ring-2"
                 style={{
                   borderColor: `${colors.accent}66`,
@@ -167,7 +189,7 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
             {/* Quick Inspiration Chips */}
             <div>
               <label className="block text-[11px] uppercase tracking-wider mb-1.5 font-semibold font-serif" style={{ color: colors.accent }}>
-                {lang === 'native' ? 'চটজলদি বার্তা:' : 'Quick Ideas:'}
+                {t.quickLabel}
               </label>
               <div className="flex flex-wrap gap-1.5">
                 {quickWishes.map((q, idx) => (
@@ -190,14 +212,14 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
 
             <div>
               <label className="block text-xs font-serif font-semibold mb-1" style={{ color: colors.primary }}>
-                {lang === 'native' ? 'আপনার শুভেচ্ছাবার্তা *' : 'Your Warm Message *'}
+                {t.messageLabel}
               </label>
               <textarea
                 required
                 rows={3}
                 value={message}
                 onChange={e => setMessage(e.target.value)}
-                placeholder={lang === 'native' ? 'আপনার সুন্দর বার্তাটি এখানে লিখুন...' : 'Write your loving message here...'}
+                placeholder={t.messagePlaceholder}
                 className="w-full px-3.5 py-2.5 rounded-xl border bg-white/90 text-xs sm:text-sm focus:outline-none focus:ring-2 resize-none font-serif"
                 style={{
                   borderColor: `${colors.accent}66`,
@@ -213,7 +235,7 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
               style={{ backgroundColor: colors.primary }}
             >
               <Send className="w-4 h-4" style={{ color: colors.accentLight }} />
-              <span>{isSubmitting ? (lang === 'native' ? 'পাঠানো হচ্ছে...' : 'Submitting...') : (lang === 'native' ? 'শুভবার্তা পাঠান' : 'Post Blessings')}</span>
+              <span>{isSubmitting ? t.submitting : t.submitBtn}</span>
             </button>
           </form>
         </div>
@@ -248,7 +270,7 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
 
               <div className="pt-2 flex items-center justify-between border-t text-xs" style={{ borderColor: `${colors.accent}33` }}>
                 <span className="text-[11px] font-serif italic opacity-80" style={{ color: colors.accent }}>
-                  {lang === 'native' ? 'মাঙ্গলিক আশীর্বাদ' : 'Sacred blessing'}
+                  {t.sacredBlessing}
                 </span>
                 <button
                   onClick={() => handleLike(wish.id)}

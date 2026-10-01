@@ -19,6 +19,17 @@ const toBengaliNumber = (num: number): string => {
     .join('');
 };
 
+// Convert English numbers to Devanagari numerals if language is Hindi
+const toDevanagariNumber = (num: number): string => {
+  const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+  return num
+    .toString()
+    .padStart(2, '0')
+    .split('')
+    .map(d => devanagariDigits[parseInt(d, 10)] || d)
+    .join('');
+};
+
 export const CountdownTimer: React.FC<CountdownTimerProps> = ({ template, lang }) => {
   const targetDate = new Date(template.targetDate).getTime();
   const { colors } = template;
@@ -52,26 +63,50 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ template, lang }
     return () => clearInterval(interval);
   }, [targetDate]);
 
+  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
   const isBengali = template.id === 'bengali' && lang === 'native';
 
-  const units = [
-    {
-      label: lang === 'native' ? (template.id === 'bengali' ? 'দিন' : template.id === 'royal_north' ? 'दिन' : template.id === 'south_indian' ? 'நாட்கள்' : 'Days') : 'Days',
-      value: isBengali ? toBengaliNumber(timeLeft.days) : timeLeft.days.toString().padStart(2, '0')
-    },
-    {
-      label: lang === 'native' ? (template.id === 'bengali' ? 'ঘণ্টা' : template.id === 'royal_north' ? 'घंटे' : template.id === 'south_indian' ? 'மணி' : 'Hours') : 'Hours',
-      value: isBengali ? toBengaliNumber(timeLeft.hours) : timeLeft.hours.toString().padStart(2, '0')
-    },
-    {
-      label: lang === 'native' ? (template.id === 'bengali' ? 'মিনিট' : template.id === 'royal_north' ? 'मिनट' : template.id === 'south_indian' ? 'நிமிடம்' : 'Mins') : 'Minutes',
-      value: isBengali ? toBengaliNumber(timeLeft.minutes) : timeLeft.minutes.toString().padStart(2, '0')
-    },
-    {
-      label: lang === 'native' ? (template.id === 'bengali' ? 'সেকেন্ড' : template.id === 'royal_north' ? 'सेकंड' : template.id === 'south_indian' ? 'விநாடி' : 'Secs') : 'Seconds',
-      value: isBengali ? toBengaliNumber(timeLeft.seconds) : timeLeft.seconds.toString().padStart(2, '0')
+  const formatValue = (num: number): string => {
+    if (isBengali) return toBengaliNumber(num);
+    if (isHindi) return toDevanagariNumber(num);
+    return num.toString().padStart(2, '0');
+  };
+
+  const getUnitLabels = () => {
+    if (lang === 'en') {
+      return { days: 'Days', hours: 'Hours', mins: 'Minutes', secs: 'Seconds' };
     }
+    if (isHindi) {
+      return { days: 'दिन', hours: 'घंटे', mins: 'मिनट', secs: 'सेकंड' };
+    }
+    if (template.id === 'south_indian') {
+      return { days: 'நாட்கள்', hours: 'மணி', mins: 'நிமிடம்', secs: 'விநாடி' };
+    }
+    return { days: 'দিন', hours: 'ঘণ্টা', mins: 'মিনিট', secs: 'সেকেন্ড' };
+  };
+
+  const labels = getUnitLabels();
+
+  const units = [
+    { label: labels.days, value: formatValue(timeLeft.days) },
+    { label: labels.hours, value: formatValue(timeLeft.hours) },
+    { label: labels.mins, value: formatValue(timeLeft.minutes) },
+    { label: labels.secs, value: formatValue(timeLeft.seconds) }
   ];
+
+  const getBadgeText = () => {
+    if (lang === 'en') return 'Countdown to Forever';
+    if (isHindi) return 'शुभ लग्न की प्रतीक्षा';
+    if (template.id === 'south_indian') return 'நல்வேளை நோக்கிய காத்திருப்பு';
+    return 'শুভ লগ্নের প্রতীক্ষা';
+  };
+
+  const getHeadingText = () => {
+    if (lang === 'en') return 'Counting Down to Our Big Day';
+    if (isHindi) return 'पावन विवाह में शेष समय';
+    if (template.id === 'south_indian') return 'திருமண நாளுக்கான காத்திருப்பு';
+    return 'আর মাত্র ক’টা দিন বাকি';
+  };
 
   return (
     <section className="py-12 px-4 max-w-4xl mx-auto">
@@ -102,11 +137,11 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ template, lang }
             }}
           >
             <Clock className="w-3.5 h-3.5" style={{ color: colors.accent }} />
-            <span>{lang === 'native' ? 'শুভ লগ্নের প্রতীক্ষা' : 'Countdown to Forever'}</span>
+            <span>{getBadgeText()}</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-bold font-serif" style={{ color: colors.accentLight }}>
-            {lang === 'native' ? 'আর মাত্র ক’টা দিন বাকি' : 'Counting Down to Our Big Day'}
+            {getHeadingText()}
           </h2>
 
           <CulturalDivider templateId={template.id} color={colors.accentLight} />

@@ -10,17 +10,28 @@ interface VenueLocationProps {
 
 export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) => {
   const { venue, colors } = template;
+  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
+
+  const t = {
+    badge: lang === 'en' ? 'Venue & Directions' : isHindi ? 'मांगलिक स्थल एवं दिशा-निर्देश' : 'অনুষ্ঠানস্থল ও অবস্থান',
+    title: lang === 'en' ? 'Our Wedding Venue' : isHindi ? 'विवाह स्थल एवं मार्ग' : 'কীভাবে পৌঁছাবেন',
+    grounds: lang === 'en' ? 'The Celebration Grounds' : isHindi ? 'मुख्य विवाह प्रांगण' : 'প্রধান বিবাহ বাসর',
+    landmark: lang === 'en' ? 'Landmark: ' : isHindi ? 'पहचान चिन्ह: ' : 'ল্যান্ডমার্ক: ',
+    parking: lang === 'en' ? 'Parking: ' : isHindi ? 'पार्किंग: ' : 'পার্কিং: ',
+    openMaps: lang === 'en' ? 'Open in Google Maps' : isHindi ? 'गूगल मैप्स पर देखें' : 'গুগল ম্যাপে দিকনির্দেশ',
+    bookRide: lang === 'en' ? 'Book Ride' : isHindi ? 'कैब बुक करें' : 'ক্যাব বুক করুন',
+  };
 
   return (
     <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto" id="venue">
       <div className="text-center mb-10">
         <div className="flex items-center justify-center gap-2 mb-2">
           <span className="font-serif text-xs uppercase tracking-widest font-semibold" style={{ color: colors.primary }}>
-            {lang === 'native' ? 'অনুষ্ঠানস্থল ও অবস্থান / स्थल' : 'Venue & Directions'}
+            {t.badge}
           </span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold font-serif" style={{ color: colors.primary }}>
-          {lang === 'native' ? 'কীভাবে পৌঁছাবেন' : 'Our Wedding Venue'}
+          {t.title}
         </h2>
         <CulturalDivider templateId={template.id} color={colors.accent} />
       </div>
@@ -44,7 +55,7 @@ export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) 
                   color: colors.primary
                 }}
               >
-                {lang === 'native' ? 'প্রধান বিবাহ বাসর' : 'The Celebration Grounds'}
+                {t.grounds}
               </span>
               <h3 className="text-2xl sm:text-3xl font-bold font-serif mt-2" style={{ color: colors.primary }}>
                 {lang === 'native' ? venue.nativeName : venue.name}
@@ -62,7 +73,7 @@ export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) 
               <div className="flex items-start gap-3">
                 <Navigation className="w-5 h-5 shrink-0 mt-0.5" style={{ color: colors.accent }} />
                 <p className="font-serif">
-                  <strong style={{ color: colors.primary }}>{lang === 'native' ? 'ল্যান্ডমার্ক: ' : 'Landmark: '}</strong>
+                  <strong style={{ color: colors.primary }}>{t.landmark}</strong>
                   {lang === 'native' ? venue.nativeLandmark : venue.landmark}
                 </p>
               </div>
@@ -70,7 +81,7 @@ export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) 
               <div className="flex items-start gap-3">
                 <Car className="w-5 h-5 shrink-0 mt-0.5" style={{ color: colors.accent }} />
                 <p className="font-serif">
-                  <strong style={{ color: colors.primary }}>{lang === 'native' ? 'পার্কিং: ' : 'Parking: '}</strong>
+                  <strong style={{ color: colors.primary }}>{t.parking}</strong>
                   {lang === 'native' ? venue.nativeParking : venue.parking}
                 </p>
               </div>
@@ -86,7 +97,7 @@ export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) 
                 style={{ backgroundColor: colors.primary }}
               >
                 <Navigation className="w-4 h-4" style={{ color: colors.accentLight }} />
-                <span>{lang === 'native' ? 'গুগল ম্যাপে দিকনির্দেশ' : 'Open in Google Maps'}</span>
+                <span>{t.openMaps}</span>
               </a>
 
               <a
@@ -101,7 +112,7 @@ export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) 
                 }}
               >
                 <ExternalLink className="w-4 h-4" style={{ color: colors.primary }} />
-                <span>{lang === 'native' ? 'ক্যাব বুক করুন' : 'Book Ride'}</span>
+                <span>{t.bookRide}</span>
               </a>
             </div>
           </div>

@@ -10,14 +10,30 @@ interface RsvpSectionProps {
 
 export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
   const { colors, rsvpContacts, groom, bride } = template;
+  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
+
+  const t = {
+    badge: lang === 'en' ? 'RSVP & Coordination' : isHindi ? 'उपस्थिति की पुष्टि (RSVP)' : 'উপস্থিতি নিশ্চিতকরণ',
+    title: lang === 'en' ? 'Confirm Your Presence' : isHindi ? 'सादर आमंत्रण एवं उपस्थिति' : 'সাদর প্রত্যুত্তর',
+    subtitle: lang === 'en'
+      ? 'To help us prepare for your gracious hosting and dining arrangements, please confirm your attendance.'
+      : isHindi
+      ? 'विवाह में आपके स्वागत एवं सुगम आतिथ्य सत्कार की व्यवस्था हेतु कृपया अपनी उपस्थिति अवश्य बताएं।'
+      : 'অতিথিদের সুষ্ঠু অভ্যর্থনা ও আপ্যায়নের সুবিধার্থে অনুগ্রহপূর্বক আপনার শুভাগমন নিশ্চিত করুন।',
+    whatsappBtn: lang === 'en' ? 'Confirm on WhatsApp' : isHindi ? 'व्हाट्सएप पर सूचित करें' : 'হোয়াটসঅ্যাপে জানান',
+    awaitingTitle: lang === 'en' ? 'Awaiting Your Gracious Presence' : isHindi ? 'सस्नेह उपस्थिति की प्रतीक्षा में' : 'সানন্দ উপস্থিতি প্রতীক্ষায়',
+  };
 
   const getWhatsAppUrl = (phone: string) => {
-    const text = encodeURIComponent(
-      lang === 'native'
-        ? `নমস্কার / सादर प्रणाम! ${groom.name} एवं ${bride.name} के विवाह समारोह में सपरिवार उपस्थिति की पुष्टि करते हैं। हार्दिक शुभकामनाएं!`
-        : `Namaskar! Delighted to confirm our attendance for ${groom.name} & ${bride.name}'s wedding celebration. Looking forward!`
-    );
-    return `https://wa.me/${phone}?text=${text}`;
+    let msg = `Namaskar! Delighted to confirm our attendance for ${groom.name} & ${bride.name}'s wedding celebration. Looking forward!`;
+    if (lang === 'native') {
+      if (isHindi) {
+        msg = `सादर प्रणाम! ${groom.name} एवं ${bride.name} के मांगलिक विवाह समारोह में सपरिवार उपस्थिति की पुष्टि करते हैं। हार्दिक शुभकामनाएं!`;
+      } else {
+        msg = `নমস্কার! ${groom.name} ও ${bride.name}-এর শুভ বিবাহ অনুষ্ঠানে সবান্ধব উপস্থিতির আন্তরিক সম্মতি জানাচ্ছি।`;
+      }
+    }
+    return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
   };
 
   return (
@@ -26,18 +42,16 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
         <div className="flex items-center justify-center gap-2 mb-2">
           <HeartHandshake className="w-5 h-5" style={{ color: colors.primary }} />
           <span className="font-serif text-xs uppercase tracking-widest font-semibold" style={{ color: colors.primary }}>
-            {lang === 'native' ? 'উপস্থিতি নিশ্চিতকরণ / उपस्थिति' : 'RSVP & Coordination'}
+            {t.badge}
           </span>
           <HeartHandshake className="w-5 h-5" style={{ color: colors.primary }} />
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold font-serif" style={{ color: colors.primary }}>
-          {lang === 'native' ? 'সাদর প্রত্যুত্তর' : 'Confirm Your Presence'}
+          {t.title}
         </h2>
         <CulturalDivider templateId={template.id} color={colors.accent} />
         <p className="text-xs sm:text-sm font-serif max-w-md mx-auto opacity-80" style={{ color: colors.textColor }}>
-          {lang === 'native'
-            ? 'অতিথিদের সুষ্ঠু অভ্যর্থনা ও আপ্যায়নের সুবিধার্থে অনুগ্রহপূর্বক আপনার শুভাগমন নিশ্চিত করুন।'
-            : 'To help us prepare for your gracious hosting and dining arrangements, please confirm your attendance.'}
+          {t.subtitle}
         </p>
       </div>
 
@@ -75,7 +89,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
                 className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl text-xs font-semibold shadow-sm transition-colors"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>{lang === 'native' ? 'হোয়াটসঅ্যাপে জানান' : 'Confirm on WhatsApp'}</span>
+                <span>{t.whatsappBtn}</span>
               </a>
 
               <a
@@ -122,7 +136,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
           <CulturalMotifBadge templateId={template.id} className="w-10 h-8" />
         </div>
         <p className="text-xs uppercase tracking-widest font-semibold font-serif" style={{ color: colors.primary }}>
-          {lang === 'native' ? 'সানন্দ উপস্থিতি প্রতীক্ষায়' : 'Awaiting Your Gracious Presence'}
+          {t.awaitingTitle}
         </p>
         <p className="text-lg sm:text-xl font-bold mt-1 font-serif" style={{ color: colors.primary }}>
           {lang === 'native' ? template.quotes.nativeFamilySignoff : template.quotes.familySignoff}

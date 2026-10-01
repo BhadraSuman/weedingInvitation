@@ -161,7 +161,13 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
                 }}
               >
                 <p className="text-[11px] uppercase font-serif tracking-wider" style={{ color: template.colors.accent }}>
-                  {lang === 'native' ? 'সাদর নিমন্ত্রণ / सादर निमंत्रण' : 'Cordially Invited'}
+                  {lang === 'en'
+                    ? 'Cordially Invited'
+                    : template.id === 'bihari_marwari' || template.id === 'royal_north'
+                    ? 'सादर निमंत्रण'
+                    : template.id === 'south_indian'
+                    ? 'நல்வரவு'
+                    : 'সাদর নিমন্ত্রণ'}
                 </p>
                 <p className="font-serif text-base sm:text-lg text-white font-semibold truncate">
                   {guestName}
@@ -183,7 +189,13 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
               >
                 <Sparkles className="w-5 h-5 animate-pulse" style={{ color: template.colors.primary }} />
                 <span className="font-serif tracking-wide">
-                  {lang === 'native' ? 'পত্র উন্মোচন করুন / Open' : 'Open Invitation'}
+                  {lang === 'en'
+                    ? 'Open Invitation'
+                    : template.id === 'bihari_marwari' || template.id === 'royal_north'
+                    ? 'निमंत्रण पत्र खोलें'
+                    : template.id === 'south_indian'
+                    ? 'அழைப்பிதழை திறக்கவும்'
+                    : 'পত্র উন্মোচন করুন'}
                 </span>
                 <Music className="w-4 h-4 group-hover:rotate-12 transition-transform" style={{ color: template.colors.primary }} />
               </button>

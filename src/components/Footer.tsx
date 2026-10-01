@@ -14,6 +14,30 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
   const [customGuest, setCustomGuest] = useState('');
   const [generatedLink, setGeneratedLink] = useState('');
 
+  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
+
+  const t = {
+    title: lang === 'en' ? 'You are Cordially Invited' : isHindi ? 'सबान्धव सपरिवार सादर आमंत्रण' : 'সবান্ধব সপরিবারে সাদর আমন্ত্রণ',
+    subtitle: lang === 'en'
+      ? 'Your gracious presence and heartfelt blessings will illuminate our new journey together.'
+      : isHindi
+      ? 'हमारे जीवन के इस पावन मांगलिक अवसर पर आपकी स्नेहिल उपस्थिति एवं शुभाशीर्वाद हमारे लिए अमूल्य है।'
+      : 'আমাদের জীবনের এই মাহেন্দ্রক্ষণে আপনাদের সস্নেহ পদধূলি ও শুভাশিস আমাদের একান্ত কাম্য।',
+    createLinkTitle: lang === 'en' ? 'Create Personalized Guest Invite Link' : isHindi ? 'अतिथि के नाम का व्यक्तिगत निमंत्रण लिंक बनाएं' : 'ব্যক্তিগত ডিজিটাল নিমন্ত্রণপত্র পাঠান',
+    createLinkSub: lang === 'en'
+      ? 'Enter a guest name to generate a tailored invitation link with their name.'
+      : isHindi
+      ? 'अतिथि का नाम लिखकर लिंक तैयार करें। लिंक खोलने पर उनका नाम आदर सहित प्रदर्शित होगा।'
+      : 'অতিথির নাম লিখে লিংক তৈরি করুন। লিংকে তাঁদের নাম সম্মানের সহিত প্রদর্শিত হইবে।',
+    placeholder: lang === 'en' ? 'e.g., Subhash Da & Family' : isHindi ? 'जैसे: आदरणीय शर्मा जी एवं परिवार' : 'যেমন: সুভাষদা ও পরিবার',
+    genBtn: lang === 'en' ? 'Generate' : isHindi ? 'लिंक बनाएं' : 'লিংক তৈরি',
+    copyBtn: lang === 'en' ? 'Copy' : isHindi ? 'कॉपी करें' : 'কপি',
+    copiedAlert: lang === 'en' ? 'Personalized link copied!' : isHindi ? 'निमंत्रण लिंक कॉपी हो गया!' : 'ব্যক্তিগত লিংক কপি করা হয়েছে!',
+    copyFullLink: lang === 'en' ? 'Copy Invitation Link' : isHindi ? 'विवाह लिंक कॉपी करें' : 'ওয়েবসাইট লিংক কপি করুন',
+    linkCopiedBadge: lang === 'en' ? 'Link Copied!' : isHindi ? 'कॉपी संपन्न!' : 'কপি সম্পন্ন!',
+    inquiries: lang === 'en' ? 'Inquiries & Coordination:' : isHindi ? 'संपर्क एवं समन्वय:' : 'যোগাযোগ ও সমন্বয়:'
+  };
+
   const handleCopy = () => {
     const url = `${window.location.origin}${window.location.pathname}?template=${template.id}`;
     navigator.clipboard.writeText(url);
@@ -43,15 +67,13 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
         </div>
 
         <h3 className="text-2xl sm:text-3xl font-bold font-serif" style={{ color: colors.primary }}>
-          {lang === 'native' ? 'সবান্ধব সপরিবারে সাদর আমন্ত্রণ' : 'You are Cordially Invited'}
+          {t.title}
         </h3>
 
         <CulturalDivider templateId={template.id} color={colors.accent} />
 
         <p className="text-xs sm:text-sm max-w-lg mx-auto leading-relaxed font-serif opacity-90" style={{ color: colors.textColor }}>
-          {lang === 'native'
-            ? 'আমাদের জীবনের এই মাহেন্দ্রক্ষণে আপনাদের সস্নেহ পদধূলি ও শুভাশিস আমাদের একান্ত কাম্য।'
-            : 'Your gracious presence and heartfelt blessings will illuminate our new journey together.'}
+          {t.subtitle}
         </p>
 
         {/* Personalized Link Generator Tool for the Family */}
@@ -62,13 +84,11 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
           <div className="flex items-center gap-2 mb-2" style={{ color: colors.primary }}>
             <Share2 className="w-4 h-4" style={{ color: colors.accent }} />
             <h4 className="font-serif font-bold text-sm">
-              {lang === 'native' ? 'ব্যক্তিগত ডিজিটাল নিমন্ত্রণপত্র পাঠান' : 'Create Personalized Guest Invite Link'}
+              {t.createLinkTitle}
             </h4>
           </div>
           <p className="text-[11px] mb-3 opacity-80 font-serif" style={{ color: colors.textColor }}>
-            {lang === 'native'
-              ? 'অতিথির নাম লিখে লিংক তৈরি করুন। লিংকে তাঁদের নাম সম্মানের সহিত প্রদর্শিত হইবে।'
-              : 'Enter a guest name to generate a tailored invitation link with their name.'}
+            {t.createLinkSub}
           </p>
 
           <form onSubmit={handleGenerateCustom} className="flex gap-2">
@@ -76,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
               type="text"
               value={customGuest}
               onChange={e => setCustomGuest(e.target.value)}
-              placeholder={lang === 'native' ? 'যেমন: সুভাষদা ও পরিবার / राहुल एवं परिवार' : 'e.g., Subhash Da & Family'}
+              placeholder={t.placeholder}
               className="flex-1 px-3 py-2 text-xs rounded-xl border focus:outline-none focus:ring-1"
               style={{
                 borderColor: `${colors.accent}66`,
@@ -88,7 +108,7 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
               className="px-4 py-2 text-white text-xs font-semibold rounded-xl transition-opacity hover:opacity-90 font-serif"
               style={{ backgroundColor: colors.primary }}
             >
-              {lang === 'native' ? 'লিংক তৈরি' : 'Generate'}
+              {t.genBtn}
             </button>
           </form>
 
@@ -103,12 +123,12 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(generatedLink);
-                  alert(lang === 'native' ? 'ব্যক্তিগত লিংক কপি করা হয়েছে!' : 'Personalized link copied!');
+                  alert(t.copiedAlert);
                 }}
                 className="px-2.5 py-1 text-white rounded-lg font-serif shrink-0 text-[11px]"
                 style={{ backgroundColor: colors.primary }}
               >
-                কপি
+                {t.copyBtn}
               </button>
             </div>
           )}
@@ -127,12 +147,12 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
             {copied ? (
               <>
                 <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-emerald-700">{lang === 'native' ? 'কপি সম্পন্ন!' : 'Link Copied!'}</span>
+                <span className="text-emerald-700">{t.linkCopiedBadge}</span>
               </>
             ) : (
               <>
                 <Copy className="w-3.5 h-3.5" style={{ color: colors.accent }} />
-                <span>{lang === 'native' ? 'ওয়েবসাইট লিংক কপি করুন' : 'Copy Invitation Link'}</span>
+                <span>{t.copyFullLink}</span>
               </>
             )}
           </button>
@@ -145,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs font-serif">
             <span className="opacity-80" style={{ color: colors.textColor }}>
-              {lang === 'native' ? 'যোগাযোগ ও সমন্বয়:' : 'Inquiries & Coordination:'} <strong style={{ color: colors.primary }}>Suman Bhadra</strong>
+              {t.inquiries} <strong style={{ color: colors.primary }}>Suman Bhadra</strong>
             </span>
             <a
               href="tel:+916291898703"
