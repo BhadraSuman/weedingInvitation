@@ -26,7 +26,8 @@ import {
   Building2,
   Percent,
   Award,
-  HelpCircle
+  HelpCircle,
+  Wand2
 } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
@@ -110,16 +111,27 @@ export const LandingPage: React.FC = () => {
           <a href="#contact" className="hover:text-[#8B181B] transition-colors">Contact</a>
         </nav>
 
-        <a
-          href={whatsappInquiryUrl("General Inquiry")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold shadow-md transition-all active:scale-95"
-        >
-          <MessageCircle className="w-4 h-4 fill-white" />
-          <span className="hidden sm:inline">WhatsApp Booking</span>
-          <span className="sm:hidden">Chat</span>
-        </a>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/tryout"
+            className="inline-flex items-center gap-1.5 py-2 px-3.5 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs font-serif font-bold shadow-sm transition-all hover:scale-105"
+          >
+            <Wand2 className="w-3.5 h-3.5 text-amber-200" />
+            <span className="hidden sm:inline">Try It Free (Instant)</span>
+            <span className="sm:hidden">Try Free</span>
+          </Link>
+
+          <a
+            href={whatsappInquiryUrl("General Inquiry")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold shadow-md transition-all active:scale-95"
+          >
+            <MessageCircle className="w-4 h-4 fill-white" />
+            <span className="hidden sm:inline">WhatsApp Booking</span>
+            <span className="sm:hidden">Chat</span>
+          </a>
+        </div>
       </header>
 
       {/* 2. Hero Section */}
@@ -162,11 +174,30 @@ export const LandingPage: React.FC = () => {
           <span className="font-semibold text-stone-700">NRI Diaspora Worldwide</span>
         </div>
 
+        {/* Hero Tryout Instant Action */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto">
+          <Link
+            to="/tryout"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#8B181B] via-[#A82025] to-[#8B181B] hover:opacity-95 text-[#F3E5AB] font-serif font-bold text-sm shadow-xl transition-all hover:scale-105 ring-2 ring-[#D4AF37]/50"
+          >
+            <Wand2 className="w-4 h-4 text-[#D4AF37]" />
+            <span>Create Free Live Preview (60 Secs)</span>
+            <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
+          </Link>
+
+          <a
+            href="#demos"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-stone-300 bg-white hover:bg-stone-50 text-[#2C1810] font-serif font-semibold text-xs sm:text-sm shadow-sm transition-all"
+          >
+            <span>Browse 4 Cultural Demos</span>
+          </a>
+        </div>
+
         {/* Hero Quick Demos Buttons */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 max-w-2xl mx-auto">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 max-w-2xl mx-auto">
           <Link
             to="/anirban-weds-deboleena"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs shadow transition-all hover:scale-105"
           >
             <span>🪔 Bengali Wedding</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37]" />
@@ -300,6 +331,33 @@ export const LandingPage: React.FC = () => {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* 3B. Tryout Feature Spotlight Callout */}
+      <section className="py-8 px-4 sm:px-6 max-w-5xl mx-auto -mt-4 mb-8">
+        <div className="bg-gradient-to-r from-[#FFF8F0] via-[#FDF5E6] to-[#FFF8F0] rounded-3xl p-6 sm:p-10 border-2 border-[#D4AF37] shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 text-center md:text-left">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8B181B] text-[#F3E5AB] text-[10px] font-serif font-bold uppercase tracking-wider">
+              <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+              <span>Instant Tryout Tool</span>
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#8B181B]">
+              Want to see YOUR names and photo on an E-Patra right now?
+            </h3>
+            <p className="text-xs sm:text-sm font-serif text-[#6E5D53] max-w-xl">
+              Zero waiting, zero credit card. Enter your names and venue in our 60-second form to generate an interactive invitation on your phone immediately with music, countdown timer, and opening envelope!
+            </p>
+          </div>
+
+          <Link
+            to="/tryout"
+            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs sm:text-sm shadow-xl transition-all hover:scale-105"
+          >
+            <Wand2 className="w-4 h-4 text-[#D4AF37]" />
+            <span>Generate Free Demo</span>
+            <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
+          </Link>
         </div>
       </section>
 

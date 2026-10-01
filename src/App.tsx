@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LandingPage } from './components/landing/LandingPage';
 import { WeddingSlugPage } from './pages/WeddingSlugPage';
+import { TryoutPage } from './pages/TryoutPage';
+import { DemoPreviewPage } from './pages/DemoPreviewPage';
 import { ScrollToTop } from './components/common/ScrollToTop';
 
 export const App: React.FC = () => {
@@ -11,10 +13,17 @@ export const App: React.FC = () => {
       <ScrollToTop />
 
       <Routes>
-        {/* 1. Main Company Landing Page (weedinginv.com) */}
+        {/* 1. Main Company Landing Page */}
         <Route path="/" element={<LandingPage />} />
 
-        {/* 2. Dynamic Client Invitation Slugs (e.g. /anirban-weds-deboleena, /sandeep-weds-priya) */}
+        {/* 2. Instant Free Tryout Generator */}
+        <Route path="/tryout" element={<TryoutPage />} />
+        <Route path="/create-demo" element={<TryoutPage />} />
+
+        {/* 3. Live Custom Invitation Preview */}
+        <Route path="/preview" element={<DemoPreviewPage />} />
+
+        {/* 4. Dynamic Client Invitation Slugs (e.g. /anirban-weds-deboleena, /sandeep-weds-priya) */}
         <Route path="/:slug" element={<WeddingSlugPage />} />
 
         {/* Fallback */}
