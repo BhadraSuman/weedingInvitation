@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CulturalTemplate, Language } from '../types/wedding';
 import { CulturalDivider, CulturalMotifBadge } from './CulturalMotifs';
-import { Share2, Copy, Check } from 'lucide-react';
+import { Share2, Copy, Check, Phone, Mail } from 'lucide-react';
 
 interface FooterProps {
   template: CulturalTemplate;
@@ -138,11 +138,40 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
           </button>
         </div>
 
-        <div className="pt-6 border-t text-center" style={{ borderColor: `${colors.accent}33` }}>
+        <div className="pt-6 border-t text-center space-y-2" style={{ borderColor: `${colors.accent}33` }}>
           <p className="text-xs font-semibold font-serif" style={{ color: colors.primary }}>
             {lang === 'native' ? template.quotes.nativeFamilySignoff : template.quotes.familySignoff}
           </p>
-          <p className="text-[10px] opacity-70 font-serif mt-1">
+
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs font-serif">
+            <span className="opacity-80" style={{ color: colors.textColor }}>
+              {lang === 'native' ? 'যোগাযোগ ও সমন্বয়:' : 'Inquiries & Coordination:'} <strong style={{ color: colors.primary }}>Suman Bhadra</strong>
+            </span>
+            <a
+              href="tel:+916291898703"
+              className="px-3 py-1 rounded-full border text-[11px] font-semibold hover:opacity-80 transition-opacity flex items-center gap-1.5"
+              style={{
+                borderColor: `${colors.accent}80`,
+                backgroundColor: colors.bgParchment,
+                color: colors.primary
+              }}
+            >
+              <Phone className="w-3 h-3" /> +91 6291898703
+            </a>
+            <a
+              href="mailto:bhadrasuman04@gmail.com"
+              className="px-3 py-1 rounded-full border text-[11px] font-semibold hover:opacity-80 transition-opacity flex items-center gap-1.5"
+              style={{
+                borderColor: `${colors.accent}80`,
+                backgroundColor: colors.bgParchment,
+                color: colors.primary
+              }}
+            >
+              <Mail className="w-3 h-3" /> bhadrasuman04@gmail.com
+            </a>
+          </div>
+
+          <p className="text-[10px] opacity-70 font-serif pt-1">
             Handcrafted with cultural elegance &amp; heritage
           </p>
         </div>

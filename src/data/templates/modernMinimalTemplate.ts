@@ -135,20 +135,22 @@ export const modernMinimalTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Vikram Roy',
-      nativeName: 'Vikram Roy',
-      relation: 'Father of the Groom',
-      nativeRelation: 'Father of the Groom',
-      phone: '+91 98200 11223',
-      whatsappNumber: '919820011223'
+      name: 'Suman Bhadra',
+      nativeName: 'Suman Bhadra',
+      relation: 'Wedding Experience Director & RSVP',
+      nativeRelation: 'Wedding Experience Director & RSVP',
+      phone: '+91 6291898703',
+      whatsappNumber: '916291898703',
+      email: 'bhadrasuman04@gmail.com'
     },
     {
-      name: 'Sanjay Mehta',
-      nativeName: 'Sanjay Mehta',
-      relation: 'Father of the Bride',
-      nativeRelation: 'Father of the Bride',
-      phone: '+91 98210 33445',
-      whatsappNumber: '919821033445'
+      name: 'Roy & Mehta Hospitality Desk',
+      nativeName: 'Roy & Mehta Hospitality Desk',
+      relation: 'Family Hospitality Team',
+      nativeRelation: 'Family Hospitality Team',
+      phone: '+91 6291898703',
+      whatsappNumber: '916291898703',
+      email: 'bhadrasuman04@gmail.com'
     }
   ],
   initialWishes: [

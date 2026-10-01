@@ -5,16 +5,13 @@ import { EnvelopeIntro } from './components/EnvelopeIntro';
 import { AudioPlayer } from './components/AudioPlayer';
 import { LanguageToggle } from './components/LanguageToggle';
 import { TemplateSelector } from './components/TemplateSelector';
-import { HeroSection } from './components/HeroSection';
-import { CoupleStory } from './components/CoupleStory';
-import { CountdownTimer } from './components/CountdownTimer';
-import { EventsTimeline } from './components/EventsTimeline';
-import { PhotoGallery } from './components/PhotoGallery';
-import { VenueLocation } from './components/VenueLocation';
-import { WishesGuestbook } from './components/WishesGuestbook';
-import { RsvpSection } from './components/RsvpSection';
-import { Footer } from './components/Footer';
 import { StickyActionBar } from './components/StickyActionBar';
+
+// 4 Distinct Cultural Wedding UI Layouts
+import { BengaliWeddingView } from './components/views/BengaliWeddingView';
+import { RoyalNorthWeddingView } from './components/views/RoyalNorthWeddingView';
+import { SouthIndianWeddingView } from './components/views/SouthIndianWeddingView';
+import { ModernMinimalWeddingView } from './components/views/ModernMinimalWeddingView';
 
 export const App: React.FC = () => {
   const [templateId, setTemplateId] = useState<TemplateId>('bengali');
@@ -40,15 +37,60 @@ export const App: React.FC = () => {
 
   const handleSelectTemplate = (id: TemplateId) => {
     setTemplateId(id);
-    // Update URL parameter without page reload
     const url = new URL(window.location.href);
     url.searchParams.set('template', id);
     window.history.replaceState({}, '', url.toString());
   };
 
+  // Render the tailored UI design according to culture
+  const renderCulturalLayout = () => {
+    switch (currentTemplate.id) {
+      case 'bengali':
+        return (
+          <BengaliWeddingView
+            template={currentTemplate}
+            lang={lang}
+            guestName={guestName}
+          />
+        );
+      case 'royal_north':
+        return (
+          <RoyalNorthWeddingView
+            template={currentTemplate}
+            lang={lang}
+            guestName={guestName}
+          />
+        );
+      case 'south_indian':
+        return (
+          <SouthIndianWeddingView
+            template={currentTemplate}
+            lang={lang}
+            guestName={guestName}
+          />
+        );
+      case 'modern_minimal':
+        return (
+          <ModernMinimalWeddingView
+            template={currentTemplate}
+            lang={lang}
+            guestName={guestName}
+          />
+        );
+      default:
+        return (
+          <BengaliWeddingView
+            template={currentTemplate}
+            lang={lang}
+            guestName={guestName}
+          />
+        );
+    }
+  };
+
   return (
     <div
-      className="min-h-screen text-[#2C1810] font-sans selection:bg-[#8B181B] selection:text-[#F3E5AB] transition-colors duration-500"
+      className="min-h-screen font-sans selection:bg-[#8B181B] selection:text-[#F3E5AB] transition-colors duration-500"
       style={{
         backgroundColor: currentTemplate.colors.bgParchment,
         color: currentTemplate.colors.textColor
@@ -64,7 +106,7 @@ export const App: React.FC = () => {
         />
       )}
 
-      {/* Floating Controls */}
+      {/* Floating Global Controls */}
       <LanguageToggle currentLang={lang} template={currentTemplate} onToggle={setLang} />
       <AudioPlayer />
       <TemplateSelector
@@ -72,17 +114,9 @@ export const App: React.FC = () => {
         onSelectTemplate={handleSelectTemplate}
       />
 
-      {/* Main Wedding Invitation Website */}
+      {/* Distinct Cultural Wedding UI Layout */}
       <main className={`transition-opacity duration-1000 ${isEnvelopeOpen ? 'opacity-100' : 'opacity-20 pointer-events-none'}`}>
-        <HeroSection template={currentTemplate} lang={lang} guestName={guestName} />
-        <CoupleStory template={currentTemplate} lang={lang} />
-        <CountdownTimer template={currentTemplate} lang={lang} />
-        <EventsTimeline template={currentTemplate} lang={lang} />
-        <PhotoGallery template={currentTemplate} lang={lang} />
-        <VenueLocation template={currentTemplate} lang={lang} />
-        <WishesGuestbook template={currentTemplate} lang={lang} />
-        <RsvpSection template={currentTemplate} lang={lang} />
-        <Footer template={currentTemplate} lang={lang} />
+        {renderCulturalLayout()}
       </main>
 
       {/* Mobile Sticky Navigation Bar */}

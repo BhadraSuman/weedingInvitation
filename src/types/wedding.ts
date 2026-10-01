@@ -49,6 +49,7 @@ export interface RsvpContact {
   nativeRelation: string;
   phone: string;
   whatsappNumber: string;
+  email?: string;
 }
 
 export interface VenueDetails {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { CulturalTemplate, Language } from '../types/wedding';
 import { CulturalDivider, CulturalMotifBadge } from './CulturalMotifs';
-import { Phone, MessageSquare, HeartHandshake, Users } from 'lucide-react';
+import { Phone, MessageSquare, HeartHandshake, Users, Mail } from 'lucide-react';
 
 interface RsvpSectionProps {
   template: CulturalTemplate;
@@ -90,6 +90,21 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
                 <Phone className="w-3.5 h-3.5" style={{ color: colors.primary }} />
                 <span>{contact.phone}</span>
               </a>
+
+              {contact.email && (
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-serif font-semibold border transition-colors opacity-95 hover:opacity-100"
+                  style={{
+                    backgroundColor: colors.bgParchment,
+                    borderColor: `${colors.accent}66`,
+                    color: colors.primary
+                  }}
+                >
+                  <Mail className="w-3.5 h-3.5" style={{ color: colors.primary }} />
+                  <span className="truncate">{contact.email}</span>
+                </a>
+              )}
             </div>
           </div>
         ))}

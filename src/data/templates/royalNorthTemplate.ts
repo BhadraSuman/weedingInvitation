@@ -159,20 +159,22 @@ export const royalNorthTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Ashok Kshatriya',
-      nativeName: 'श्री अशोक क्षत्रिय',
-      relation: 'Uncle of the Groom',
-      nativeRelation: 'वर के ताऊजी',
-      phone: '+91 94258 19890',
-      whatsappNumber: '919425819890'
+      name: 'Suman Bhadra',
+      nativeName: 'सुमन भद्र',
+      relation: 'Royal Wedding Concierge & RSVP',
+      nativeRelation: 'विवाह समन्वयक एवं अतिथि स्वागत',
+      phone: '+91 6291898703',
+      whatsappNumber: '916291898703',
+      email: 'bhadrasuman04@gmail.com'
     },
     {
-      name: 'Vijay Kshatriya',
-      nativeName: 'श्री विजय क्षत्रिय',
-      relation: 'Father of the Groom',
-      nativeRelation: 'वर के पिताश्री',
-      phone: '+91 94253 06095',
-      whatsappNumber: '919425306095'
+      name: 'Kshatriya & Paruthi Desk',
+      nativeName: 'क्षत्रिय एवं पारुथी स्वागत कक्ष',
+      relation: 'Family Coordinators',
+      nativeRelation: 'पारिवारिक स्वागत डेस्क',
+      phone: '+91 6291898703',
+      whatsappNumber: '916291898703',
+      email: 'bhadrasuman04@gmail.com'
     }
   ],
   initialWishes: [

@@ -135,20 +135,22 @@ export const southIndianTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Sri S. Subramanian',
-      nativeName: 'ஸ்ரீ S. சுப்பிரமணியன்',
-      relation: 'Father of the Groom',
-      nativeRelation: 'மணமகனின் தந்தை',
-      phone: '+91 94440 12345',
-      whatsappNumber: '919444012345'
+      name: 'Suman Bhadra',
+      nativeName: 'சுமன் பத்ரா',
+      relation: 'Wedding Coordinator & Guest Assistance',
+      nativeRelation: 'திருமண ஒருங்கிணைப்பாளர் மற்றும் வரவேற்பு',
+      phone: '+91 6291898703',
+      whatsappNumber: '916291898703',
+      email: 'bhadrasuman04@gmail.com'
     },
     {
-      name: 'Sri R. Sundaram',
-      nativeName: 'ஸ்ரீ R. சுந்தரம்',
-      relation: 'Father of the Bride',
-      nativeRelation: 'மணமகளின் தந்தை',
-      phone: '+91 98400 67890',
-      whatsappNumber: '919840067890'
+      name: 'Subramanian & Sundaram Families',
+      nativeName: 'சுப்பிரமணியன் & சுந்தரம் குடும்பத்தினர்',
+      relation: 'Family Reception Desk',
+      nativeRelation: 'குடும்ப வரவேற்பு மையம்',
+      phone: '+91 6291898703',
+      whatsappNumber: '916291898703',
+      email: 'bhadrasuman04@gmail.com'
     }
   ],
   initialWishes: [

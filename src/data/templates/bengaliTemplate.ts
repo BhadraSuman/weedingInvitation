@@ -183,20 +183,22 @@ export const bengaliTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Dr. Subrata Mukherjee',
-      nativeName: 'ডঃ সুব্রত মুখোপাধ্যায়',
-      relation: 'Father of the Groom',
-      nativeRelation: 'বরের পিতা',
-      phone: '+91 98301 23456',
-      whatsappNumber: '919830123456'
+      name: 'Suman Bhadra',
+      nativeName: 'সুমন ভদ্র',
+      relation: 'Wedding Coordinator & Guest Relations',
+      nativeRelation: 'বিবাহ সমন্বয়ক ও অতিথি আপ্যায়ন',
+      phone: '+91 6291898703',
+      whatsappNumber: '916291898703',
+      email: 'bhadrasuman04@gmail.com'
     },
     {
-      name: 'Mr. Soumen Banerjee',
-      nativeName: 'শ্রী সৌমেন বন্দ্যোপাধ্যায়',
-      relation: 'Father of the Bride',
-      nativeRelation: 'কনের পিতা',
-      phone: '+91 98310 98765',
-      whatsappNumber: '919831098765'
+      name: 'Family Reception Desk',
+      nativeName: 'পারিবারিক অভ্যর্থনা কেন্দ্র',
+      relation: 'Mukherjee & Banerjee Families',
+      nativeRelation: 'মুখোপাধ্যায় ও বন্দ্যোপাধ্যায় পরিবার',
+      phone: '+91 6291898703',
+      whatsappNumber: '916291898703',
+      email: 'bhadrasuman04@gmail.com'
     }
   ],
   initialWishes: [
