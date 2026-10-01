@@ -42,9 +42,10 @@ export const AlponaDivider: React.FC<{ className?: string; color?: string }> = (
 );
 
 // Bengali Sacred Conch Shell (শঙ্খ - Shankho)
-export const ShankhoIcon: React.FC<{ className?: string; size?: number }> = ({
+export const ShankhoIcon: React.FC<{ className?: string; size?: number; color?: string }> = ({
   className = "w-6 h-6",
   size = 24,
+  color = "#D4AF37",
 }) => (
   <svg
     width={size}
@@ -56,7 +57,7 @@ export const ShankhoIcon: React.FC<{ className?: string; size?: number }> = ({
   >
     <path
       d="M38 12C34 6 26 6 20 10C14 14 10 22 14 30C18 38 28 42 34 38C40 34 42 24 38 18C34 12 26 12 22 16C18 20 18 26 22 30C26 34 32 32 34 28"
-      stroke="#D4AF37"
+      stroke={color}
       strokeWidth="2.5"
       strokeLinecap="round"
       strokeLinejoin="round"

@@ -1,6 +1,8 @@
 export type Language = 'native' | 'en';
 
-export type TemplateId = 'bengali' | 'royal_north' | 'south_indian' | 'modern_minimal' | 'bihari_marwari';
+export type TemplateId = 'bengali' | 'royal_north' | 'south_indian' | 'modern_minimal' | 'bihari_marwari' | 'annaprashan' | 'birthday';
+
+export type EventCategory = 'wedding' | 'annaprashan' | 'birthday' | 'griha_pravesh';
 
 export interface CoupleMember {
   name: string;

@@ -310,6 +310,7 @@ export const CulturalMotifBadge: React.FC<{ templateId: TemplateId; className?: 
 }) => {
   switch (templateId) {
     case 'bengali':
+    case 'annaprashan':
       return <ToporMukutIcon className={className} />;
     case 'royal_north':
       return <RoyalElephantIcon className={className} />;
@@ -318,6 +319,8 @@ export const CulturalMotifBadge: React.FC<{ templateId: TemplateId; className?: 
     case 'south_indian':
       return <TempleLampIcon className={className} />;
     case 'modern_minimal':
+    case 'birthday':
+    default:
       return <WeddingRingsIcon className={className} />;
   }
 };
@@ -329,6 +332,7 @@ export const CulturalDivider: React.FC<{ templateId: TemplateId; className?: str
 }) => {
   switch (templateId) {
     case 'bengali':
+    case 'annaprashan':
       return <AlponaDivider className={className} color={color} />;
     case 'royal_north':
       return <JharokhaDivider className={className} color={color} />;
@@ -337,6 +341,8 @@ export const CulturalDivider: React.FC<{ templateId: TemplateId; className?: str
     case 'south_indian':
       return <KolamDivider className={className} color={color} />;
     case 'modern_minimal':
+    case 'birthday':
+    default:
       return <BotanicalDivider className={className} color={color} />;
   }
 };

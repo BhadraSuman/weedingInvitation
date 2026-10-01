@@ -6,8 +6,10 @@ import { AudioPlayer } from '../components/AudioPlayer';
 import { LanguageToggle } from '../components/LanguageToggle';
 import { BengaliWeddingView } from '../components/views/BengaliWeddingView';
 import { BihariMarwariWeddingView } from '../components/views/BihariMarwariWeddingView';
+import { AnnaprashanView } from '../components/views/AnnaprashanView';
+import { BirthdayView } from '../components/views/BirthdayView';
 import { Language } from '../types/wedding';
-import { Sparkles, ArrowLeft, Home } from 'lucide-react';
+import { Sparkles, Home } from 'lucide-react';
 
 export const WeddingSlugPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -24,7 +26,7 @@ export const WeddingSlugPage: React.FC = () => {
     if (weddingEntry) {
       document.title = weddingEntry.title;
     } else {
-      document.title = "Wedding Invitation | WeedingInv.com";
+      document.title = "Celebration Invitation | UtsavPatra.com";
     }
   }, [weddingEntry]);
 
@@ -38,27 +40,39 @@ export const WeddingSlugPage: React.FC = () => {
           Invitation Not Found
         </h1>
         <p className="text-sm font-serif text-stone-600 max-w-md mt-2">
-          The wedding link <code className="bg-stone-100 px-2 py-0.5 rounded text-[#8B181B]">/{slug}</code> does not exist or may have been updated.
+          The event invitation link <code className="bg-stone-100 px-2 py-0.5 rounded text-[#8B181B]">/{slug}</code> does not exist or may have been updated.
         </p>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/anirban-weds-deboleena"
-            className="px-5 py-2.5 rounded-full bg-[#8B181B] text-[#F3E5AB] font-serif text-xs font-bold shadow hover:bg-[#5E0B0E]"
+            className="px-4 py-2 rounded-full bg-[#8B181B] text-[#F3E5AB] font-serif text-xs font-bold shadow hover:bg-[#5E0B0E]"
           >
-            View Bengali Demo
+            🪔 Bengali Wedding
           </Link>
           <Link
             to="/sandeep-weds-priya"
-            className="px-5 py-2.5 rounded-full bg-[#800020] text-[#FBE8A6] font-serif text-xs font-bold shadow hover:bg-[#520014]"
+            className="px-4 py-2 rounded-full bg-[#800020] text-[#FBE8A6] font-serif text-xs font-bold shadow hover:bg-[#520014]"
           >
-            View Bihari-Marwari Demo
+            🚩 Bihari &amp; Marwari Vivah
+          </Link>
+          <Link
+            to="/aarav-annaprashan"
+            className="px-4 py-2 rounded-full bg-[#A82025] text-white font-serif text-xs font-bold shadow hover:opacity-90"
+          >
+            🥣 Annaprashan (Rice Ceremony)
+          </Link>
+          <Link
+            to="/ananya-turns-1"
+            className="px-4 py-2 rounded-full bg-[#B0305C] text-white font-serif text-xs font-bold shadow hover:opacity-90"
+          >
+            🎂 1st Birthday Gala
           </Link>
           <Link
             to="/"
-            className="px-5 py-2.5 rounded-full border border-stone-300 bg-white text-stone-700 font-serif text-xs font-bold shadow-sm hover:bg-stone-50"
+            className="px-4 py-2 rounded-full border border-stone-300 bg-white text-stone-700 font-serif text-xs font-bold shadow-sm hover:bg-stone-50"
           >
-            WeedingInv Home
+            UtsavPatra Home
           </Link>
         </div>
       </div>
@@ -77,7 +91,7 @@ export const WeddingSlugPage: React.FC = () => {
     >
       {/* Discreet Branding Banner (The Viral Acquisition Loop) */}
       <div className="bg-[#2C1810] text-[#F3E5AB] text-[11px] py-1.5 px-4 text-center font-serif flex items-center justify-center gap-2">
-        <span>✨ Digital invitation crafted on <strong>WeedingInv.com</strong></span>
+        <span>✨ Digital invitation crafted on <strong>UtsavPatra.com</strong></span>
         <span>•</span>
         <Link to="/" className="underline hover:text-white font-semibold">
           Create Yours
@@ -102,7 +116,7 @@ export const WeddingSlugPage: React.FC = () => {
       <div className="fixed top-4 right-20 z-40 hidden sm:block">
         <Link
           to="/"
-          title="Back to WeedingInv.com"
+          title="Back to UtsavPatra.com"
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#D4AF37]/50 text-xs font-serif text-stone-700 hover:text-[#8B181B] shadow-md transition-all"
         >
           <Home className="w-3.5 h-3.5 text-[#D4AF37]" />
@@ -112,14 +126,29 @@ export const WeddingSlugPage: React.FC = () => {
 
       {/* Render the specific cultural UI layout */}
       <main className={`transition-opacity duration-1000 ${isEnvelopeOpen ? 'opacity-100' : 'opacity-20 pointer-events-none'}`}>
-        {cultureType === 'bengali' ? (
+        {cultureType === 'bengali' && (
           <BengaliWeddingView
             template={template}
             lang={lang}
             guestName={guestName}
           />
-        ) : (
+        )}
+        {cultureType === 'bihari_marwari' && (
           <BihariMarwariWeddingView
+            template={template}
+            lang={lang}
+            guestName={guestName}
+          />
+        )}
+        {cultureType === 'annaprashan' && (
+          <AnnaprashanView
+            template={template}
+            lang={lang}
+            guestName={guestName}
+          />
+        )}
+        {cultureType === 'birthday' && (
+          <BirthdayView
             template={template}
             lang={lang}
             guestName={guestName}
