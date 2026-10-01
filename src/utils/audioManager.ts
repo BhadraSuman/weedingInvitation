@@ -18,6 +18,12 @@ class WeddingAudioManager {
     this.audioEl.addEventListener('play', () => this.notify(true));
     this.audioEl.addEventListener('pause', () => this.notify(false));
     this.audioEl.addEventListener('ended', () => this.notify(false));
+
+    // Handle user closing tab, leaving site, or reloading
+    if (typeof window !== 'undefined') {
+      window.addEventListener('pagehide', () => this.stop());
+      window.addEventListener('beforeunload', () => this.stop());
+    }
   }
 
   public subscribe(cb: (playing: boolean) => void) {
@@ -50,6 +56,15 @@ class WeddingAudioManager {
   public pause() {
     if (this.audioEl && !this.audioEl.paused) {
       this.audioEl.pause();
+    }
+    this.stopAmbientDrone();
+    this.notify(false);
+  }
+
+  public stop() {
+    if (this.audioEl) {
+      this.audioEl.pause();
+      this.audioEl.currentTime = 0;
     }
     this.stopAmbientDrone();
     this.notify(false);

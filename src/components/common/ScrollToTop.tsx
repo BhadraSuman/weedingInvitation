@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { audioManager } from '../../utils/audioManager';
 import { ArrowUp } from 'lucide-react';
 
 export const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
   const [isVisible, setIsVisible] = useState(false);
 
-  // 1. Automatically scroll to top whenever the route/slug changes
+  // 1. Automatically scroll to top and stop music whenever the user leaves the page or changes routes
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'instant'
     });
+    // Stop background music if user leaves the invitation card
+    audioManager.stop();
   }, [pathname]);
 
   // 2. Show floating button when user scrolls down

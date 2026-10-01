@@ -9,6 +9,7 @@ import { BihariMarwariWeddingView } from '../components/views/BihariMarwariWeddi
 import { AnnaprashanView } from '../components/views/AnnaprashanView';
 import { BirthdayView } from '../components/views/BirthdayView';
 import { Language } from '../types/wedding';
+import { audioManager } from '../utils/audioManager';
 import { Sparkles, Home } from 'lucide-react';
 
 export const WeddingSlugPage: React.FC = () => {
@@ -20,6 +21,13 @@ export const WeddingSlugPage: React.FC = () => {
   const guestName = searchParams.get('to') || searchParams.get('guest') || undefined;
 
   const weddingEntry = getWeddingBySlug(slug || '');
+
+  // Automatically stop background music when user navigates away or unmounts the page
+  useEffect(() => {
+    return () => {
+      audioManager.stop();
+    };
+  }, []);
 
   // Set document title and OpenGraph metadata dynamically
   useEffect(() => {

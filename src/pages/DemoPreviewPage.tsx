@@ -20,6 +20,7 @@ import { RoyalNorthWeddingView } from '../components/views/RoyalNorthWeddingView
 import { SouthIndianWeddingView } from '../components/views/SouthIndianWeddingView';
 import { ModernMinimalWeddingView } from '../components/views/ModernMinimalWeddingView';
 import { Language } from '../types/wedding';
+import { audioManager } from '../utils/audioManager';
 import {
   Sparkles,
   Home,
@@ -37,6 +38,13 @@ export const DemoPreviewPage: React.FC = () => {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
   const [lang, setLang] = useState<Language>('native');
   const [copied, setCopied] = useState(false);
+
+  // Automatically stop background music when user navigates away or unmounts the page
+  useEffect(() => {
+    return () => {
+      audioManager.stop();
+    };
+  }, []);
 
   // 1. Decode demo form data from URL search parameters or fallback to localStorage
   const [formData] = useState<DemoFormData>(() => {
