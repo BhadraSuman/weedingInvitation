@@ -191,9 +191,13 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
             </a>
           </div>
 
-          <p className="text-[10px] opacity-70 font-serif pt-1">
-            Handcrafted with cultural elegance &amp; heritage
-          </p>
+          <div className="flex items-center justify-center gap-3 text-[11px] font-serif pt-1 opacity-80">
+            <span>Handcrafted on UtsavPatra.com</span>
+            <span>•</span>
+            <a href="/host-dashboard" className="underline font-bold hover:opacity-100">
+              👑 Event Host Portal
+            </a>
+          </div>
         </div>
 
       </div>

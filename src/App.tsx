@@ -4,6 +4,7 @@ import { LandingPage } from './components/landing/LandingPage';
 import { WeddingSlugPage } from './pages/WeddingSlugPage';
 import { TryoutPage } from './pages/TryoutPage';
 import { DemoPreviewPage } from './pages/DemoPreviewPage';
+import { HostDashboardPage } from './pages/HostDashboardPage';
 import { ScrollToTop } from './components/common/ScrollToTop';
 
 export const App: React.FC = () => {
@@ -23,7 +24,11 @@ export const App: React.FC = () => {
         {/* 3. Live Custom Invitation Preview */}
         <Route path="/preview" element={<DemoPreviewPage />} />
 
-        {/* 4. Dynamic Client Invitation Slugs (e.g. /anirban-weds-deboleena, /sandeep-weds-priya) */}
+        {/* 4. Host Management Portal & RSVP Dashboard */}
+        <Route path="/host-dashboard" element={<HostDashboardPage />} />
+        <Route path="/dashboard" element={<HostDashboardPage />} />
+
+        {/* 5. Dynamic Client Invitation Slugs (e.g. /anirban-weds-deboleena, /sandeep-weds-priya) */}
         <Route path="/:slug" element={<WeddingSlugPage />} />
 
         {/* Fallback */}

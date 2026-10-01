@@ -27,8 +27,12 @@ import {
   Percent,
   Award,
   HelpCircle,
-  Wand2
+  Wand2,
+  BarChart3
 } from 'lucide-react';
+import { PersonalizedLinkSandbox } from './PersonalizedLinkSandbox';
+import { HostDashboardSpotlight } from './HostDashboardSpotlight';
+import { TestimonialsSection } from './TestimonialsSection';
 
 export const LandingPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<'all' | EventCategory>('all');
@@ -99,16 +103,20 @@ export const LandingPage: React.FC = () => {
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6 text-xs font-serif font-semibold text-[#5C0C0F]">
-          <a href="#demos" className="hover:text-[#8B181B] transition-colors">Celebration Demos</a>
-          <a href="#why-digital" className="hover:text-[#8B181B] transition-colors">Why Digital?</a>
+        <nav className="hidden md:flex items-center gap-5 text-xs font-serif font-semibold text-[#5C0C0F]">
+          <a href="#demos" className="hover:text-[#8B181B] transition-colors">Demos</a>
+          <a href="#personalization-engine" className="hover:text-[#8B181B] transition-colors">Personalized Links</a>
+          <Link to="/host-dashboard" className="text-[#8B181B] font-bold hover:text-[#5E0B0E] transition-colors flex items-center gap-1">
+            <BarChart3 className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span>Host Portal</span>
+          </Link>
           <a href="#pricing" className="hover:text-[#8B181B] transition-colors">Pricing</a>
+          <a href="#testimonials" className="hover:text-[#8B181B] transition-colors">Reviews</a>
           <a href="#partners" className="text-[#8B181B] font-bold hover:text-[#5E0B0E] transition-colors flex items-center gap-1">
             <Handshake className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>Agency Partners</span>
+            <span>Partners</span>
           </a>
           <a href="#faq" className="hover:text-[#8B181B] transition-colors">FAQ</a>
-          <a href="#contact" className="hover:text-[#8B181B] transition-colors">Contact</a>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -361,6 +369,9 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
+      {/* 3C. Bespoke Guest Personalization Sandbox */}
+      <PersonalizedLinkSandbox />
+
       {/* 4. Why UtsavPatra Beats Paper Cards (Feature Grid) */}
       <section className="py-20 px-4 sm:px-6 max-w-5xl mx-auto" id="why-digital">
         <div className="text-center mb-14">
@@ -439,6 +450,9 @@ export const LandingPage: React.FC = () => {
 
         </div>
       </section>
+
+      {/* 4B. Host Management Portal Spotlight (The Software Differentiator) */}
+      <HostDashboardSpotlight />
 
       {/* 5. Transparent Packages & Pricing */}
       <section className="py-20 px-4 sm:px-6 bg-[#FAF6EE] border-y border-[#D4AF37]/30" id="pricing">
@@ -730,7 +744,10 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5B. Agency & Wedding Planner Partnership Program */}
+      {/* 5B. Real Client Stories & Testimonials */}
+      <TestimonialsSection />
+
+      {/* 5C. Agency & Wedding Planner Partnership Program */}
       <section className="py-20 px-4 sm:px-6 bg-gradient-to-b from-[#2C1810] via-[#381B15] to-[#20100C] text-[#F3E5AB] relative overflow-hidden" id="partners">
         {/* Ambient atmospheric glows */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />

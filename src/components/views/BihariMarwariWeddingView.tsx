@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { CulturalTemplate, Language, GuestWish } from '../../types/wedding';
 import { GaneshaIcon, MaurIcon, MadhubaniDivider } from '../CulturalMotifs';
 import { DigitalShagunSection } from '../DigitalShagunSection';
+import { NriGlobalSuite } from '../common/NriGlobalSuite';
+import { FloatingPetals } from '../common/FloatingPetals';
 import {
   Sparkles,
   Calendar,
@@ -185,6 +187,8 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
 
   return (
     <div className="relative max-w-5xl mx-auto px-3 sm:px-6 py-8 space-y-12 sm:space-y-16">
+      {/* Sacred Flower Shower Animation */}
+      <FloatingPetals primaryColor="#0D4A36" accentColor="#E5C158" />
 
       {/* ========================================================================= */}
       {/* 1. HERO SECTION: ROYAL RAJPUTANA & MITHILA EMERALD NIGHT PALACE ENTRANCE   */}
@@ -841,7 +845,12 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
       </section>
 
       {/* ========================================================================= */}
-      {/* 6B. AUSPICIOUS DIGITAL SHAGUN & E-LIFAFA (पावन शगुन ई-लिफाफा)             */}
+      {/* 6B. NRI & GLOBAL FAMILY SUITE (लाइव प्रसारण एवं ग्लोबल टाइमज़ोन)           */}
+      {/* ========================================================================= */}
+      <NriGlobalSuite template={template} lang={lang} guestName={guestName} />
+
+      {/* ========================================================================= */}
+      {/* 6C. AUSPICIOUS DIGITAL SHAGUN & E-LIFAFA (पावन शगुन ई-लिफाफा)             */}
       {/* ========================================================================= */}
       <DigitalShagunSection template={template} lang={lang} />
 

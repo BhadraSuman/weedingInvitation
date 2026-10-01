@@ -21,14 +21,37 @@ export const WeddingSlugPage: React.FC = () => {
 
   const weddingEntry = getWeddingBySlug(slug || '');
 
-  // Set document title dynamically
+  // Set document title and OpenGraph metadata dynamically
   useEffect(() => {
     if (weddingEntry) {
-      document.title = weddingEntry.title;
+      const pageTitle = guestName 
+        ? `${guestName}'s Invitation • ${weddingEntry.title}`
+        : weddingEntry.title;
+      document.title = pageTitle;
+
+      // Update meta tags for browser history and dynamic sharers
+      const updateMeta = (prop: string, content: string, isName = false) => {
+        const selector = isName ? `meta[name="${prop}"]` : `meta[property="${prop}"]`;
+        let el = document.querySelector(selector);
+        if (!el) {
+          el = document.createElement('meta');
+          if (isName) el.setAttribute('name', prop);
+          else el.setAttribute('property', prop);
+          document.head.appendChild(el);
+        }
+        el.setAttribute('content', content);
+      };
+
+      updateMeta('og:title', pageTitle);
+      updateMeta('twitter:title', pageTitle, true);
+      if (weddingEntry.previewImage) {
+        updateMeta('og:image', weddingEntry.previewImage);
+        updateMeta('twitter:image', weddingEntry.previewImage, true);
+      }
     } else {
       document.title = "Celebration Invitation | UtsavPatra.com";
     }
-  }, [weddingEntry]);
+  }, [weddingEntry, guestName]);
 
   if (!weddingEntry) {
     return (

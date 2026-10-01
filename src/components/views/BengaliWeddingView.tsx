@@ -7,6 +7,8 @@ import { WishesGuestbook } from '../WishesGuestbook';
 import { RsvpSection } from '../RsvpSection';
 import { Footer } from '../Footer';
 import { DigitalShagunSection } from '../DigitalShagunSection';
+import { NriGlobalSuite } from '../common/NriGlobalSuite';
+import { FloatingPetals } from '../common/FloatingPetals';
 import { Calendar, MapPin, Sparkles, Heart } from 'lucide-react';
 
 interface BengaliWeddingViewProps {
@@ -24,6 +26,8 @@ export const BengaliWeddingView: React.FC<BengaliWeddingViewProps> = ({
 
   return (
     <div className="relative max-w-4xl mx-auto px-4 py-12 sm:px-6">
+      {/* Sacred Flower Shower Animation */}
+      <FloatingPetals />
       
       {/* Top Antique Carved Wooden Scroll Dowel with Gilded Finials */}
       <div className="relative -mb-3.5 z-20 flex items-center justify-between px-2 sm:px-6 pointer-events-none drop-shadow-md">
@@ -245,10 +249,13 @@ export const BengaliWeddingView: React.FC<BengaliWeddingViewProps> = ({
       {/* 5. Digital Ashirbaad Guestbook */}
       <WishesGuestbook template={template} lang={lang} />
 
-      {/* 6. Auspicious Shagun & E-Lifafa */}
+      {/* 6. NRI & Global Family Suite (Live Stream & Multi-Timezone) */}
+      <NriGlobalSuite template={template} lang={lang} guestName={guestName} />
+
+      {/* 7. Auspicious Shagun & E-Lifafa */}
       <DigitalShagunSection template={template} lang={lang} />
 
-      {/* 7. RSVP & Uddipta Tech Solutions Concierge Coordination */}
+      {/* 8. RSVP & Uddipta Tech Solutions Concierge Coordination */}
       <RsvpSection template={template} lang={lang} />
 
       {/* 7. Footer */}
