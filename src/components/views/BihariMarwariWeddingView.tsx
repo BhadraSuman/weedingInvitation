@@ -846,7 +846,7 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
       <DigitalShagunSection template={template} lang={lang} />
 
       {/* ========================================================================= */}
-      {/* 7. RSVP DESK: SUMAN BHADRA COORDINATION (अतिथि सत्कार एवं उपस्थिति)      */}
+      {/* 7. RSVP DESK: UDDIPTA TECH SOLUTIONS COORDINATION (अतिथि सत्कार एवं उपस्थिति)      */}
       {/* ========================================================================= */}
       <section className="rounded-3xl p-6 sm:p-10 border-2 border-[#E5C158] bg-gradient-to-b from-[#FFFFFF] via-[#F4F8F5] to-[#FFFFFF] shadow-xl text-center" id="rsvp">
         
@@ -1011,19 +1011,19 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs">
             <span className="text-[#4A3B32]">
               {isHindi ? 'संपर्क एवं समन्वय:' : 'Inquiries & Coordination:'}{' '}
-              <strong className="text-[#0D4A36]">Suman Bhadra</strong>
+              <strong className="text-[#0D4A36]">Uddipta Tech Solutions</strong>
             </span>
             <a
-              href="tel:+916291898703"
+              href="tel:+916203868358"
               className="px-3 py-1 rounded-full border border-[#E5C158]/60 bg-[#F4F8F5] text-[11px] font-semibold text-[#0D4A36] hover:opacity-80 flex items-center gap-1.5"
             >
-              <Phone className="w-3 h-3" /> +91 6291898703
+              <Phone className="w-3 h-3" /> +91 62038 68358
             </a>
             <a
-              href="mailto:bhadrasuman04@gmail.com"
+              href="mailto:uddipta.techsolutions@gmail.com"
               className="px-3 py-1 rounded-full border border-[#E5C158]/60 bg-[#F4F8F5] text-[11px] font-semibold text-[#0D4A36] hover:opacity-80 flex items-center gap-1.5"
             >
-              <Mail className="w-3 h-3" /> bhadrasuman04@gmail.com
+              <Mail className="w-3 h-3" /> uddipta.techsolutions@gmail.com
             </a>
           </div>
 

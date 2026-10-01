@@ -165,10 +165,10 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs font-serif">
             <span className="opacity-80" style={{ color: colors.textColor }}>
-              {t.inquiries} <strong style={{ color: colors.primary }}>Suman Bhadra</strong>
+              {t.inquiries} <strong style={{ color: colors.primary }}>Uddipta Tech Solutions</strong>
             </span>
             <a
-              href="tel:+916291898703"
+              href="tel:+916203868358"
               className="px-3 py-1 rounded-full border text-[11px] font-semibold hover:opacity-80 transition-opacity flex items-center gap-1.5"
               style={{
                 borderColor: `${colors.accent}80`,
@@ -176,10 +176,10 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
                 color: colors.primary
               }}
             >
-              <Phone className="w-3 h-3" /> +91 6291898703
+              <Phone className="w-3 h-3" /> +91 62038 68358
             </a>
             <a
-              href="mailto:bhadrasuman04@gmail.com"
+              href="mailto:uddipta.techsolutions@gmail.com"
               className="px-3 py-1 rounded-full border text-[11px] font-semibold hover:opacity-80 transition-opacity flex items-center gap-1.5"
               style={{
                 borderColor: `${colors.accent}80`,
@@ -187,7 +187,7 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
                 color: colors.primary
               }}
             >
-              <Mail className="w-3 h-3" /> bhadrasuman04@gmail.com
+              <Mail className="w-3 h-3" /> uddipta.techsolutions@gmail.com
             </a>
           </div>
 

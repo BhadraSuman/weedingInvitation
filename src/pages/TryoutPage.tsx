@@ -35,7 +35,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Swabhumi The Heritage Plaza',
     city: 'Kolkata',
     upiId: 'subhajit@okaxis',
-    whatsappNumber: '916291898703',
+    whatsappNumber: '916203868358',
     customPhotoUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80'
   },
   bihari_marwari: {
@@ -48,7 +48,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Hotel Maurya Grand Ballroom',
     city: 'Patna',
     upiId: 'aditya@okhdfcbank',
-    whatsappNumber: '916291898703',
+    whatsappNumber: '916203868358',
     customPhotoUrl: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80'
   },
   annaprashan: {
@@ -61,7 +61,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Club Verde Vista Banquet',
     city: 'Kolkata',
     upiId: 'parents@okaxis',
-    whatsappNumber: '916291898703',
+    whatsappNumber: '916203868358',
     customPhotoUrl: 'https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=800&q=80'
   },
   birthday: {
@@ -74,7 +74,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'The Westin Lawn',
     city: 'Bengaluru',
     upiId: 'kiaraparty@okaxis',
-    whatsappNumber: '916291898703',
+    whatsappNumber: '916203868358',
     customPhotoUrl: 'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?auto=format&fit=crop&w=800&q=80'
   },
   royal_north: {
@@ -87,7 +87,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Jai Mahal Palace',
     city: 'Jaipur',
     upiId: '',
-    whatsappNumber: '916291898703',
+    whatsappNumber: '916203868358',
     customPhotoUrl: ''
   },
   south_indian: {
@@ -100,7 +100,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Mayor Ramanathan Chettiar Hall',
     city: 'Chennai',
     upiId: '',
-    whatsappNumber: '916291898703',
+    whatsappNumber: '916203868358',
     customPhotoUrl: ''
   },
   modern_minimal: {
@@ -113,7 +113,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Soho House Banquet',
     city: 'Mumbai',
     upiId: '',
-    whatsappNumber: '916291898703',
+    whatsappNumber: '916203868358',
     customPhotoUrl: ''
   }
 };
@@ -156,7 +156,7 @@ export const TryoutPage: React.FC = () => {
       createdAt: Date.now()
     };
 
-    // Save lead to system store for Suman
+    // Save lead to system store for Uddipta Tech Solutions team
     saveCapturedLead(submissionData);
 
     try {
@@ -553,7 +553,7 @@ export const TryoutPage: React.FC = () => {
             </div>
             <h5 className="font-serif font-bold text-xs text-[#2C1810]">Activate for Guests</h5>
             <p className="text-[11px] font-serif text-stone-600 mt-0.5">
-              Love it? WhatsApp Suman to lock in your official link for ₹999 / ₹2,499.
+              Love it? WhatsApp our team to lock in your official link for ₹999 / ₹2,499.
             </p>
           </div>
         </div>

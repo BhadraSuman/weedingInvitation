@@ -207,22 +207,22 @@ export const bihariMarwariTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Suman Bhadra',
-      nativeName: 'सुमन भद्र',
+      name: 'Uddipta Tech Solutions Desk',
+      nativeName: 'उदीप्त टेक सल्यूशन्स डेस्क',
       relation: 'Wedding Coordinator & Guest Relations',
       nativeRelation: 'विवाह समन्वयक एवं अतिथि स्वागत',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     },
     {
       name: 'Agarwal & Jha Family Desk',
       nativeName: 'अग्रवाल एवं झा परिवार स्वागत कक्ष',
       relation: 'Family Coordinators',
       nativeRelation: 'पारिवारिक स्वागत डेस्क',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     }
   ],
   initialWishes: [
@@ -261,8 +261,8 @@ export const bihariMarwariTemplate: CulturalTemplate = {
     enabled: true,
     recipientName: 'Sandeep & Priya',
     nativeRecipientName: 'संदीप एवं प्रिया',
-    upiId: '6291898703@paytm',
-    phoneNumber: '6291898703',
+    upiId: '6203868358@paytm',
+    phoneNumber: '6203868358',
     title: 'Shagun & Mangal E-Lifafa',
     nativeTitle: 'पावन शगुन ई-लिफाफा एवं नेग',
     description: 'For loved ones joining our celebration from afar who wish to send an auspicious token of blessings.',

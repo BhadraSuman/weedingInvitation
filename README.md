@@ -49,9 +49,10 @@ The guest’s name is dynamically honored on the envelope wax seal, welcome bann
 
 ## 📞 Business Contact & Coordination
 
-- **Lead Designer & Developer**: Suman Bhadra
-- **WhatsApp / Phone**: `+91 6291898703`
-- **Email**: `bhadrasuman04@gmail.com`
+- **Parent Company**: Uddipta Tech Solutions
+- **Brand**: UtsavPatra
+- **WhatsApp / Phone**: `+91 62038 68358`
+- **Email**: `uddipta.techsolutions@gmail.com`
 - **Studio**: Kolkata, West Bengal • Serving families across India & worldwide
 
 ---
@@ -84,4 +85,5 @@ Visit:
 ---
 
 ## 📜 License
-MIT © 2026 Suman Bhadra • WeedingInv.com
+MIT © 2026 Uddipta Tech Solutions • UtsavPatra
+

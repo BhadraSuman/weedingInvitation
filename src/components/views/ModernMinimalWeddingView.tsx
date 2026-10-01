@@ -163,7 +163,7 @@ export const ModernMinimalWeddingView: React.FC<ModernMinimalWeddingViewProps> =
       {/* 6. Guestbook */}
       <WishesGuestbook template={template} lang={lang} />
 
-      {/* 7. RSVP with Suman Bhadra contact coordination */}
+      {/* 7. RSVP with Uddipta Tech Solutions contact coordination */}
       <RsvpSection template={template} lang={lang} />
 
       {/* 8. Footer */}

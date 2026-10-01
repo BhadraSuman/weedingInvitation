@@ -204,7 +204,7 @@ export const SouthIndianWeddingView: React.FC<SouthIndianWeddingViewProps> = ({
       {/* 5. Guestbook */}
       <WishesGuestbook template={template} lang={lang} />
 
-      {/* 6. RSVP with Suman Bhadra coordination */}
+      {/* 6. RSVP with Uddipta Tech Solutions coordination */}
       <RsvpSection template={template} lang={lang} />
 
       {/* 7. Footer */}

@@ -29,7 +29,7 @@ export const defaultDemoData: DemoFormData = {
   venueName: 'The Heritage Grand Palace',
   city: 'Kolkata',
   upiId: '',
-  whatsappNumber: '916291898703',
+  whatsappNumber: '916203868358',
   leadName: 'Rahul Banerjee',
   customPhotoUrl: '',
   createdAt: Date.now()
@@ -223,14 +223,15 @@ export const getWhatsAppOrderFromDemoUrl = (data: DemoFormData): string => {
 
   const message = [
     `*🚨 LEAD ALERT / ACTIVATION REQUEST — UTSAVPATRA*`,
+    `🏢 Brand: Uddipta Tech Solutions`,
     `👤 Contact Name: ${data.leadName || names}`,
     `📱 WhatsApp: ${data.whatsappNumber || 'Not provided'}`,
     `🎉 Event: ${names} (${data.theme.toUpperCase()})`,
     `📅 Date: ${data.eventDate || 'TBD'}`,
     `📍 Venue: ${data.venueName || 'TBD'}, ${data.city || 'TBD'}`,
     ``,
-    `Hello Suman! I created a live preview on UtsavPatra. I loved the demo and want to unlock the official permanent ad-free link (utsavpatra.com/our-event). Please share payment details!`
+    `Hello! I created a live preview on UtsavPatra by Uddipta Tech Solutions. I loved the demo and want to unlock the official permanent ad-free link (utsavpatra.com/our-event). Please share payment details!`
   ].join('\n');
 
-  return `https://wa.me/916291898703?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/916203868358?text=${encodeURIComponent(message)}`;
 };

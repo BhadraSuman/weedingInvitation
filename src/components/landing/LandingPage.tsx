@@ -36,22 +36,22 @@ export const LandingPage: React.FC = () => {
 
   const whatsappInquiryUrl = (packageTitle: string = "Celebration Invitation") => {
     const text = encodeURIComponent(
-      `Hello Suman! I am interested in creating a digital celebration invitation on UtsavPatra.com (${packageTitle}). Could you please share more details?`
+      `Hello! I am interested in creating a digital celebration invitation on UtsavPatra.com (${packageTitle}). Could you please share more details?`
     );
-    return `https://wa.me/916291898703?text=${text}`;
+    return `https://wa.me/916203868358?text=${text}`;
   };
 
   const agencyInquiryUrl = () => {
     const text = encodeURIComponent(
-      "Hello Suman! I represent an Event Management / Wedding Planning Agency / Photography Studio and would like to partner with UtsavPatra for white-label client digital invitations."
+      "Hello! I represent an Event Management / Wedding Planning Agency / Photography Studio and would like to partner with UtsavPatra by Uddipta Tech Solutions for white-label client digital invitations."
     );
-    return `https://wa.me/916291898703?text=${text}`;
+    return `https://wa.me/916203868358?text=${text}`;
   };
 
   const faqItems = [
     {
       question: "How does the UtsavPatra ordering and delivery process work?",
-      answer: "Zero complex software or tech hurdles! Simply share your event details, ceremony timings, photos, and Google Maps venue link with Suman directly on WhatsApp. We design your personalized interactive invitation, provide a live staging preview for family review, and make any revisions within 2 hours. Your final invitation link (utsavpatra.com/your-event) is ready to share with 500+ guests within 24 hours."
+      answer: "Zero complex software or tech hurdles! Simply share your event details, ceremony timings, photos, and Google Maps venue link with our team directly on WhatsApp. We design your personalized interactive invitation, provide a live staging preview for family review, and make any revisions within 2 hours. Your final invitation link (utsavpatra.com/your-event) is ready to share with 500+ guests within 24 hours."
     },
     {
       question: "Can UtsavPatra be customized for regional traditions across India?",
@@ -673,7 +673,7 @@ export const LandingPage: React.FC = () => {
                 From Booking to WhatsApp Sharing in 24 Hours
               </h3>
               <p className="text-xs sm:text-sm text-stone-600 font-serif max-w-md mx-auto mt-1">
-                Zero complicated software or tech hurdles. Suman personally coordinates with your family.
+                Zero complicated software or tech hurdles. Our team at Uddipta Tech Solutions personally coordinates with your family.
               </p>
             </div>
 
@@ -801,7 +801,7 @@ export const LandingPage: React.FC = () => {
                 Dedicated WhatsApp Desk
               </h3>
               <p className="text-xs font-serif text-stone-300 leading-relaxed">
-                Direct channel with founder Suman Bhadra. Send client assets, request instant tweaks, and coordinate multi-event client rosters effortlessly.
+                Direct channel with Uddipta Tech Solutions concierge. Send client assets, request instant tweaks, and coordinate multi-event client rosters effortlessly.
               </p>
             </div>
           </div>
@@ -825,11 +825,11 @@ export const LandingPage: React.FC = () => {
                 <span>Join Agency Partner Network</span>
               </a>
               <a
-                href="tel:+916291898703"
+                href="tel:+916203868358"
                 className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-white/10 hover:bg-white/20 border border-[#D4AF37] text-[#F3E5AB] text-xs sm:text-sm font-serif font-semibold transition-all"
               >
                 <Phone className="w-4 h-4 text-[#D4AF37]" />
-                <span>Call +91 6291898703</span>
+                <span>Call +91 62038 68358</span>
               </a>
             </div>
           </div>
@@ -904,28 +904,28 @@ export const LandingPage: React.FC = () => {
               className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-semibold shadow-lg transition-all active:scale-95"
             >
               <MessageCircle className="w-5 h-5 fill-white" />
-              <span>Message Suman on WhatsApp</span>
+              <span>Message Our Team on WhatsApp</span>
             </a>
 
             <a
-              href="tel:+916291898703"
+              href="tel:+916203868358"
               className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full border-2 border-[#8B181B] text-[#8B181B] text-sm font-serif font-bold hover:bg-[#8B181B] hover:text-white transition-all shadow-sm"
             >
               <Phone className="w-4 h-4" />
-              <span>Call: +91 6291898703</span>
+              <span>Call: +91 62038 68358</span>
             </a>
 
             <a
-              href="mailto:bhadrasuman04@gmail.com"
+              href="mailto:uddipta.techsolutions@gmail.com"
               className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full border border-stone-300 bg-white text-[#2C1810] text-sm font-serif font-semibold hover:bg-stone-50 transition-all shadow-sm"
             >
               <Mail className="w-4 h-4 text-[#8B181B]" />
-              <span>Email: bhadrasuman04@gmail.com</span>
+              <span>Email: uddipta.techsolutions@gmail.com</span>
             </a>
           </div>
 
           <div className="mt-8 pt-6 border-t border-stone-200 text-xs font-serif text-[#7A6A60] flex flex-wrap items-center justify-center gap-3">
-            <span>✨ Coordinated by <strong>Suman Bhadra</strong></span>
+            <span>✨ A brand of <strong>Uddipta Tech Solutions</strong></span>
             <span>•</span>
             <span>📍 HQ: Kolkata, West Bengal</span>
             <span>•</span>
@@ -946,7 +946,7 @@ export const LandingPage: React.FC = () => {
           Pan-India Delivery: Kolkata • Delhi NCR • Patna • Mumbai • Jaipur • Bengaluru • Hyderabad • Pune • Lucknow • NRI Diaspora (USA, UK, Canada, UAE)
         </p>
         <p className="mt-3 text-[10px] opacity-60">
-          © {new Date().getFullYear()} UtsavPatra. All rights reserved. • Founder &amp; Lead: Suman Bhadra (+91 6291898703)
+          © {new Date().getFullYear()} UtsavPatra by Uddipta Tech Solutions. All rights reserved. • Concierge &amp; Support: +91 62038 68358 • uddipta.techsolutions@gmail.com
         </p>
       </footer>
 

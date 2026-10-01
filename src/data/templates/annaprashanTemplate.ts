@@ -207,22 +207,22 @@ export const annaprashanTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Suman Bhadra',
-      nativeName: 'সুমন ভদ্র',
+      name: 'Uddipta Tech Solutions Concierge',
+      nativeName: 'উদীপ্ত টেক সলিউশনস্ ডেস্ক',
       relation: 'Event Coordinator & Guest Desk',
       nativeRelation: 'অনুষ্ঠান সমন্বয়ক ও অতিথি আপ্যায়ন ডেস্ক',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     },
     {
       name: 'Roy & Mukherjee Family Desk',
       nativeName: 'রায় ও মুখার্জী পরিবার ডেস্ক',
       relation: 'Family Coordinators',
       nativeRelation: 'পারিবারিক অভ্যর্থনা ডেস্ক',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     }
   ],
   initialWishes: [
@@ -261,8 +261,8 @@ export const annaprashanTemplate: CulturalTemplate = {
     enabled: true,
     recipientName: 'Baby Aarav Roy',
     nativeRecipientName: 'বাবু আরভ রায়',
-    upiId: '6291898703@paytm',
-    phoneNumber: '6291898703',
+    upiId: '6203868358@paytm',
+    phoneNumber: '6203868358',
     title: 'Baby Aarav’s Blessing E-Lifafa',
     nativeTitle: 'ছোট্ট আরভের আশীর্বাদী লেফাফা ও শগুন',
     description: 'For relatives and well-wishers wishing to send their loving blessings and shagun for little Aarav’s first rice ceremony.',

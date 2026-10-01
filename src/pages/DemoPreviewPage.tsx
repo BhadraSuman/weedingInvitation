@@ -111,7 +111,7 @@ export const DemoPreviewPage: React.FC = () => {
 
         <p className="mt-3 text-xs sm:text-sm text-stone-600 max-w-md leading-relaxed">
           Free draft previews on UtsavPatra are active for 24 hours for private family evaluation. 
-          To launch your permanent official invitation that stays active forever without watermarks (e.g. <code className="text-[#8B181B] bg-stone-100 px-1 py-0.5 rounded font-mono">utsavpatra.com/your-event</code>), message Suman on WhatsApp to activate for just ₹999.
+          To launch your permanent official invitation that stays active forever without watermarks (e.g. <code className="text-[#8B181B] bg-stone-100 px-1 py-0.5 rounded font-mono">utsavpatra.com/your-event</code>), message our team on WhatsApp to activate for just ₹999.
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full max-w-md justify-center">
@@ -134,7 +134,7 @@ export const DemoPreviewPage: React.FC = () => {
         </div>
 
         <div className="mt-12 text-[11px] text-stone-400">
-          UtsavPatra.com — Cultural Digital Celebrations • Founder: Suman Bhadra (+91 6291898703)
+          UtsavPatra by Uddipta Tech Solutions • Support: +91 62038 68358 • uddipta.techsolutions@gmail.com
         </div>
       </div>
     );

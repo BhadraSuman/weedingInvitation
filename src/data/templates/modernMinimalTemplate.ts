@@ -135,22 +135,22 @@ export const modernMinimalTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Suman Bhadra',
-      nativeName: 'Suman Bhadra',
+      name: 'Uddipta Tech Solutions Concierge',
+      nativeName: 'Uddipta Tech Solutions Concierge',
       relation: 'Wedding Experience Director & RSVP',
       nativeRelation: 'Wedding Experience Director & RSVP',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     },
     {
       name: 'Roy & Mehta Hospitality Desk',
       nativeName: 'Roy & Mehta Hospitality Desk',
       relation: 'Family Hospitality Team',
       nativeRelation: 'Family Hospitality Team',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     }
   ],
   initialWishes: [

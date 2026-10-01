@@ -159,22 +159,22 @@ export const royalNorthTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Suman Bhadra',
-      nativeName: 'सुमन भद्र',
+      name: 'Uddipta Tech Solutions Concierge',
+      nativeName: 'उदीप्त टेक सल्यूशन्स डेस्क',
       relation: 'Royal Wedding Concierge & RSVP',
       nativeRelation: 'विवाह समन्वयक एवं अतिथि स्वागत',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     },
     {
       name: 'Kshatriya & Paruthi Desk',
       nativeName: 'क्षत्रिय एवं पारुथी स्वागत कक्ष',
       relation: 'Family Coordinators',
       nativeRelation: 'पारिवारिक स्वागत डेस्क',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     }
   ],
   initialWishes: [

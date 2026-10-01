@@ -135,22 +135,22 @@ export const southIndianTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Suman Bhadra',
-      nativeName: 'சுமன் பத்ரா',
+      name: 'Uddipta Tech Solutions Concierge',
+      nativeName: 'உத்திப்தா டெக் சொல்யூஷன்ஸ் வரவேற்பு மையம்',
       relation: 'Wedding Coordinator & Guest Assistance',
       nativeRelation: 'திருமண ஒருங்கிணைப்பாளர் மற்றும் வரவேற்பு',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     },
     {
       name: 'Subramanian & Sundaram Families',
       nativeName: 'சுப்பிரமணியன் & சுந்தரம் குடும்பத்தினர்',
       relation: 'Family Reception Desk',
       nativeRelation: 'குடும்ப வரவேற்பு மையம்',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     }
   ],
   initialWishes: [

@@ -183,22 +183,22 @@ export const bengaliTemplate: CulturalTemplate = {
   },
   rsvpContacts: [
     {
-      name: 'Suman Bhadra',
-      nativeName: 'সুমন ভদ্র',
+      name: 'Uddipta Tech Solutions Concierge',
+      nativeName: 'উদীপ্ত টেক সলিউশনস্ ডেস্ক',
       relation: 'Wedding Coordinator & Guest Relations',
       nativeRelation: 'বিবাহ সমন্বয়ক ও অতিথি আপ্যায়ন',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     },
     {
       name: 'Family Reception Desk',
       nativeName: 'পারিবারিক অভ্যর্থনা কেন্দ্র',
       relation: 'Mukherjee & Banerjee Families',
       nativeRelation: 'মুখোপাধ্যায় ও বন্দ্যোপাধ্যায় পরিবার',
-      phone: '+91 6291898703',
-      whatsappNumber: '916291898703',
-      email: 'bhadrasuman04@gmail.com'
+      phone: '+91 62038 68358',
+      whatsappNumber: '916203868358',
+      email: 'uddipta.techsolutions@gmail.com'
     }
   ],
   initialWishes: [
@@ -237,8 +237,8 @@ export const bengaliTemplate: CulturalTemplate = {
     enabled: true,
     recipientName: 'Anirban & Deboleena',
     nativeRecipientName: 'অনির্বাণ ও দেবলীনা',
-    upiId: '6291898703@paytm',
-    phoneNumber: '6291898703',
+    upiId: '6203868358@paytm',
+    phoneNumber: '6203868358',
     title: 'Auspicious Wedding Shagun & E-Lifafa',
     nativeTitle: 'মাঙ্গলিক আশীর্বাদী লেফাফা ও শুভ শগুন',
     description: 'For family and friends wishing to bless the newlyweds with an auspicious token of love from afar.',

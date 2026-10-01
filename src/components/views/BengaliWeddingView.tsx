@@ -248,7 +248,7 @@ export const BengaliWeddingView: React.FC<BengaliWeddingViewProps> = ({
       {/* 6. Auspicious Shagun & E-Lifafa */}
       <DigitalShagunSection template={template} lang={lang} />
 
-      {/* 7. RSVP & Suman Bhadra Contact Coordination */}
+      {/* 7. RSVP & Uddipta Tech Solutions Concierge Coordination */}
       <RsvpSection template={template} lang={lang} />
 
       {/* 7. Footer */}
