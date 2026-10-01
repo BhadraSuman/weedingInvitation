@@ -11,9 +11,13 @@ export interface DemoFormData {
   venueName: string;
   city: string;
   upiId: string;
-  whatsappNumber: string;
+  whatsappNumber: string; // Required for Lead Capture
+  leadName?: string;     // Lead contact person
   customPhotoUrl?: string;
+  createdAt?: number;    // Timestamp in ms for 24-hr expiry
 }
+
+export const PREVIEW_VALIDITY_HOURS = 24;
 
 export const defaultDemoData: DemoFormData = {
   theme: 'bengali',
@@ -26,7 +30,58 @@ export const defaultDemoData: DemoFormData = {
   city: 'Kolkata',
   upiId: '',
   whatsappNumber: '916291898703',
-  customPhotoUrl: ''
+  leadName: 'Rahul Banerjee',
+  customPhotoUrl: '',
+  createdAt: Date.now()
+};
+
+/**
+ * Checks if a preview is older than 24 hours
+ */
+export const isPreviewExpired = (createdAt?: number): boolean => {
+  if (!createdAt) return false;
+  const elapsedMs = Date.now() - createdAt;
+  const maxMs = PREVIEW_VALIDITY_HOURS * 60 * 60 * 1000;
+  return elapsedMs > maxMs;
+};
+
+/**
+ * Returns remaining hours of the 24-hour preview
+ */
+export const getPreviewRemainingHours = (createdAt?: number): number => {
+  if (!createdAt) return PREVIEW_VALIDITY_HOURS;
+  const elapsedMs = Date.now() - createdAt;
+  const maxMs = PREVIEW_VALIDITY_HOURS * 60 * 60 * 1000;
+  const remainingMs = maxMs - elapsedMs;
+  if (remainingMs <= 0) return 0;
+  return Math.max(1, Math.ceil(remainingMs / (60 * 60 * 1000)));
+};
+
+/**
+ * Saves a captured lead to localStorage repository
+ */
+export const saveCapturedLead = (data: DemoFormData): void => {
+  try {
+    const existingRaw = localStorage.getItem('utsavpatra_leads');
+    const leads = existingRaw ? JSON.parse(existingRaw) : [];
+    const newLead = {
+      id: `lead_${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      leadName: data.leadName || data.groomName || data.childName || 'Guest Lead',
+      whatsapp: data.whatsappNumber,
+      theme: data.theme,
+      names: (data.theme === 'annaprashan' || data.theme === 'birthday')
+        ? data.childName
+        : `${data.groomName} & ${data.brideName}`,
+      eventDate: data.eventDate,
+      venue: `${data.venueName}, ${data.city}`
+    };
+    leads.unshift(newLead);
+    // Keep last 50 leads
+    localStorage.setItem('utsavpatra_leads', JSON.stringify(leads.slice(0, 50)));
+  } catch {
+    // ignore storage error
+  }
 };
 
 /**
@@ -112,7 +167,7 @@ export const buildCustomDemoTemplate = (data: DemoFormData): {
 };
 
 /**
- * Encode DemoFormData into URL query string
+ * Encode DemoFormData into URL query string with expiration timestamp & lead tracking
  */
 export const encodeDemoDataToParams = (data: DemoFormData): string => {
   const params = new URLSearchParams();
@@ -126,7 +181,10 @@ export const encodeDemoDataToParams = (data: DemoFormData): string => {
   if (data.city) params.set('city', data.city);
   if (data.upiId) params.set('upi', data.upiId);
   if (data.whatsappNumber) params.set('wa', data.whatsappNumber);
+  if (data.leadName) params.set('lead', data.leadName);
   if (data.customPhotoUrl) params.set('photo', data.customPhotoUrl);
+  // Timestamp for 24-hr expiration lock
+  params.set('ts', (data.createdAt || Date.now()).toString());
   return params.toString();
 };
 
@@ -135,6 +193,9 @@ export const encodeDemoDataToParams = (data: DemoFormData): string => {
  */
 export const decodeDemoParams = (searchParams: URLSearchParams): DemoFormData => {
   const theme = (searchParams.get('theme') as TemplateId) || defaultDemoData.theme;
+  const tsRaw = searchParams.get('ts');
+  const createdAt = tsRaw ? parseInt(tsRaw, 10) : Date.now();
+
   return {
     theme: theme in templatesMap ? theme : defaultDemoData.theme,
     groomName: searchParams.get('groom') || defaultDemoData.groomName,
@@ -146,12 +207,14 @@ export const decodeDemoParams = (searchParams: URLSearchParams): DemoFormData =>
     city: searchParams.get('city') || defaultDemoData.city,
     upiId: searchParams.get('upi') || '',
     whatsappNumber: searchParams.get('wa') || defaultDemoData.whatsappNumber,
-    customPhotoUrl: searchParams.get('photo') || ''
+    leadName: searchParams.get('lead') || '',
+    customPhotoUrl: searchParams.get('photo') || '',
+    createdAt
   };
 };
 
 /**
- * WhatsApp order URL with all customized demo details pre-filled
+ * WhatsApp order URL with all customized demo details and lead contact pre-filled
  */
 export const getWhatsAppOrderFromDemoUrl = (data: DemoFormData): string => {
   const names = (data.theme === 'annaprashan' || data.theme === 'birthday')
@@ -159,10 +222,14 @@ export const getWhatsAppOrderFromDemoUrl = (data: DemoFormData): string => {
     : `${data.groomName} & ${data.brideName}`;
 
   const message = [
-    `Hello Suman! I created a live preview on UtsavPatra for *${names}* (${data.theme.toUpperCase()}).`,
+    `*🚨 LEAD ALERT / ACTIVATION REQUEST — UTSAVPATRA*`,
+    `👤 Contact Name: ${data.leadName || names}`,
+    `📱 WhatsApp: ${data.whatsappNumber || 'Not provided'}`,
+    `🎉 Event: ${names} (${data.theme.toUpperCase()})`,
     `📅 Date: ${data.eventDate || 'TBD'}`,
     `📍 Venue: ${data.venueName || 'TBD'}, ${data.city || 'TBD'}`,
-    `I loved the preview! How do we finalize and activate our permanent official link (utsavpatra.com/our-event)?`
+    ``,
+    `Hello Suman! I created a live preview on UtsavPatra. I loved the demo and want to unlock the official permanent ad-free link (utsavpatra.com/our-event). Please share payment details!`
   ].join('\n');
 
   return `https://wa.me/916291898703?text=${encodeURIComponent(message)}`;

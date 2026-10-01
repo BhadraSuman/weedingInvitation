@@ -4,7 +4,8 @@ import { TemplateId } from '../types/wedding';
 import {
   DemoFormData,
   defaultDemoData,
-  encodeDemoDataToParams
+  encodeDemoDataToParams,
+  saveCapturedLead
 } from '../utils/demoGenerator';
 import {
   Sparkles,
@@ -141,12 +142,29 @@ export const TryoutPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const cleanPhone = formData.whatsappNumber.replace(/[^0-9]/g, '');
+    if (cleanPhone.length < 10) {
+      alert("Please enter a valid 10-digit WhatsApp number to receive your private 24-hour preview link.");
+      return;
+    }
+
+    const submissionData: DemoFormData = {
+      ...formData,
+      whatsappNumber: cleanPhone,
+      leadName: formData.leadName || (isBabyEvent ? formData.childName : `${formData.groomName} & ${formData.brideName}`),
+      createdAt: Date.now()
+    };
+
+    // Save lead to system store for Suman
+    saveCapturedLead(submissionData);
+
     try {
-      localStorage.setItem('utsavpatra_demo_preview', JSON.stringify(formData));
+      localStorage.setItem('utsavpatra_demo_preview', JSON.stringify(submissionData));
     } catch {
       // ignore localStorage quota error
     }
-    const query = encodeDemoDataToParams(formData);
+    const query = encodeDemoDataToParams(submissionData);
     navigate(`/preview?${query}`);
   };
 
@@ -417,45 +435,77 @@ export const TryoutPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Step 4: Optional Shagun & RSVP */}
+          {/* Step 4: Contact & WhatsApp Verification (Mandatory Lead Gate) */}
           <div className="pt-4 border-t border-stone-200">
             <div className="flex items-center justify-between mb-3">
-              <label className="text-xs font-serif uppercase tracking-widest text-[#8B181B] font-bold">
-                Step 4: Optional Interactive Features
+              <label className="text-xs font-serif uppercase tracking-widest text-[#8B181B] font-bold flex items-center gap-1.5">
+                <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <span>Step 4: Where Should We Send Your Preview? *</span>
               </label>
-              <span className="text-[11px] font-serif text-stone-500 italic">Optional</span>
+              <span className="text-[10px] font-serif bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">
+                Mandatory Verification
+              </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-serif text-stone-700 font-semibold mb-1 flex items-center gap-1">
-                  <CreditCard className="w-3.5 h-3.5 text-[#D4AF37]" />
-                  <span>UPI ID for Digital Shagun</span>
+                <label className="block text-xs font-serif text-stone-700 font-semibold mb-1">
+                  Your Name (Host / Contact Person) *
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. yourname@okhdfcbank"
-                  value={formData.upiId}
-                  onChange={(e) => setFormData({ ...formData, upiId: e.target.value })}
+                  required
+                  placeholder="e.g. Rahul Banerjee / Anita Roy"
+                  value={formData.leadName || ''}
+                  onChange={(e) => setFormData({ ...formData, leadName: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-sm font-serif"
                 />
-                <span className="text-[10px] text-stone-500 font-serif">Leave blank to use sample QR</span>
               </div>
 
               <div>
-                <label className="block text-xs font-serif text-stone-700 font-semibold mb-1 flex items-center gap-1">
-                  <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
-                  <span>Host's WhatsApp (for RSVPs)</span>
+                <label className="block text-xs font-serif text-stone-700 font-semibold mb-1">
+                  Your WhatsApp Number *
                 </label>
                 <input
-                  type="text"
-                  placeholder="e.g. 916291898703"
+                  type="tel"
+                  required
+                  pattern="[0-9]{10}"
+                  placeholder="e.g. 9876543210 (10 digits)"
                   value={formData.whatsappNumber}
                   onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-sm font-serif"
                 />
-                <span className="text-[10px] text-stone-500 font-serif">Where guest RSVPs will be directed</span>
               </div>
+            </div>
+
+            <p className="text-[11px] font-serif text-stone-500 mt-2 flex items-center gap-1">
+              <span>🔒</span>
+              <span>Your private 24-hour preview and link activation code are registered to this number. 100% spam-free.</span>
+            </p>
+          </div>
+
+          {/* Step 5: Optional UPI Shagun */}
+          <div className="pt-4 border-t border-stone-200">
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-xs font-serif uppercase tracking-widest text-[#8B181B] font-bold flex items-center gap-1.5">
+                <CreditCard className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <span>Step 5: Optional Digital Shagun UPI ID</span>
+              </label>
+              <span className="text-[11px] font-serif text-stone-500 italic">Optional</span>
+            </div>
+
+            <div>
+              <label className="block text-xs font-serif text-stone-700 font-semibold mb-1">
+                UPI ID (Google Pay / PhonePe / Paytm / BHIM)
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. yourname@okhdfcbank"
+                value={formData.upiId}
+                onChange={(e) => setFormData({ ...formData, upiId: e.target.value })}
+                className="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-sm font-serif"
+              />
+              <span className="text-[10px] text-stone-500 font-serif">Leave blank to use sample Shagun E-Lifafa QR</span>
             </div>
           </div>
 
