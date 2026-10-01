@@ -166,7 +166,7 @@ export const EventsTimeline: React.FC<EventsTimelineProps> = ({ template, lang }
                     href={createGoogleCalendarLink(evt, template)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full mt-2 inline-flex items-center justify-center gap-2 py-2 px-3 text-white rounded-xl text-xs font-serif font-semibold shadow-sm transition-opacity hover:opacity-90"
+                    className="w-full mt-2 inline-flex items-center justify-center gap-2 py-2 px-3 text-white rounded-xl text-xs font-serif font-semibold shadow-sm transition-opacity hover:opacity-90 whitespace-nowrap"
                     style={{ backgroundColor: colors.primary }}
                   >
                     <Calendar className="w-3.5 h-3.5" style={{ color: colors.accentLight }} />

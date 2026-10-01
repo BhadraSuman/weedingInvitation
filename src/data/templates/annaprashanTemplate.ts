@@ -53,7 +53,7 @@ export const annaprashanTemplate: CulturalTemplate = {
     grandparents: 'Grandson of Subir Roy & Late Bani Roy (Paternal), Ashok Mukherjee & Minati Mukherjee (Maternal)',
     nativeGrandparents: 'ঠাকুরদা-ঠাকুমা: সুবীর রায় ও স্বর্গত বাণী রায় | দাদু-দিদিমা: অশোক মুখার্জী ও মিনতি মুখার্জী',
     location: 'Kolkata, West Bengal',
-    image: 'https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=800&q=80',
+    image: '/images/couples/baby-aarav.jpg',
     about: 'Loves smiling, playing with silver rattles, and watching colorful ceiling lights. Turning 6 months old!',
     nativeAbout: 'আমাদের চোখের মণি, প্রথম হাসির জাদুকর এবং পরিবারের নয়নের মণি।'
   },
@@ -67,7 +67,7 @@ export const annaprashanTemplate: CulturalTemplate = {
     grandparents: 'Kolkata Heritage',
     nativeGrandparents: 'কলিকাতা',
     location: 'Salt Lake, Kolkata',
-    image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=800&q=80',
+    image: '/images/couples/aarav-parents.jpg',
     about: 'Delighted to invite you to celebrate this blessed milestone in our lives.',
     nativeAbout: 'আপনাদের আশীর্বাদেই আমাদের সন্তানের ভবিষ্যৎ পথচলা আলোকিত হবে।'
   },

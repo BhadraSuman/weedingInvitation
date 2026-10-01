@@ -249,7 +249,7 @@ export const NriGlobalSuite: React.FC<NriGlobalSuiteProps> = ({
                 href={liveStreamUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-serif text-xs font-semibold transition-all shadow-sm"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-serif text-xs font-semibold transition-all shadow-sm whitespace-nowrap shrink-0"
               >
                 <Video className="w-4 h-4 text-red-600" />
                 <span>Open Virtual Stream Link</span>
@@ -329,7 +329,7 @@ export const NriGlobalSuite: React.FC<NriGlobalSuiteProps> = ({
             <button
               type="button"
               onClick={() => setIsVideoModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-stone-900 hover:bg-black text-[#F3E5AB] font-serif text-xs font-bold transition-all shadow-md self-start sm:self-auto"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-stone-900 hover:bg-black text-[#F3E5AB] font-serif text-xs font-bold transition-all shadow-md self-start sm:self-auto whitespace-nowrap shrink-0"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span>Record / Send Your Blessing</span>

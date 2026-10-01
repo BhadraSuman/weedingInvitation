@@ -231,7 +231,7 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 px-4 text-white rounded-xl font-serif font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-98"
+              className="w-full py-3 px-4 text-white rounded-xl font-serif font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-98 whitespace-nowrap"
               style={{ backgroundColor: colors.primary }}
             >
               <Send className="w-4 h-4" style={{ color: colors.accentLight }} />

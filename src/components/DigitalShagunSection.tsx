@@ -346,28 +346,28 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
               </a>
 
               {/* Desktop / Alternate QR Code Toggle */}
-              <div className="flex items-center justify-center gap-3 pt-1">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-1">
                 <button
                   type="button"
                   onClick={() => setShowQrCode(!showQrCode)}
-                  className="text-xs text-stone-600 hover:text-stone-900 font-semibold flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-300 bg-stone-50 cursor-pointer"
+                  className="text-xs text-stone-600 hover:text-stone-900 font-semibold flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-300 bg-stone-50 cursor-pointer whitespace-nowrap shrink-0"
                 >
                   <QrCode className="w-3.5 h-3.5 text-amber-700" />
                   <span>
                     {showQrCode
                       ? (isBengali ? 'কিউআর কোড বন্ধ করুন' : 'Hide QR Code')
-                      : (isBengali ? 'স্ক্যান করতে কিউআর কোড দেখুন' : 'Scan via QR Code on Phone')}
+                      : (isBengali ? 'স্ক্যান করতে কিউআর কোড দেখুন' : 'Scan QR Code')}
                   </span>
                 </button>
 
                 <button
                   type="button"
                   onClick={handleConfirmSent}
-                  className="text-xs text-emerald-800 hover:text-emerald-950 font-semibold flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-300 bg-emerald-50 cursor-pointer"
+                  className="text-xs text-emerald-800 hover:text-emerald-950 font-semibold flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-300 bg-emerald-50 cursor-pointer whitespace-nowrap shrink-0"
                 >
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
                   <span>
-                    {isBengali ? 'শগুন পাঠানো সম্পন্ন করেছি' : 'I have sent the Shagun'}
+                    {isBengali ? 'শগুন পাঠানো সম্পন্ন করেছি' : 'I have sent Shagun'}
                   </span>
                 </button>
               </div>

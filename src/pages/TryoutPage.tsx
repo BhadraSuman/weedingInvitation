@@ -36,7 +36,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Kolkata',
     upiId: 'subhajit@okaxis',
     whatsappNumber: '916203868358',
-    customPhotoUrl: 'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800'
+    customPhotoUrl: '/images/couples/bengali-couple.jpg'
   },
   bihari_marwari: {
     theme: 'bihari_marwari',
@@ -49,7 +49,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Patna',
     upiId: 'aditya@okhdfcbank',
     whatsappNumber: '916203868358',
-    customPhotoUrl: 'https://images.pexels.com/photos/2959192/pexels-photo-2959192.jpeg?auto=compress&cs=tinysrgb&w=800'
+    customPhotoUrl: '/images/couples/north-couple.jpg'
   },
   annaprashan: {
     theme: 'annaprashan',
@@ -62,7 +62,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Kolkata',
     upiId: 'parents@okaxis',
     whatsappNumber: '916203868358',
-    customPhotoUrl: 'https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=800&q=80'
+    customPhotoUrl: '/images/couples/baby-aarav.jpg'
   },
   birthday: {
     theme: 'birthday',
@@ -75,7 +75,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Bengaluru',
     upiId: 'kiaraparty@okaxis',
     whatsappNumber: '916203868358',
-    customPhotoUrl: 'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?auto=format&fit=crop&w=800&q=80'
+    customPhotoUrl: '/images/couples/princess-ananya.jpg'
   },
   royal_north: {
     theme: 'royal_north',
@@ -88,7 +88,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Jaipur',
     upiId: '',
     whatsappNumber: '916203868358',
-    customPhotoUrl: ''
+    customPhotoUrl: '/images/couples/north-couple.jpg'
   },
   south_indian: {
     theme: 'south_indian',
@@ -101,7 +101,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Chennai',
     upiId: '',
     whatsappNumber: '916203868358',
-    customPhotoUrl: ''
+    customPhotoUrl: '/images/couples/south-bride.jpg'
   },
   modern_minimal: {
     theme: 'modern_minimal',
@@ -114,7 +114,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Mumbai',
     upiId: '',
     whatsappNumber: '916203868358',
-    customPhotoUrl: ''
+    customPhotoUrl: '/images/couples/north-couple.jpg'
   }
 };
 
@@ -187,7 +187,7 @@ export const TryoutPage: React.FC = () => {
           <button
             type="button"
             onClick={handleFillSample}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-serif font-bold transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-serif font-bold transition-colors whitespace-nowrap shrink-0"
           >
             <Wand2 className="w-3.5 h-3.5 text-amber-700" />
             <span className="hidden sm:inline">Auto-Fill Sample Data</span>
@@ -513,11 +513,11 @@ export const TryoutPage: React.FC = () => {
           <div className="pt-6">
             <button
               type="submit"
-              className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#8B181B] via-[#A82025] to-[#8B181B] hover:opacity-95 text-[#F3E5AB] font-serif font-bold text-base shadow-xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.01] active:scale-95"
+              className="w-full py-4 px-4 sm:px-6 rounded-2xl bg-gradient-to-r from-[#8B181B] via-[#A82025] to-[#8B181B] hover:opacity-95 text-[#F3E5AB] font-serif font-bold text-sm sm:text-base shadow-xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.01] active:scale-95 whitespace-nowrap"
             >
-              <Sparkles className="w-5 h-5 text-[#F3E5AB]" />
+              <Sparkles className="w-5 h-5 text-[#F3E5AB] shrink-0" />
               <span>Generate My Free Live Preview Now</span>
-              <ArrowRight className="w-5 h-5 text-[#D4AF37]" />
+              <ArrowRight className="w-5 h-5 text-[#D4AF37] shrink-0" />
             </button>
             <p className="text-center text-[11px] font-serif text-stone-500 mt-2">
               ⚡ Instant rendering • No credit card or registration required • 100% Free

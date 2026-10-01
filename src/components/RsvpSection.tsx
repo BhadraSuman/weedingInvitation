@@ -86,7 +86,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
                 href={getWhatsAppUrl(contact.whatsappNumber)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl text-xs font-semibold shadow-sm transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl text-xs font-semibold shadow-sm transition-colors whitespace-nowrap"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>{t.whatsappBtn}</span>
@@ -94,7 +94,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
 
               <a
                 href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-                className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-serif font-semibold border transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-serif font-semibold border transition-colors whitespace-nowrap"
                 style={{
                   backgroundColor: colors.bgParchment,
                   borderColor: `${colors.accent}66`,
@@ -108,7 +108,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
               {contact.email && (
                 <a
                   href={`mailto:${contact.email}`}
-                  className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-serif font-semibold border transition-colors opacity-95 hover:opacity-100"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-serif font-semibold border transition-colors opacity-95 hover:opacity-100 whitespace-nowrap"
                   style={{
                     backgroundColor: colors.bgParchment,
                     borderColor: `${colors.accent}66`,

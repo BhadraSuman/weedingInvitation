@@ -23,12 +23,12 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ template, lang }) =>
       location: template.bride.location
     },
     {
-      url: 'https://images.pexels.com/photos/5759737/pexels-photo-5759737.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: '/images/couples/gallery-1.jpg',
       caption: lang === 'native' ? 'একসাথে আগামীর স্বপ্ন আঁকা' : 'Laughter and Shared Dreams',
       location: template.venue.name
     },
     {
-      url: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: '/images/couples/gallery-2.jpg',
       caption: lang === 'native' ? 'চিরতরে বাঁধার ক্ষণ' : 'Two Souls, One Lifetime',
       location: 'Celebration Grounds'
     }

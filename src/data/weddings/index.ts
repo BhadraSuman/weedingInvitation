@@ -29,7 +29,7 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     cultureName: 'বাঙালি শুভ বিবাহ (Bengali Lagna Patrika)',
     badgeEmoji: '🪔',
     template: bengaliTemplate,
-    previewImage: 'https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800'
+    previewImage: '/images/couples/bengali-couple.jpg'
   },
   'sandeep-weds-priya': {
     slug: 'sandeep-weds-priya',
@@ -40,7 +40,7 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     cultureName: 'शुभ विवाह — उत्तर भारतीय परंपरा (North Indian Vivah)',
     badgeEmoji: '🚩',
     template: bihariMarwariTemplate,
-    previewImage: 'https://images.pexels.com/photos/2959192/pexels-photo-2959192.jpeg?auto=compress&cs=tinysrgb&w=800'
+    previewImage: '/images/couples/north-couple.jpg'
   },
   'aarav-annaprashan': {
     slug: 'aarav-annaprashan',
@@ -51,7 +51,7 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     cultureName: 'শুভ অন্নপ্রাশন ও মুখে ভাত (First Rice Ceremony)',
     badgeEmoji: '🥣',
     template: annaprashanTemplate,
-    previewImage: 'https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=800&q=80'
+    previewImage: '/images/couples/baby-aarav.jpg'
   },
   'ananya-turns-1': {
     slug: 'ananya-turns-1',
@@ -62,7 +62,7 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     cultureName: 'প্রথম শুভ জন্মদিন উৎসব (1st Birthday Gala)',
     badgeEmoji: '🎂',
     template: birthdayTemplate,
-    previewImage: 'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?auto=format&fit=crop&w=800&q=80'
+    previewImage: '/images/couples/princess-ananya.jpg'
   }
 };
 

@@ -64,55 +64,55 @@ export const StickyActionBar: React.FC<StickyActionBarProps> = ({ template, lang
       <div className="flex items-center justify-around">
         <button
           onClick={() => scrollTo('events')}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center whitespace-nowrap shrink-0"
           style={{ color: colors.primary }}
         >
           <Calendar className="w-5 h-5" style={{ color: colors.primary }} />
-          <span className="text-[10px] font-serif font-semibold mt-0.5">
+          <span className="text-[10px] font-serif font-semibold mt-0.5 whitespace-nowrap">
             {getNavLabel('events')}
           </span>
         </button>
 
         <button
           onClick={() => scrollTo('venue')}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center whitespace-nowrap shrink-0"
           style={{ color: colors.primary }}
         >
           <MapPin className="w-5 h-5" style={{ color: colors.primary }} />
-          <span className="text-[10px] font-serif font-semibold mt-0.5">
+          <span className="text-[10px] font-serif font-semibold mt-0.5 whitespace-nowrap">
             {getNavLabel('map')}
           </span>
         </button>
 
         <button
           onClick={() => scrollTo('wishes')}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center whitespace-nowrap shrink-0"
           style={{ color: colors.primary }}
         >
           <MessageCircleHeart className="w-5 h-5" style={{ color: colors.primary }} />
-          <span className="text-[10px] font-serif font-semibold mt-0.5">
+          <span className="text-[10px] font-serif font-semibold mt-0.5 whitespace-nowrap">
             {getNavLabel('wishes')}
           </span>
         </button>
 
         <button
           onClick={() => scrollTo('rsvp')}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center whitespace-nowrap shrink-0"
           style={{ color: colors.primary }}
         >
           <Users className="w-5 h-5" style={{ color: colors.primary }} />
-          <span className="text-[10px] font-serif font-semibold mt-0.5">
+          <span className="text-[10px] font-serif font-semibold mt-0.5 whitespace-nowrap">
             {getNavLabel('rsvp')}
           </span>
         </button>
 
         <button
           onClick={handleShare}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center whitespace-nowrap shrink-0"
           style={{ color: colors.primary }}
         >
           <Share2 className="w-5 h-5" style={{ color: colors.accent }} />
-          <span className="text-[10px] font-serif font-semibold mt-0.5">
+          <span className="text-[10px] font-serif font-semibold mt-0.5 whitespace-nowrap">
             {getNavLabel('share')}
           </span>
         </button>

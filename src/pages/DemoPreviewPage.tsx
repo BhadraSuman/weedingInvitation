@@ -184,7 +184,7 @@ export const DemoPreviewPage: React.FC = () => {
           <div className="flex items-center gap-2 shrink-0 ml-auto">
             <Link
               to="/tryout"
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[#F3E5AB] border border-white/20 text-[11px] font-semibold transition-all"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[#F3E5AB] border border-white/20 text-[11px] font-semibold transition-all whitespace-nowrap shrink-0"
             >
               <Edit3 className="w-3.5 h-3.5" />
               <span>Edit</span>
@@ -193,7 +193,7 @@ export const DemoPreviewPage: React.FC = () => {
             <button
               type="button"
               onClick={handleSharePreview}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[#F3E5AB] border border-white/20 text-[11px] font-semibold transition-all"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[#F3E5AB] border border-white/20 text-[11px] font-semibold transition-all whitespace-nowrap shrink-0"
             >
               {copied ? (
                 <>
@@ -213,10 +213,11 @@ export const DemoPreviewPage: React.FC = () => {
               href={whatsappOrderUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-[11px] font-bold shadow-md transition-all active:scale-95 ring-2 ring-emerald-300/40"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-[11px] font-bold shadow-md transition-all active:scale-95 ring-2 ring-emerald-300/40 whitespace-nowrap shrink-0"
             >
               <MessageCircle className="w-3.5 h-3.5 fill-white" />
-              <span>Remove Watermark &amp; Activate (₹999)</span>
+              <span className="hidden md:inline">Remove Watermark &amp; Activate (₹999)</span>
+              <span className="md:hidden">Activate (₹999)</span>
             </a>
           </div>
 
@@ -310,7 +311,7 @@ export const DemoPreviewPage: React.FC = () => {
           href={whatsappOrderUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#25D366] text-white font-serif font-bold text-xs shadow-lg shrink-0"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#25D366] text-white font-serif font-bold text-xs shadow-lg shrink-0 whitespace-nowrap"
         >
           <MessageCircle className="w-4 h-4 fill-white" />
           <span>Activate (₹999)</span>

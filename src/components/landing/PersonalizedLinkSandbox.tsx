@@ -149,7 +149,7 @@ export const PersonalizedLinkSandbox: React.FC = () => {
                   href={generatedUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 min-w-[140px] flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-[#8B181B] hover:bg-[#681013] text-[#F3E5AB] font-serif text-xs font-bold shadow-md transition-transform hover:scale-[1.02]"
+                  className="flex-1 min-w-[140px] flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-[#8B181B] hover:bg-[#681013] text-[#F3E5AB] font-serif text-xs font-bold shadow-md transition-transform hover:scale-[1.02] whitespace-nowrap"
                 >
                   <span>Preview as {guestName.split(' ')[0] || 'Guest'}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -158,7 +158,7 @@ export const PersonalizedLinkSandbox: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="flex items-center gap-1.5 py-2.5 px-4 rounded-xl bg-white hover:bg-stone-50 text-stone-700 border border-stone-300 font-serif text-xs font-bold transition-all shadow-sm"
+                  className="flex items-center gap-1.5 py-2.5 px-4 rounded-xl bg-white hover:bg-stone-50 text-stone-700 border border-stone-300 font-serif text-xs font-bold transition-all shadow-sm whitespace-nowrap shrink-0"
                 >
                   {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                   <span>{copied ? 'Link Copied!' : 'Copy Link'}</span>
@@ -168,7 +168,7 @@ export const PersonalizedLinkSandbox: React.FC = () => {
                   href={getWhatsAppShareUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-serif text-xs font-bold transition-transform hover:scale-[1.02] shadow-sm"
+                  className="flex items-center gap-1.5 py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-serif text-xs font-bold transition-transform hover:scale-[1.02] shadow-sm whitespace-nowrap shrink-0"
                 >
                   <MessageCircle className="w-3.5 h-3.5 fill-current" />
                   <span>Share on WhatsApp</span>

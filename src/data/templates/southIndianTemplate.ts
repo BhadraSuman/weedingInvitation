@@ -53,7 +53,7 @@ export const southIndianTemplate: CulturalTemplate = {
     grandparents: 'Grandson of Late Sri V. Swaminathan & Late Smt. Saraswathi',
     nativeGrandparents: 'சுவர்க்கிய V. சுவாமிநாதன் - சரஸ்வதி அவர்களின் பேரக்குழந்தை',
     location: 'Mylapore, Chennai',
-    image: 'https://images.pexels.com/photos/3881185/pexels-photo-3881185.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/images/couples/south-groom.jpg',
     about: 'Aerospace engineer, carnatic flute enthusiast, and connoisseur of strong filter coffee.',
     nativeAbout: 'விண்வெளி பொறியாளர், கர்நாடக புல்லாங்குழல் கலைஞர் மற்றும் பாரம்பரிய கலாச்சார விரும்பி.'
   },
@@ -67,7 +67,7 @@ export const southIndianTemplate: CulturalTemplate = {
     grandparents: 'Granddaughter of Late Sri N. Ramanathan & Late Smt. Kamakshi',
     nativeGrandparents: 'சுவர்க்கிய N. ராமநாதன் - காமாக்ஷி அவர்களின் பேரக்குழந்தை',
     location: 'T. Nagar, Chennai',
-    image: 'https://images.pexels.com/photos/7648057/pexels-photo-7648057.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/images/couples/south-bride.jpg',
     about: 'Doctor, Bharatanatyam dancer, and passionate botanical illustrator.',
     nativeAbout: 'மருத்துவர், பரதநாட்டிய கலைஞர் மற்றும் எளிய இனிமையான உள்ளம் கொண்டவர்.'
   },

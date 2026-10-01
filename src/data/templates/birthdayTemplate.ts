@@ -53,7 +53,7 @@ export const birthdayTemplate: CulturalTemplate = {
     grandparents: 'Granddaughter of Pradip Sen & Rekha Sen, Dilip Banerjee & Chitra Banerjee',
     nativeGrandparents: 'দাদু-ঠাকুমা: প্রদীপ সেন ও রেখা সেন | দাদু-দিদিমা: দিলীপ ব্যানার্জী ও চিত্রা ব্যানার্জী',
     location: 'Ballygunge, Kolkata',
-    image: 'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?auto=format&fit=crop&w=800&q=80',
+    image: '/images/couples/princess-ananya.jpg',
     about: 'Loves nursery rhymes, dancing to rhythm, blowing bubbles, and tasting chocolate frosting!',
     nativeAbout: 'ছোট্ট পায়ে হাঁটতে শুরু করা আমাদের রূপকথার রাজকুমারী।'
   },
@@ -67,7 +67,7 @@ export const birthdayTemplate: CulturalTemplate = {
     grandparents: 'Kolkata',
     nativeGrandparents: 'কলকাতা',
     location: 'Kolkata, West Bengal',
-    image: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80',
+    image: '/images/couples/ananya-parents.jpg',
     about: 'Looking forward to hosting you for an unforgettable birthday evening!',
     nativeAbout: 'ছোট্ট অনন্যার প্রথম বছরে আপনাদের সকলের আশীর্বাদ আমাদের সবচেয়ে বড় পাওয়া।'
   },

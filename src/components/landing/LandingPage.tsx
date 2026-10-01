@@ -119,10 +119,10 @@ export const LandingPage: React.FC = () => {
           <a href="#faq" className="hover:text-[#8B181B] transition-colors">FAQ</a>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <Link
             to="/tryout"
-            className="inline-flex items-center gap-1.5 py-2 px-3.5 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs font-serif font-bold shadow-sm transition-all hover:scale-105"
+            className="inline-flex items-center gap-1.5 py-2 px-3.5 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs font-serif font-bold shadow-sm transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <Wand2 className="w-3.5 h-3.5 text-amber-200" />
             <span className="hidden sm:inline">Try It Free (Instant)</span>
@@ -133,7 +133,7 @@ export const LandingPage: React.FC = () => {
             href={whatsappInquiryUrl("General Inquiry")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold shadow-md transition-all active:scale-95"
+            className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold shadow-md transition-all active:scale-95 whitespace-nowrap shrink-0"
           >
             <MessageCircle className="w-4 h-4 fill-white" />
             <span className="hidden sm:inline">WhatsApp Booking</span>
@@ -186,7 +186,7 @@ export const LandingPage: React.FC = () => {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto">
           <Link
             to="/tryout"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#8B181B] via-[#A82025] to-[#8B181B] hover:opacity-95 text-[#F3E5AB] font-serif font-bold text-sm shadow-xl transition-all hover:scale-105 ring-2 ring-[#D4AF37]/50"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#8B181B] via-[#A82025] to-[#8B181B] hover:opacity-95 text-[#F3E5AB] font-serif font-bold text-sm shadow-xl transition-all hover:scale-105 ring-2 ring-[#D4AF37]/50 whitespace-nowrap shrink-0"
           >
             <Wand2 className="w-4 h-4 text-[#D4AF37]" />
             <span>Create Free Live Preview (60 Secs)</span>
@@ -195,7 +195,7 @@ export const LandingPage: React.FC = () => {
 
           <a
             href="#demos"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-stone-300 bg-white hover:bg-stone-50 text-[#2C1810] font-serif font-semibold text-xs sm:text-sm shadow-sm transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-stone-300 bg-white hover:bg-stone-50 text-[#2C1810] font-serif font-semibold text-xs sm:text-sm shadow-sm transition-all whitespace-nowrap shrink-0"
           >
             <span>Browse 4 Cultural Demos</span>
           </a>
@@ -205,7 +205,7 @@ export const LandingPage: React.FC = () => {
         <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 max-w-2xl mx-auto">
           <Link
             to="/anirban-weds-deboleena"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs shadow transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🪔 Bengali Wedding</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37]" />
@@ -213,7 +213,7 @@ export const LandingPage: React.FC = () => {
 
           <Link
             to="/sandeep-weds-priya"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🚩 Shubh Vivah — North Indian Traditions</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#E5C158]" />
@@ -221,7 +221,7 @@ export const LandingPage: React.FC = () => {
 
           <Link
             to="/aarav-annaprashan"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🥣 Baby Annaprashan</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#FEF3C7]" />
@@ -229,7 +229,7 @@ export const LandingPage: React.FC = () => {
 
           <Link
             to="/ananya-turns-1"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🎂 1st Birthday Gala</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#FCE7F3]" />
@@ -267,7 +267,7 @@ export const LandingPage: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setSelectedCategory(tab.id as any)}
-                className={`px-4 sm:px-5 py-2 rounded-full font-serif text-xs sm:text-sm font-semibold transition-all ${
+                className={`px-4 sm:px-5 py-2 rounded-full font-serif text-xs sm:text-sm font-semibold whitespace-nowrap shrink-0 transition-all ${
                   selectedCategory === tab.id
                     ? 'bg-[#8B181B] text-[#F3E5AB] shadow-md scale-105'
                     : 'bg-white border border-[#D4AF37]/40 text-[#5C0C0F] hover:bg-stone-50'
@@ -325,7 +325,7 @@ export const LandingPage: React.FC = () => {
                   <span className="text-xs font-serif text-stone-500">Live Client Demo</span>
                   <Link
                     to={`/${evt.slug}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-serif font-semibold shadow hover:opacity-90 transition-opacity"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-serif font-semibold shadow hover:opacity-90 transition-opacity whitespace-nowrap shrink-0"
                     style={{
                       backgroundColor: evt.template.colors.primary,
                       color: '#FFFFFF'
@@ -360,7 +360,7 @@ export const LandingPage: React.FC = () => {
 
           <Link
             to="/tryout"
-            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs sm:text-sm shadow-xl transition-all hover:scale-105"
+            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs sm:text-sm shadow-xl transition-all hover:scale-105 whitespace-nowrap"
           >
             <Wand2 className="w-4 h-4 text-[#D4AF37]" />
             <span>Generate Free Demo</span>
@@ -529,7 +529,7 @@ export const LandingPage: React.FC = () => {
                 href={whatsappInquiryUrl("Silver Package (₹999)")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 w-full py-3 px-4 rounded-xl border border-[#8B181B] text-[#8B181B] font-sans font-semibold text-sm text-center hover:bg-[#8B181B] hover:text-white transition-colors"
+                className="mt-8 w-full py-3 px-4 rounded-xl border border-[#8B181B] text-[#8B181B] font-sans font-semibold text-sm text-center hover:bg-[#8B181B] hover:text-white transition-colors whitespace-nowrap"
               >
                 Book Silver Package
               </a>
@@ -601,7 +601,7 @@ export const LandingPage: React.FC = () => {
                 href={whatsappInquiryUrl("Gold Wedding Package (₹2,499)")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#8B181B] text-[#F3E5AB] font-sans font-semibold text-sm text-center shadow-lg hover:bg-[#5E0B0E] transition-colors"
+                className="mt-8 w-full py-3.5 px-4 rounded-xl bg-[#8B181B] text-[#F3E5AB] font-sans font-semibold text-sm text-center shadow-lg hover:bg-[#5E0B0E] transition-colors whitespace-nowrap"
               >
                 Book Gold Wedding Package
               </a>
@@ -669,7 +669,7 @@ export const LandingPage: React.FC = () => {
                 href={whatsappInquiryUrl("Platinum Royal Package (₹4,999)")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 w-full py-3 px-4 rounded-xl border border-[#8B181B] text-[#8B181B] font-sans font-semibold text-sm text-center hover:bg-[#8B181B] hover:text-white transition-colors"
+                className="mt-8 w-full py-3 px-4 rounded-xl border border-[#8B181B] text-[#8B181B] font-sans font-semibold text-sm text-center hover:bg-[#8B181B] hover:text-white transition-colors whitespace-nowrap"
               >
                 Book Platinum Package
               </a>
@@ -836,14 +836,14 @@ export const LandingPage: React.FC = () => {
                 href={agencyInquiryUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold shadow-lg transition-all active:scale-95"
+                className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold shadow-lg transition-all active:scale-95 whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
                 <span>Join Agency Partner Network</span>
               </a>
               <a
                 href="tel:+916203868358"
-                className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-white/10 hover:bg-white/20 border border-[#D4AF37] text-[#F3E5AB] text-xs sm:text-sm font-serif font-semibold transition-all"
+                className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-white/10 hover:bg-white/20 border border-[#D4AF37] text-[#F3E5AB] text-xs sm:text-sm font-serif font-semibold transition-all whitespace-nowrap shrink-0"
               >
                 <Phone className="w-4 h-4 text-[#D4AF37]" />
                 <span>Call +91 62038 68358</span>
@@ -918,7 +918,7 @@ export const LandingPage: React.FC = () => {
               href={whatsappInquiryUrl("Direct Inquiry")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-semibold shadow-lg transition-all active:scale-95"
+              className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-semibold shadow-lg transition-all active:scale-95 whitespace-nowrap shrink-0"
             >
               <MessageCircle className="w-5 h-5 fill-white" />
               <span>Message Our Team on WhatsApp</span>
@@ -926,7 +926,7 @@ export const LandingPage: React.FC = () => {
 
             <a
               href="tel:+916203868358"
-              className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full border-2 border-[#8B181B] text-[#8B181B] text-sm font-serif font-bold hover:bg-[#8B181B] hover:text-white transition-all shadow-sm"
+              className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full border-2 border-[#8B181B] text-[#8B181B] text-sm font-serif font-bold hover:bg-[#8B181B] hover:text-white transition-all shadow-sm whitespace-nowrap shrink-0"
             >
               <Phone className="w-4 h-4" />
               <span>Call: +91 62038 68358</span>
@@ -934,7 +934,7 @@ export const LandingPage: React.FC = () => {
 
             <a
               href="mailto:uddipta.techsolutions@gmail.com"
-              className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full border border-stone-300 bg-white text-[#2C1810] text-sm font-serif font-semibold hover:bg-stone-50 transition-all shadow-sm"
+              className="inline-flex items-center gap-2 py-3.5 px-6 rounded-full border border-stone-300 bg-white text-[#2C1810] text-sm font-serif font-semibold hover:bg-stone-50 transition-all shadow-sm whitespace-nowrap shrink-0"
             >
               <Mail className="w-4 h-4 text-[#8B181B]" />
               <span>Email: uddipta.techsolutions@gmail.com</span>

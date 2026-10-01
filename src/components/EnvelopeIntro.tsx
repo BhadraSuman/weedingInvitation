@@ -191,7 +191,7 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
             <div className="mt-4 flex flex-col items-center gap-2.5">
               <button
                 onClick={handleOpen}
-                className={`group relative cursor-pointer flex items-center justify-center gap-2.5 px-8 py-3.5 bg-gradient-to-r ${template.colors.buttonGradient} font-serif font-extrabold text-base sm:text-lg rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ${
+                className={`group relative cursor-pointer flex items-center justify-center gap-2.5 px-8 py-3.5 bg-gradient-to-r ${template.colors.buttonGradient} font-serif font-extrabold text-base sm:text-lg rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap shrink-0 ${
                   isBirthday
                     ? 'text-white shadow-purple-900/60 border border-white/40'
                     : 'text-[#3B0709] shadow-amber-900/50 border border-amber-200/50'

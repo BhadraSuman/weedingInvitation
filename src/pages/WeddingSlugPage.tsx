@@ -77,31 +77,31 @@ export const WeddingSlugPage: React.FC = () => {
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/anirban-weds-deboleena"
-            className="px-4 py-2 rounded-full bg-[#8B181B] text-[#F3E5AB] font-serif text-xs font-bold shadow hover:bg-[#5E0B0E]"
+            className="px-4 py-2 rounded-full bg-[#8B181B] text-[#F3E5AB] font-serif text-xs font-bold shadow hover:bg-[#5E0B0E] whitespace-nowrap shrink-0"
           >
             🪔 Bengali Wedding
           </Link>
           <Link
             to="/sandeep-weds-priya"
-            className="px-4 py-2 rounded-full bg-[#0D4A36] text-[#E5C158] font-serif text-xs font-bold shadow hover:bg-[#042017]"
+            className="px-4 py-2 rounded-full bg-[#0D4A36] text-[#E5C158] font-serif text-xs font-bold shadow hover:bg-[#042017] whitespace-nowrap shrink-0"
           >
             🚩 Shubh Vivah — North Indian Traditions
           </Link>
           <Link
             to="/aarav-annaprashan"
-            className="px-4 py-2 rounded-full bg-[#D97706] text-white font-serif text-xs font-bold shadow hover:bg-[#B45309]"
+            className="px-4 py-2 rounded-full bg-[#D97706] text-white font-serif text-xs font-bold shadow hover:bg-[#B45309] whitespace-nowrap shrink-0"
           >
             🥣 Annaprashan (Rice Ceremony)
           </Link>
           <Link
             to="/ananya-turns-1"
-            className="px-4 py-2 rounded-full bg-[#7C3AED] text-white font-serif text-xs font-bold shadow hover:bg-[#5B21B6]"
+            className="px-4 py-2 rounded-full bg-[#7C3AED] text-white font-serif text-xs font-bold shadow hover:bg-[#5B21B6] whitespace-nowrap shrink-0"
           >
             🎂 1st Birthday Gala
           </Link>
           <Link
             to="/"
-            className="px-4 py-2 rounded-full border border-stone-300 bg-white text-stone-700 font-serif text-xs font-bold shadow-sm hover:bg-stone-50"
+            className="px-4 py-2 rounded-full border border-stone-300 bg-white text-stone-700 font-serif text-xs font-bold shadow-sm hover:bg-stone-50 whitespace-nowrap shrink-0"
           >
             UtsavPatra Home
           </Link>

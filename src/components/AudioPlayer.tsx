@@ -23,7 +23,7 @@ export const AudioPlayer: React.FC = () => {
         onClick={handleToggle}
         title={isPlaying ? "Mute Background Music" : "Play Background Music"}
         aria-label={isPlaying ? "Mute Background Music" : "Play Background Music"}
-        className={`group flex items-center gap-2 px-3 py-2 rounded-full shadow-lg border backdrop-blur-md transition-all duration-300 ${
+        className={`group flex items-center gap-2 px-3 py-2 rounded-full shadow-lg border backdrop-blur-md transition-all duration-300 whitespace-nowrap shrink-0 ${
           isPlaying
             ? 'bg-[#8B181B]/90 border-[#D4AF37] text-[#F3E5AB] shadow-[0_0_15px_rgba(212,175,55,0.4)]'
             : 'bg-[#FBF7EE]/90 border-[#8B181B]/30 text-[#8B181B] hover:border-[#8B181B]'

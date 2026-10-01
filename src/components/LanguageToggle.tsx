@@ -19,7 +19,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLang, tem
       >
         <button
           onClick={() => onToggle('native')}
-          className={`px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${
+          className={`px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap shrink-0 transition-all duration-200 ${
             currentLang === 'native'
               ? 'text-white shadow-sm'
               : 'text-stone-700 hover:text-black'
@@ -32,7 +32,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLang, tem
         </button>
         <button
           onClick={() => onToggle('en')}
-          className={`px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${
+          className={`px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap shrink-0 transition-all duration-200 ${
             currentLang === 'en'
               ? 'text-white shadow-sm'
               : 'text-stone-700 hover:text-black'

@@ -93,7 +93,7 @@ export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) 
                 href={venue.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 text-white font-serif font-bold text-sm rounded-xl shadow-md transition-opacity hover:opacity-90"
+                className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 text-white font-serif font-bold text-sm rounded-xl shadow-md transition-opacity hover:opacity-90 whitespace-nowrap shrink-0"
                 style={{ backgroundColor: colors.primary }}
               >
                 <Navigation className="w-4 h-4" style={{ color: colors.accentLight }} />
@@ -104,7 +104,7 @@ export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) 
                 href={`https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[formatted_address]=${encodeURIComponent(venue.name)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border text-sm font-semibold transition-opacity hover:opacity-90"
+                className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border text-sm font-semibold transition-opacity hover:opacity-90 whitespace-nowrap shrink-0"
                 style={{
                   backgroundColor: colors.bgParchment,
                   borderColor: `${colors.accent}66`,

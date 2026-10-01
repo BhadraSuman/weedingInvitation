@@ -23,7 +23,7 @@ const TESTIMONIALS: Testimonial[] = [
     stars: 5,
     highlight: 'Saved ₹45,000 on printing & overseas courier to London',
     review: 'We were dreading physical card printing deadlines and expensive overseas couriers to our family in the UK and USA. UtsavPatra delivered our custom Lagna Patrika in 24 hours. The NRI timezone converter meant our relatives in London watched our live stream at the exact right hour without any confusion!',
-    avatar: 'https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200&h=200'
+    avatar: '/images/couples/bengali-bride.jpg'
   },
   {
     id: 't-2',
@@ -34,7 +34,7 @@ const TESTIMONIALS: Testimonial[] = [
     stars: 5,
     highlight: 'Host Dashboard saved our caterer from overcooking by 60 plates',
     review: 'The Host Dashboard is what truly separates UtsavPatra from a basic image card. We could see who opened the link and sent polite 1-click WhatsApp reminders to pending relatives. We had our exact Veg/Non-Veg headcount confirmed a week in advance, saving us huge catering expenses.',
-    avatar: 'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&w=200&h=200'
+    avatar: '/images/couples/north-groom.jpg'
   },
   {
     id: 't-3',
@@ -45,7 +45,7 @@ const TESTIMONIALS: Testimonial[] = [
     stars: 5,
     highlight: 'Grandparents zoomed in easily, 1-tap Google Maps meant 0 lost guests',
     review: 'Our biggest worry was whether our elderly relatives could navigate a digital invite. Because UtsavPatra supports clean pinch-to-zoom and 1-tap Google Maps navigation, even our 80-year-old grandfather arrived at the venue without asking anyone for directions!',
-    avatar: 'https://images.pexels.com/photos/7648057/pexels-photo-7648057.jpeg?auto=compress&cs=tinysrgb&w=200&h=200'
+    avatar: '/images/couples/south-bride.jpg'
   },
   {
     id: 't-4',
@@ -56,7 +56,7 @@ const TESTIMONIALS: Testimonial[] = [
     stars: 5,
     highlight: 'Digital Shagun UPI E-Lifafa was loved by distant family',
     review: 'For Aarav\'s first rice ceremony, outstation aunts and uncles who couldn\'t travel transferred shagun directly into our account with auspicious +₹1 UPI presets (₹1,001 and ₹2,101). The interactive Thali Pariksha prediction game was shared across all our WhatsApp groups!',
-    avatar: 'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?auto=format&fit=crop&w=200&h=200&q=80'
+    avatar: '/images/couples/baby-aarav.jpg'
   },
   {
     id: 't-5',
@@ -67,7 +67,7 @@ const TESTIMONIALS: Testimonial[] = [
     stars: 5,
     highlight: 'We white-label UtsavPatra for all luxury high-budget clients',
     review: 'We manage high-profile weddings in Udaipur, Jaipur, and Kolkata. Physical card reprints when a muhurat shifts are a nightmare. UtsavPatra gives our clients instant revisions, personalized guest links with wax seals, and an executive RSVP portal. Essential for modern Indian weddings.',
-    avatar: 'https://images.pexels.com/photos/3881185/pexels-photo-3881185.jpeg?auto=compress&cs=tinysrgb&w=200&h=200'
+    avatar: '/images/couples/south-groom.jpg'
   }
 ];
 
