@@ -212,7 +212,7 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
 
         <div className="relative z-10">
           
-          <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-white/90 border border-[#C084FC] text-xs font-bold text-[#7C3AED] uppercase tracking-widest mb-3 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border-2 border-[#7C3AED] text-xs sm:text-sm font-extrabold text-[#5B21B6] uppercase tracking-widest mb-3 shadow-md">
             <Crown className="w-4 h-4 text-amber-500 fill-amber-400" />
             <span>{quotes.invocation}</span>
             <Crown className="w-4 h-4 text-amber-500 fill-amber-400" />
@@ -220,14 +220,14 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
 
           {/* Guest VIP Badge */}
           {guestName && (
-            <div className="my-4 mx-auto max-w-md text-center bg-white/95 border-2 border-dashed border-[#EC4899] py-2.5 px-6 rounded-2xl shadow-sm">
-              <span className="text-xs uppercase font-bold text-[#EC4899] tracking-wider block">
+            <div className="my-4 mx-auto max-w-md text-center bg-white border-2 border-[#BE185D] py-3 px-6 rounded-2xl shadow-md">
+              <span className="text-xs uppercase font-extrabold text-[#BE185D] tracking-wider block">
                 {isBengali ? 'সাদর নিমন্ত্রণ' : 'You are Cordially Invited'}
               </span>
-              <span className="text-xl sm:text-2xl font-extrabold text-[#7C3AED]">
+              <span className="text-2xl sm:text-3xl font-black text-[#4C1D95]">
                 {guestName}
               </span>
-              <span className="text-[11px] text-stone-500 block mt-0.5">
+              <span className="text-xs text-stone-600 block mt-0.5 font-medium">
                 {isBengali ? 'সপরিবারে আমাদের রাজকন্যার প্রথম জন্মদিনে শুভাগমন কামনা করি' : 'Join us with your family to celebrate this fairytale milestone'}
               </span>
             </div>
@@ -235,59 +235,68 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
 
           {/* Birthday Title */}
           <div className="my-4 space-y-1">
-            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-wide text-[#7C3AED] drop-shadow-sm">
+            <h1 className="text-4xl sm:text-6xl font-black tracking-wide text-[#4C1D95] drop-shadow-sm">
               {isBengali ? quotes.nativeWeddingTitle : quotes.weddingTitle}
             </h1>
-            <p className="text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EC4899] font-bold">
+            <p className="text-xs sm:text-sm uppercase tracking-[0.25em] text-[#9D174D] font-extrabold mt-1">
               {template.cultureLabel}
             </p>
           </div>
 
-          {/* Rhyme Banner */}
-          <div className="my-4 max-w-lg mx-auto py-3.5 px-6 bg-white/90 rounded-2xl border border-[#C084FC]/60 shadow-sm relative">
-            <p className="text-xs sm:text-sm text-[#4C1D95] whitespace-pre-line leading-relaxed italic font-medium">
-              {quotes.verse}
+          {/* Rhyme Banner - Large, High Contrast & Effortless to Read */}
+          <div className="my-6 max-w-xl mx-auto py-5 px-6 sm:px-8 bg-white/95 rounded-2xl border-2 border-[#A855F7] shadow-lg relative text-center">
+            <div className="absolute -top-3 left-6 text-xl">🎈</div>
+            <p className="font-serif text-base sm:text-lg text-[#2E1065] whitespace-pre-line leading-relaxed font-bold">
+              {isBengali ? quotes.verse : (quotes.verseTranslation || quotes.verse)}
             </p>
+            {isBengali && quotes.verseTranslation && (
+              <p className="text-xs text-[#5B21B6] mt-3 pt-2 border-t border-purple-200 italic font-sans leading-relaxed">
+                "{quotes.verseTranslation}"
+              </p>
+            )}
+            <span className="text-xs font-serif font-bold text-[#9D174D] block mt-2">
+              {quotes.verseAuthor}
+            </span>
           </div>
 
           {/* Birthday Princess Portrait Card */}
-          <div className="my-8 max-w-md mx-auto p-6 rounded-3xl bg-white/95 border-2 border-[#EC4899]/60 shadow-xl text-center relative transform hover:scale-[1.01] transition-transform">
+          <div className="my-8 max-w-md mx-auto p-6 rounded-3xl bg-white border-2 border-[#C084FC] shadow-2xl text-center relative transform hover:scale-[1.01] transition-transform">
             
             {/* Glowing Tiara Badge */}
-            <div className="w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full overflow-hidden border-4 border-[#C084FC] shadow-xl mb-4 group relative ring-4 ring-[#FCE7F3]">
+            <div className="w-40 h-40 sm:w-48 sm:h-48 mx-auto rounded-full overflow-hidden border-4 border-[#7C3AED] shadow-xl mb-4 group relative ring-4 ring-[#FCE7F3]">
               <img
                 src={princess.image}
                 alt={princess.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#7C3AED]/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#4C1D95]/30 to-transparent" />
             </div>
 
-            <span className="px-4 py-1 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#EC4899] to-[#0284C7] text-white text-xs font-bold inline-block shadow-md">
+            <span className="px-5 py-1.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#BE185D] to-[#0284C7] text-white text-xs sm:text-sm font-extrabold inline-block shadow-md">
               👑 {isBengali ? princess.nativeRole : princess.role} 👑
             </span>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#7C3AED] mt-2">
+            <h2 className="text-2xl sm:text-4xl font-black text-[#4C1D95] mt-2">
               {isBengali ? princess.nativeName : princess.name}
             </h2>
 
-            <div className="mt-3 p-3 bg-purple-50/70 rounded-xl border border-purple-200 text-xs text-[#2E1065] space-y-1">
-              <p className="font-bold text-[#7C3AED]">{isBengali ? princess.nativeParents : princess.parents}</p>
-              <p className="opacity-80">{isBengali ? princess.nativeGrandparents : princess.grandparents}</p>
+            <div className="mt-3 p-3.5 bg-purple-50/90 rounded-2xl border border-purple-200 text-xs sm:text-sm text-[#2E1065] space-y-1">
+              <p className="font-bold text-[#5B21B6]">{isBengali ? princess.nativeParents : princess.parents}</p>
+              <p className="text-stone-700">{isBengali ? princess.nativeGrandparents : princess.grandparents}</p>
             </div>
 
-            <p className="text-xs italic text-stone-600 mt-2.5 px-2">
+            <p className="text-xs sm:text-sm italic text-[#4C1D95] font-semibold mt-2.5 px-2">
               "{isBengali ? princess.nativeAbout : princess.about}"
             </p>
           </div>
 
           {/* Date & Muhurat Highlight Pill */}
           <div className="my-6 inline-flex flex-wrap items-center justify-center gap-3">
-            <div className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#EC4899] text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2">
-              <Cake className="w-4 h-4 text-yellow-200" />
+            <div className="px-5 py-2.5 rounded-full bg-[#5B21B6] text-white font-serif text-xs sm:text-sm font-black shadow-md flex items-center gap-2">
+              <Cake className="w-4 h-4 text-yellow-300" />
               <span>{isBengali ? template.targetDateNative : 'Sunday, 20th December 2026 | Cake Cutting: 7:00 PM'}</span>
             </div>
-            <div className="px-5 py-2.5 rounded-full bg-white border border-[#C084FC] text-[#7C3AED] text-xs sm:text-sm font-bold shadow-sm flex items-center gap-2">
+            <div className="px-5 py-2.5 rounded-full bg-white border-2 border-[#BE185D] text-[#9D174D] font-serif text-xs sm:text-sm font-black shadow-sm flex items-center gap-2">
               <span>📍</span>
               <span>{isBengali ? venue.nativeName : venue.name}</span>
             </div>

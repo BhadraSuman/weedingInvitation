@@ -237,37 +237,37 @@ export const AnnaprashanView: React.FC<AnnaprashanViewProps> = ({
         
         {/* Sunny Marigold Top Washi Tape Clip Accent */}
         <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-32 h-7 bg-amber-300/80 -rotate-1 rounded-sm shadow-sm border border-amber-400/60 z-20 flex items-center justify-center">
-          <span className="text-[10px] uppercase font-bold tracking-widest text-amber-900/80">
-            ★ SCRAPBOOK ★
+          <span className="text-xs uppercase font-extrabold tracking-widest text-amber-950">
+            ★ MUKHE BHAAT SCRAPBOOK ★
           </span>
         </div>
 
         {/* Delicate Floral / Marigold Border Inner Canvas */}
-        <div className="border-2 border-dashed border-[#F59E0B]/60 rounded-2xl p-4 sm:p-8 bg-[#FEFDF9] relative">
+        <div className="border-2 border-dashed border-[#F59E0B]/70 rounded-2xl p-4 sm:p-8 bg-[#FEFDF9] relative">
           
           {/* Top Auspicious Invocation */}
           <div className="flex items-center justify-center gap-2 mb-2 text-[#D97706]">
-            <span className="text-xl">🌼</span>
-            <span className="font-bengali text-xs sm:text-sm tracking-widest font-bold text-[#B45309]">
+            <span className="text-2xl">🌼</span>
+            <span className="font-bengali text-sm sm:text-base tracking-widest font-black text-[#78350F]">
               {quotes.invocation}
             </span>
-            <span className="text-xl">🌼</span>
+            <span className="text-2xl">🌼</span>
           </div>
 
-          <div className="inline-block px-4 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[11px] uppercase tracking-widest text-[#059669] font-bold">
+          <div className="inline-block px-5 py-1.5 rounded-full bg-emerald-100 border-2 border-emerald-400 text-xs sm:text-sm uppercase tracking-widest text-[#065F46] font-extrabold shadow-sm">
             🌱 {quotes.subInvocation} 🌱
           </div>
 
           {/* Guest VIP Badge */}
           {guestName && (
-            <div className="my-5 mx-auto max-w-md text-center bg-gradient-to-r from-amber-100/80 via-yellow-50 to-amber-100/80 border-2 border-dashed border-[#D97706]/40 py-2.5 px-6 rounded-2xl shadow-sm">
-              <p className="font-bengali text-xs text-[#B45309] font-semibold uppercase tracking-wider">
+            <div className="my-5 mx-auto max-w-md text-center bg-amber-50 border-2 border-amber-300 py-3 px-6 rounded-2xl shadow-md">
+              <p className="font-bengali text-xs text-[#92400E] font-bold uppercase tracking-wider">
                 {isBengali ? 'সাদর নিমন্ত্রণ' : 'Cordially Invited'}
               </p>
-              <p className="font-bengali text-2xl text-[#92400E] font-bold mt-0.5">
+              <p className="font-bengali text-2xl sm:text-3xl text-[#78350F] font-black mt-0.5">
                 {guestName}
               </p>
-              <p className="font-bengali text-xs text-[#78350F] mt-0.5">
+              <p className="font-bengali text-xs sm:text-sm text-[#451A03] font-medium mt-0.5">
                 {isBengali ? 'সপরিবারে আপনার উপস্থিতি ও স্নেহাশিস একান্ত কাম্য' : 'Awaiting your loving presence and blessings with family'}
               </p>
             </div>
@@ -275,63 +275,75 @@ export const AnnaprashanView: React.FC<AnnaprashanViewProps> = ({
 
           {/* Baby's First Rice Title */}
           <div className="my-5 space-y-1">
-            <h1 className="font-bengali text-4xl sm:text-6xl text-[#B45309] font-extrabold tracking-wide drop-shadow-sm">
+            <h1 className="font-bengali text-4xl sm:text-6xl text-[#78350F] font-black tracking-wide drop-shadow-sm">
               {isBengali ? quotes.nativeWeddingTitle : quotes.weddingTitle}
             </h1>
-            <p className="font-sans text-xs sm:text-sm tracking-[0.2em] text-[#D97706] uppercase font-bold">
+            <p className="font-sans text-xs sm:text-sm tracking-[0.2em] text-[#92400E] uppercase font-extrabold mt-1">
               {isBengali ? 'বাঙালি মুখে ভাত ও অন্নপ্রাশন মহোৎসব' : 'Bengali First Rice & Mukhe Bhaat Ceremony'}
             </p>
           </div>
 
-          {/* Sweet Couplet Banner */}
-          <div className="my-5 max-w-lg mx-auto py-3 px-5 bg-gradient-to-r from-amber-50 via-yellow-50 to-emerald-50 rounded-2xl border border-amber-300 shadow-sm relative">
-            <div className="absolute -top-2 left-6 text-sm">📌</div>
-            <p className="font-bengali text-xs sm:text-sm text-[#78350F] whitespace-pre-line leading-relaxed italic font-medium">
-              {quotes.verse}
+          {/* Sweet Couplet Banner - Large, High Contrast & Effortless to Read */}
+          <div className="my-6 max-w-xl mx-auto py-5 px-6 sm:px-8 bg-amber-50/95 rounded-2xl border-2 border-amber-300 shadow-md relative text-center">
+            <div className="absolute -top-3 left-6 text-xl">📌</div>
+            <p className="font-bengali text-base sm:text-lg text-[#3B150A] whitespace-pre-line leading-relaxed font-bold">
+              {isBengali ? quotes.verse : (quotes.verseTranslation || quotes.verse)}
             </p>
+            {isBengali && quotes.verseTranslation && (
+              <p className="text-xs text-[#78350F] mt-3 pt-2 border-t border-amber-200/80 italic font-sans leading-relaxed">
+                "{quotes.verseTranslation}"
+              </p>
+            )}
+            <span className="text-xs font-bengali font-bold text-[#92400E] block mt-2">
+              {quotes.verseAuthor}
+            </span>
           </div>
 
           {/* Baby Aarav Polaroid Frame */}
-          <div className="my-8 max-w-sm mx-auto p-4 pb-6 rounded-2xl bg-white border border-stone-200 shadow-xl text-center transform -rotate-1 hover:rotate-0 transition-transform duration-300 relative">
+          <div className="my-8 max-w-sm mx-auto p-4 pb-6 rounded-2xl bg-white border-2 border-stone-200 shadow-2xl text-center transform -rotate-1 hover:rotate-0 transition-transform duration-300 relative">
             {/* Top Washi Tape Clip */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-emerald-200/90 rotate-2 rounded shadow-sm border border-emerald-300/70" />
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-28 h-7 bg-emerald-200 rotate-2 rounded shadow-sm border border-emerald-400 flex items-center justify-center">
+              <span className="text-[10px] uppercase font-black tracking-wider text-emerald-900">
+                LITTLE PRINCE
+              </span>
+            </div>
 
-            <div className="w-48 h-48 sm:w-56 sm:h-56 mx-auto rounded-xl overflow-hidden border-2 border-stone-200 shadow-inner mb-3 group relative">
+            <div className="w-52 h-52 sm:w-60 sm:h-60 mx-auto rounded-xl overflow-hidden border-2 border-stone-300 shadow-inner mb-3 group relative">
               <img
                 src={baby.image}
                 alt={baby.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm px-2.5 py-0.5 rounded-full text-[10px] font-bold text-amber-800 shadow">
+              <div className="absolute bottom-2 right-2 bg-amber-900/90 text-amber-100 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold shadow-md">
                 🍼 6 Months Old
               </div>
             </div>
 
-            <span className="px-3.5 py-1 rounded-full bg-amber-100 text-[#B45309] font-bengali text-xs font-bold inline-block border border-amber-200">
+            <span className="px-4 py-1 rounded-full bg-amber-100 text-[#78350F] font-bengali text-xs font-black inline-block border border-amber-300">
               👶 {isBengali ? baby.nativeRole : baby.role}
             </span>
 
-            <h2 className="font-bengali text-2xl sm:text-3xl font-bold text-[#92400E] mt-1.5">
+            <h2 className="font-bengali text-2xl sm:text-3xl font-black text-[#78350F] mt-1.5">
               {isBengali ? baby.nativeName : baby.name}
             </h2>
 
-            <div className="mt-3 p-3 bg-amber-50/70 rounded-xl border border-amber-200 text-xs font-bengali text-[#451A03] space-y-1">
-              <p className="font-bold text-[#B45309]">{isBengali ? baby.nativeParents : baby.parents}</p>
-              <p className="opacity-90">{isBengali ? baby.nativeGrandparents : baby.grandparents}</p>
+            <div className="mt-3 p-3.5 bg-amber-50 rounded-xl border border-amber-200 text-xs sm:text-sm font-bengali text-[#3B150A] space-y-1">
+              <p className="font-bold text-[#78350F]">{isBengali ? baby.nativeParents : baby.parents}</p>
+              <p className="text-stone-700">{isBengali ? baby.nativeGrandparents : baby.grandparents}</p>
             </div>
 
-            <p className="font-bengali text-xs italic text-stone-600 mt-2 px-2">
+            <p className="font-bengali text-xs sm:text-sm italic text-[#451A03] font-medium mt-2.5 px-2">
               "{isBengali ? baby.nativeAbout : baby.about}"
             </p>
           </div>
 
           {/* Date & Muhurat Highlight Pill */}
           <div className="my-6 inline-flex flex-wrap items-center justify-center gap-3">
-            <div className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#D97706] to-[#B45309] text-white font-bengali text-xs sm:text-sm font-bold shadow-md flex items-center gap-2">
+            <div className="px-5 py-2.5 rounded-full bg-[#92400E] text-[#FFFBEB] font-bengali text-xs sm:text-sm font-black shadow-md flex items-center gap-2">
               <span>📅</span>
               <span>{isBengali ? template.targetDateNative : 'Sunday, 15th November 2026 | Lagna: 12:30 PM'}</span>
             </div>
-            <div className="px-5 py-2.5 rounded-full bg-emerald-50 border border-emerald-300 text-[#059669] font-bengali text-xs sm:text-sm font-bold shadow-sm flex items-center gap-2">
+            <div className="px-5 py-2.5 rounded-full bg-white border-2 border-emerald-500 text-[#065F46] font-bengali text-xs sm:text-sm font-black shadow-sm flex items-center gap-2">
               <span>📍</span>
               <span>{isBengali ? venue.nativeName : venue.name}</span>
             </div>

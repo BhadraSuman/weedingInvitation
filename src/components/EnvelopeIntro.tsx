@@ -19,6 +19,9 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
   lang,
 }) => {
   const [isOpening, setIsOpening] = useState(false);
+  const isAnnaprashan = template.id === 'annaprashan';
+  const isBirthday = template.id === 'birthday';
+  const isBengali = lang === 'native';
 
   const handleOpen = () => {
     setIsOpening(true);
@@ -49,13 +52,13 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
       }, 250);
     } catch {}
 
-    // Play wedding background music
+    // Play celebration audio track
     audioManager.play();
 
-    // Smooth transition
+    // Smooth transition to unveil the full invitation view
     setTimeout(() => {
       onOpen();
-    }, 1000);
+    }, 900);
   };
 
   return (
@@ -63,13 +66,13 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center p-4 text-[#FDFBF7]"
       style={{
         backgroundColor: template.colors.primaryDark,
-        backgroundImage: `radial-gradient(${template.colors.accent} 1px, transparent 1px)`,
+        backgroundImage: `radial-gradient(${template.colors.accent} 1.5px, transparent 1.5px)`,
         backgroundSize: '24px 24px'
       }}
     >
       {/* Ambient background glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-20"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-25"
         style={{ backgroundColor: template.colors.accent }}
       />
 
@@ -81,127 +84,141 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
       >
         {/* Outer Shadow Envelope Card */}
         <div
-          className="relative rounded-2xl p-2 shadow-2xl border-2"
+          className="relative rounded-3xl p-2.5 shadow-2xl border-2"
           style={{
             backgroundColor: template.colors.envelopeOuter,
-            borderColor: `${template.colors.accent}66`
+            borderColor: `${template.colors.border || template.colors.accent}80`
           }}
         >
           {/* Inner Golden Border Frame */}
           <div
-            className={`relative bg-gradient-to-b ${template.colors.envelopeInner} rounded-xl p-6 sm:p-8 border overflow-hidden text-center`}
-            style={{ borderColor: `${template.colors.accent}80` }}
+            className={`relative bg-gradient-to-b ${template.colors.envelopeInner} rounded-2xl p-6 sm:p-8 border overflow-hidden text-center`}
+            style={{ borderColor: `${template.colors.border || template.colors.accent}90` }}
           >
-            {/* Cultural Alpona / Motif Background Texture */}
+            {/* Subtle Texture */}
             <div
               className="absolute inset-0 opacity-10 pointer-events-none"
               style={{
-                backgroundImage: `radial-gradient(${template.colors.accent} 1px, transparent 1px)`,
+                backgroundImage: `radial-gradient(#FFFFFF 1px, transparent 1px)`,
                 backgroundSize: '16px 16px'
               }}
             />
 
             {/* Corner Decorative Accents */}
-            <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2" style={{ borderColor: template.colors.accent }} />
-            <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2" style={{ borderColor: template.colors.accent }} />
-            <div className="absolute bottom-2 left-2 w-8 h-8 border-b-2 border-l-2" style={{ borderColor: template.colors.accent }} />
-            <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2" style={{ borderColor: template.colors.accent }} />
+            <div className="absolute top-3 left-3 w-7 h-7 border-t-2 border-l-2 border-amber-300/80" />
+            <div className="absolute top-3 right-3 w-7 h-7 border-t-2 border-r-2 border-amber-300/80" />
+            <div className="absolute bottom-3 left-3 w-7 h-7 border-b-2 border-l-2 border-amber-300/80" />
+            <div className="absolute bottom-3 right-3 w-7 h-7 border-b-2 border-r-2 border-amber-300/80" />
 
             {/* Auspicious Invocation Heading */}
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <p
-                className="text-xs tracking-widest font-serif font-bold uppercase"
-                style={{ color: template.colors.accentLight }}
-              >
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <p className="text-xs sm:text-sm tracking-widest font-serif font-extrabold uppercase text-[#FEF08A] drop-shadow-sm">
                 {template.quotes.invocation}
               </p>
             </div>
 
             {/* Cultural Emblem Centerpiece */}
-            <div className="flex justify-center mb-3">
-              <CulturalMotifBadge templateId={template.id} className="w-16 h-14" />
+            <div className="flex justify-center my-3">
+              <CulturalMotifBadge templateId={template.id} className="w-16 h-14 drop-shadow-lg" />
             </div>
 
-            {/* Auspicious Wedding Title */}
-            <h1
-              className="text-3xl sm:text-4xl font-bold tracking-wide drop-shadow-md mb-1 font-serif"
-              style={{ color: template.colors.accentLight }}
-            >
+            {/* Auspicious Title - High Contrast White & Gold */}
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-wide drop-shadow-md mb-1 font-serif text-white">
               {lang === 'native' ? template.quotes.nativeWeddingTitle : template.quotes.weddingTitle}
             </h1>
-            <p
-              className="text-xs sm:text-sm tracking-[0.25em] uppercase mb-4 font-serif font-semibold"
-              style={{ color: template.colors.accent }}
-            >
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase mb-4 font-serif font-bold text-[#FDE68A] drop-shadow-sm">
               {template.cultureLabel}
             </p>
 
-            {/* Couple Names Preview */}
-            <div
-              className="my-5 py-3 border-y rounded-lg"
-              style={{
-                borderColor: `${template.colors.accent}40`,
-                backgroundColor: `${template.colors.primaryDark}80`
-              }}
-            >
-              <p className="text-lg sm:text-xl text-white font-semibold font-serif">
-                {lang === 'native' ? template.groom.nativeName : template.groom.name}{' '}
-                <span style={{ color: template.colors.accent }}>&amp;</span>{' '}
-                {lang === 'native' ? template.bride.nativeName : template.bride.name}
-              </p>
-            </div>
+            {/* Event Specific Honoree & Family Card */}
+            {isAnnaprashan ? (
+              <div className="my-4 py-3.5 px-4 border rounded-2xl bg-black/35 backdrop-blur-md border-amber-300/50 shadow-inner text-center space-y-1">
+                <span className="text-[11px] uppercase font-serif tracking-wider font-bold text-[#FDE68A] block">
+                  🥣 {isBengali ? 'স্নেহের রাজপুত্র' : 'The Little Prince'}
+                </span>
+                <p className="text-2xl sm:text-3xl text-white font-extrabold font-serif tracking-wide drop-shadow">
+                  {isBengali ? template.groom.nativeName : template.groom.name}
+                </p>
+                <p className="text-xs text-amber-100 font-serif font-medium">
+                  {isBengali ? template.groom.nativeParents : template.groom.parents}
+                </p>
+              </div>
+            ) : isBirthday ? (
+              <div className="my-4 py-3.5 px-4 border rounded-2xl bg-black/35 backdrop-blur-md border-pink-300/50 shadow-inner text-center space-y-1">
+                <span className="text-[11px] uppercase font-serif tracking-wider font-bold text-[#FDE047] block">
+                  👑 {isBengali ? 'জন্মদিনের রাজকন্যা' : 'Birthday Princess'}
+                </span>
+                <p className="text-2xl sm:text-3xl text-white font-extrabold font-serif tracking-wide drop-shadow">
+                  {isBengali ? template.groom.nativeName : template.groom.name}
+                </p>
+                <p className="text-xs text-pink-100 font-serif font-medium">
+                  {isBengali ? template.groom.nativeParents : template.groom.parents}
+                </p>
+              </div>
+            ) : (
+              <div className="my-4 py-3.5 px-4 border rounded-2xl bg-black/35 backdrop-blur-md border-amber-300/50 shadow-inner text-center">
+                <p className="text-xl sm:text-2xl text-white font-extrabold font-serif tracking-wide drop-shadow">
+                  {lang === 'native' ? template.groom.nativeName : template.groom.name}{' '}
+                  <span className="text-[#FDE68A]">&amp;</span>{' '}
+                  {lang === 'native' ? template.bride.nativeName : template.bride.name}
+                </p>
+              </div>
+            )}
 
-            {/* Personalized Guest Badge */}
+            {/* Personalized Guest Badge or Welcome Notice */}
             {guestName ? (
-              <div
-                className="mb-6 px-4 py-2 rounded-lg border inline-block max-w-full"
-                style={{
-                  backgroundColor: `${template.colors.primaryDark}B3`,
-                  borderColor: `${template.colors.accent}66`
-                }}
-              >
-                <p className="text-[11px] uppercase font-serif tracking-wider" style={{ color: template.colors.accent }}>
+              <div className="my-4 px-4 py-2.5 rounded-xl border border-amber-300/60 bg-black/40 backdrop-blur-md inline-block max-w-full shadow-md">
+                <p className="text-[11px] uppercase font-serif tracking-wider text-[#FDE68A] font-bold">
                   {lang === 'en'
                     ? 'Cordially Invited'
                     : template.id === 'bihari_marwari' || template.id === 'royal_north'
                     ? 'सादर निमंत्रण'
-                    : template.id === 'south_indian'
-                    ? 'நல்வரவு'
                     : 'সাদর নিমন্ত্রণ'}
                 </p>
-                <p className="font-serif text-base sm:text-lg text-white font-semibold truncate">
+                <p className="font-serif text-lg sm:text-xl text-white font-bold truncate mt-0.5">
                   {guestName}
                 </p>
               </div>
             ) : (
-              <div className="mb-6">
-                <p className="text-xs italic px-2" style={{ color: template.colors.accentLight }}>
+              <div className="my-3 max-w-sm mx-auto">
+                <p className="text-xs sm:text-sm text-stone-100 font-serif font-medium leading-relaxed px-2 drop-shadow-sm">
                   {lang === 'native' ? template.quotes.nativeWelcomeNotice : template.quotes.welcomeNotice}
                 </p>
               </div>
             )}
 
-            {/* Interactive Open Button */}
-            <div className="mt-2 flex flex-col items-center gap-3">
+            {/* High-Contrast Interactive Open Button */}
+            <div className="mt-4 flex flex-col items-center gap-2.5">
               <button
                 onClick={handleOpen}
-                className={`group relative cursor-pointer flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r ${template.colors.buttonGradient} text-[#3B0709] font-bold text-base sm:text-lg rounded-full shadow-[0_0_25px_rgba(212,175,55,0.45)] hover:shadow-[0_0_35px_rgba(212,175,55,0.7)] transition-all duration-300 hover:scale-105 active:scale-95`}
+                className={`group relative cursor-pointer flex items-center justify-center gap-2.5 px-8 py-3.5 bg-gradient-to-r ${template.colors.buttonGradient} font-serif font-extrabold text-base sm:text-lg rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ${
+                  isBirthday
+                    ? 'text-white shadow-purple-900/60 border border-white/40'
+                    : 'text-[#3B0709] shadow-amber-900/50 border border-amber-200/50'
+                }`}
               >
-                <Sparkles className="w-5 h-5 animate-pulse" style={{ color: template.colors.primary }} />
-                <span className="font-serif tracking-wide">
+                <Sparkles className="w-5 h-5 animate-pulse" />
+                <span className="tracking-wide">
                   {lang === 'en'
-                    ? 'Open Invitation'
+                    ? (isBirthday ? 'Enter Celebration' : 'Open Invitation')
                     : template.id === 'bihari_marwari' || template.id === 'royal_north'
                     ? 'निमंत्रण पत्र खोलें'
-                    : template.id === 'south_indian'
-                    ? 'அழைப்பிதழை திறக்கவும்'
+                    : isBirthday
+                    ? 'উৎসবে প্রবেশ করুন'
                     : 'পত্র উন্মোচন করুন'}
                 </span>
-                <Music className="w-4 h-4 group-hover:rotate-12 transition-transform" style={{ color: template.colors.primary }} />
+                <Music className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               </button>
 
-              <p className="text-[11px] flex items-center gap-1.5 mt-1 font-serif" style={{ color: `${template.colors.accentLight}B3` }}>
-                <span>🎵</span> Tap to enter with traditional wedding music
+              <p className="text-xs text-stone-200 font-serif font-medium flex items-center gap-1.5 drop-shadow">
+                <span>🎵</span>
+                <span>
+                  {isBirthday
+                    ? 'Tap to enter with joyful birthday music'
+                    : isAnnaprashan
+                    ? 'Tap to enter with auspicious shehnai & flute lullaby'
+                    : 'Tap to enter with traditional auspicious shehnai'}
+                </span>
               </p>
             </div>
 

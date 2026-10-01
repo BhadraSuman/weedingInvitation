@@ -300,6 +300,48 @@ export const MadhubaniDivider: React.FC<{ className?: string; color?: string }> 
   </div>
 );
 
+export const AnnaprashanBowlIcon: React.FC<{ className?: string; color?: string }> = ({
+  className = "w-16 h-14",
+  color = "#F59E0B"
+}) => (
+  <svg viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Silver/Gold Rice Bowl */}
+    <ellipse cx="40" cy="38" rx="28" ry="14" fill="#FEF3C7" stroke={color} strokeWidth="2.5" />
+    <path d="M12 38C12 50 24 58 40 58C56 58 68 50 68 38" fill="#FDE68A" stroke={color} strokeWidth="2.5" />
+    {/* Bowl Rim & Engravings */}
+    <ellipse cx="40" cy="36" rx="25" ry="10" fill="#FFFBEB" stroke={color} strokeWidth="1.5" />
+    {/* Holy Payesh / Kheer surface */}
+    <ellipse cx="40" cy="36" rx="20" ry="7" fill="#FBBF24" fillOpacity="0.4" />
+    <circle cx="36" cy="35" r="2" fill="#D97706" />
+    <circle cx="44" cy="37" r="1.5" fill="#D97706" />
+    {/* Sacred Silver/Gold Spoon */}
+    <path d="M48 18L58 10C61 7 66 10 63 14L46 34" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+    <ellipse cx="60" cy="11" rx="4" ry="2.5" fill="#FEF3C7" stroke={color} strokeWidth="1.5" transform="rotate(-35 60 11)" />
+    {/* Sparkle drops */}
+    <circle cx="40" cy="14" r="2" fill={color} />
+    <circle cx="28" cy="18" r="1.5" fill={color} />
+  </svg>
+);
+
+export const BirthdayTiaraIcon: React.FC<{ className?: string; color?: string }> = ({
+  className = "w-16 h-14",
+  color = "#FACC15"
+}) => (
+  <svg viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Crown Base */}
+    <path d="M16 46H64L60 52H20L16 46Z" fill="#FDE047" stroke={color} strokeWidth="2" />
+    {/* Tiara Peaks */}
+    <path d="M16 46L22 24L32 38L40 14L48 38L58 24L64 46" fill="#FEF08A" stroke={color} strokeWidth="2.5" strokeLinejoin="round" />
+    {/* Jewels */}
+    <circle cx="40" cy="14" r="3.5" fill="#EC4899" stroke="#FFF" strokeWidth="1" />
+    <circle cx="22" cy="24" r="2.5" fill="#A855F7" stroke="#FFF" strokeWidth="1" />
+    <circle cx="58" cy="24" r="2.5" fill="#0284C7" stroke="#FFF" strokeWidth="1" />
+    <circle cx="40" cy="38" r="2.5" fill="#EC4899" />
+    {/* Star Twinkles */}
+    <path d="M40 4L41.5 8.5L46 10L41.5 11.5L40 16L38.5 11.5L34 10L38.5 8.5L40 4Z" fill="#FACC15" />
+  </svg>
+);
+
 // -------------------------------------------------------------
 // DYNAMIC DISPATCHER
 // -------------------------------------------------------------
@@ -310,16 +352,18 @@ export const CulturalMotifBadge: React.FC<{ templateId: TemplateId; className?: 
 }) => {
   switch (templateId) {
     case 'bengali':
-    case 'annaprashan':
       return <ToporMukutIcon className={className} />;
+    case 'annaprashan':
+      return <AnnaprashanBowlIcon className={className} />;
     case 'royal_north':
       return <RoyalElephantIcon className={className} />;
     case 'bihari_marwari':
       return <MaurIcon className={className} />;
     case 'south_indian':
       return <TempleLampIcon className={className} />;
-    case 'modern_minimal':
     case 'birthday':
+      return <BirthdayTiaraIcon className={className} />;
+    case 'modern_minimal':
     default:
       return <WeddingRingsIcon className={className} />;
   }
