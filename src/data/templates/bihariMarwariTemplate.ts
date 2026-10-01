@@ -10,18 +10,18 @@ export const bihariMarwariTemplate: CulturalTemplate = {
   nativeLanguageLabel: 'हिन्दी',
   nativeLanguageCode: 'hi',
   colors: {
-    primary: '#800020',          // Deep Marwar Burgundy / Sindoor Crimson
-    primaryDark: '#4A0012',
-    primaryLight: '#A31536',
-    accent: '#D4AF37',           // Antique Gold
-    accentLight: '#FBE8A6',
-    bgParchment: '#FCF8F2',
-    bgCard: '#FFFDF9',
-    border: '#D4AF37',
-    textColor: '#291417',
-    envelopeOuter: '#5E0018',
-    envelopeInner: 'from-[#800020] to-[#3B000E]',
-    buttonGradient: 'from-[#D4AF37] via-[#FBE8A6] to-[#D4AF37]'
+    primary: '#0D4A36',          // Royal Emerald Green Velvet (Udaipur / Jaipur Palace)
+    primaryDark: '#042017',      // Deep Night Palace Emerald
+    primaryLight: '#156D50',
+    accent: '#E5C158',           // Imperial Gold Foil
+    accentLight: '#FDF2C7',
+    bgParchment: '#F4F8F5',      // Gilded Silk Ivory
+    bgCard: '#FFFFFF',
+    border: '#E5C158',
+    textColor: '#12261E',
+    envelopeOuter: '#062A1E',
+    envelopeInner: 'from-[#0D4A36] to-[#041D15]',
+    buttonGradient: 'from-[#E5C158] via-[#FDF2C7] to-[#E5C158]'
   },
   audioTrack: {
     title: 'Shehnai & Marwari Kesariya Melodies',

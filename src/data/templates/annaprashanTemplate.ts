@@ -10,18 +10,18 @@ export const annaprashanTemplate: CulturalTemplate = {
   nativeLanguageLabel: 'বাংলা',
   nativeLanguageCode: 'bn',
   colors: {
-    primary: '#A82025',          // Auspicious Bengali Vermilion / Alta Red
-    primaryDark: '#5E0E12',
-    primaryLight: '#E0484E',
-    accent: '#D4AF37',           // Gilded Gold
-    accentLight: '#FBF0D9',
-    bgParchment: '#FFFDF7',      // Soft Baby Ivory Cream
+    primary: '#D97706',          // Warm Marigold Kesar Amber
+    primaryDark: '#92400E',      // Deep Amber Turmeric
+    primaryLight: '#F59E0B',     // Radiant Marigold Yellow
+    accent: '#059669',           // Fresh Tulsi / Mint Green
+    accentLight: '#FEF3C7',      // Soft Kesar Buttercream
+    bgParchment: '#FFFDF5',      // Warm Sunny Baby Ivory Cream
     bgCard: '#FFFFFF',
-    border: '#E8C56B',
-    textColor: '#2E1A14',
-    envelopeOuter: '#6B1015',
-    envelopeInner: 'from-[#8B181B] to-[#450508]',
-    buttonGradient: 'from-[#D4AF37] via-[#FCE38A] to-[#D4AF37]'
+    border: '#FCD34D',           // Marigold Gilded Border
+    textColor: '#451A03',        // Warm Deep Amber Wood
+    envelopeOuter: '#B45309',    // Deep Amber Turmeric
+    envelopeInner: 'from-[#D97706] to-[#78350F]',
+    buttonGradient: 'from-[#F59E0B] via-[#FBBF24] to-[#D97706]'
   },
   audioTrack: {
     title: 'Subho Annaprashan Shehnai & Folk Lullaby',

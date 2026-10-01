@@ -105,23 +105,23 @@ export const LandingPage: React.FC = () => {
 
           <Link
             to="/sandeep-weds-priya"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#800020] hover:bg-[#520014] text-[#FBE8A6] font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
           >
             <span>🚩 Bihari &amp; Marwari Vivah</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#E5C158]" />
           </Link>
 
           <Link
             to="/aarav-annaprashan"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#A82025] hover:opacity-95 text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
           >
             <span>🥣 Baby Annaprashan</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#FCE38A]" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#FEF3C7]" />
           </Link>
 
           <Link
             to="/ananya-turns-1"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#B0305C] hover:opacity-95 text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
           >
             <span>🎂 1st Birthday Gala</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#FCE7F3]" />
@@ -184,7 +184,13 @@ export const LandingPage: React.FC = () => {
                       alt={evt.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-3 left-3 bg-[#8B181B] text-[#F3E5AB] font-serif text-xs font-bold px-3 py-1 rounded-full shadow">
+                    <div
+                      className="absolute top-3 left-3 font-serif text-xs font-bold px-3 py-1 rounded-full shadow"
+                      style={{
+                        backgroundColor: evt.template.colors.primary,
+                        color: evt.template.colors.accentLight || '#FFFFFF'
+                      }}
+                    >
                       {evt.badgeEmoji} {evt.cultureName.split('(')[0].trim()}
                     </div>
                     <div className="absolute bottom-3 left-3 right-3 bg-black/60 backdrop-blur-md text-white p-2 rounded-xl text-xs font-mono">
@@ -192,7 +198,10 @@ export const LandingPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-2xl font-serif font-bold text-[#8B181B]">
+                  <h3
+                    className="text-2xl font-serif font-bold"
+                    style={{ color: evt.template.colors.primary }}
+                  >
                     {evt.title.split('—')[0].trim()}
                   </h3>
                   <p className="text-xs text-[#997819] font-serif mt-1 font-semibold">
@@ -208,7 +217,11 @@ export const LandingPage: React.FC = () => {
                   <span className="text-xs font-serif text-stone-500">Live Client Demo</span>
                   <Link
                     to={`/${evt.slug}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#8B181B] text-[#F3E5AB] text-xs font-serif font-semibold hover:bg-[#5E0B0E] transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-serif font-semibold shadow hover:opacity-90 transition-opacity"
+                    style={{
+                      backgroundColor: evt.template.colors.primary,
+                      color: '#FFFFFF'
+                    }}
                   >
                     <span>Open E-Patra</span>
                     <ArrowRight className="w-3.5 h-3.5" />

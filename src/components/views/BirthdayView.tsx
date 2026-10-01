@@ -21,7 +21,11 @@ import {
   Wand2,
   Music,
   Smile,
-  Users
+  Users,
+  Flame,
+  RotateCcw,
+  Crown,
+  Gift
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -65,11 +69,32 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedMain, setCopiedMain] = useState(false);
 
+  // Interactive Candle Blow State
+  const [isCandleBlown, setIsCandleBlown] = useState(false);
+  const [blowCount, setBlowCount] = useState(0);
+
   useEffect(() => {
     localStorage.setItem(storageKey, JSON.stringify(wishes));
   }, [wishes, storageKey]);
 
   const quickWishes = isBengali ? template.quickWishes.native : template.quickWishes.en;
+
+  const handleBlowCandle = () => {
+    if (!isCandleBlown) {
+      setIsCandleBlown(true);
+      setBlowCount(prev => prev + 1);
+      try {
+        confetti({
+          particleCount: 80,
+          spread: 90,
+          origin: { y: 0.65 },
+          colors: ['#7C3AED', '#EC4899', '#38BDF8', '#FACC15', '#C084FC']
+        });
+      } catch {}
+    } else {
+      setIsCandleBlown(false);
+    }
+  };
 
   const handleWishSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,7 +123,7 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
           particleCount: 60,
           spread: 80,
           origin: { y: 0.8 },
-          colors: ['#B0305C', '#D4AF37', '#FCE7F3', '#FFD166']
+          colors: ['#7C3AED', '#EC4899', '#38BDF8', '#FACC15']
         });
       } catch {}
     }, 400);
@@ -136,113 +161,133 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
   const milestones = [
     { month: isBengali ? '১ মাস' : '1 Month', note: isBengali ? 'ছোট্ট রূপকথার রাজকন্যার আগমন' : 'Welcome little angel' },
     { month: isBengali ? '৩ মাস' : '3 Months', note: isBengali ? 'প্রথম জাদুকরী হাসি ও খুশির কলকাকলি' : 'First sweet giggles' },
-    { month: isBengali ? '৬ মাস' : '6 Months', note: isBengali ? 'হামাগুড়ি ও খেলনা নিয়ে দুষ্টুমি' : 'Sitting & exploring' },
-    { month: isBengali ? '৯ মাস' : '9 Months', note: isBengali ? 'ছোট্ট হাতে দাঁড়ানোর মধুর চেষ্টা' : 'Standing tall with support' },
+    { month: isBengali ? '৬ মাস' : '6 Months', note: isBengali ? 'হামাগুড়ি ও খেলনা নিয়ে দুষ্টুমি' : 'Sitting & exploring toys' },
+    { month: isBengali ? '৯ মাস' : '9 Months', note: isBengali ? 'ছোট্ট পায়ে দাঁড়ানোর মধুর চেষ্টা' : 'Standing tall with support' },
     { month: isBengali ? '১২ মাস' : '12 Months', note: isBengali ? 'এক বছর পূর্ণ! শুভ জন্মদিন রাজকন্যা!' : 'Turning ONE today!' }
   ];
 
-  const funZones = [
+  const carnivalZones = [
     {
-      title: isBengali ? 'জাদুকরী ম্যাজিক শো' : 'Live Magic & Illusion Show',
-      desc: isBengali ? 'শিশুদের মন ভোলানো রকমারি ম্যাজিক ও সারপ্রাইজ উপহার' : 'Interactive comedy magic and mystery tricks for kids'
+      title: isBengali ? 'জাদুকরী ম্যাজিক ও ইলুশন' : 'Live Magic & Illusion Show',
+      icon: '🪄',
+      desc: isBengali ? 'শিশুদের মন ভোলানো রকমারি ম্যাজিক ট্রিকস ও সারপ্রাইজ উপহার' : 'Interactive comedy magic and mystery tricks for kids'
     },
     {
       title: isBengali ? 'কার্টুন ফেস পেইন্টিং' : 'Artisanal Face Painting',
-      desc: isBengali ? 'প্রিন্সেস ও সুপারহিরোদের রঙিন ফেস আর্ট' : 'Skin-safe face art & cartoon designs'
+      icon: '🎨',
+      desc: isBengali ? 'প্রিন্সেস ও সুপারহিরোদের স্কিন-সেফ রঙিন ফেস আর্ট' : 'Skin-safe face art, sparkles & cartoon characters'
     },
     {
-      title: isBengali ? 'চকোলেট ফাউন্টেন ও কাপকেক' : 'Chocolate Fountain & Sweet Bar',
-      desc: isBengali ? 'গরম চকোলেট, মার্শমেলো ও পেস্ট্রির আনন্দ' : 'Belgian chocolate dips with cupcakes and treats'
+      title: isBengali ? 'চকোলেট ফাউন্টেন ও ট্রিট' : 'Belgian Chocolate Fountain',
+      icon: '🍫',
+      desc: isBengali ? 'গরম চকোলেট, মার্শমেলো ও কাপকেক কাউন্টার' : 'Flowing warm chocolate dip with marshmallows & cakes'
     },
     {
-      title: isBengali ? 'বেলুন আর্ট ও বাবল জোন' : 'Balloon Twisting & Bubble Zone',
-      desc: isBengali ? 'রঙিন বেলুনের পুতুল ও বিশাল বুদবুদের খেলা' : 'Fun animal balloons and giant rainbow bubbles'
+      title: isBengali ? 'বেলুন আর্ট ও বাবল জোন' : 'Rainbow Bubbles & Balloons',
+      icon: '🫧',
+      desc: isBengali ? 'রঙিন বেলুনের পুতুল ও বিশাল রামধনু বুদবুদের খেলা' : 'Custom animal balloons and giant rainbow bubble arena'
     }
   ];
 
   return (
-    <div className="relative max-w-4xl mx-auto px-3 sm:px-6 py-8 space-y-12 sm:space-y-14 font-sans">
+    <div className="relative max-w-4xl mx-auto px-3 sm:px-6 py-8 space-y-12 sm:space-y-14 font-sans text-[#2E1065]">
 
-      {/* 1. Main Birthday Gala Banner */}
-      <section className="relative bg-gradient-to-b from-[#FFFDF9] via-[#FDF2F8] to-[#FFFDF9] rounded-3xl p-6 sm:p-12 border-4 border-[#B0305C] shadow-2xl overflow-hidden text-center">
+      {/* 1. Fairytale Wonderland Hero Gala Banner */}
+      <section className="relative bg-gradient-to-b from-[#FAF5FF] via-[#FDF2F8] to-[#F0F9FF] rounded-3xl p-6 sm:p-12 border-4 border-[#C084FC] shadow-2xl overflow-hidden text-center">
         
-        {/* Subtle Starlight Texture */}
+        {/* Floating Playful Pastel Ornaments */}
+        <div className="absolute top-4 left-4 text-3xl animate-bounce pointer-events-none opacity-80">🎈</div>
+        <div className="absolute top-4 right-4 text-3xl animate-bounce pointer-events-none opacity-80">✨</div>
+        <div className="absolute bottom-6 left-6 text-2xl pointer-events-none opacity-70">🎠</div>
+        <div className="absolute bottom-6 right-6 text-2xl pointer-events-none opacity-70">🪄</div>
+
+        {/* Starlight Twinkle Canvas Effect */}
         <div
           className="absolute inset-0 opacity-15 pointer-events-none"
           style={{
-            backgroundImage: `radial-gradient(#B0305C 1px, transparent 1px)`,
-            backgroundSize: '20px 20px'
+            backgroundImage: `radial-gradient(#7C3AED 1.5px, transparent 1.5px)`,
+            backgroundSize: '24px 24px'
           }}
         />
 
         <div className="relative z-10">
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#B0305C]/10 border border-[#B0305C]/40 text-xs font-serif font-bold text-[#B0305C] uppercase tracking-widest mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+          <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-white/90 border border-[#C084FC] text-xs font-bold text-[#7C3AED] uppercase tracking-widest mb-3 shadow-sm">
+            <Crown className="w-4 h-4 text-amber-500 fill-amber-400" />
             <span>{quotes.invocation}</span>
-            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <Crown className="w-4 h-4 text-amber-500 fill-amber-400" />
           </div>
 
           {/* Guest VIP Badge */}
           {guestName && (
-            <div className="my-4 mx-auto max-w-md text-center bg-white/90 border border-[#B0305C]/40 py-2.5 px-6 rounded-full shadow-sm">
-              <span className="text-xs uppercase font-serif text-[#B0305C] font-semibold tracking-wider block">
-                {isBengali ? 'সাদর আমন্ত্রণ' : 'You are Cordially Invited'}
+            <div className="my-4 mx-auto max-w-md text-center bg-white/95 border-2 border-dashed border-[#EC4899] py-2.5 px-6 rounded-2xl shadow-sm">
+              <span className="text-xs uppercase font-bold text-[#EC4899] tracking-wider block">
+                {isBengali ? 'সাদর নিমন্ত্রণ' : 'You are Cordially Invited'}
               </span>
-              <span className="text-lg sm:text-xl font-bold font-serif text-[#331A24]">
+              <span className="text-xl sm:text-2xl font-extrabold text-[#7C3AED]">
                 {guestName}
+              </span>
+              <span className="text-[11px] text-stone-500 block mt-0.5">
+                {isBengali ? 'সপরিবারে আমাদের রাজকন্যার প্রথম জন্মদিনে শুভাগমন কামনা করি' : 'Join us with your family to celebrate this fairytale milestone'}
               </span>
             </div>
           )}
 
           {/* Birthday Title */}
           <div className="my-4 space-y-1">
-            <h1 className="text-4xl sm:text-6xl font-extrabold font-serif tracking-wide text-[#B0305C]">
+            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-wide text-[#7C3AED] drop-shadow-sm">
               {isBengali ? quotes.nativeWeddingTitle : quotes.weddingTitle}
             </h1>
-            <p className="text-xs sm:text-sm uppercase font-serif tracking-[0.25em] text-[#D4AF37] font-semibold">
+            <p className="text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EC4899] font-bold">
               {template.cultureLabel}
             </p>
           </div>
 
           {/* Rhyme Banner */}
-          <div className="my-4 max-w-lg mx-auto py-3 px-5 bg-white/90 rounded-2xl border border-[#D4AF37]/50 shadow-sm">
-            <p className="text-xs sm:text-sm text-[#5E102E] whitespace-pre-line leading-relaxed italic font-serif">
+          <div className="my-4 max-w-lg mx-auto py-3.5 px-6 bg-white/90 rounded-2xl border border-[#C084FC]/60 shadow-sm relative">
+            <p className="text-xs sm:text-sm text-[#4C1D95] whitespace-pre-line leading-relaxed italic font-medium">
               {quotes.verse}
             </p>
           </div>
 
           {/* Birthday Princess Portrait Card */}
-          <div className="my-8 max-w-md mx-auto p-6 rounded-3xl bg-white border-2 border-[#D4AF37] shadow-xl text-center">
-            <div className="w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full overflow-hidden border-4 border-[#B0305C] shadow-lg mb-4 group relative">
-              <img src={princess.image} alt={princess.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div className="my-8 max-w-md mx-auto p-6 rounded-3xl bg-white/95 border-2 border-[#EC4899]/60 shadow-xl text-center relative transform hover:scale-[1.01] transition-transform">
+            
+            {/* Glowing Tiara Badge */}
+            <div className="w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full overflow-hidden border-4 border-[#C084FC] shadow-xl mb-4 group relative ring-4 ring-[#FCE7F3]">
+              <img
+                src={princess.image}
+                alt={princess.name}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#7C3AED]/20 to-transparent" />
             </div>
 
-            <span className="px-4 py-1 rounded-full bg-[#B0305C] text-white font-serif text-xs font-bold inline-block shadow-sm">
+            <span className="px-4 py-1 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#EC4899] to-[#0284C7] text-white text-xs font-bold inline-block shadow-md">
               👑 {isBengali ? princess.nativeRole : princess.role} 👑
             </span>
 
-            <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#B0305C] mt-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#7C3AED] mt-2">
               {isBengali ? princess.nativeName : princess.name}
             </h2>
 
-            <div className="mt-3 p-3 bg-[#FDF2F8] rounded-xl border border-[#B0305C]/30 text-xs font-serif text-[#331A24] space-y-1">
-              <p className="font-bold text-[#B0305C]">{isBengali ? princess.nativeParents : princess.parents}</p>
-              <p className="opacity-90">{isBengali ? princess.nativeGrandparents : princess.grandparents}</p>
+            <div className="mt-3 p-3 bg-purple-50/70 rounded-xl border border-purple-200 text-xs text-[#2E1065] space-y-1">
+              <p className="font-bold text-[#7C3AED]">{isBengali ? princess.nativeParents : princess.parents}</p>
+              <p className="opacity-80">{isBengali ? princess.nativeGrandparents : princess.grandparents}</p>
             </div>
 
-            <p className="text-xs italic text-stone-600 mt-3 px-2 font-serif">
+            <p className="text-xs italic text-stone-600 mt-2.5 px-2">
               "{isBengali ? princess.nativeAbout : princess.about}"
             </p>
           </div>
 
           {/* Date & Muhurat Highlight Pill */}
           <div className="my-6 inline-flex flex-wrap items-center justify-center gap-3">
-            <div className="px-5 py-2.5 rounded-full bg-[#B0305C] text-white font-serif text-xs sm:text-sm font-bold shadow flex items-center gap-2">
-              <Cake className="w-4 h-4 text-[#FCE7F3]" />
+            <div className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#EC4899] text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2">
+              <Cake className="w-4 h-4 text-yellow-200" />
               <span>{isBengali ? template.targetDateNative : 'Sunday, 20th December 2026 | Cake Cutting: 7:00 PM'}</span>
             </div>
-            <div className="px-5 py-2.5 rounded-full bg-white border border-[#D4AF37] text-[#B0305C] font-serif text-xs sm:text-sm font-bold shadow-sm flex items-center gap-2">
+            <div className="px-5 py-2.5 rounded-full bg-white border border-[#C084FC] text-[#7C3AED] text-xs sm:text-sm font-bold shadow-sm flex items-center gap-2">
               <span>📍</span>
               <span>{isBengali ? venue.nativeName : venue.name}</span>
             </div>
@@ -251,85 +296,234 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
         </div>
       </section>
 
-      {/* 2. Interactive Cake Cutting Countdown */}
+      {/* 2. Interactive "Blow the 1st Birthday Candle" Feature */}
+      <section className="bg-gradient-to-r from-[#FAF5FF] via-white to-[#FDF2F8] rounded-3xl p-6 sm:p-10 border-2 border-[#C084FC] shadow-xl text-center relative overflow-hidden">
+        
+        <div className="mb-6 max-w-xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-purple-100 border border-purple-300 text-xs font-bold text-[#7C3AED] uppercase tracking-widest">
+            <PartyPopper className="w-3.5 h-3.5 text-[#EC4899]" />
+            <span>{isBengali ? 'ইন্টারেক্টিভ কেক খেলা' : 'Interactive Cake Cutting Ceremony'}</span>
+            <PartyPopper className="w-3.5 h-3.5 text-[#EC4899]" />
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#7C3AED] mt-2">
+            🎂 {isBengali ? 'অনন্যার ১ম মোমবাতিতে ফুঁ দিন ও আশীর্বাদ করুন' : 'Make a Wish & Blow the Birthday Candle!'}
+          </h2>
+          <p className="text-xs sm:text-sm text-stone-600 mt-1">
+            {isBengali
+              ? 'মোমবাতিতে ক্লিক করে ফুঁ দিন এবং রঙিন কনফেটি সহ রাজকন্যা অনন্যাকে শুভকামনা জানান!'
+              : 'Tap to blow out the magical golden candle and shower baby Ananya with wishes & confetti!'}
+          </p>
+        </div>
+
+        {/* The SVG Fairytale Birthday Cake */}
+        <div className="my-6 max-w-xs mx-auto flex flex-col items-center">
+          
+          {/* Candle & Flame */}
+          <div className="relative flex flex-col items-center">
+            {/* Animated Flame */}
+            {!isCandleBlown ? (
+              <div className="relative flex flex-col items-center animate-pulse">
+                <div className="w-4 h-6 bg-gradient-to-t from-orange-500 via-amber-400 to-yellow-200 rounded-full shadow-[0_0_15px_#FACC15] animate-bounce" />
+                <div className="w-1 h-2 bg-stone-700" />
+              </div>
+            ) : (
+              <div className="h-8 flex flex-col items-center justify-end text-xs text-stone-400 font-bold animate-fadeIn">
+                <span>💨 ~ puff ~</span>
+                <div className="w-1 h-2 bg-stone-500" />
+              </div>
+            )}
+
+            {/* Candle Body ("1") */}
+            <div className="w-6 h-12 bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-300 rounded-t-md shadow border border-purple-400 flex items-center justify-center font-extrabold text-xs text-purple-900">
+              ১
+            </div>
+          </div>
+
+          {/* Tier 1 (Top Tier) */}
+          <div className="w-36 h-14 bg-gradient-to-b from-pink-200 via-pink-100 to-pink-200 rounded-t-2xl shadow-inner border border-pink-300 relative flex items-center justify-center -mt-0.5">
+            {/* Frosting Drips */}
+            <div className="absolute top-0 inset-x-0 flex justify-around">
+              <span className="w-4 h-3 bg-white rounded-b-full shadow-sm" />
+              <span className="w-5 h-4 bg-white rounded-b-full shadow-sm" />
+              <span className="w-4 h-3 bg-white rounded-b-full shadow-sm" />
+              <span className="w-5 h-4 bg-white rounded-b-full shadow-sm" />
+            </div>
+            <span className="text-xs font-bold text-pink-600 tracking-wider">★ PRINCESS ★</span>
+          </div>
+
+          {/* Tier 2 (Bottom Tier) */}
+          <div className="w-52 h-18 bg-gradient-to-b from-purple-200 via-purple-100 to-purple-200 rounded-t-3xl shadow-md border border-purple-300 relative flex items-center justify-center -mt-0.5">
+            {/* Frosting Drips */}
+            <div className="absolute top-0 inset-x-0 flex justify-around">
+              <span className="w-5 h-4 bg-white rounded-b-full shadow-sm" />
+              <span className="w-6 h-5 bg-white rounded-b-full shadow-sm" />
+              <span className="w-5 h-4 bg-white rounded-b-full shadow-sm" />
+              <span className="w-6 h-5 bg-white rounded-b-full shadow-sm" />
+              <span className="w-5 h-4 bg-white rounded-b-full shadow-sm" />
+            </div>
+            <span className="text-xs sm:text-sm font-extrabold text-[#7C3AED] tracking-widest">
+              HAPPY 1ST BIRTHDAY
+            </span>
+          </div>
+
+          {/* Cake Tray / Base */}
+          <div className="w-60 h-3 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 rounded-full shadow-lg border border-amber-400 -mt-0.5" />
+        </div>
+
+        {/* Action Button & Feedback */}
+        <div className="space-y-4">
+          <button
+            onClick={handleBlowCandle}
+            className={`px-6 py-3 rounded-2xl font-bold text-sm sm:text-base shadow-lg transition-all transform hover:scale-105 flex items-center gap-2 mx-auto cursor-pointer ${
+              !isCandleBlown
+                ? 'bg-gradient-to-r from-[#EC4899] via-[#7C3AED] to-[#0284C7] text-white shadow-purple-300'
+                : 'bg-white border-2 border-[#7C3AED] text-[#7C3AED] hover:bg-purple-50'
+            }`}
+          >
+            {!isCandleBlown ? (
+              <>
+                <Flame className="w-5 h-5 text-yellow-300 animate-bounce" />
+                <span>{isBengali ? '💨 ফুঁ দিয়ে মোমবাতি নেভান ও উইশ করুন!' : '💨 Blow the Candle & Make a Wish!'}</span>
+              </>
+            ) : (
+              <>
+                <RotateCcw className="w-4 h-4" />
+                <span>{isBengali ? '✨ পুনরায় মোমবাতি জ্বালান' : '✨ Relight the Candle for Another Wish'}</span>
+              </>
+            )}
+          </button>
+
+          {isCandleBlown && (
+            <div className="p-4 bg-purple-50 rounded-2xl border-2 border-dashed border-[#EC4899] max-w-lg mx-auto animate-fadeIn space-y-1">
+              <p className="font-extrabold text-base text-[#EC4899]">
+                🎉 {isBengali ? 'শুভ ১ম জন্মদিন রাজকন্যা অনন্যা!' : 'Happy 1st Birthday Princess Ananya!'} 🎉
+              </p>
+              <p className="text-xs text-stone-700">
+                {isBengali
+                  ? 'আপনার শুভকামনা ও আশীর্বাদ অনন্যার জীবনে অফুরন্ত আনন্দ বয়ে আনবে।'
+                  : 'May all her baby giggles turn into a lifetime of health, happiness, and sparkling adventures!'}
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* 3. Live Countdown to Grand Cake Cutting */}
       <CountdownTimer template={template} lang={lang} />
 
-      {/* 3. 12-Month Milestone Journey (১ থেকে ১২ মাসের পথচলা) */}
-      <section className="bg-white rounded-3xl p-6 sm:p-10 border border-[#D4AF37]/60 shadow-lg text-center font-serif">
+      {/* 4. 12-Month Milestone Journey */}
+      <section className="bg-white rounded-3xl p-6 sm:p-10 border-2 border-purple-200 shadow-xl text-center">
         <div className="mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#B0305C]/10 border border-[#B0305C]/40 text-xs font-bold text-[#B0305C] uppercase tracking-widest">
-            <PartyPopper className="w-3.5 h-3.5 text-[#B0305C]" />
-            <span>{isBengali ? 'প্রথম ১২ মাসের মধুর স্মৃতিকথা' : '12 Months Milestone Journey'}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-purple-100 border border-purple-300 text-xs font-bold text-[#7C3AED] uppercase tracking-widest">
+            <Smile className="w-3.5 h-3.5 text-[#EC4899]" />
+            <span>{isBengali ? '১ থেকে ১২ মাসের পথচলা' : '12-Month Milestone Journey'}</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#B0305C] mt-2">
-            {isBengali ? 'রাজকন্যার এক বছরের রাজকীয় পথচলা' : 'From Sweet Giggles to Big Milestones'}
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#7C3AED] mt-2">
+            {isBengali ? 'ছোট্ট অনন্যার রূপকথার প্রথম বছর' : 'One Year of Sweet Magic'}
           </h2>
+          <p className="text-xs text-stone-500 mt-1">
+            {isBengali ? 'প্রথম কান্না থেকে আজ এক বছরে রাজকন্যার মধুর পদচারণা' : 'From tiny newborn sighs to royal first steps'}
+          </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 max-w-3xl mx-auto">
           {milestones.map((m, idx) => (
             <div
               key={idx}
-              className="p-3.5 rounded-2xl bg-gradient-to-b from-[#FFFDF9] to-[#FDF2F8] border border-[#B0305C]/30 shadow-sm flex flex-col justify-between"
+              className="p-4 rounded-2xl bg-gradient-to-b from-purple-50/70 to-pink-50/70 border border-purple-200 text-center space-y-2 hover:shadow-md transition-shadow"
             >
-              <span className="w-8 h-8 mx-auto rounded-full bg-[#B0305C] text-white flex items-center justify-center font-bold text-xs shadow-sm mb-2">
-                {idx + 1}
-              </span>
-              <p className="font-bold text-xs sm:text-sm text-[#B0305C]">{m.month}</p>
-              <p className="text-[11px] text-stone-600 mt-1 leading-snug">{m.note}</p>
+              <div className="w-10 h-10 mx-auto rounded-full bg-white border-2 border-[#C084FC] flex items-center justify-center font-extrabold text-xs text-[#7C3AED] shadow-sm">
+                0{idx + 1}
+              </div>
+              <p className="font-bold text-xs sm:text-sm text-[#7C3AED]">{m.month}</p>
+              <p className="text-[11px] text-stone-600 leading-tight">{m.note}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 4. Birthday Schedule & Fun Activities */}
-      <section className="space-y-6" id="events">
-        <div className="text-center space-y-2 font-serif">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#B0305C]/10 border border-[#B0305C]/40 text-xs font-bold text-[#B0305C] uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>{isBengali ? 'জন্মদিনের আনন্দ অনুষ্ঠান' : 'Celebration Schedule'}</span>
-            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+      {/* 5. Kids Carnival & Entertainment Zones */}
+      <section className="bg-gradient-to-b from-[#F0F9FF] to-[#FAF5FF] rounded-3xl p-6 sm:p-10 border-2 border-sky-300 shadow-xl text-center">
+        <div className="mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-sky-100 border border-sky-300 text-xs font-bold text-sky-800 uppercase tracking-widest">
+            <Wand2 className="w-3.5 h-3.5 text-sky-600" />
+            <span>{isBengali ? 'বাচ্চাদের আনন্দজোন ও বিনোদন' : 'Carnival & Fun Zones for Kids'}</span>
           </div>
-          <h2 className="text-3xl font-bold text-[#B0305C]">
-            {isBengali ? 'আনন্দঘন মুহূর্ত ও সময়সূচি' : 'Party Timeline & Activities'}
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#7C3AED] mt-2">
+            {isBengali ? 'উৎসবের রঙিন বিনোদন আয়োজন' : 'Fairytale Carnival Attractions'}
+          </h2>
+          <p className="text-xs text-stone-600 mt-1 max-w-md mx-auto">
+            {isBengali
+              ? 'সকল কচিকাঁচাদের জন্য অপেক্ষা করছে জাদুকরী ম্যাজিক, ফেস আর্ট ও বেলুনের খেলা'
+              : 'Endless fun curated for little guests: illusion tricks, sweets, and giant bubble plays.'}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto text-left">
+          {carnivalZones.map((z, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-2xl p-5 border border-sky-200 shadow-sm flex items-start gap-4 hover:border-purple-300 hover:shadow-md transition-all"
+            >
+              <span className="text-3xl p-2 rounded-xl bg-purple-50 shrink-0">{z.icon}</span>
+              <div className="space-y-1">
+                <h3 className="font-bold text-sm sm:text-base text-[#7C3AED]">{z.title}</h3>
+                <p className="text-xs text-stone-600 leading-relaxed">{z.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 6. Birthday Schedule of Events */}
+      <section className="space-y-6" id="events">
+        <div className="text-center space-y-2">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-pink-100 border border-pink-300 text-xs text-[#EC4899] font-bold uppercase tracking-widest">
+            <Calendar className="w-3.5 h-3.5 text-[#EC4899]" />
+            <span>{isBengali ? 'সন্ধ্যায় অনুষ্ঠিতব্য সময়সূচী' : 'Evening Program Timeline'}</span>
+          </div>
+
+          <h2 className="text-3xl font-bold text-[#7C3AED]">
+            {isBengali ? 'জন্মদিনের আনন্দ নির্ঘণ্ট' : 'Birthday Program Timeline'}
           </h2>
         </div>
 
-        <div className="space-y-4 font-serif">
+        <div className="space-y-4">
           {events.map((evt, idx) => {
-            const isCake = evt.key === 'cake_cutting';
+            const isHighlight = evt.key === 'cake_cutting';
 
             return (
               <div
                 key={evt.id}
                 className={`rounded-3xl p-5 sm:p-7 border-2 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row gap-6 items-start md:items-center justify-between ${
-                  isCake
-                    ? 'bg-gradient-to-r from-[#FDF2F8] to-[#FFF0F5] border-[#B0305C]'
-                    : 'bg-white border-[#D4AF37]/50'
+                  isHighlight
+                    ? 'bg-gradient-to-r from-pink-50 via-purple-50 to-indigo-50 border-[#EC4899]'
+                    : 'bg-white border-purple-200'
                 }`}
               >
                 <div className="space-y-2 max-w-xl">
                   <div className="flex items-center gap-3">
                     <span
                       className={`w-8 h-8 rounded-full font-bold text-xs flex items-center justify-center shrink-0 ${
-                        isCake
-                          ? 'bg-[#B0305C] text-white shadow-sm'
-                          : 'bg-[#FDF2F8] text-[#B0305C] border border-[#B0305C]/40'
+                        isHighlight
+                          ? 'bg-[#EC4899] text-white shadow'
+                          : 'bg-purple-100 text-[#7C3AED] border border-purple-300'
                       }`}
                     >
-                      ০{idx + 1}
+                      0{idx + 1}
                     </span>
                     <div>
-                      <h3 className="text-lg sm:text-xl font-bold text-[#B0305C]">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#7C3AED]">
                         {isBengali ? evt.nativeTitle : evt.title}
                       </h3>
-                      <p className="text-xs text-[#D4AF37] font-semibold">
+                      <p className="text-xs font-semibold text-[#EC4899]">
                         {isBengali ? evt.nativeTagline : evt.tagline}
                       </p>
                     </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-[#4A3B32] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                     {isBengali ? evt.nativeDescription : evt.description}
                   </p>
 
@@ -337,19 +531,19 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
                     {(isBengali ? evt.nativeHighlights : evt.highlights).map((h, hIdx) => (
                       <span
                         key={hIdx}
-                        className="text-[11px] px-3 py-0.5 rounded-full bg-[#FFFDF9] text-[#B0305C] border border-[#B0305C]/30"
+                        className="text-[11px] px-3 py-0.5 rounded-full bg-purple-50 text-[#7C3AED] border border-purple-200"
                       >
-                        ✦ {h}
+                        ★ {h}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="w-full md:w-64 p-4 rounded-2xl bg-[#FFFDF9] border border-[#B0305C]/30 space-y-2 text-xs shrink-0">
-                  <p className="font-bold text-[#B0305C]">📅 {isBengali ? evt.nativeDate : evt.date}</p>
-                  <p className="text-[#4A3B32]">⏰ {isBengali ? evt.nativeTime : evt.time}</p>
-                  <p className="text-[#4A3B32]">📍 {isBengali ? evt.nativeVenueName : evt.venueName}</p>
-                  <p className="text-[#B0305C] pt-1 border-t border-[#B0305C]/30 font-medium">
+                <div className="w-full md:w-64 p-4 rounded-2xl bg-[#FAF5FF] border border-purple-200 space-y-2 text-xs shrink-0">
+                  <p className="font-bold text-[#7C3AED]">📅 {isBengali ? evt.nativeDate : evt.date}</p>
+                  <p className="text-stone-700">⏰ {isBengali ? evt.nativeTime : evt.time}</p>
+                  <p className="text-stone-700">📍 {isBengali ? evt.nativeVenueName : evt.venueName}</p>
+                  <p className="text-[#EC4899] pt-1 border-t border-purple-200 font-semibold">
                     👗 {isBengali ? evt.nativeDressCode : evt.dressCode}
                   </p>
                 </div>
@@ -359,254 +553,186 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
         </div>
       </section>
 
-      {/* 5. Kids & Family Fun Activity Zones */}
-      <section className="bg-gradient-to-b from-[#FFFDF9] to-[#FDF2F8] rounded-3xl p-6 sm:p-10 border-2 border-[#D4AF37] shadow-lg text-center font-serif">
+      {/* 7. Venue Location */}
+      <section className="rounded-3xl p-6 sm:p-10 border-2 border-purple-200 bg-white shadow-xl text-center" id="venue">
         <div className="mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#B0305C]/10 border border-[#B0305C]/40 text-xs font-bold text-[#B0305C] uppercase tracking-widest">
-            <Wand2 className="w-3.5 h-3.5 text-[#B0305C]" />
-            <span>{isBengali ? 'মজাদার খেলা ও আনন্দ কর্নার' : 'Kids Activity & Fun Zones'}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-purple-100 border border-purple-300 text-xs text-[#7C3AED] font-bold uppercase tracking-widest">
+            <MapPin className="w-3.5 h-3.5 text-[#7C3AED]" />
+            <span>{isBengali ? 'অনুষ্ঠানস্থল ও অবস্থান' : 'Venue & Directions'}</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#B0305C] mt-2">
-            {isBengali ? 'ছোট ও বড় সবার জন্য অফুরন্ত বিনোদন' : 'Unlimited Entertainment For All'}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto text-left">
-          {funZones.map((zone, idx) => (
-            <div
-              key={idx}
-              className="bg-white/95 rounded-2xl p-5 border border-[#B0305C]/30 shadow-sm space-y-1"
-            >
-              <h3 className="font-bold text-sm sm:text-base text-[#B0305C]">
-                ✦ {zone.title}
-              </h3>
-              <p className="text-xs text-[#4A3B32] leading-relaxed">
-                {zone.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 6. Venue Location (আইটিসি সোনার, কলকাতা) */}
-      <section className="rounded-3xl p-6 sm:p-10 border-2 border-[#D4AF37] bg-white shadow-xl text-center font-serif" id="venue">
-        <div className="mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#B0305C]/10 border border-[#B0305C]/40 text-xs font-bold text-[#B0305C] uppercase tracking-widest">
-            <MapPin className="w-3.5 h-3.5 text-[#B0305C]" />
-            <span>{isBengali ? 'পার্টি ভেন্যু ও দিকনির্দেশ' : 'Venue & Directions'}</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#B0305C] mt-2">
-            {isBengali ? 'কীভাবে পৌঁছাবেন' : 'Party Location'}
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#7C3AED] mt-2">
+            {isBengali ? 'উৎসব প্রাঙ্গণে আগমন' : 'Party Venue: ITC Sonar Kolkata'}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
           <div className="lg:col-span-5 space-y-4">
             <div>
-              <span className="px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wider inline-block bg-[#B0305C]/10 text-[#B0305C]">
-                {isBengali ? 'প্রধান বলরুম ও লন' : 'Grand Ballroom & Lawns'}
+              <span className="px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wider inline-block bg-pink-100 text-[#EC4899]">
+                {isBengali ? 'প্রধান পার্টি লন' : 'Imperial Garden Lawn'}
               </span>
-              <h3 className="text-2xl font-bold text-[#B0305C] mt-2">
+              <h3 className="text-2xl font-bold text-[#7C3AED] mt-2">
                 {isBengali ? venue.nativeName : venue.name}
               </h3>
             </div>
 
-            <div className="space-y-3 text-xs sm:text-sm text-[#4A3B32]">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 shrink-0 text-[#B0305C] mt-0.5" />
-                <p className="leading-relaxed">
-                  {isBengali ? venue.nativeAddress : venue.address}
-                </p>
-              </div>
+            <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+              {isBengali ? venue.nativeAddress : venue.address}
+            </p>
 
-              <div className="flex items-start gap-3">
-                <Navigation className="w-5 h-5 shrink-0 text-[#D4AF37] mt-0.5" />
-                <p>
-                  <strong className="text-[#B0305C]">{isBengali ? 'ল্যান্ডমার্ক: ' : 'Landmark: '}</strong>
-                  {isBengali ? venue.nativeLandmark : venue.landmark}
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <Smile className="w-5 h-5 shrink-0 text-[#D4AF37] mt-0.5" />
-                <p>
-                  <strong className="text-[#B0305C]">{isBengali ? 'পার্থিং: ' : 'Parking: '}</strong>
-                  {isBengali ? venue.nativeParking : venue.parking}
-                </p>
-              </div>
+            <div className="p-3 bg-purple-50 rounded-xl border border-purple-200 text-xs space-y-1">
+              <p className="font-bold text-[#7C3AED]">
+                🚗 {isBengali ? 'পার্কিং ও ল্যান্ডমার্ক:' : 'Valet & Entry:'}
+              </p>
+              <p className="text-stone-700">
+                {isBengali ? venue.nativeLandmark : venue.landmark} • {isBengali ? venue.nativeParking : venue.parking}
+              </p>
             </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row gap-3">
+            <div className="pt-2">
               <a
                 href={venue.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 text-white font-bold text-xs sm:text-sm rounded-xl shadow-md bg-[#B0305C] hover:opacity-90"
+                className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#EC4899] text-white font-bold text-xs sm:text-sm shadow flex items-center gap-2 hover:opacity-95 transition-opacity inline-flex"
               >
-                <Navigation className="w-4 h-4 text-[#FCE7F3]" />
-                <span>{isBengali ? 'গুগল ম্যাপে দিকনির্দেশ' : 'Open in Google Maps'}</span>
-              </a>
-
-              <a
-                href={`https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[formatted_address]=${encodeURIComponent(venue.name)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[#D4AF37] text-xs sm:text-sm font-semibold text-[#B0305C] bg-[#FFFDF9] hover:bg-[#FCE7F3]/40 transition-colors"
-              >
-                <ExternalLink className="w-4 h-4 text-[#B0305C]" />
-                <span>{isBengali ? 'ক্যাব বুক করুন' : 'Book Ride'}</span>
+                <Navigation className="w-4 h-4" />
+                <span>{isBengali ? 'গুগল ম্যাপে নেভিগেট করুন' : 'Get Directions on Google Maps'}</span>
               </a>
             </div>
           </div>
 
-          <div className="lg:col-span-7 h-72 sm:h-96 rounded-2xl overflow-hidden border-2 border-[#D4AF37]/60 shadow-inner relative">
+          <div className="lg:col-span-7 h-72 sm:h-80 rounded-2xl overflow-hidden border-2 border-purple-200 shadow-md">
             <iframe
-              title="ITC Sonar Location"
-              src={venue.embedUrl}
-              className="w-full h-full border-0"
-              allowFullScreen={false}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.5828453472097!2d88.39783937602018!3d22.557342633558837!2m3!1f0!2f0!3f0!3m2!1i1024!2f786!4f13.1!3m3!1m2!1s0x3a02768058a5c373%3A0xe543c72b2bbcd42a!2sITC%20Sonar%2C%20a%20Luxury%20Collection%20Hotel%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="ITC Sonar Venue Map"
             />
-            <div className="absolute bottom-2 right-2 pointer-events-none bg-white/95 backdrop-blur-sm px-3 py-1 rounded-md text-[11px] shadow border border-[#D4AF37]/40 text-[#B0305C] font-bold">
-              {venue.name}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 7. Birthday Wishes Wall */}
-      <section className="bg-white rounded-3xl p-6 sm:p-10 border-2 border-[#D4AF37]/60 shadow-xl font-serif" id="wishes">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#B0305C]/10 border border-[#B0305C]/40 text-xs font-bold text-[#B0305C] uppercase tracking-widest">
-            <Heart className="w-3.5 h-3.5 text-rose-600 fill-rose-600" />
-            <span>{isBengali ? 'ভালোবাসা ও শুভবার্তা' : 'Birthday Wishes'}</span>
-            <Heart className="w-3.5 h-3.5 text-rose-600 fill-rose-600" />
+      {/* 8. Wishes & Blessings Guestbook */}
+      <section className="bg-white rounded-3xl p-6 sm:p-10 border-2 border-purple-200 shadow-xl space-y-8">
+        <div className="text-center space-y-2">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-pink-100 border border-pink-300 text-xs text-[#EC4899] font-bold uppercase tracking-widest">
+            <Heart className="w-3.5 h-3.5 text-pink-500 fill-pink-500" />
+            <span>{isBengali ? 'অনন্যার জন্মদিনের শুভেচ্ছা ডালি' : 'Birthday Wishes & Blessings'}</span>
+            <Heart className="w-3.5 h-3.5 text-pink-500 fill-pink-500" />
           </div>
-
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#B0305C] mt-2">
-            {isBengali ? 'অনন্যাকে শুভকামনা জানান' : 'Wish Princess Ananya'}
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#7C3AED]">
+            {isBengali ? 'একটি মিষ্টি শুভকামনা জানান' : 'Post Your Sweet Wishes'}
           </h2>
+          <p className="text-xs text-stone-500">
+            {isBengali ? 'আপনার প্রাণঢালা আশীর্বাদ অনন্যার স্মৃতি অ্যালবামে সংরক্ষিত থাকবে' : 'Your words will be cherished in Ananya’s 1st year commemorative photobook.'}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-5 rounded-2xl p-6 border border-[#B0305C]/30 bg-[#FDF2F8]/50 shadow-sm">
-            <h3 className="font-bold text-base text-[#B0305C] mb-4 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-              <span>{isBengali ? 'জন্মদিনের শুভেচ্ছা বার্তা' : 'Send Birthday Wish'}</span>
-            </h3>
-
-            <form onSubmit={handleWishSubmit} className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold text-[#B0305C] mb-1">
-                  {isBengali ? 'আপনার শুভ নাম *' : 'Your Name *'}
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={authorName}
-                  onChange={e => setAuthorName(e.target.value)}
-                  placeholder={isBengali ? 'যেমন: রোহিত ও পূজা' : 'e.g., Rohit & Pooja'}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#B0305C]/40 bg-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#B0305C]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#B0305C] mb-1">
-                  {isBengali ? 'সম্পর্ক (ঐচ্ছিক)' : 'Relation (Optional)'}
-                </label>
-                <input
-                  type="text"
-                  value={relation}
-                  onChange={e => setRelation(e.target.value)}
-                  placeholder={isBengali ? 'যেমন: কাকা / পিসি / বন্ধু' : 'e.g., Uncle / Family Friend'}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#B0305C]/40 bg-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#B0305C]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#D4AF37] font-bold mb-1.5">
-                  {isBengali ? 'চটজলদি বার্তা:' : 'Quick Ideas:'}
-                </label>
-                <div className="flex flex-wrap gap-1.5">
-                  {quickWishes.map((q, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => setMessage(q)}
-                      className="text-[11px] px-2.5 py-1 rounded-full border border-[#B0305C]/30 bg-white text-[#B0305C] hover:bg-[#FDF2F8] transition-colors text-left"
-                    >
-                      + {q.slice(0, 24)}...
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#B0305C] mb-1">
-                  {isBengali ? 'আপনার শুভেচ্ছা বার্তা *' : 'Your Warm Message *'}
-                </label>
-                <textarea
-                  required
-                  rows={3}
-                  value={message}
-                  onChange={e => setMessage(e.target.value)}
-                  placeholder={isBengali ? 'অনন্যার জন্য শুভেচ্ছা বার্তা লিখুন...' : 'Write your loving birthday message...'}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#B0305C]/40 bg-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#B0305C] resize-none"
-                />
-              </div>
-
+        {/* Quick Wish Buttons */}
+        <div className="space-y-2">
+          <p className="text-xs text-stone-500 font-semibold text-center">
+            {isBengali ? 'দ্রুত শুভেচ্ছা নির্বাচন করুন:' : 'Pick a ready wish:'}
+          </p>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {quickWishes.map((q, idx) => (
               <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-3 px-4 text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-98 bg-[#B0305C] hover:opacity-90"
+                key={idx}
+                type="button"
+                onClick={() => setMessage(q)}
+                className="text-xs px-3 py-1.5 rounded-full bg-purple-50 hover:bg-purple-100 border border-purple-200 text-[#7C3AED] transition-all hover:scale-105"
               >
-                <Send className="w-4 h-4 text-[#FCE7F3]" />
-                <span>{isSubmitting ? (isBengali ? 'পাঠানো হচ্ছে...' : 'Submitting...') : (isBengali ? 'শুভেচ্ছা পাঠান' : 'Post Wish')}</span>
+                + {q}
               </button>
-            </form>
+            ))}
+          </div>
+        </div>
+
+        {/* Wish Form */}
+        <form onSubmit={handleWishSubmit} className="max-w-xl mx-auto space-y-4 bg-purple-50/50 p-5 rounded-2xl border border-purple-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-[#7C3AED] mb-1">
+                {isBengali ? 'আপনার নাম *' : 'Your Name *'}
+              </label>
+              <input
+                type="text"
+                required
+                value={authorName}
+                onChange={e => setAuthorName(e.target.value)}
+                placeholder={isBengali ? 'উদা: রাহুল কাকু ও স্নেহা আন্টি' : 'e.g., Uncle Rahul & Sneha'}
+                className="w-full px-3 py-2 rounded-xl border border-purple-300 focus:outline-none focus:ring-2 focus:ring-[#7C3AED] text-xs bg-white"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-[#7C3AED] mb-1">
+                {isBengali ? 'সম্পর্ক (ঐচ্ছিক)' : 'Relation (Optional)'}
+              </label>
+              <input
+                type="text"
+                value={relation}
+                onChange={e => setRelation(e.target.value)}
+                placeholder={isBengali ? 'উদা: পারিবারিক বন্ধু' : 'e.g., Family Friend'}
+                className="w-full px-3 py-2 rounded-xl border border-purple-300 focus:outline-none focus:ring-2 focus:ring-[#7C3AED] text-xs bg-white"
+              />
+            </div>
           </div>
 
-          <div className="lg:col-span-7 space-y-4 max-h-[500px] overflow-y-auto pr-1">
-            {wishes.map(wish => (
-              <div
-                key={wish.id}
-                className="bg-[#FFFDF9] rounded-2xl p-4 sm:p-5 border border-[#B0305C]/30 shadow-sm hover:shadow-md transition-all"
-              >
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <div>
-                    <h4 className="font-bold text-sm sm:text-base text-[#B0305C]">
-                      {wish.name}
-                    </h4>
-                    {wish.relation && (
-                      <span className="text-[11px] block text-[#D4AF37] font-semibold">
-                        ✦ {wish.relation}
-                      </span>
-                    )}
-                  </div>
-                  <span className="text-[10px] text-stone-500 shrink-0 font-sans">
-                    {wish.timestamp}
+          <div>
+            <label className="block text-xs font-bold text-[#7C3AED] mb-1">
+              {isBengali ? 'জন্মদিনের শুভেচ্ছা বার্তা *' : 'Birthday Message *'}
+            </label>
+            <textarea
+              required
+              rows={3}
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+              placeholder={isBengali ? 'ছোট্ট রাজকন্যা অনন্যার জন্য আশীর্বাদ লিখুন...' : 'Write your loving blessings for Princess Ananya...'}
+              className="w-full px-3 py-2 rounded-xl border border-purple-300 focus:outline-none focus:ring-2 focus:ring-[#7C3AED] text-xs bg-white"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#7C3AED] via-[#EC4899] to-[#0284C7] text-white font-bold text-xs sm:text-sm shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Send className="w-4 h-4" />
+            <span>{isSubmitting ? (isBengali ? 'পাঠানো হচ্ছে...' : 'Sending...') : (isBengali ? 'শুভেচ্ছা পাঠান' : 'Post Birthday Wish')}</span>
+          </button>
+        </form>
+
+        {/* Existing Wishes Feed */}
+        <div className="max-w-2xl mx-auto space-y-3 pt-4">
+          <h3 className="font-bold text-sm text-[#7C3AED] text-center border-b border-purple-200 pb-2">
+            💌 {isBengali ? 'অতিথিদের পাঠানো শুভেচ্ছা বার্তা' : 'Loving Messages & Wishes'} ({wishes.length})
+          </h3>
+
+          <div className="space-y-3 max-h-80 overflow-y-auto pr-1">
+            {wishes.map(w => (
+              <div key={w.id} className="p-4 rounded-xl bg-purple-50/70 border border-purple-200 text-xs space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-[#7C3AED]">
+                    {w.name} {w.relation && <span className="opacity-70 font-normal">({w.relation})</span>}
                   </span>
+                  <span className="text-[10px] text-stone-400">{w.timestamp}</span>
                 </div>
-
-                <p className="text-xs sm:text-sm text-[#4A3B32] leading-relaxed whitespace-pre-line my-2">
-                  {wish.message}
-                </p>
-
-                <div className="pt-2 flex items-center justify-between border-t border-[#B0305C]/20 text-xs">
-                  <span className="text-[11px] italic text-[#B0305C]/80">
-                    {isBengali ? 'ভালোবাসার শুভেচ্ছা' : 'Birthday love'}
-                  </span>
+                <p className="text-stone-700 leading-relaxed">{w.message}</p>
+                <div className="pt-1 flex justify-end">
                   <button
-                    onClick={() => handleLikeWish(wish.id)}
-                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs transition-colors ${
-                      likedMap[wish.id]
-                        ? 'bg-rose-100 text-rose-700 font-semibold'
-                        : 'hover:bg-rose-50 text-rose-600'
+                    onClick={() => handleLikeWish(w.id)}
+                    className={`flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full border transition-all ${
+                      likedMap[w.id]
+                        ? 'bg-pink-100 border-pink-300 text-pink-700'
+                        : 'bg-white border-stone-200 text-stone-600 hover:border-pink-300'
                     }`}
                   >
-                    <Heart className={`w-3.5 h-3.5 ${likedMap[wish.id] ? 'fill-rose-600 text-rose-600' : 'text-rose-500'}`} />
-                    <span>{wish.hearts}</span>
+                    <Heart className={`w-3 h-3 ${likedMap[w.id] ? 'fill-pink-600 text-pink-600' : ''}`} />
+                    <span>{w.hearts}</span>
                   </button>
                 </div>
               </div>
@@ -615,165 +741,110 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
         </div>
       </section>
 
-      {/* 8. RSVP: Suman Bhadra */}
-      <section className="rounded-3xl p-6 sm:p-10 border-2 border-[#D4AF37] bg-[#FFFDF9] shadow-xl text-center font-serif" id="rsvp">
-        <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#B0305C]/10 border border-[#B0305C]/40 text-xs font-bold text-[#B0305C] uppercase tracking-widest mb-3">
-          <span>{isBengali ? 'উপস্থিতি নিশ্চিতকরণ (RSVP)' : 'RSVP Desk'}</span>
+      {/* 9. RSVP & Direct Family Contact */}
+      <section className="bg-gradient-to-r from-purple-50 via-white to-pink-50 rounded-3xl p-6 sm:p-10 border-2 border-purple-300 shadow-xl text-center space-y-6">
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-pink-100 border border-pink-300 text-xs text-[#EC4899] font-bold uppercase tracking-widest">
+            <Check className="w-3.5 h-3.5 text-[#EC4899]" />
+            <span>{isBengali ? 'উপস্থিতির সম্মতি ও যোগাযোগ' : 'RSVP & Direct Contact'}</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#7C3AED]">
+            {isBengali ? 'আমাদের সাথে যোগাযোগ করুন' : 'Confirm Your Attendance'}
+          </h2>
+          <p className="text-xs text-stone-600 max-w-md mx-auto">
+            {isBengali
+              ? 'অনুগ্রহ করে অনুষ্ঠানে আপনার উপস্থিতি নিশ্চিত করে আমাদের আপ্যায়ন ব্যবস্থাপনায় সহায়তা করুন।'
+              : 'Please confirm your attendance via WhatsApp or direct call to help us prepare your banquet seat.'}
+          </p>
         </div>
 
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#B0305C]">
-          {isBengali ? 'উপস্থিতি জানিয়ে সাহায্য করুন' : 'Confirm Your Attendance'}
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto my-6 text-left">
-          {rsvpContacts.map((contact, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl p-5 border border-[#B0305C]/40 shadow-md flex flex-col justify-between"
-            >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+          {rsvpContacts.map((c, idx) => (
+            <div key={idx} className="p-4 rounded-2xl bg-white border border-purple-200 shadow-sm text-left space-y-2">
               <div>
-                <h3 className="font-bold text-base text-[#B0305C]">
-                  {isBengali ? contact.nativeName : contact.name}
-                </h3>
-                <p className="text-xs text-[#D4AF37] font-semibold mb-4">
-                  {isBengali ? contact.nativeRelation : contact.relation}
-                </p>
+                <p className="font-bold text-sm text-[#7C3AED]">{isBengali ? c.nativeName : c.name}</p>
+                <p className="text-[11px] text-stone-500">{isBengali ? c.nativeRelation : c.relation}</p>
               </div>
 
-              <div className="space-y-2 pt-3 border-t border-[#B0305C]/20">
+              <div className="pt-2 flex flex-col gap-2">
                 <a
-                  href={getWhatsAppRsvpUrl(contact.whatsappNumber)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl text-xs font-semibold shadow-sm transition-colors"
-                >
-                  <MessageSquare className="w-3.5 h-3.5" />
-                  <span>{isBengali ? 'হোয়াটসঅ্যাপে জানান' : 'Confirm on WhatsApp'}</span>
-                </a>
-
-                <a
-                  href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-                  className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold border border-[#D4AF37]/50 bg-[#FDF2F8] text-[#B0305C] hover:opacity-80 transition-opacity"
+                  href={`tel:${c.phone}`}
+                  className="px-3 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 border border-purple-200 text-xs font-bold text-[#7C3AED] flex items-center justify-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5" />
-                  <span>{contact.phone}</span>
+                  <span>{c.phone}</span>
                 </a>
 
-                {contact.email && (
+                {c.whatsappNumber && (
                   <a
-                    href={`mailto:${contact.email}`}
-                    className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold border border-[#D4AF37]/50 bg-[#FDF2F8] text-[#B0305C] hover:opacity-80 transition-opacity truncate"
+                    href={getWhatsAppRsvpUrl(c.whatsappNumber)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm"
                   >
-                    <Mail className="w-3.5 h-3.5 shrink-0" />
-                    <span className="truncate">{contact.email}</span>
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>{isBengali ? 'হোয়াটসঅ্যাপে সম্মতি জানান' : 'Confirm on WhatsApp'}</span>
                   </a>
                 )}
               </div>
             </div>
           ))}
         </div>
-
-        <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-[#B0305C]/10 via-[#D4AF37]/20 to-[#B0305C]/10 border border-[#D4AF37] max-w-lg mx-auto">
-          <p className="text-xs uppercase tracking-widest font-semibold text-[#B0305C]">
-            {isBengali ? '॥ ভালোবাসার প্রতীক্ষায় ॥' : '॥ Awaiting Your Smiles ॥'}
-          </p>
-          <p className="text-lg sm:text-xl font-bold mt-1 text-[#B0305C]">
-            {isBengali ? quotes.nativeFamilySignoff : quotes.familySignoff}
-          </p>
-        </div>
       </section>
 
-      {/* 9. Personalized Invite Link Tool & Footer */}
-      <footer className="pt-8 pb-24 sm:pb-12 text-center space-y-8 font-serif">
-        <div className="p-6 sm:p-8 bg-white rounded-3xl border-2 border-[#D4AF37]/60 shadow-lg max-w-lg mx-auto text-left">
-          <div className="flex items-center gap-2 mb-2 text-[#B0305C]">
-            <Share2 className="w-4 h-4 text-[#D4AF37]" />
-            <h4 className="font-bold text-sm sm:text-base">
-              {isBengali ? 'অতিথির নাম লিখে জন্মদিনের লিংক পাঠান' : 'Create Personalized Guest Invite Link'}
-            </h4>
-          </div>
+      {/* 10. Generate Custom VIP Invitation Link */}
+      <section className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-dashed border-purple-300 shadow-sm text-center space-y-4">
+        <h3 className="font-bold text-base text-[#7C3AED] flex items-center justify-center gap-2">
+          <Share2 className="w-4 h-4 text-[#EC4899]" />
+          <span>{isBengali ? 'ব্যক্তিগত ডিজিটাল নিমন্ত্রণপত্র লিংক তৈরি করুন' : 'Generate Personalized VIP Guest Card'}</span>
+        </h3>
+        <p className="text-xs text-stone-500 max-w-md mx-auto">
+          {isBengali
+            ? 'আপনার কোনো আত্মীয়ের নাম লিখে একটি বিশেষ নিমন্ত্রণ লিংক তৈরি করে সরাসরি তাদের হোয়াটসঅ্যাপে পাঠান।'
+            : 'Type a guest’s name to create a personalized invite link showing their name on the top scroll.'}
+        </p>
 
-          <form onSubmit={handleGenerateCustomLink} className="flex gap-2">
-            <input
-              type="text"
-              value={customGuest}
-              onChange={e => setCustomGuest(e.target.value)}
-              placeholder={isBengali ? 'যেমন: সুভাষদা ও পরিবার' : 'e.g., Uncle Joy & Family'}
-              className="flex-1 px-3 py-2 text-xs rounded-xl border border-[#B0305C]/40 focus:outline-none focus:ring-1 focus:ring-[#B0305C]"
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 text-white text-xs font-semibold rounded-xl bg-[#B0305C] hover:opacity-90 transition-opacity"
-            >
-              {isBengali ? 'লিংক তৈরি' : 'Generate'}
-            </button>
-          </form>
-
-          {generatedLink && (
-            <div className="mt-3 p-2.5 rounded-xl bg-[#FDF2F8] border border-[#B0305C]/30 flex items-center justify-between gap-2 text-xs">
-              <span className="truncate font-mono text-[11px] text-[#B0305C]">
-                {generatedLink}
-              </span>
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(generatedLink);
-                  alert(isBengali ? 'ব্যক্তিগত লিংক কপি করা হয়েছে!' : 'Personalized link copied!');
-                }}
-                className="px-3 py-1 text-white rounded-lg shrink-0 text-[11px] bg-[#B0305C]"
-              >
-                {isBengali ? 'কপি' : 'Copy'}
-              </button>
-            </div>
-          )}
-        </div>
-
-        <div className="flex justify-center">
+        <form onSubmit={handleGenerateCustomLink} className="max-w-md mx-auto flex gap-2">
+          <input
+            type="text"
+            value={customGuest}
+            onChange={e => setCustomGuest(e.target.value)}
+            placeholder={isBengali ? 'উদা: সুব্রত কাকু ও পরিবার' : 'e.g., Uncle Sourav & Family'}
+            className="flex-1 px-3 py-2 rounded-xl border border-purple-300 text-xs focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+          />
           <button
-            onClick={handleCopyMainUrl}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-[#D4AF37] bg-white text-xs font-bold text-[#B0305C] hover:bg-[#FDF2F8] transition-colors shadow-sm"
+            type="submit"
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#EC4899] text-white text-xs font-bold shadow hover:opacity-95 cursor-pointer"
           >
-            {copiedMain ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span className="text-emerald-700">{isBengali ? 'কপি সম্পন্ন!' : 'Link Copied!'}</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4 text-[#D4AF37]" />
-                <span>{isBengali ? 'ওয়েবসাইট লিংক কপি করুন' : 'Copy Invitation Link'}</span>
-              </>
-            )}
+            {isBengali ? 'লিংক বানান' : 'Create'}
           </button>
-        </div>
+        </form>
 
-        <div className="pt-6 border-t border-[#D4AF37]/30 space-y-2">
-          <p className="text-xs font-bold text-[#B0305C]">
-            {isBengali ? quotes.nativeFamilySignoff : quotes.familySignoff}
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs">
-            <span className="text-[#4A3B32]">
-              {isBengali ? 'যোগাযোগ ও সমন্বয়:' : 'Inquiries & Coordination:'}{' '}
-              <strong className="text-[#B0305C]">Suman Bhadra</strong>
-            </span>
-            <a
-              href="tel:+916291898703"
-              className="px-3 py-1 rounded-full border border-[#D4AF37]/60 bg-[#FDF2F8] text-[11px] font-semibold text-[#B0305C] hover:opacity-80 flex items-center gap-1.5"
+        {generatedLink && (
+          <div className="max-w-lg mx-auto p-3 rounded-xl bg-purple-50 border border-purple-200 text-xs flex items-center justify-between gap-2">
+            <span className="truncate text-stone-700">{generatedLink}</span>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(generatedLink);
+                setCopiedLink(true);
+                setTimeout(() => setCopiedLink(false), 2000);
+              }}
+              className="px-3 py-1 rounded bg-[#7C3AED] text-white font-bold shrink-0 text-[11px] cursor-pointer"
             >
-              <Phone className="w-3 h-3" /> +91 6291898703
-            </a>
-            <a
-              href="mailto:bhadrasuman04@gmail.com"
-              className="px-3 py-1 rounded-full border border-[#D4AF37]/60 bg-[#FDF2F8] text-[11px] font-semibold text-[#B0305C] hover:opacity-80 flex items-center gap-1.5"
-            >
-              <Mail className="w-3 h-3" /> bhadrasuman04@gmail.com
-            </a>
+              {copiedLink ? 'কপি হয়েছে!' : 'কপি করুন'}
+            </button>
           </div>
+        )}
+      </section>
 
-          <p className="text-[11px] text-stone-500 pt-2 font-sans">
-            Crafted with joy on UtsavPatra.com
-          </p>
-        </div>
+      {/* 11. Family Sign-off Footer */}
+      <footer className="pt-6 pb-12 text-center space-y-3">
+        <p className="text-sm font-bold text-[#7C3AED]">
+          {isBengali ? quotes.nativeFamilySignoff : quotes.familySignoff}
+        </p>
+        <p className="text-xs text-stone-500">
+          Sen & Banerjee Family | Ballygunge, Kolkata | Powered by UtsavPatra
+        </p>
       </footer>
 
     </div>

@@ -10,18 +10,18 @@ export const birthdayTemplate: CulturalTemplate = {
   nativeLanguageLabel: 'বাংলা',
   nativeLanguageCode: 'bn',
   colors: {
-    primary: '#B0305C',          // Royal Rose & Berry
-    primaryDark: '#5E102E',
-    primaryLight: '#D84B7A',
-    accent: '#D4AF37',           // Champagne Gold
-    accentLight: '#FCE7F3',
-    bgParchment: '#FFFDF9',
+    primary: '#7C3AED',          // Magical Lavender Violet
+    primaryDark: '#4C1D95',      // Deep Royal Violet
+    primaryLight: '#A78BFA',     // Soft Pastel Lilac
+    accent: '#EC4899',           // Cotton Candy Princess Pink
+    accentLight: '#FCE7F3',      // Soft Pastel Pink Tint
+    bgParchment: '#FAF5FF',      // Fairytale Lavender Mist
     bgCard: '#FFFFFF',
-    border: '#E8A3BC',
-    textColor: '#331A24',
-    envelopeOuter: '#631333',
-    envelopeInner: 'from-[#8B1D47] to-[#450A20]',
-    buttonGradient: 'from-[#D4AF37] via-[#FCE38A] to-[#D4AF37]'
+    border: '#C084FC',           // Pastel Lavender Border
+    textColor: '#2E1065',        // Deep Midnight Violet
+    envelopeOuter: '#5B21B6',    // Deep Violet Envelope
+    envelopeInner: 'from-[#7C3AED] to-[#4C1D95]',
+    buttonGradient: 'from-[#7C3AED] via-[#EC4899] to-[#0284C7]'
   },
   audioTrack: {
     title: 'Happy Birthday Celebration & Joyful Melodies',

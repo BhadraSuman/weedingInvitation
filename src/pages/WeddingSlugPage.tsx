@@ -52,19 +52,19 @@ export const WeddingSlugPage: React.FC = () => {
           </Link>
           <Link
             to="/sandeep-weds-priya"
-            className="px-4 py-2 rounded-full bg-[#800020] text-[#FBE8A6] font-serif text-xs font-bold shadow hover:bg-[#520014]"
+            className="px-4 py-2 rounded-full bg-[#0D4A36] text-[#E5C158] font-serif text-xs font-bold shadow hover:bg-[#042017]"
           >
             🚩 Bihari &amp; Marwari Vivah
           </Link>
           <Link
             to="/aarav-annaprashan"
-            className="px-4 py-2 rounded-full bg-[#A82025] text-white font-serif text-xs font-bold shadow hover:opacity-90"
+            className="px-4 py-2 rounded-full bg-[#D97706] text-white font-serif text-xs font-bold shadow hover:bg-[#B45309]"
           >
             🥣 Annaprashan (Rice Ceremony)
           </Link>
           <Link
             to="/ananya-turns-1"
-            className="px-4 py-2 rounded-full bg-[#B0305C] text-white font-serif text-xs font-bold shadow hover:opacity-90"
+            className="px-4 py-2 rounded-full bg-[#7C3AED] text-white font-serif text-xs font-bold shadow hover:bg-[#5B21B6]"
           >
             🎂 1st Birthday Gala
           </Link>

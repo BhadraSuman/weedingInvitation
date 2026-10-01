@@ -24,6 +24,15 @@ export const BengaliWeddingView: React.FC<BengaliWeddingViewProps> = ({
   return (
     <div className="relative max-w-4xl mx-auto px-4 py-12 sm:px-6">
       
+      {/* Top Antique Carved Wooden Scroll Dowel with Gilded Finials */}
+      <div className="relative -mb-3.5 z-20 flex items-center justify-between px-2 sm:px-6 pointer-events-none drop-shadow-md">
+        <div className="w-5 h-8 sm:w-7 sm:h-10 bg-gradient-to-r from-[#D4AF37] via-[#FFF3B0] to-[#997819] rounded-l-full shadow-lg border-y border-amber-900/60" />
+        <div className="flex-1 h-4 sm:h-5 bg-gradient-to-b from-[#4A1D11] via-[#783516] to-[#2D0F08] shadow-inner rounded-sm border-y border-amber-900/70 flex items-center justify-center">
+          <div className="w-3/4 h-1 bg-[#D4AF37]/35 rounded-full" />
+        </div>
+        <div className="w-5 h-8 sm:w-7 sm:h-10 bg-gradient-to-l from-[#D4AF37] via-[#FFF3B0] to-[#997819] rounded-r-full shadow-lg border-y border-amber-900/60" />
+      </div>
+
       {/* 1. Traditional Bengali "Lagna Patrika" Outer Red Border Frame */}
       <div className="relative bg-[#FFFDF9] rounded-3xl p-4 sm:p-10 border-4 border-[#8B181B] shadow-2xl overflow-hidden">
         
@@ -157,6 +166,15 @@ export const BengaliWeddingView: React.FC<BengaliWeddingViewProps> = ({
           </div>
 
         </div>
+      </div>
+
+      {/* Bottom Antique Carved Wooden Scroll Dowel with Gilded Finials */}
+      <div className="relative -mt-3.5 z-20 flex items-center justify-between px-2 sm:px-6 pointer-events-none drop-shadow-md">
+        <div className="w-5 h-8 sm:w-7 sm:h-10 bg-gradient-to-r from-[#D4AF37] via-[#FFF3B0] to-[#997819] rounded-l-full shadow-lg border-y border-amber-900/60" />
+        <div className="flex-1 h-4 sm:h-5 bg-gradient-to-b from-[#4A1D11] via-[#783516] to-[#2D0F08] shadow-inner rounded-sm border-y border-amber-900/70 flex items-center justify-center">
+          <div className="w-3/4 h-1 bg-[#D4AF37]/35 rounded-full" />
+        </div>
+        <div className="w-5 h-8 sm:w-7 sm:h-10 bg-gradient-to-l from-[#D4AF37] via-[#FFF3B0] to-[#997819] rounded-r-full shadow-lg border-y border-amber-900/60" />
       </div>
 
       {/* 2. Real-Time Countdown */}
