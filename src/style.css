@@ -23,6 +23,10 @@
   --font-bengali-sans:    'Hind Siliguri', sans-serif;
   --font-serif:           'Cormorant Garamond', Georgia, serif;
   --font-royal:           'Cinzel', serif;
+  --font-bodoni:          'Bodoni Moda', serif;
+  --font-newsreader:      'Newsreader', Georgia, serif;
+  --font-spacemono:       'Space Mono', monospace;
+  --font-barlow:          'Barlow Condensed', sans-serif;
   /* Product / UI (Buttons, navigation, tags, dashboard, form labels) */
   --font-sans:            'Plus Jakarta Sans', system-ui, sans-serif;
 

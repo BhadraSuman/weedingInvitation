@@ -1,407 +1,1065 @@
 import React, { useState } from 'react';
 import { CulturalTemplate, Language } from '../../types/wedding';
-import { SectionReveal } from '../common/SectionReveal';
-import { CountdownTimer } from '../CountdownTimer';
-import { VenueLocation } from '../VenueLocation';
-import { RsvpSection } from '../RsvpSection';
-import { DigitalShagunSection } from '../DigitalShagunSection';
-import { WishesGuestbook } from '../WishesGuestbook';
-import { Footer } from '../Footer';
-import { NriGlobalSuite } from '../common/NriGlobalSuite';
+import { audioManager } from '../../utils/audioManager';
+import { Link } from 'react-router-dom';
 import {
   Film,
-  Play,
-  Star,
-  Award,
+  Volume2,
+  VolumeX,
+  Home,
+  CheckCircle2,
   Calendar,
   Clock,
   MapPin,
+  ExternalLink,
+  Disc,
+  Play,
+  Pause,
+  Ticket,
+  Users,
+  Send,
   Sparkles,
-  Heart,
-  Volume2,
-  Tv,
-  CheckCircle,
-  Share2,
-  Video
+  Radio
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
 
 interface BollywoodPremiereViewProps {
-  template: CulturalTemplate;
-  lang: Language;
+  template?: CulturalTemplate;
+  lang?: Language;
   guestName?: string;
+  onLangChange?: (lang: Language) => void;
 }
 
 export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
   template,
-  lang,
-  guestName
+  lang = 'native',
+  guestName,
+  onLangChange
 }) => {
-  const { colors, quotes, groom, bride, events } = template;
   const isHindi = lang === 'native';
-  const [selectedEpisode, setSelectedEpisode] = useState(0);
-  const [showTrailerModal, setShowTrailerModal] = useState(false);
-  const [hasLiked, setHasLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(1402);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isClassicNoir, setIsClassicNoir] = useState(false);
+  const [selectedSeats, setSelectedSeats] = useState<string[]>(['B3', 'B4']);
+  const [selectedSnack, setSelectedSnack] = useState('Caramel Popcorn');
+  const [activeTab, setActiveTab] = useState<'premiere' | 'events' | 'cast' | 'score' | 'rsvp'>('premiere');
+  const [currentTrack, setCurrentTrack] = useState({
+    title: 'Kala Chashma (Bass Baaraat Mix)',
+    artist: 'DJ Rohit & Dhol Squad'
+  });
+  const [isJukeboxPlaying, setIsJukeboxPlaying] = useState(true);
+  const [djSongInput, setDjSongInput] = useState('');
+  const [toastMsg, setToastMsg] = useState<string | null>(null);
+  const [rsvpGuestName, setRsvpGuestName] = useState(guestName || '');
 
-  const triggerRedCarpetConfetti = () => {
-    confetti({
-      particleCount: 60,
-      spread: 80,
-      origin: { y: 0.7 },
-      colors: ['#E50914', '#D4AF37', '#FFD700', '#FFFFFF']
-    });
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => {
+      setToastMsg(null);
+    }, 3000);
   };
 
-  const handleLike = () => {
-    if (!hasLiked) {
-      setHasLiked(true);
-      setLikeCount(prev => prev + 1);
-      triggerRedCarpetConfetti();
+  const toggleHeaderAudio = () => {
+    if (isPlaying) {
+      audioManager.pause();
+      setIsPlaying(false);
+    } else {
+      audioManager.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const toggleSeat = (seatId: string) => {
+    if (selectedSeats.includes(seatId)) {
+      setSelectedSeats(selectedSeats.filter(s => s !== seatId));
+    } else {
+      setSelectedSeats([...selectedSeats, seatId]);
+    }
+  };
+
+  const handleDjRequest = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (djSongInput.trim()) {
+      showToast(`Song "${djSongInput}" requested and sent to DJ console! 🎧`);
+      setDjSongInput('');
+    }
+  };
+
+  const playCommentary = (key: string) => {
+    const notes: Record<string, string> = {
+      sangeet: "Director's Note: Sangeet rehearsals had 4 broken heels and 2 missing dupattas!",
+      haldi: "Director's Note: 15 kgs of organic haldi and infinite pool splashes prepared.",
+      pheras: "Director's Note: Pheras are synchronized to the golden hour twilight sky.",
+      afterparty: "Director's Note: Midnight Biryani handis prepared by master khansamas."
+    };
+    showToast(notes[key] || "Director's commentary loading...");
+  };
+
+  const confirmRsvpViaWhatsApp = () => {
+    const name = rsvpGuestName.trim() || 'Honored Guest';
+    const seats = selectedSeats.length > 0 ? selectedSeats.join(', ') : 'Front Row Standing';
+    const snack = selectedSnack;
+    const msg =
+      `🍿 *THE GRAND PREMIERE RSVP CONFIRMATION*\n\n` +
+      `🎬 *Movie:* Prem Ki Kahani (Anirban & Deboleena Wedding)\n` +
+      `👤 *Star Guest:* ${name}\n` +
+      `🎟️ *Reserved Seats:* ${seats}\n` +
+      `🍿 *Snack Preference:* ${snack}\n\n` +
+      `See you on 26th December 2026 on the Red Carpet!`;
+
+    const targetNumber = '916203868358';
+    const waUrl = `https://api.whatsapp.com/send?phone=${targetNumber}&text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
+  };
+
+  const scrollTo = (id: string, tab: 'premiere' | 'events' | 'cast' | 'score' | 'rsvp') => {
+    setActiveTab(tab);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0F0F12] text-white selection:bg-[#E50914] selection:text-white font-sans overflow-x-hidden">
-      {/* Cinematic Ambient Backdrop Glow */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[#E50914]/15 rounded-full blur-[140px]" />
-        <div className="absolute top-[40%] right-0 w-[500px] h-[400px] bg-[#D4AF37]/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[500px] bg-[#E50914]/10 rounded-full blur-[150px]" />
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-24 pb-20">
-        {/* Top OTT Navigation Bar Banner */}
-        <div className="flex items-center justify-between py-3 px-4 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 mb-8 shadow-2xl">
+    <div
+      className="relative min-h-screen bg-[#131315] text-[#E5E1E4] selection:bg-[#F2CA50] selection:text-[#131315] pb-28 antialiased"
+      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+    >
+      {/* CINEMATIC FIXED HEADER */}
+      <header className="sticky top-0 w-full z-50 bg-[#0E0E10]/90 backdrop-blur-xl border-b border-[#F2CA50]/20 shadow-lg">
+        <div className="max-w-2xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-xl sm:text-2xl font-black tracking-tighter text-[#E50914] font-serif uppercase">
-              SHAADI<span className="text-white text-base font-light tracking-widest ml-1">ORIGINALS</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-600/20 border border-red-500/40 text-red-400 text-xs font-semibold uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              {isHindi ? 'लाइव रिलीज' : 'PREMIERING NOW'}
-            </span>
-          </div>
-        </div>
-
-        {/* Personalized VIP Guest Ticket Banner */}
-        {guestName && (
-          <SectionReveal>
-            <div className="mb-8 p-4 rounded-2xl bg-gradient-to-r from-red-950/60 via-black/80 to-amber-950/50 border border-amber-500/40 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center shrink-0">
-                  <Award className="w-6 h-6 text-amber-400" />
-                </div>
-                <div>
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-amber-400 font-bold block">
-                    {isHindi ? 'रेड कार्पेट वीआईपी पास' : 'RED CARPET VIP INVITATION'}
-                  </span>
-                  <h3 className="text-xl font-serif font-bold text-white">
-                    {guestName}
-                  </h3>
-                </div>
-              </div>
-              <span className="text-xs px-3 py-1.5 rounded-full bg-white/10 text-white/90 border border-white/15 font-mono">
-                {isHindi ? 'सपरिवार सादर आमंत्रित' : 'Admit With Family'}
-              </span>
-            </div>
-          </SectionReveal>
-        )}
-
-        {/* HERO SECTION: THEATRICAL BLOCKBUSTER MOVIE POSTER */}
-        <SectionReveal>
-          <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-black/80 shadow-[0_20px_60px_rgba(229,9,20,0.25)]">
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden">
-              <img
-                src="/images/couples/bollywood_poster.jpg"
-                alt="The Grand Premiere Movie Poster"
-                className="w-full h-full object-cover object-center filter brightness-95"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F12] via-[#0F0F12]/50 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent" />
-
-              {/* Top Film Badge */}
-              <div className="absolute top-4 left-4 flex items-center gap-2">
-                <span className="px-3 py-1 rounded-md bg-[#E50914] text-white text-[11px] font-bold uppercase tracking-widest shadow-md">
-                  BLOCKBUSTER OF THE YEAR
-                </span>
-                <span className="px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono">
-                  U/A 100% LOVE
-                </span>
-              </div>
-
-              {/* Bottom Poster Title Info */}
-              <div className="absolute bottom-6 left-6 right-6 flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-amber-400 text-xs font-mono tracking-widest uppercase font-semibold">
-                  <Star className="w-3.5 h-3.5 fill-current" />
-                  <span>{isHindi ? 'भाग्य द्वारा निर्देशित • दो परिवारों द्वारा प्रस्तुत' : 'DIRECTED BY DESTINY • PRODUCED BY TWO FAMILIES'}</span>
-                </div>
-                <h1 className="text-3xl sm:text-5xl font-black font-serif text-white tracking-tight drop-shadow-md">
-                  {isHindi ? quotes.nativeWeddingTitle : quotes.weddingTitle}
-                </h1>
-                <p className="text-xs sm:text-sm text-white/80 max-w-xl line-clamp-2">
-                  {isHindi ? quotes.nativeWelcomeNotice : quotes.welcomeNotice}
-                </p>
-
-                {/* Hero Actions: Watch Teaser & Like */}
-                <div className="flex flex-wrap items-center gap-3 pt-3">
-                  <button
-                    onClick={() => setShowTrailerModal(true)}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm shadow-lg hover:bg-white/90 active:scale-95 transition-all"
-                  >
-                    <Play className="w-4 h-4 fill-current text-black" />
-                    <span>{isHindi ? 'टीज़र ट्रेलर देखें' : 'Watch Teaser Trailer'}</span>
-                  </button>
-
-                  <button
-                    onClick={handleLike}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-full border text-xs font-semibold backdrop-blur-md transition-all ${
-                      hasLiked
-                        ? 'bg-red-600/30 border-red-500 text-red-300'
-                        : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
-                    }`}
-                  >
-                    <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current text-red-500' : ''}`} />
-                    <span>{likeCount} {isHindi ? 'शुभकामनाएं' : 'Claps'}</span>
-                  </button>
-
-                  <div className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
-                    <CheckCircle className="w-3.5 h-3.5" />
-                    <span>99% MATCH ON HEARTS</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Billing Block Credits Strip */}
-            <div className="p-4 bg-black/90 border-t border-white/10 text-center font-mono text-[10px] text-white/50 tracking-widest uppercase">
-              {isHindi
-                ? '★ अनिर्बान सेन संग देबोलीना रॉय • मुख्य भूमिका • संगीत: शहनाई एवं डीजे • छायांकन: स्मृतियां • रिलीज तिथि: २६ दिसम्बर २०२६ ★'
-                : '★ STARRING ANIRBAN SEN & DEBOLEENA ROY • MUSIC BY ACOUSTIC SHEHNAI • EDITORIAL BY ETERNAL MEMORIES • WORLD PREMIERE: 26 DEC 2026 ★'}
-            </div>
-          </div>
-        </SectionReveal>
-
-        {/* COUNTDOWN TIMER: RELEASE IN THEATRES */}
-        <div className="my-12">
-          <CountdownTimer
-            template={template}
-            lang={lang}
-          />
-        </div>
-
-        {/* EPISODES CAROUSEL (CEREMONY ITINERARY) */}
-        <SectionReveal>
-          <div className="my-16">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-[#E50914] font-bold">
-                  {isHindi ? 'सीजन १: विवाह उत्सव' : 'SEASON 1 • CEREMONIES'}
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-bold font-serif text-white mt-1">
-                  {isHindi ? 'मांगलिक एपिसोड्स' : 'Wedding Episodes & Schedule'}
-                </h2>
-              </div>
-              <span className="text-xs font-mono text-white/60 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
-                {events.length} {isHindi ? 'एपिसोड्स' : 'Episodes'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {events.map((evt, idx) => (
-                <div
-                  key={evt.id}
-                  onClick={() => setSelectedEpisode(idx)}
-                  className={`group relative rounded-2xl p-5 border cursor-pointer transition-all duration-300 flex flex-col justify-between ${
-                    selectedEpisode === idx
-                      ? 'bg-gradient-to-b from-red-950/40 to-black/80 border-[#E50914] shadow-[0_8px_30px_rgba(229,9,20,0.3)]'
-                      : 'bg-[#18181D] border-white/10 hover:border-white/30 hover:bg-[#202026]'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-xs font-mono mb-3">
-                      <span className="px-2 py-0.5 rounded bg-white/10 text-white font-bold">
-                        EP {idx + 1}
-                      </span>
-                      <span className="text-amber-400 font-semibold">
-                        {isHindi ? evt.nativeDate : evt.date.split(',')[0]}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-bold font-serif text-white group-hover:text-amber-300 transition-colors mb-1">
-                      {isHindi ? evt.nativeTitle : evt.title}
-                    </h3>
-                    <p className="text-xs text-white/60 italic font-serif mb-3">
-                      {isHindi ? evt.nativeTagline : evt.tagline}
-                    </p>
-                    <p className="text-xs text-white/70 leading-relaxed line-clamp-3 mb-4">
-                      {isHindi ? evt.nativeDescription : evt.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-white/10 space-y-2 text-xs text-white/80">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                      <span>{isHindi ? evt.nativeTime : evt.time}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-3.5 h-3.5 text-red-400 shrink-0" />
-                      <span className="truncate">{isHindi ? evt.nativeVenueName : evt.venueName}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </SectionReveal>
-
-        {/* CAST & CREW (MEET THE LEADING PAIR & PRODUCERS) */}
-        <SectionReveal>
-          <div className="my-16">
-            <div className="text-center mb-10">
-              <span className="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold">
-                {isHindi ? 'स्टार कास्ट' : 'THE STAR CAST'}
-              </span>
-              <h2 className="text-3xl font-bold font-serif text-white mt-1">
-                {isHindi ? 'मुख्य किरदार' : 'Meet The Leading Pair'}
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {/* Groom Hero */}
-              <div className="rounded-3xl bg-[#18181D] border border-white/15 p-6 shadow-xl flex flex-col justify-between group hover:border-[#E50914] transition-colors">
-                <div>
-                  <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-4 border border-white/10 relative">
-                    <img
-                      src={groom.image}
-                      alt={groom.name}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/80 backdrop-blur-md text-[11px] font-mono text-amber-400 font-bold border border-white/15">
-                      {isHindi ? 'नायक (HERO)' : 'THE GROOM'}
-                    </div>
-                  </div>
-                  <h3 className="text-2xl font-bold font-serif text-white">
-                    {isHindi ? groom.nativeName : groom.name}
-                  </h3>
-                  <p className="text-xs font-mono text-red-400 font-semibold mb-3">
-                    {isHindi ? groom.nativeRole : groom.role}
-                  </p>
-                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-serif">
-                    "{isHindi ? groom.nativeAbout : groom.about}"
-                  </p>
-                </div>
-                <div className="mt-4 pt-4 border-t border-white/10 text-xs text-white/50 font-mono">
-                  {isHindi ? groom.nativeParents : groom.parents}
-                </div>
-              </div>
-
-              {/* Bride Heroine */}
-              <div className="rounded-3xl bg-[#18181D] border border-white/15 p-6 shadow-xl flex flex-col justify-between group hover:border-[#E50914] transition-colors">
-                <div>
-                  <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-4 border border-white/10 relative">
-                    <img
-                      src={bride.image}
-                      alt={bride.name}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/80 backdrop-blur-md text-[11px] font-mono text-amber-400 font-bold border border-white/15">
-                      {isHindi ? 'नायिका (HEROINE)' : 'THE BRIDE'}
-                    </div>
-                  </div>
-                  <h3 className="text-2xl font-bold font-serif text-white">
-                    {isHindi ? bride.nativeName : bride.name}
-                  </h3>
-                  <p className="text-xs font-mono text-red-400 font-semibold mb-3">
-                    {isHindi ? bride.nativeRole : bride.role}
-                  </p>
-                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-serif">
-                    "{isHindi ? bride.nativeAbout : bride.about}"
-                  </p>
-                </div>
-                <div className="mt-4 pt-4 border-t border-white/10 text-xs text-white/50 font-mono">
-                  {isHindi ? bride.nativeParents : bride.parents}
-                </div>
-              </div>
-            </div>
-          </div>
-        </SectionReveal>
-
-        {/* GLOBAL NRI PORTAL */}
-        <div className="my-16">
-          <NriGlobalSuite template={template} lang={lang} />
-        </div>
-
-        {/* VENUE & RED CARPET ACCESS */}
-        <div className="my-16">
-          <VenueLocation template={template} lang={lang} />
-        </div>
-
-        {/* RSVP WITH CHIEF PRODUCERS */}
-        <div className="my-16">
-          <RsvpSection template={template} lang={lang} />
-        </div>
-
-        {/* DIGITAL SHAGUN ENVELOPE */}
-        <div className="my-16">
-          <DigitalShagunSection template={template} lang={lang} />
-        </div>
-
-        {/* FAN WISHES & GUESTBOOK */}
-        <div className="my-16">
-          <WishesGuestbook template={template} lang={lang} />
-        </div>
-
-        {/* FOOTER */}
-        <Footer template={template} lang={lang} />
-      </div>
-
-      {/* TEASER TRAILER MODAL */}
-      {showTrailerModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl animate-fade-in">
-          <div className="relative w-full max-w-2xl bg-[#18181D] border border-white/20 rounded-3xl overflow-hidden shadow-2xl p-6">
-            <button
-              onClick={() => setShowTrailerModal(false)}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+            <Link
+              to="/"
+              className="w-10 h-10 rounded-full bg-[#1C1B1D] border border-[#F2CA50]/30 flex items-center justify-center text-[#F2CA50] hover:scale-105 transition-transform"
+              title="Platform Home"
             >
-              ✕
-            </button>
-
-            <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-widest font-bold mb-2">
-              <Film className="w-4 h-4" />
-              <span>OFFICIAL TEASER TRAILER</span>
-            </div>
-
-            <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-4">
-              {isHindi ? 'द ग्रैंड प्रीमियर • ऑफिशियल टीज़र' : 'The Grand Premiere • Official Teaser'}
-            </h3>
-
-            {/* Video Mockup Screen */}
-            <div className="relative aspect-video rounded-2xl overflow-hidden bg-black border border-white/10 flex flex-col items-center justify-center text-center p-6 mb-4">
-              <div className="w-16 h-16 rounded-full bg-red-600/30 border border-red-500 flex items-center justify-center mb-3">
-                <Play className="w-8 h-8 fill-current text-red-500 ml-1" />
-              </div>
-              <p className="font-serif italic text-white/90 text-sm sm:text-base max-w-md">
-                "Where eyes met across crowded rooms, and destinies entwined forever."
-              </p>
-              <span className="text-xs font-mono text-amber-400 mt-2">
-                Directed with Love by Anirban & Deboleena
+              <Home className="w-4 h-4" />
+            </Link>
+            <div className="flex flex-col">
+              <span
+                className="text-[11px] font-bold tracking-[0.25em] text-[#F2CA50] uppercase"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              >
+                VIP PREMIERE PASS
+              </span>
+              <span
+                className="text-sm font-semibold uppercase text-white truncate max-w-[170px]"
+                style={{ fontFamily: "'Bodoni Moda', serif" }}
+              >
+                The Grand Premiere
               </span>
             </div>
+          </div>
 
-            <div className="flex justify-end">
-              <button
-                onClick={() => setShowTrailerModal(false)}
-                className="px-6 py-2 rounded-full bg-white text-black font-semibold text-xs font-mono hover:bg-white/90"
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleHeaderAudio}
+              className="w-10 h-10 rounded-full bg-[#1C1B1D] border border-white/10 flex items-center justify-center text-[#D0C5AF] hover:text-[#F2CA50] transition-colors"
+              title="Toggle Audio Track"
+              type="button"
+            >
+              {isPlaying ? <VolumeX className="w-4 h-4 text-[#F2CA50]" /> : <Volume2 className="w-4 h-4" />}
+            </button>
+            <div className="w-9 h-9 rounded-full overflow-hidden border border-[#F2CA50]/40">
+              <img src="/images/couples/bollywood_poster.jpg" alt="Profile" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* MAIN CONTAINER */}
+      <main className="max-w-2xl mx-auto">
+        {/* RETRO LEADER COUNTDOWN STRIP */}
+        <div className="w-full bg-[#0E0E10] px-4 py-2 flex items-center justify-between border-b border-[#F2CA50]/20">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex h-2 w-2 rounded-full bg-[#E50914] animate-ping" />
+            <span
+              className="text-[10px] sm:text-[11px] text-[#F2CA50] tracking-[0.25em] uppercase font-bold"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              ROLLING REEL • 35MM NITRATE
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div
+              className="px-2 py-0.5 bg-[#2A2A2C] rounded text-[10px] text-[#F2CA50] tracking-[0.2em] font-mono font-bold"
+            >
+              SYNC: 26 DEC '26
+            </div>
+            <button
+              onClick={() => setIsClassicNoir(!isClassicNoir)}
+              className="px-2 py-0.5 bg-[#F2CA50]/15 rounded text-[10px] text-[#F2CA50] hover:bg-[#F2CA50]/30 transition-all uppercase tracking-wider font-bold"
+            >
+              {isClassicNoir ? 'Bollywood Color' : 'Classic Noir B&W'}
+            </button>
+          </div>
+        </div>
+
+        {/* SECTION 1: BLOCKBUSTER POSTER HERO & WIDESCREEN CINEMATIC CANVAS */}
+        <section id="premiere" className="relative w-full flex flex-col items-center overflow-hidden bg-[#0E0E10] scroll-mt-20">
+          {/* 2.39:1 Anamorphic Top Matte Bar */}
+          <div className="w-full h-7 bg-[#0E0E10] flex items-center justify-between px-4 z-20">
+            <span
+              className="text-[10px] tracking-[0.3em] text-[#D0C5AF]/70 uppercase font-mono font-bold"
+            >
+              DOLBY ATMOS 7.1 • 4K SCOPE 2.39:1
+            </span>
+            <div className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F2CA50]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F2CA50]/50" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F2CA50]/20" />
+            </div>
+          </div>
+
+          {/* Main Visual Poster Vitrine */}
+          <div className="relative w-full aspect-[2/3] max-h-[640px] overflow-hidden flex items-end justify-center group">
+            <img
+              id="main-poster-art"
+              src="/images/couples/bollywood_poster.jpg"
+              alt="Prem Ki Kahani Wedding Poster"
+              className={`absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[12000ms] ease-out scale-105 group-hover:scale-110 ${
+                isClassicNoir ? 'filter grayscale contrast-125' : ''
+              }`}
+            />
+            {/* Ambient Cinematic Lighting Gradient / Vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#131315] via-[#131315]/60 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-radial-at-t from-[#FFC461]/15 via-transparent to-[#0E0E10]/80 pointer-events-none" />
+
+            {/* Festival Laurels (Cannes / Film Fest parody) */}
+            <div className="absolute top-4 left-0 right-0 flex justify-center items-center gap-6 px-4 z-10 pointer-events-none">
+              <div className="flex items-center gap-1 text-[#F2CA50] text-center drop-shadow-md">
+                <span
+                  className="text-[11px] tracking-[0.2em] uppercase font-bold"
+                  style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+                >
+                  ★ OFFICIAL SELECTION ★<br />
+                  <span className="text-white text-[9px] tracking-[0.1em]">MOST ANTICIPATED NUPTIALS 2026</span>
+                </span>
+              </div>
+            </div>
+
+            {/* Poster Title Overlay */}
+            <div className="relative z-10 w-full px-4 pb-6 flex flex-col items-center text-center">
+              <p
+                className="text-[13px] tracking-[0.35em] text-[#F2CA50] uppercase drop-shadow-md mb-1 font-bold"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
               >
-                {isHindi ? 'बंद करें' : 'Close Screen'}
+                DHARMA & YASH RAJ PARIVAAR PRESENT
+              </p>
+              <h1
+                className="text-4xl sm:text-5xl text-[#F2CA50] tracking-tight font-black drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] leading-tight"
+                style={{ fontFamily: "'Bodoni Moda', serif" }}
+              >
+                PREM KI KAHANI
+              </h1>
+              <div className="flex items-center justify-center gap-3 my-1.5">
+                <span className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#F2CA50]" />
+                <span className="text-base sm:text-lg text-white uppercase tracking-widest font-semibold font-serif">
+                  ANIRBAN <span className="text-[#F2CA50] font-normal">&</span> SIMRAN
+                </span>
+                <span className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#F2CA50]" />
+              </div>
+              <p className="text-xs sm:text-sm italic text-[#D0C5AF] font-serif tracking-wide mt-1 drop-shadow">
+                “Do dil. Do parivaar. Ek shaadi.”
+              </p>
+              <button
+                type="button"
+                onClick={() => scrollTo('box-office', 'rsvp')}
+                className="mt-4 inline-flex items-center gap-2 px-6 py-2.5 bg-[#F2CA50] text-[#131315] font-bold rounded shadow-[0_0_24px_rgba(242,202,80,0.45)] hover:bg-[#FFC461] transition-transform active:scale-95 text-xs uppercase tracking-widest"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              >
+                <Ticket className="w-4 h-4" />
+                <span>CLAIM PREMIERE SEAT</span>
               </button>
             </div>
           </div>
+
+          {/* 2.39:1 Anamorphic Bottom Matte Bar */}
+          <div className="w-full h-4 bg-[#0E0E10] z-20" />
+
+          {/* Authentic Hollywood / Bollywood Technical Billing Block */}
+          <div className="w-full bg-[#0E0E10] px-4 py-4 border-t border-b border-[#F2CA50]/20">
+            <p
+              className="text-[10px] text-[#99907C] tracking-[0.22em] text-center uppercase leading-relaxed max-w-xl mx-auto font-mono"
+            >
+              DIRECTED BY <span className="text-white font-bold">DESTINY</span> • PRODUCED BY{' '}
+              <span className="text-white font-bold">MAA-BAAP ENTERTAINMENT</span> • MUSIC COMPOSED & ARRANGED BY{' '}
+              <span className="text-white font-bold">DHOL WALE BHAIYA</span> • SCREENPLAY & STORY BY{' '}
+              <span className="text-white font-bold">KISMET</span> • WARDROBE & COSTUMES BY{' '}
+              <span className="text-white font-bold">CHANDNI CHOWK ATELIER</span> • CHOREOGRAPHY BY{' '}
+              <span className="text-white font-bold">LATE NIGHT COUSINS CLUB</span> • WORLDWIDE SATELLITE & MANDAP RELEASE:{' '}
+              <span className="text-[#F2CA50] font-bold">26 DECEMBER 2026</span>
+            </p>
+          </div>
+        </section>
+
+        {/* QUICK ACTION BAR (TICKET BADGES) */}
+        <div className="w-full bg-[#1C1B1D] px-4 py-3 flex items-center justify-around gap-2 shadow-inner border-b border-white/5">
+          <div className="flex flex-col items-center">
+            <span className="text-[10px] text-[#F2CA50] tracking-widest uppercase font-mono">CERTIFIED</span>
+            <span className="text-sm font-bold text-white">U/A 100%</span>
+          </div>
+          <div className="w-[1px] h-8 bg-white/10" />
+          <div className="flex flex-col items-center">
+            <span className="text-[10px] text-[#F2CA50] tracking-widest uppercase font-mono">RUN TIME</span>
+            <span className="text-sm font-bold text-white">3 NIGHTS</span>
+          </div>
+          <div className="w-[1px] h-8 bg-white/10" />
+          <div className="flex flex-col items-center">
+            <span className="text-[10px] text-[#F2CA50] tracking-widest uppercase font-mono">AUDIO</span>
+            <span className="text-sm font-bold text-white">LIVE DHOL</span>
+          </div>
+          <div className="w-[1px] h-8 bg-white/10" />
+          <div className="flex flex-col items-center">
+            <span className="text-[10px] text-[#F2CA50] tracking-widest uppercase font-mono">FORMAT</span>
+            <span className="text-sm font-bold text-white">70MM IMAX</span>
+          </div>
+        </div>
+
+        {/* SECTION 2: SYNOPSIS & MULTIPLEX SHOW TIMINGS BOARD */}
+        <section id="synopsis-timings" className="w-full px-4 py-8 flex flex-col gap-6 scroll-mt-20">
+          <div className="flex flex-col items-center text-center">
+            <div className="flex items-center gap-2 mb-1">
+              <Film className="w-4 h-4 text-[#F2CA50]" />
+              <span
+                className="text-xs tracking-[0.25em] text-[#F2CA50] uppercase font-bold"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              >
+                NOW SHOWING ACROSS AUDITORIUMS
+              </span>
+            </div>
+            <h2
+              className="text-2xl text-white font-bold font-serif"
+              style={{ fontFamily: "'Bodoni Moda', serif" }}
+            >
+              Premiere Schedule & Showtimes
+            </h2>
+            <p className="text-xs text-[#D0C5AF]/70 max-w-sm mt-1">
+              Select any show card to reveal venue coordinates, dress codes, and audio commentary preview.
+            </p>
+          </div>
+
+          {/* Multiplex Marquee Cards */}
+          <div className="flex flex-col gap-4">
+            {/* SHOW 1: SANGEET */}
+            <div className="bg-[#2A2A2C] rounded-lg p-4 flex flex-col gap-3 relative overflow-hidden transition-all hover:shadow-[0_0_24px_rgba(242,202,80,0.15)] border border-white/5">
+              <div className="flex items-start justify-between">
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-[#F2CA50]/20 text-[#F2CA50] text-[10px] font-mono px-2 py-0.5 rounded tracking-widest uppercase font-bold">
+                      SCREEN 1 • IMAX DHOL
+                    </span>
+                    <span className="text-[10px] text-[#D0C5AF]/60 font-mono">240 MINS</span>
+                  </div>
+                  <h3
+                    className="text-base text-white font-semibold mt-1"
+                    style={{ fontFamily: "'Bodoni Moda', serif" }}
+                  >
+                    Sangeet Dance Battle: Soundtrack Launch
+                  </h3>
+                  <span className="text-xs text-[#F2CA50] font-medium font-mono">24 Dec 2026 • 7:00 PM IST Onwards</span>
+                </div>
+                <Radio className="w-6 h-6 text-[#F2CA50] shrink-0" />
+              </div>
+              <p className="text-xs text-[#D0C5AF]/80 leading-relaxed">
+                High-energy musical dance warfare between the Ladkewale and Ladkiwale. Clashing rhythms, retro medleys, and dramatic mic drops.
+              </p>
+              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 text-xs">
+                <div className="flex items-center gap-1.5 text-[#D0C5AF]">
+                  <Sparkles className="w-3.5 h-3.5 text-[#F2CA50]" />
+                  <span className="truncate">Bollywood Red Carpet Glam</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[#D0C5AF]">
+                  <MapPin className="w-3.5 h-3.5 text-[#F2CA50]" />
+                  <span className="truncate">Grand Crystal Ballroom</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between pt-1">
+                <button
+                  type="button"
+                  onClick={() => playCommentary('sangeet')}
+                  className="flex items-center gap-1 text-[#F2CA50] text-xs uppercase font-bold tracking-wider hover:underline"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                  <span>Director's Commentary</span>
+                </button>
+                <a
+                  href="https://maps.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-[#353437] text-white rounded text-xs uppercase tracking-wider flex items-center gap-1 hover:bg-[#F2CA50] hover:text-[#131315] transition-colors"
+                >
+                  <span>Directions</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* SHOW 2: HALDI */}
+            <div className="bg-[#2A2A2C] rounded-lg p-4 flex flex-col gap-3 relative overflow-hidden transition-all hover:shadow-[0_0_24px_rgba(242,202,80,0.15)] border border-white/5">
+              <div className="flex items-start justify-between">
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-[#E4A83B]/20 text-[#FFC461] text-[10px] font-mono px-2 py-0.5 rounded tracking-widest uppercase font-bold">
+                      SCREEN 2 • COLOR SPLASH
+                    </span>
+                    <span className="text-[10px] text-[#D0C5AF]/60 font-mono">180 MINS</span>
+                  </div>
+                  <h3
+                    className="text-base text-white font-semibold mt-1"
+                    style={{ fontFamily: "'Bodoni Moda', serif" }}
+                  >
+                    Haldi Chronicles: The Yellow Sunshine
+                  </h3>
+                  <span className="text-xs text-[#FFC461] font-medium font-mono">25 Dec 2026 • 10:30 AM Matinee</span>
+                </div>
+                <Sparkles className="w-6 h-6 text-[#FFC461] shrink-0" />
+              </div>
+              <p className="text-xs text-[#D0C5AF]/80 leading-relaxed">
+                An organic turmeric war zone with poolside flower petals, bespoke cocktails, and unfiltered joy. Waterproof attire recommended.
+              </p>
+              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 text-xs">
+                <div className="flex items-center gap-1.5 text-[#D0C5AF]">
+                  <Sparkles className="w-3.5 h-3.5 text-[#FFC461]" />
+                  <span className="truncate">Shades of Mustard & Marigold</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[#D0C5AF]">
+                  <MapPin className="w-3.5 h-3.5 text-[#FFC461]" />
+                  <span className="truncate">Royal Poolside Gardens</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between pt-1">
+                <button
+                  type="button"
+                  onClick={() => playCommentary('haldi')}
+                  className="flex items-center gap-1 text-[#FFC461] text-xs uppercase font-bold tracking-wider hover:underline"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                  <span>Director's Commentary</span>
+                </button>
+                <a
+                  href="https://maps.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-[#353437] text-white rounded text-xs uppercase tracking-wider flex items-center gap-1 hover:bg-[#FFC461] hover:text-[#131315] transition-colors"
+                >
+                  <span>Directions</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* SHOW 3: THE MAIN PREMIERE / PHERAS */}
+            <div className="bg-[#920703]/20 rounded-lg p-4 flex flex-col gap-3 relative overflow-hidden shadow-[0_0_24px_rgba(146,7,3,0.3)] border border-[#E50914]/40">
+              <div className="flex items-start justify-between">
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-[#920703] text-white text-[10px] font-mono px-2 py-0.5 rounded tracking-widest uppercase font-bold">
+                      SCREEN 3 • WORLD PREMIERE
+                    </span>
+                    <span className="text-[10px] text-[#FFB4A8] font-mono animate-pulse font-bold">
+                      LIVE GOLDEN HOUR
+                    </span>
+                  </div>
+                  <h3
+                    className="text-base text-[#FFDAD4] font-bold mt-1"
+                    style={{ fontFamily: "'Bodoni Moda', serif" }}
+                  >
+                    The Main Premiere: 7 Sacred Pheras
+                  </h3>
+                  <span className="text-xs text-[#F2CA50] font-semibold font-mono">26 Dec 2026 • 6:30 PM (Godhuli Vela)</span>
+                </div>
+                <Film className="w-6 h-6 text-[#FFDAD4] shrink-0" />
+              </div>
+              <p className="text-xs text-white/90 leading-relaxed">
+                The ultimate climax scene: sacred holy fire, Vedic chants, flower showers, and everlasting promises amidst royal Shehnai symphony.
+              </p>
+              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#920703]/40 text-xs">
+                <div className="flex items-center gap-1.5 text-[#FFDAD4]">
+                  <Sparkles className="w-3.5 h-3.5 text-[#F2CA50]" />
+                  <span className="truncate">Traditional Banarasi & Sherwani</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[#FFDAD4]">
+                  <MapPin className="w-3.5 h-3.5 text-[#F2CA50]" />
+                  <span className="truncate">Auspicious Mandap Enclave</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between pt-1">
+                <button
+                  type="button"
+                  onClick={() => playCommentary('pheras')}
+                  className="flex items-center gap-1 text-[#F2CA50] text-xs uppercase font-bold tracking-wider hover:underline"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                  <span>Director's Commentary</span>
+                </button>
+                <a
+                  href="https://maps.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-[#F2CA50] text-[#131315] font-bold rounded text-xs uppercase tracking-wider flex items-center gap-1 hover:bg-[#FFC461] transition-colors"
+                >
+                  <span>Directions</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 3: "CAST & CREW" CINEMATIC CREDITS ROLL */}
+        <section id="cast-crew" className="w-full bg-[#0E0E10] py-10 px-4 flex flex-col items-center relative overflow-hidden border-t border-b border-[#F2CA50]/20 scroll-mt-20">
+          <div className="flex flex-col items-center text-center mb-6">
+            <span
+              className="text-xs text-[#F2CA50] tracking-[0.3em] uppercase font-bold"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              CLOSING CREDITS SEQUENCE
+            </span>
+            <h2
+              className="text-2xl text-white font-serif mt-1 font-bold"
+              style={{ fontFamily: "'Bodoni Moda', serif" }}
+            >
+              Cast & Key Crew
+            </h2>
+            <p className="text-xs text-[#D0C5AF]/70">The visionary minds and chaotic souls behind this production.</p>
+          </div>
+
+          <div className="w-full max-w-md bg-[#1C1B1D] rounded-xl p-5 shadow-2xl relative border border-white/5">
+            <div className="flex flex-col gap-4 text-center">
+              {/* Lead Stars */}
+              <div className="flex flex-col gap-1 pb-3 border-b border-white/10">
+                <span
+                  className="text-xs text-[#F2CA50] uppercase tracking-[0.25em] font-bold"
+                  style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+                >
+                  THE HERO (GROOM)
+                </span>
+                <span
+                  className="text-base text-white font-bold"
+                  style={{ fontFamily: "'Bodoni Moda', serif" }}
+                >
+                  Anirban “The Diplomat”
+                </span>
+                <span className="text-xs text-[#99907C] italic">
+                  “Master of negotiating with panditji and smiling through 4-hour photo lines.”
+                </span>
+              </div>
+
+              <div className="flex flex-col gap-1 pb-3 border-b border-white/10">
+                <span
+                  className="text-xs text-[#F2CA50] uppercase tracking-[0.25em] font-bold"
+                  style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+                >
+                  THE HEROINE (BRIDE)
+                </span>
+                <span
+                  className="text-base text-white font-bold"
+                  style={{ fontFamily: "'Bodoni Moda', serif" }}
+                >
+                  Deboleena “The Showstopper”
+                </span>
+                <span className="text-xs text-[#99907C] italic">
+                  “Executive Producer of lehenga perfection and main character energy.”
+                </span>
+              </div>
+
+              {/* Producers */}
+              <div className="grid grid-cols-2 gap-4 pb-3 border-b border-white/10 text-left">
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-[#F2CA50] tracking-wider uppercase font-bold font-mono">
+                    EXECUTIVE PRODUCERS
+                  </span>
+                  <span className="text-xs font-semibold text-white">Maa & Papaji</span>
+                  <span className="text-[11px] text-[#D0C5AF]/60">Ladkewale Studios</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-[#F2CA50] tracking-wider uppercase font-bold font-mono">
+                    CO-PRODUCERS
+                  </span>
+                  <span className="text-xs font-semibold text-white">Mummy & Daddy</span>
+                  <span className="text-[11px] text-[#D0C5AF]/60">Ladkiwale Productions</span>
+                </div>
+              </div>
+
+              {/* Quirky Crew Credits */}
+              <div className="flex flex-col gap-2.5 text-left text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="text-[#D0C5AF]/70">Biryani Quality Controller</span>
+                  <span className="font-semibold text-white">Prabir Kaku & Chachaji</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#D0C5AF]/70">Drama Queen & Head Choreographer</span>
+                  <span className="font-semibold text-[#F2CA50]">Mousumi Didi</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#D0C5AF]/70">Late Comers & Bar In-Charge</span>
+                  <span className="font-semibold text-white">The Cousins Brigade</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#D0C5AF]/70">Official Tear Driers & Aunty Squad</span>
+                  <span className="font-semibold text-white">Massi & Bua Syndicate</span>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-white/10">
+                <span className="text-[9px] text-[#99907C] uppercase tracking-[0.25em] font-mono block">
+                  NO HEARTS WERE BROKEN IN THE MAKING OF THIS MARRIAGE
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: SOUNDTRACK JUKEBOX (SANGEET PLAYLIST) */}
+        <section id="soundtrack" className="w-full px-4 py-8 flex flex-col gap-6 scroll-mt-20">
+          <div className="flex flex-col items-center text-center">
+            <div className="flex items-center gap-2 mb-1">
+              <Disc className="w-4 h-4 text-[#F2CA50]" />
+              <span
+                className="text-xs tracking-[0.25em] text-[#F2CA50] uppercase font-bold"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              >
+                OFFICIAL ORIGINAL SOUNDTRACK
+              </span>
+            </div>
+            <h2
+              className="text-2xl text-white font-bold font-serif"
+              style={{ fontFamily: "'Bodoni Moda', serif" }}
+            >
+              The Sangeet Jukebox
+            </h2>
+            <p className="text-xs text-[#D0C5AF]/70">Crank up the volume! Preview our handpicked chartbusters.</p>
+          </div>
+
+          <div className="bg-[#2A2A2C] rounded-xl p-5 shadow-xl flex flex-col gap-4 border border-white/5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div
+                  className={`w-12 h-12 rounded-full bg-[#0E0E10] border-2 border-[#F2CA50]/40 flex items-center justify-center relative shadow-lg ${
+                    isJukeboxPlaying ? 'animate-spin [animation-duration:6s]' : ''
+                  }`}
+                >
+                  <div className="w-4 h-4 rounded-full bg-[#F2CA50] flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#131315]" />
+                  </div>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span
+                    className="text-sm font-bold text-white truncate"
+                    style={{ fontFamily: "'Bodoni Moda', serif" }}
+                  >
+                    {currentTrack.title}
+                  </span>
+                  <span className="text-xs text-[#F2CA50] truncate font-mono">
+                    {isJukeboxPlaying ? 'Playing • Live Sangeet Turntables' : 'Paused • Tap to resume'}
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsJukeboxPlaying(!isJukeboxPlaying)}
+                className="w-11 h-11 rounded-full bg-[#F2CA50] text-[#131315] flex items-center justify-center shadow-[0_0_16px_rgba(242,202,80,0.5)] active:scale-95 transition-transform"
+              >
+                {isJukeboxPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
+              </button>
+            </div>
+
+            {/* Live Audio Waveform Simulation */}
+            <div className="flex items-end justify-between h-8 px-2 bg-[#0E0E10] rounded gap-1 py-1">
+              {[6, 3, 7, 4, 8, 5, 2, 7, 4, 6].map((h, i) => (
+                <span
+                  key={i}
+                  className={`w-1 bg-[#F2CA50] rounded-full transition-all ${
+                    isJukeboxPlaying ? 'animate-pulse' : 'opacity-40'
+                  }`}
+                  style={{ height: `${h * 3}px`, animationDelay: `${i * 100}ms` }}
+                />
+              ))}
+            </div>
+
+            {/* Tracks */}
+            <div className="flex flex-col gap-2 pt-2">
+              {[
+                { id: '01', title: 'Kala Chashma (Bass Baaraat Mix)', desc: 'High-octane baaraat anthem' },
+                { id: '02', title: 'London Thumakda (Bhangra Overdrive)', desc: 'The aunties floor burner' },
+                { id: '03', title: 'Kesariya (Acoustic Shehnai Romance)', desc: 'Couple first-dance track' },
+                { id: '04', title: 'Gal Mitthi Mitthi Bol', desc: 'Family grand finale mashup' }
+              ].map(tr => (
+                <div
+                  key={tr.id}
+                  onClick={() => {
+                    setCurrentTrack({ title: tr.title, artist: 'DJ Rohit & Dhol Squad' });
+                    setIsJukeboxPlaying(true);
+                    showToast(`Now Playing: ${tr.title}`);
+                  }}
+                  className="flex items-center justify-between p-2.5 rounded bg-[#1C1B1D] cursor-pointer hover:bg-[#353437] transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-xs text-[#F2CA50] font-bold">{tr.id}</span>
+                    <div className="flex flex-col">
+                      <span className="text-xs font-medium text-white">{tr.title}</span>
+                      <span className="text-[11px] text-[#D0C5AF]/60">{tr.desc}</span>
+                    </div>
+                  </div>
+                  {currentTrack.title === tr.title && isJukeboxPlaying ? (
+                    <Radio className="w-4 h-4 text-[#F2CA50] animate-pulse" />
+                  ) : (
+                    <Play className="w-3.5 h-3.5 text-[#D0C5AF]/40" />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Song Request to DJ Form */}
+            <form onSubmit={handleDjRequest} className="mt-2 pt-3 border-t border-white/10 flex flex-col gap-2">
+              <label
+                className="text-[10px] text-[#F2CA50] tracking-wider uppercase font-bold font-mono"
+              >
+                WANT TO HEAR YOUR FAVORITE TRACK? TELL THE DJ:
+              </label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={djSongInput}
+                  onChange={e => setDjSongInput(e.target.value)}
+                  placeholder="e.g. Mauja Hi Mauja, Bole Chudiyan..."
+                  className="w-full bg-[#0E0E10] text-white px-3 py-2 rounded text-xs outline-none focus:ring-1 focus:ring-[#F2CA50] border-b border-[#F2CA50]/30"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-[#F2CA50] text-[#131315] rounded text-xs uppercase font-bold shrink-0 hover:bg-[#FFC461] transition-colors"
+                >
+                  DROP BEAT
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        {/* SECTION 5: "BOX OFFICE" SEAT-SELECTION RSVP */}
+        <section id="box-office" className="w-full px-4 py-8 flex flex-col gap-6 bg-[#1C1B1D] border-t border-[#F2CA50]/20 scroll-mt-20">
+          <div className="flex flex-col items-center text-center">
+            <div className="flex items-center gap-2 mb-1">
+              <Ticket className="w-4 h-4 text-[#F2CA50]" />
+              <span
+                className="text-xs tracking-[0.25em] text-[#F2CA50] uppercase font-bold"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              >
+                BOX OFFICE RESERVATIONS
+              </span>
+            </div>
+            <h2
+              className="text-2xl text-white font-bold font-serif"
+              style={{ fontFamily: "'Bodoni Moda', serif" }}
+            >
+              Reserve Your Premiere Seat
+            </h2>
+            <p className="text-xs text-[#D0C5AF]/70">Tap seats to reserve your front-row spot for the grand wedding screening.</p>
+          </div>
+
+          {/* Curved Screen Visualization */}
+          <div className="flex flex-col items-center my-1">
+            <div className="w-3/4 h-2 rounded-t-full bg-gradient-to-r from-transparent via-[#F2CA50] to-transparent shadow-[0_0_12px_rgba(242,202,80,0.6)]" />
+            <span className="text-[10px] text-[#F2CA50] uppercase tracking-[0.3em] mt-1 font-mono font-bold">
+              [ SCREEN THIS WAY • MANDAP VIEW ]
+            </span>
+          </div>
+
+          {/* Interactive Seating Map */}
+          <div className="flex flex-col items-center gap-3 bg-[#0E0E10] p-4 rounded-xl shadow-inner border border-white/5">
+            {/* VIP Sofas */}
+            <div className="w-full flex flex-col items-center gap-1.5">
+              <span className="text-[10px] text-[#FFB4A8] tracking-widest uppercase font-mono font-bold">
+                VIP RECLINER SOFAS (FRONT ROW)
+              </span>
+              <div className="flex gap-2">
+                {['VIP-A1', 'VIP-A2', 'VIP-A3', 'VIP-A4', 'VIP-A5'].map(seat => {
+                  const isSel = selectedSeats.includes(seat);
+                  return (
+                    <button
+                      key={seat}
+                      type="button"
+                      onClick={() => toggleSeat(seat)}
+                      className={`w-9 h-8 rounded text-[11px] font-mono font-bold transition-all ${
+                        isSel
+                          ? 'bg-[#F2CA50] text-[#131315] shadow-[0_0_10px_rgba(242,202,80,0.5)]'
+                          : 'bg-[#201F21] text-[#D0C5AF]/60 hover:bg-[#F2CA50]/20'
+                      }`}
+                    >
+                      {seat.replace('VIP-', '')}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Prime Chairs */}
+            <div className="w-full flex flex-col items-center gap-1.5 mt-2">
+              <span className="text-[10px] text-[#F2CA50] tracking-widest uppercase font-mono font-bold">
+                PRIME GOLD CHAIRS
+              </span>
+              <div className="flex gap-2">
+                {['PRIME-B1', 'PRIME-B2', 'B3', 'B4', 'PRIME-B5'].map(seat => {
+                  const label = seat.replace('PRIME-', '');
+                  const isSel = selectedSeats.includes(seat) || selectedSeats.includes(label);
+                  return (
+                    <button
+                      key={seat}
+                      type="button"
+                      onClick={() => toggleSeat(seat)}
+                      className={`w-9 h-8 rounded text-[11px] font-mono font-bold transition-all ${
+                        isSel
+                          ? 'bg-[#F2CA50] text-[#131315] shadow-[0_0_10px_rgba(242,202,80,0.5)]'
+                          : 'bg-[#201F21] text-[#D0C5AF]/60 hover:bg-[#F2CA50]/20'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Classic Row */}
+            <div className="w-full flex flex-col items-center gap-1.5 mt-2">
+              <span className="text-[10px] text-[#D0C5AF]/50 tracking-widest uppercase font-mono font-bold">
+                CLASSIC AUDITORIUM
+              </span>
+              <div className="flex gap-2">
+                {['C1', 'C2', 'C3', 'C4', 'C5'].map(seat => {
+                  const isSel = selectedSeats.includes(seat);
+                  return (
+                    <button
+                      key={seat}
+                      type="button"
+                      onClick={() => toggleSeat(seat)}
+                      className={`w-9 h-8 rounded text-[11px] font-mono font-bold transition-all ${
+                        isSel
+                          ? 'bg-[#F2CA50] text-[#131315] shadow-[0_0_10px_rgba(242,202,80,0.5)]'
+                          : 'bg-[#201F21] text-[#D0C5AF]/60 hover:bg-[#F2CA50]/20'
+                      }`}
+                    >
+                      {seat}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center gap-4 mt-2 pt-2 border-t border-white/10 text-xs text-[#D0C5AF]/70 font-mono">
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded bg-[#201F21]" />
+                <span>Available</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded bg-[#F2CA50]" />
+                <span className="text-[#F2CA50] font-bold">Selected</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded bg-[#920703]" />
+                <span>Booked</span>
+              </div>
+            </div>
+          </div>
+
+          {/* SKEUOMORPHIC MOVIE PASS TICKET PREVIEW */}
+          <div className="relative w-full bg-[#2A2A2C] rounded-lg overflow-hidden border-l-4 border-[#F2CA50] shadow-xl">
+            <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#1C1B1D]" />
+            <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#1C1B1D]" />
+            <div className="p-5 flex flex-col gap-3">
+              <div className="flex justify-between items-start">
+                <div>
+                  <span
+                    className="text-[10px] text-[#F2CA50] tracking-[0.25em] uppercase font-bold"
+                    style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+                  >
+                    VIP RED CARPET ACCESS PASS
+                  </span>
+                  <h3
+                    className="text-base text-white font-bold"
+                    style={{ fontFamily: "'Bodoni Moda', serif" }}
+                  >
+                    PREM KI KAHANI: THE WEDDING
+                  </h3>
+                </div>
+                <span className="bg-[#F2CA50]/20 text-[#F2CA50] text-[10px] font-mono px-2 py-1 rounded uppercase tracking-widest font-bold">
+                  GATE A
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-xs border-t border-dashed border-[#F2CA50]/30 pt-3">
+                <div>
+                  <span className="text-[#D0C5AF]/60 block font-mono text-[10px]">SELECTED SEATS:</span>
+                  <span className="text-[#F2CA50] font-bold font-mono">
+                    {selectedSeats.length > 0 ? selectedSeats.join(', ') : 'None'}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[#D0C5AF]/60 block font-mono text-[10px]">TOTAL GUESTS:</span>
+                  <span className="text-white font-bold font-mono">
+                    {selectedSeats.length} {selectedSeats.length === 1 ? 'Person' : 'Persons'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Cinema Snack Preference */}
+              <div className="flex flex-col gap-1.5 pt-2">
+                <span className="text-[10px] text-[#D0C5AF]/70 uppercase tracking-wider font-mono">
+                  COMPLIMENTARY THEATER REFRESHMENT:
+                </span>
+                <div className="grid grid-cols-3 gap-2">
+                  {['Caramel Popcorn', 'Samosa & Chai', 'Gulab Jamun'].map(snack => (
+                    <button
+                      key={snack}
+                      type="button"
+                      onClick={() => {
+                        setSelectedSnack(snack);
+                        showToast(`Snack preference saved: ${snack}!`);
+                      }}
+                      className={`py-1.5 px-2 rounded text-[10px] font-mono uppercase transition-all ${
+                        selectedSnack === snack
+                          ? 'bg-[#0E0E10] text-[#F2CA50] border border-[#F2CA50] font-bold'
+                          : 'bg-[#1C1B1D] text-[#D0C5AF]/60 hover:text-white'
+                      }`}
+                    >
+                      {snack}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Barcode */}
+              <div className="flex flex-col items-center pt-2">
+                <div className="w-full h-7 flex items-center justify-between px-2 bg-[#0E0E10] rounded opacity-80 overflow-hidden">
+                  {[1, 2, 0.5, 3, 1, 2, 0.5, 1.5, 3, 0.5, 2, 1, 3, 1].map((w, idx) => (
+                    <div key={idx} className="h-full bg-[#E5E1E4]" style={{ width: `${w * 3}px` }} />
+                  ))}
+                </div>
+                <span className="text-[9px] text-[#99907C] tracking-[0.4em] uppercase font-mono mt-1">
+                  PKK-2026-MANDAP-TKT
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Form & WhatsApp Button */}
+          <div className="flex flex-col gap-3">
+            <input
+              type="text"
+              value={rsvpGuestName}
+              onChange={e => setRsvpGuestName(e.target.value)}
+              placeholder="Your Full Name (As printed on ticket)"
+              className="w-full bg-[#353437] text-white px-4 py-3 rounded text-sm outline-none border-b-2 border-[#F2CA50]/40 focus:border-[#F2CA50]"
+            />
+            <button
+              type="button"
+              onClick={confirmRsvpViaWhatsApp}
+              className="w-full py-3.5 bg-[#F2CA50] text-[#131315] font-bold tracking-[0.18em] rounded uppercase shadow-[0_0_28px_rgba(242,202,80,0.5)] hover:bg-[#FFC461] transition-transform active:scale-[0.98] flex items-center justify-center gap-2 text-sm"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              <Send className="w-4 h-4" />
+              <span>BOOK PREMIERE PASS (RSVP VIA WHATSAPP)</span>
+            </button>
+            <p className="text-xs text-center text-[#99907C] font-mono">
+              Admit One Parivaar. Strictly No Spoilers Before 26 December 2026.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      {/* TOAST NOTIFICATION */}
+      {toastMsg && (
+        <div className="fixed bottom-20 left-4 right-4 z-50 bg-[#353437] text-white px-4 py-3 rounded-lg shadow-2xl flex items-center gap-3 border border-[#F2CA50]/40">
+          <CheckCircle2 className="w-5 h-5 text-[#F2CA50] shrink-0" />
+          <span className="text-xs font-mono">{toastMsg}</span>
         </div>
       )}
+
+      {/* FIXED BOTTOM THEATER NAVIGATION BAR */}
+      <nav className="fixed bottom-0 w-full z-50 bg-[#0E0E10]/95 backdrop-blur-xl border-t border-[#F2CA50]/20 shadow-[0_-4px_24px_rgba(0,0,0,0.6)]">
+        <div className="max-w-md mx-auto flex items-center justify-around h-14 px-2">
+          <button
+            type="button"
+            onClick={() => scrollTo('premiere', 'premiere')}
+            className={`flex flex-col items-center justify-center gap-0.5 min-w-[50px] py-1 px-2 rounded transition-colors ${
+              activeTab === 'premiere' ? 'text-[#F2CA50] font-bold' : 'text-[#D0C5AF]/60 hover:text-white'
+            }`}
+          >
+            <Film className="w-4 h-4" />
+            <span
+              className="text-[9px] uppercase tracking-wider"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Premiere
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollTo('synopsis-timings', 'events')}
+            className={`flex flex-col items-center justify-center gap-0.5 min-w-[50px] py-1 px-2 rounded transition-colors ${
+              activeTab === 'events' ? 'text-[#F2CA50] font-bold' : 'text-[#D0C5AF]/60 hover:text-white'
+            }`}
+          >
+            <Clock className="w-4 h-4" />
+            <span
+              className="text-[9px] uppercase tracking-wider"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Events
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollTo('cast-crew', 'cast')}
+            className={`flex flex-col items-center justify-center gap-0.5 min-w-[50px] py-1 px-2 rounded transition-colors ${
+              activeTab === 'cast' ? 'text-[#F2CA50] font-bold' : 'text-[#D0C5AF]/60 hover:text-white'
+            }`}
+          >
+            <Users className="w-4 h-4" />
+            <span
+              className="text-[9px] uppercase tracking-wider"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Cast
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollTo('soundtrack', 'score')}
+            className={`flex flex-col items-center justify-center gap-0.5 min-w-[50px] py-1 px-2 rounded transition-colors ${
+              activeTab === 'score' ? 'text-[#F2CA50] font-bold' : 'text-[#D0C5AF]/60 hover:text-white'
+            }`}
+          >
+            <Disc className="w-4 h-4" />
+            <span
+              className="text-[9px] uppercase tracking-wider"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Score
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollTo('box-office', 'rsvp')}
+            className={`flex flex-col items-center justify-center gap-0.5 min-w-[50px] py-1 px-2 rounded transition-colors ${
+              activeTab === 'rsvp' ? 'text-[#F2CA50] font-bold' : 'text-[#D0C5AF]/60 hover:text-white'
+            }`}
+          >
+            <Ticket className="w-4 h-4" />
+            <span
+              className="text-[9px] uppercase tracking-wider"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              RSVP
+            </span>
+          </button>
+        </div>
+      </nav>
     </div>
   );
 };

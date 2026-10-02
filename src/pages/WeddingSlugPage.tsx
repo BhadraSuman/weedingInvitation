@@ -12,16 +12,14 @@ import { Chibi3dWeddingView } from '../components/views/Chibi3dWeddingView';
 import { BollywoodPremiereView } from '../components/views/BollywoodPremiereView';
 import { WeddingGazetteView } from '../components/views/WeddingGazetteView';
 import { VivahExpressView } from '../components/views/VivahExpressView';
-import { VivahCompanionModal } from '../components/companion/VivahCompanionModal';
 import { Language } from '../types/wedding';
 import { audioManager } from '../utils/audioManager';
-import { Sparkles, Home, Compass } from 'lucide-react';
+import { Sparkles, Home } from 'lucide-react';
 
 export const WeddingSlugPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [searchParams] = useSearchParams();
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
-  const [isCompanionOpen, setIsCompanionOpen] = useState(false);
   const [lang, setLang] = useState<Language>('native');
 
   const guestName = searchParams.get('to') || searchParams.get('guest') || undefined;
@@ -125,6 +123,40 @@ export const WeddingSlugPage: React.FC = () => {
 
   const { template, cultureType } = weddingEntry;
 
+  // New Stitch-designed templates render with their own complete standalone aesthetic
+  if (cultureType === 'wedding_gazette') {
+    return (
+      <WeddingGazetteView
+        template={template}
+        lang={lang}
+        guestName={guestName}
+        onLangChange={setLang}
+      />
+    );
+  }
+
+  if (cultureType === 'bollywood_premiere') {
+    return (
+      <BollywoodPremiereView
+        template={template}
+        lang={lang}
+        guestName={guestName}
+        onLangChange={setLang}
+      />
+    );
+  }
+
+  if (cultureType === 'vivah_express') {
+    return (
+      <VivahExpressView
+        template={template}
+        lang={lang}
+        guestName={guestName}
+        onLangChange={setLang}
+      />
+    );
+  }
+
   return (
     <div
       className="min-h-screen font-sans selection:bg-[#8B181B] selection:text-[#F3E5AB] transition-colors duration-500 relative"
@@ -163,27 +195,6 @@ export const WeddingSlugPage: React.FC = () => {
             guestName={guestName}
           />
         )}
-        {cultureType === 'bollywood_premiere' && (
-          <BollywoodPremiereView
-            template={template}
-            lang={lang}
-            guestName={guestName}
-          />
-        )}
-        {cultureType === 'wedding_gazette' && (
-          <WeddingGazetteView
-            template={template}
-            lang={lang}
-            guestName={guestName}
-          />
-        )}
-        {cultureType === 'vivah_express' && (
-          <VivahExpressView
-            template={template}
-            lang={lang}
-            guestName={guestName}
-          />
-        )}
         {cultureType === 'annaprashan' && (
           <AnnaprashanView
             template={template}
@@ -206,28 +217,6 @@ export const WeddingSlugPage: React.FC = () => {
           />
         )}
       </main>
-
-      {/* Floating Vivah Companion Live Button */}
-      <div className="fixed bottom-20 left-4 z-40">
-        <button
-          onClick={() => setIsCompanionOpen(true)}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#0B1326] text-amber-300 border border-amber-400/50 shadow-xl backdrop-blur-md text-xs font-mono font-bold hover:scale-105 active:scale-95 transition-all"
-        >
-          <Compass className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: '8s' }} />
-          <span>Live Companion</span>
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
-        </button>
-      </div>
-
-      {/* Vivah Companion Live Event Day Modal */}
-      <VivahCompanionModal
-        isOpen={isCompanionOpen}
-        onClose={() => setIsCompanionOpen(false)}
-        template={template}
-        lang={lang}
-        guestName={guestName}
-      />
-
     </div>
   );
 };

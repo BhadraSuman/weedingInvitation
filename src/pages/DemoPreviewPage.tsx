@@ -23,10 +23,8 @@ import { ModernMinimalWeddingView } from '../components/views/ModernMinimalWeddi
 import { BollywoodPremiereView } from '../components/views/BollywoodPremiereView';
 import { WeddingGazetteView } from '../components/views/WeddingGazetteView';
 import { VivahExpressView } from '../components/views/VivahExpressView';
-import { VivahCompanionModal } from '../components/companion/VivahCompanionModal';
 import { Language } from '../types/wedding';
 import { audioManager } from '../utils/audioManager';
-import { Compass } from 'lucide-react';
 import {
   Sparkles,
   Home,
@@ -42,7 +40,6 @@ import {
 export const DemoPreviewPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
-  const [isCompanionOpen, setIsCompanionOpen] = useState(false);
   const [lang, setLang] = useState<Language>('native');
   const [copied, setCopied] = useState(false);
 
@@ -161,6 +158,46 @@ export const DemoPreviewPage: React.FC = () => {
         <div className="mt-12 text-[11px] text-stone-400">
           UtsavPatra by Uddipta Tech Solutions • Support: +91 62038 68358 • uddipta.techsolutions@gmail.com
         </div>
+      </div>
+    );
+  }
+
+  // New Stitch-designed templates render with their own complete standalone aesthetic
+  if (cultureType === 'wedding_gazette') {
+    return (
+      <div className="relative">
+        <PreviewWatermark remainingHours={remainingHours} />
+        <WeddingGazetteView
+          template={template}
+          lang={lang}
+          onLangChange={setLang}
+        />
+      </div>
+    );
+  }
+
+  if (cultureType === 'bollywood_premiere') {
+    return (
+      <div className="relative">
+        <PreviewWatermark remainingHours={remainingHours} />
+        <BollywoodPremiereView
+          template={template}
+          lang={lang}
+          onLangChange={setLang}
+        />
+      </div>
+    );
+  }
+
+  if (cultureType === 'vivah_express') {
+    return (
+      <div className="relative">
+        <PreviewWatermark remainingHours={remainingHours} />
+        <VivahExpressView
+          template={template}
+          lang={lang}
+          onLangChange={setLang}
+        />
       </div>
     );
   }
@@ -316,45 +353,7 @@ export const DemoPreviewPage: React.FC = () => {
             lang={lang}
           />
         )}
-        {cultureType === 'bollywood_premiere' && (
-          <BollywoodPremiereView
-            template={template}
-            lang={lang}
-          />
-        )}
-        {cultureType === 'wedding_gazette' && (
-          <WeddingGazetteView
-            template={template}
-            lang={lang}
-          />
-        )}
-        {cultureType === 'vivah_express' && (
-          <VivahExpressView
-            template={template}
-            lang={lang}
-          />
-        )}
       </main>
-
-      {/* Floating Vivah Companion Live Button */}
-      <div className="fixed bottom-20 left-4 z-40">
-        <button
-          onClick={() => setIsCompanionOpen(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0B1326] text-amber-300 border border-amber-400/50 shadow-xl backdrop-blur-md text-xs font-mono font-bold hover:scale-105 active:scale-95 transition-all"
-        >
-          <Compass className="w-3.5 h-3.5 text-amber-400 animate-spin" style={{ animationDuration: '8s' }} />
-          <span>Live Companion</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
-        </button>
-      </div>
-
-      {/* Vivah Companion Live Event Day Modal */}
-      <VivahCompanionModal
-        isOpen={isCompanionOpen}
-        onClose={() => setIsCompanionOpen(false)}
-        template={template}
-        lang={lang}
-      />
 
       {/* 5. Sticky Floating Mobile Bottom Bar */}
       <div className="fixed bottom-0 inset-x-0 z-40 bg-[#2C1810]/95 backdrop-blur-md border-t border-[#D4AF37]/40 p-2.5 sm:hidden flex items-center justify-between gap-2 shadow-2xl">
