@@ -197,7 +197,7 @@ export const LandingPage: React.FC = () => {
             href="#demos"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-stone-300 bg-white hover:bg-stone-50 text-[#2C1810] font-serif font-semibold text-xs sm:text-sm shadow-sm transition-all whitespace-nowrap shrink-0"
           >
-            <span>Browse 5 Cultural Themes</span>
+            <span>Browse 8+ Cultural Themes</span>
           </a>
         </div>
 
@@ -225,6 +225,30 @@ export const LandingPage: React.FC = () => {
           >
             <span>✨ 3D Cartoon Vivah</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#FCE7F3]" />
+          </Link>
+
+          <Link
+            to="/the-grand-premiere"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#E50914] hover:bg-[#B81D24] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+          >
+            <span>🎬 Bollywood Premiere</span>
+            <ArrowRight className="w-3.5 h-3.5 text-white" />
+          </Link>
+
+          <Link
+            to="/the-wedding-gazette"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#1C1C16] hover:bg-black text-[#FDF9EF] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+          >
+            <span>📰 The Wedding Gazette</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#B51C12]" />
+          </Link>
+
+          <Link
+            to="/vivah-express"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#002046] hover:bg-[#00132B] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+          >
+            <span>🚂 Vivah Express</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#FEA619]" />
           </Link>
 
           <Link

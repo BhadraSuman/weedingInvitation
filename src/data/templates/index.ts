@@ -7,10 +7,16 @@ import { bihariMarwariTemplate } from './bihariMarwariTemplate';
 import { annaprashanTemplate } from './annaprashanTemplate';
 import { birthdayTemplate } from './birthdayTemplate';
 import { chibi3dTemplate } from './chibi3dTemplate';
+import { bollywoodPremiereTemplate } from './bollywoodPremiereTemplate';
+import { weddingGazetteTemplate } from './weddingGazetteTemplate';
+import { vivahExpressTemplate } from './vivahExpressTemplate';
 
 export const templatesList: CulturalTemplate[] = [
   bengaliTemplate,
   bihariMarwariTemplate,
+  bollywoodPremiereTemplate,
+  weddingGazetteTemplate,
+  vivahExpressTemplate,
   chibi3dTemplate,
   annaprashanTemplate,
   birthdayTemplate,
@@ -22,6 +28,9 @@ export const templatesList: CulturalTemplate[] = [
 export const templatesMap: Record<TemplateId, CulturalTemplate> = {
   bengali: bengaliTemplate,
   bihari_marwari: bihariMarwariTemplate,
+  bollywood_premiere: bollywoodPremiereTemplate,
+  wedding_gazette: weddingGazetteTemplate,
+  vivah_express: vivahExpressTemplate,
   chibi_3d: chibi3dTemplate,
   annaprashan: annaprashanTemplate,
   birthday: birthdayTemplate,
@@ -40,6 +49,9 @@ export const getTemplateById = (id: string | null): CulturalTemplate => {
 export {
   bengaliTemplate,
   bihariMarwariTemplate,
+  bollywoodPremiereTemplate,
+  weddingGazetteTemplate,
+  vivahExpressTemplate,
   chibi3dTemplate,
   annaprashanTemplate,
   birthdayTemplate,

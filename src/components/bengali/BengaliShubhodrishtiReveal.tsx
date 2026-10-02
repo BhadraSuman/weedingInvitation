@@ -145,42 +145,40 @@ export const BengaliShubhodrishtiReveal: React.FC<BengaliShubhodrishtiRevealProp
             </p>
           </div>
 
-          {/* OVERLAY: The Two Sacred Betel Leaves (Pan Pata) Animated with Framer Motion */}
-          <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+          {/* OVERLAY: The Two Sacred Betel Leaves (Pan Pata) Animated with Framer Motion 3D Gate */}
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ perspective: 1200 }}>
             
-            {/* Left Betel Leaf */}
+            {/* Left Betel Leaf (3D Door Swivel) */}
             <motion.div
               animate={
                 isRevealed
-                  ? { x: -160, y: -25, rotate: -38, opacity: 0.15, scale: 0.85 }
-                  : { x: -28, y: 0, rotate: -8, opacity: 1, scale: 1 }
+                  ? { x: -180, y: -20, rotateY: -115, rotateZ: -20, opacity: 0.12, scale: 0.85 }
+                  : { x: -28, y: 0, rotateY: 0, rotateZ: -8, opacity: 1, scale: 1 }
               }
               transition={{
-                type: 'spring',
-                stiffness: 90,
-                damping: 14,
-                mass: 0.8
+                duration: 1.1,
+                ease: [0.2, 0.85, 0.32, 1.15]
               }}
-              className="absolute z-20 cursor-pointer pointer-events-auto"
+              className="absolute z-20 cursor-pointer pointer-events-auto filter drop-shadow-2xl"
+              style={{ transformStyle: 'preserve-3d', transformOrigin: 'left center' }}
               onClick={handleToggleReveal}
             >
               <RealisticPaanLeaf className="w-48 sm:w-60 h-64 sm:h-80" />
             </motion.div>
 
-            {/* Right Betel Leaf */}
+            {/* Right Betel Leaf (3D Door Swivel) */}
             <motion.div
               animate={
                 isRevealed
-                  ? { x: 160, y: -25, rotate: 38, opacity: 0.15, scale: 0.85 }
-                  : { x: 28, y: 0, rotate: 8, opacity: 1, scale: 1 }
+                  ? { x: 180, y: -20, rotateY: 115, rotateZ: 20, opacity: 0.12, scale: 0.85 }
+                  : { x: 28, y: 0, rotateY: 0, rotateZ: 8, opacity: 1, scale: 1 }
               }
               transition={{
-                type: 'spring',
-                stiffness: 90,
-                damping: 14,
-                mass: 0.8
+                duration: 1.1,
+                ease: [0.2, 0.85, 0.32, 1.15]
               }}
-              className="absolute z-20 cursor-pointer pointer-events-auto"
+              className="absolute z-20 cursor-pointer pointer-events-auto filter drop-shadow-2xl"
+              style={{ transformStyle: 'preserve-3d', transformOrigin: 'right center' }}
               onClick={handleToggleReveal}
             >
               <RealisticPaanLeaf className="w-48 sm:w-60 h-64 sm:h-80" isRightLeaf />

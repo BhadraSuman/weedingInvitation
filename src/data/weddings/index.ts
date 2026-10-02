@@ -4,6 +4,9 @@ import { bihariMarwariTemplate } from '../templates/bihariMarwariTemplate';
 import { annaprashanTemplate } from '../templates/annaprashanTemplate';
 import { birthdayTemplate } from '../templates/birthdayTemplate';
 import { chibi3dTemplate } from '../templates/chibi3dTemplate';
+import { bollywoodPremiereTemplate } from '../templates/bollywoodPremiereTemplate';
+import { weddingGazetteTemplate } from '../templates/weddingGazetteTemplate';
+import { vivahExpressTemplate } from '../templates/vivahExpressTemplate';
 
 export interface EventSlugEntry {
   slug: string;
@@ -75,6 +78,39 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     badgeEmoji: '🎂',
     template: birthdayTemplate,
     previewImage: '/images/couples/princess-ananya.jpg'
+  },
+  'the-grand-premiere': {
+    slug: 'the-grand-premiere',
+    title: 'The Grand Premiere — Bollywood & OTT Wedding Celebration',
+    coupleNames: 'Anirban & Deboleena',
+    category: 'wedding',
+    cultureType: 'bollywood_premiere',
+    cultureName: 'बॉलीवुड ब्लॉकबस्टर वेडिंग (Shaadi Originals)',
+    badgeEmoji: '🎬',
+    template: bollywoodPremiereTemplate,
+    previewImage: '/images/couples/bollywood_poster.jpg'
+  },
+  'the-wedding-gazette': {
+    slug: 'the-wedding-gazette',
+    title: 'The Wedding Gazette — Vintage Broadsheet Wedding Invitation',
+    coupleNames: 'Anirban & Deboleena',
+    category: 'wedding',
+    cultureType: 'wedding_gazette',
+    cultureName: 'ঐতিহাসিক বিয়ের খবরের কাগজ (Vintage Broadsheet)',
+    badgeEmoji: '📰',
+    template: weddingGazetteTemplate,
+    previewImage: '/images/couples/vintage_gazette.jpg'
+  },
+  'vivah-express': {
+    slug: 'vivah-express',
+    title: 'Vivah Express — Indian Railway Boarding Pass Invitation',
+    coupleNames: 'Sandeep & Priya',
+    category: 'wedding',
+    cultureType: 'vivah_express',
+    cultureName: 'शाही रेल बोर्डिंग पास (IRCTC Special Express)',
+    badgeEmoji: '🚂',
+    template: vivahExpressTemplate,
+    previewImage: '/images/couples/north-couple.jpg'
   }
 };
 
@@ -101,6 +137,15 @@ export const getWeddingBySlug = (slug: string): EventSlugEntry | null => {
   }
   if (cleanSlug === 'birthday' || cleanSlug === 'ananya' || cleanSlug === '1st-birthday' || cleanSlug === 'janmadin') {
     return weddingsRegistry['ananya-turns-1'];
+  }
+  if (cleanSlug === 'premiere' || cleanSlug === 'bollywood' || cleanSlug === 'the-grand-premiere' || cleanSlug === 'shaadi-originals' || cleanSlug === 'ott' || cleanSlug === 'movie') {
+    return weddingsRegistry['the-grand-premiere'];
+  }
+  if (cleanSlug === 'gazette' || cleanSlug === 'newspaper' || cleanSlug === 'the-wedding-gazette' || cleanSlug === 'broadsheet' || cleanSlug === 'vintage-newspaper') {
+    return weddingsRegistry['the-wedding-gazette'];
+  }
+  if (cleanSlug === 'express' || cleanSlug === 'train' || cleanSlug === 'railway' || cleanSlug === 'vivah-express' || cleanSlug === 'boarding-pass' || cleanSlug === 'irctc') {
+    return weddingsRegistry['vivah-express'];
   }
 
   return null;

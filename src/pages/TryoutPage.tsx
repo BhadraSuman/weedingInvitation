@@ -128,6 +128,45 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     upiId: '',
     whatsappNumber: '916203868358',
     customPhotoUrl: '/images/couples/north-couple.jpg'
+  },
+  bollywood_premiere: {
+    theme: 'bollywood_premiere',
+    groomName: 'Anirban',
+    brideName: 'Deboleena',
+    childName: '',
+    eventDate: '2026-12-26',
+    eventTime: '06:30 PM',
+    venueName: 'The Grand Palace Studios',
+    city: 'Mumbai',
+    upiId: 'anirban@okaxis',
+    whatsappNumber: '916203868358',
+    customPhotoUrl: '/images/couples/bollywood_poster.jpg'
+  },
+  wedding_gazette: {
+    theme: 'wedding_gazette',
+    groomName: 'Anirban',
+    brideName: 'Deboleena',
+    childName: '',
+    eventDate: '2026-12-12',
+    eventTime: '06:30 PM',
+    venueName: 'The Heritage Townhall Lawns',
+    city: 'Kolkata',
+    upiId: 'anirban@okaxis',
+    whatsappNumber: '916203868358',
+    customPhotoUrl: '/images/couples/vintage_gazette.jpg'
+  },
+  vivah_express: {
+    theme: 'vivah_express',
+    groomName: 'Sandeep',
+    brideName: 'Priya',
+    childName: '',
+    eventDate: '2026-12-26',
+    eventTime: '06:30 PM',
+    venueName: 'Vivah Dham Junction',
+    city: 'Noida NCR',
+    upiId: 'sandeep@okaxis',
+    whatsappNumber: '916203868358',
+    customPhotoUrl: '/images/couples/north-couple.jpg'
   }
 };
 
@@ -302,6 +341,69 @@ export const TryoutPage: React.FC = () => {
                   <h4 className="font-serif font-bold text-sm text-[#2C1810]">3D Animated Vivah</h4>
                   <p className="text-[11px] font-serif text-stone-500 mt-0.5">
                     Pixar 3D characters, love story &amp; bouncy carnival
+                  </p>
+                </div>
+              </button>
+
+              {/* Bollywood Premiere */}
+              <button
+                type="button"
+                onClick={() => handleThemeChange('bollywood_premiere')}
+                className={`p-4 rounded-2xl border text-left transition-all flex items-start gap-3 ${
+                  formData.theme === 'bollywood_premiere'
+                    ? 'border-[#E50914] bg-[#FFF1F2] shadow-md ring-2 ring-[#E50914]/20'
+                    : 'border-stone-200 hover:border-red-300 bg-white'
+                }`}
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#E50914]/10 text-[#E50914] flex items-center justify-center font-serif font-bold text-lg shrink-0">
+                  🎬
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-[#2C1810]">The Grand Premiere (Bollywood &amp; OTT)</h4>
+                  <p className="text-[11px] font-serif text-stone-500 mt-0.5">
+                    Movie poster hero, OTT ceremony episodes &amp; star cast
+                  </p>
+                </div>
+              </button>
+
+              {/* The Wedding Gazette */}
+              <button
+                type="button"
+                onClick={() => handleThemeChange('wedding_gazette')}
+                className={`p-4 rounded-2xl border text-left transition-all flex items-start gap-3 ${
+                  formData.theme === 'wedding_gazette'
+                    ? 'border-[#1C1C16] bg-[#FAF5EB] shadow-md ring-2 ring-[#1C1C16]/20'
+                    : 'border-stone-200 hover:border-stone-400 bg-white'
+                }`}
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#1C1C16]/10 text-[#1C1C16] flex items-center justify-center font-serif font-bold text-lg shrink-0">
+                  📰
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-[#2C1810]">The Wedding Gazette (Vintage Broadsheet)</h4>
+                  <p className="text-[11px] font-serif text-stone-500 mt-0.5">
+                    Retro newspaper masthead, halftone print &amp; crossword
+                  </p>
+                </div>
+              </button>
+
+              {/* Vivah Express */}
+              <button
+                type="button"
+                onClick={() => handleThemeChange('vivah_express')}
+                className={`p-4 rounded-2xl border text-left transition-all flex items-start gap-3 ${
+                  formData.theme === 'vivah_express'
+                    ? 'border-[#002046] bg-[#EFF4FF] shadow-md ring-2 ring-[#002046]/20'
+                    : 'border-stone-200 hover:border-blue-300 bg-white'
+                }`}
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#002046]/10 text-[#002046] flex items-center justify-center font-serif font-bold text-lg shrink-0">
+                  🚂
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-[#2C1810]">Vivah Express (Railway Boarding Pass)</h4>
+                  <p className="text-[11px] font-serif text-stone-500 mt-0.5">
+                    IRCTC Special ticket, confirmed rubber stamp &amp; station route
                   </p>
                 </div>
               </button>

@@ -1,6 +1,17 @@
 export type Language = 'native' | 'en';
 
-export type TemplateId = 'bengali' | 'royal_north' | 'south_indian' | 'modern_minimal' | 'bihari_marwari' | 'annaprashan' | 'birthday' | 'chibi_3d';
+export type TemplateId =
+  | 'bengali'
+  | 'royal_north'
+  | 'south_indian'
+  | 'modern_minimal'
+  | 'bihari_marwari'
+  | 'annaprashan'
+  | 'birthday'
+  | 'chibi_3d'
+  | 'bollywood_premiere'
+  | 'wedding_gazette'
+  | 'vivah_express';
 
 export type EventCategory = 'wedding' | 'annaprashan' | 'birthday' | 'griha_pravesh';
 
@@ -65,6 +76,8 @@ export interface VenueDetails {
   embedUrl: string;
   parking: string;
   nativeParking: string;
+  metroStation?: string;
+  nativeMetroStation?: string;
 }
 
 export interface GuestWish {

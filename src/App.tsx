@@ -5,6 +5,7 @@ import { WeddingSlugPage } from './pages/WeddingSlugPage';
 import { TryoutPage } from './pages/TryoutPage';
 import { DemoPreviewPage } from './pages/DemoPreviewPage';
 import { HostDashboardPage } from './pages/HostDashboardPage';
+import { VivahCompanionPage } from './pages/VivahCompanionPage';
 import { ScrollToTop } from './components/common/ScrollToTop';
 
 export const App: React.FC = () => {
@@ -28,7 +29,11 @@ export const App: React.FC = () => {
         <Route path="/host-dashboard" element={<HostDashboardPage />} />
         <Route path="/dashboard" element={<HostDashboardPage />} />
 
-        {/* 5. Dynamic Client Invitation Slugs (e.g. /anirban-weds-deboleena, /sandeep-weds-priya) */}
+        {/* 5. Dedicated Vivah Companion Live Day App */}
+        <Route path="/vivah-companion" element={<VivahCompanionPage />} />
+        <Route path="/companion" element={<VivahCompanionPage />} />
+
+        {/* 6. Dynamic Client Invitation Slugs (e.g. /anirban-weds-deboleena, /sandeep-weds-priya) */}
         <Route path="/:slug" element={<WeddingSlugPage />} />
 
         {/* Fallback */}
