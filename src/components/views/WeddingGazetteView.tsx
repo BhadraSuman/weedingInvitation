@@ -107,6 +107,96 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
     setGrid3(['G', '', '', '', '', '', 'I']);
   };
 
+  const handleCellChange = (
+    gridNum: 1 | 2 | 3,
+    idx: number,
+    value: string,
+    gridLength: number
+  ) => {
+    const clean = value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+    const char = clean.slice(-1);
+
+    if (gridNum === 1) {
+      const next = [...grid1];
+      next[idx] = char;
+      setGrid1(next);
+    } else if (gridNum === 2) {
+      const next = [...grid2];
+      next[idx] = char;
+      setGrid2(next);
+    } else if (gridNum === 3) {
+      const next = [...grid3];
+      next[idx] = char;
+      setGrid3(next);
+    }
+
+    // Auto-focus next block if a letter was typed
+    if (char && idx < gridLength - 1) {
+      const nextEl = document.getElementById(`cw-cell-${gridNum}-${idx + 1}`);
+      if (nextEl) {
+        (nextEl as HTMLInputElement).focus();
+        (nextEl as HTMLInputElement).select();
+      }
+    }
+  };
+
+  const handleCellKeyDown = (
+    gridNum: 1 | 2 | 3,
+    idx: number,
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    const currentVal = gridNum === 1 ? grid1[idx] : gridNum === 2 ? grid2[idx] : grid3[idx];
+    if (e.key === 'Backspace') {
+      if (!currentVal && idx > 0) {
+        const prevEl = document.getElementById(`cw-cell-${gridNum}-${idx - 1}`);
+        if (prevEl) {
+          (prevEl as HTMLInputElement).focus();
+        }
+      }
+    } else if (e.key === 'ArrowLeft' && idx > 0) {
+      const prevEl = document.getElementById(`cw-cell-${gridNum}-${idx - 1}`);
+      if (prevEl) {
+        (prevEl as HTMLInputElement).focus();
+      }
+    } else if (e.key === 'ArrowRight') {
+      const nextEl = document.getElementById(`cw-cell-${gridNum}-${idx + 1}`);
+      if (nextEl) {
+        (nextEl as HTMLInputElement).focus();
+      }
+    }
+  };
+
+  const handleCellPaste = (
+    gridNum: 1 | 2 | 3,
+    e: React.ClipboardEvent<HTMLInputElement>,
+    gridLength: number
+  ) => {
+    e.preventDefault();
+    const pasted = e.clipboardData.getData('text').toUpperCase().replace(/[^A-Z]/g, '');
+    if (!pasted) return;
+
+    const chars = pasted.slice(0, gridLength).split('');
+    if (gridNum === 1) {
+      const next = [...grid1];
+      chars.forEach((c, i) => { if (i < gridLength) next[i] = c; });
+      setGrid1(next);
+    } else if (gridNum === 2) {
+      const next = [...grid2];
+      chars.forEach((c, i) => { if (i < gridLength) next[i] = c; });
+      setGrid2(next);
+    } else if (gridNum === 3) {
+      const next = [...grid3];
+      chars.forEach((c, i) => { if (i < gridLength) next[i] = c; });
+      setGrid3(next);
+    }
+
+    const targetIdx = Math.min(chars.length, gridLength) - 1;
+    const targetEl = document.getElementById(`cw-cell-${gridNum}-${targetIdx}`);
+    if (targetEl) {
+      (targetEl as HTMLInputElement).focus();
+    }
+  };
+
   const groom = template?.groom?.name || 'Anirban';
   const bride = template?.bride?.name || 'Deboleena';
   const customHeadline = template?.quotes?.verse;
@@ -760,14 +850,13 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
                   {grid1.map((val, idx) => (
                     <input
                       key={`g1-${idx}`}
+                      id={`cw-cell-1-${idx}`}
                       type="text"
                       maxLength={1}
                       value={val}
-                      onChange={e => {
-                        const newG = [...grid1];
-                        newG[idx] = e.target.value.toUpperCase();
-                        setGrid1(newG);
-                      }}
+                      onChange={e => handleCellChange(1, idx, e.target.value, grid1.length)}
+                      onKeyDown={e => handleCellKeyDown(1, idx, e)}
+                      onPaste={e => handleCellPaste(1, e, grid1.length)}
                       className="w-8 h-8 text-center uppercase font-mono font-bold text-[#1C1C16] bg-[#FFFFFF] rounded shadow-sm border border-[#1C1C16]/20 focus:outline-none focus:border-[#B51C12]"
                     />
                   ))}
@@ -786,14 +875,13 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
                   {grid2.map((val, idx) => (
                     <input
                       key={`g2-${idx}`}
+                      id={`cw-cell-2-${idx}`}
                       type="text"
                       maxLength={1}
                       value={val}
-                      onChange={e => {
-                        const newG = [...grid2];
-                        newG[idx] = e.target.value.toUpperCase();
-                        setGrid2(newG);
-                      }}
+                      onChange={e => handleCellChange(2, idx, e.target.value, grid2.length)}
+                      onKeyDown={e => handleCellKeyDown(2, idx, e)}
+                      onPaste={e => handleCellPaste(2, e, grid2.length)}
                       className="w-8 h-8 text-center uppercase font-mono font-bold text-[#1C1C16] bg-[#FFFFFF] rounded shadow-sm border border-[#1C1C16]/20 focus:outline-none focus:border-[#B51C12]"
                     />
                   ))}
@@ -812,14 +900,13 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
                   {grid3.map((val, idx) => (
                     <input
                       key={`g3-${idx}`}
+                      id={`cw-cell-3-${idx}`}
                       type="text"
                       maxLength={1}
                       value={val}
-                      onChange={e => {
-                        const newG = [...grid3];
-                        newG[idx] = e.target.value.toUpperCase();
-                        setGrid3(newG);
-                      }}
+                      onChange={e => handleCellChange(3, idx, e.target.value, grid3.length)}
+                      onKeyDown={e => handleCellKeyDown(3, idx, e)}
+                      onPaste={e => handleCellPaste(3, e, grid3.length)}
                       className="w-8 h-8 text-center uppercase font-mono font-bold text-[#1C1C16] bg-[#FFFFFF] rounded shadow-sm border border-[#1C1C16]/20 focus:outline-none focus:border-[#B51C12]"
                     />
                   ))}
