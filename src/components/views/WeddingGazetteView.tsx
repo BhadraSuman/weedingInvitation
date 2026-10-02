@@ -22,7 +22,9 @@ import {
   Mail,
   ExternalLink,
   HelpCircle,
-  RotateCcw
+  RotateCcw,
+  Award,
+  Disc
 } from 'lucide-react';
 
 interface WeddingGazetteViewProps {
@@ -44,12 +46,20 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
   );
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHalftone, setIsHalftone] = useState(true);
+  const [isVintageSepia, setIsVintageSepia] = useState(false);
 
   // Crossword state
   const [grid1, setGrid1] = useState<string[]>(['P', '', '', '', '', 'A']);
   const [grid2, setGrid2] = useState<string[]>(['', '', '', '']);
   const [grid3, setGrid3] = useState<string[]>(['G', '', '', '', '', '', 'I']);
   const [showCrosswordSol, setShowCrosswordSol] = useState(false);
+
+  // Puzzle verification
+  const isPuzzleSolved = showCrosswordSol || (
+    grid1.join('').toUpperCase() === 'PUCHKA' &&
+    grid2.join('').toUpperCase() === 'ALOO' &&
+    grid3.join('').toUpperCase() === 'GODHULI'
+  );
 
   // RSVP Form State
   const [readerName, setReaderName] = useState(guestName || '');
@@ -97,8 +107,22 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
     setGrid3(['G', '', '', '', '', '', 'I']);
   };
 
+  const groom = template?.groom?.name || 'Anirban';
+  const bride = template?.bride?.name || 'Deboleena';
+  const customHeadline = template?.quotes?.verse;
+  const customSubhead = template?.quotes?.subInvocation;
+
+  // Dynamic Events
+  const events = template?.events || [];
+  const sangeetEvent = events.find(e => e.key === 'sangeet' || e.key === 'gaye_holud' || e.key === 'haldi') || events[0];
+  const vivahEvent = events.find(e => e.key === 'wedding' || e.key === 'vivah') || events[1] || events[0];
+  const receptionEvent = events.find(e => e.key === 'reception') || events[2] || events[events.length - 1];
+
+  const mainDateStr = template?.targetDateNative || (template?.targetDate ? new Date(template.targetDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '12 Dec 2026');
+  const mainVenueName = template?.venue?.name || 'The Heritage Rajbari';
+
   const handleAddToCalendar = (title: string, isoDate: string) => {
-    const text = encodeURIComponent(`${title} — Anirban & Deboleena's Wedding`);
+    const text = encodeURIComponent(`${title} — ${groom} & ${bride}'s Wedding`);
     const cleanDate = isoDate.replace(/-|:|\.\d\d\d/g, '');
     const dates = encodeURIComponent(`${cleanDate}/${cleanDate}`);
     const details = encodeURIComponent('Grand nuptial celebrations. See The Wedding Gazette for dress code & feasts!');
@@ -115,9 +139,10 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
       `👤 *Passenger:* ${readerName || 'Respected Guest'}\n` +
       `💌 *Dispatch:* ${attendance}\n` +
       `🍛 *Feast Preference:* ${feast}\n` +
-      `✍️ *Telegram Note:* ${readerNote || 'Heartiest congratulations to the couple!'}`;
+      `✍️ *Telegram Note:* ${readerNote || 'Heartiest congratulations to ' + groom + ' & ' + bride + '!'}`;
 
-    const targetNumber = '916203868358';
+    const hostNumber = template?.rsvpContacts?.[0]?.whatsappNumber?.replace(/[^0-9]/g, '');
+    const targetNumber = hostNumber || '916203868358';
     const waUrl = `https://api.whatsapp.com/send?phone=${targetNumber}&text=${encodeURIComponent(message)}`;
 
     setTimeout(() => {
@@ -132,11 +157,6 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const groom = template?.groom?.name || 'Anirban';
-  const bride = template?.bride?.name || 'Deboleena';
-  const customHeadline = template?.quotes?.verse;
-  const customSubhead = template?.quotes?.subInvocation;
 
   // Dynamic Headline by language
   const headlines = {
@@ -176,13 +196,55 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
 
   return (
     <div
-      className="relative min-h-screen bg-[#FDF9EF] text-[#1C1C16] selection:bg-[#B51C12] selection:text-white pb-28 antialiased"
+      className={`relative min-h-screen ${
+        isVintageSepia ? 'bg-[#F4EBD0]' : 'bg-[#FDF9EF]'
+      } text-[#1C1C16] selection:bg-[#B51C12] selection:text-white pb-28 antialiased transition-colors duration-500`}
       style={{
         fontFamily: "'Newsreader', Georgia, serif"
       }}
     >
+      {/* AUTHENTIC PRINT BROADSHEET STYLING */}
+      <style>{`
+        @media print {
+          @page {
+            size: A4 portrait;
+            margin: 10mm 12mm;
+          }
+          body, html {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            font-size: 10pt !important;
+          }
+          header, nav, button, .print\\:hidden, #readers-reply form button, a[href*="maps.google.com"], input, textarea {
+            display: none !important;
+          }
+          #front-page, #classifieds, #feasts-and-fun, #readers-reply {
+            break-inside: avoid;
+            page-break-inside: avoid;
+          }
+          img {
+            filter: grayscale(100%) contrast(140%) !important;
+            max-width: 100% !important;
+          }
+          .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl {
+            box-shadow: none !important;
+          }
+          .border, .border-t, .border-b {
+            border-color: #000000 !important;
+          }
+          .bg-\\[\\#ECE8DE\\], .bg-\\[\\#F2EEE4\\], .bg-\\[\\#E6E2D8\\] {
+            background-color: #f7f7f7 !important;
+          }
+        }
+      `}</style>
+
+      {/* Vertical Broadsheet Centerfold Crease */}
+      {isVintageSepia && (
+        <div className="pointer-events-none fixed inset-y-0 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-black/5 via-black/15 to-black/5 shadow-[0_0_8px_rgba(0,0,0,0.08)] z-30 print:hidden" />
+      )}
+
       {/* VINTAGE BROADSHEET MASTHEAD HEADER */}
-      <header className="sticky top-0 w-full z-50 bg-[#FDF9EF]/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.06)] border-b border-[#1C1C16]/20">
+      <header className="sticky top-0 w-full z-50 bg-[#FDF9EF]/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.06)] border-b border-[#1C1C16]/20 print:hidden">
         <div className="max-w-2xl mx-auto px-4 py-2 flex flex-col justify-between">
           {/* Top Line: Weather, Issue, Home Link & Audio */}
           <div className="flex items-center justify-between text-[11px] font-mono tracking-wider text-[#1C1C16]/70 pb-1 border-b border-[#1C1C16]/10">
@@ -194,11 +256,19 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={toggleAudio}
-                className="w-7 h-7 rounded-full bg-[#1C1C16]/5 hover:bg-[#1C1C16]/10 flex items-center justify-center text-[#1C1C16] transition-colors"
-                title="Play/Pause Background Score"
+                className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded-full transition-all border ${
+                  isPlaying
+                    ? 'bg-[#B51C12] text-white border-[#B51C12] shadow-xs'
+                    : 'bg-[#1C1C16]/5 hover:bg-[#1C1C16]/10 text-[#1C1C16] border-[#1C1C16]/15'
+                }`}
+                title={isPlaying ? 'Pause Vintage Gramophone' : 'Play 1920s Acoustic Gramophone'}
                 type="button"
               >
-                {isPlaying ? <VolumeX className="w-3.5 h-3.5 text-[#B51C12]" /> : <Volume2 className="w-3.5 h-3.5" />}
+                <Disc className={`w-3.5 h-3.5 ${isPlaying ? 'animate-spin' : ''}`} />
+                <span className="font-mono text-[9px] uppercase font-bold tracking-wider hidden sm:inline">
+                  {isPlaying ? '78 RPM Live' : 'Phonograph'}
+                </span>
+                {isPlaying ? <Volume2 className="w-3 h-3 text-white" /> : <VolumeX className="w-3 h-3 text-[#1C1C16]/60" />}
               </button>
               <Link
                 to="/"
@@ -249,37 +319,52 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
               <span className="truncate">FORECAST: 100% TEARS OF JOY & HIGH GHEE</span>
             </div>
 
-            {/* Multilingual Toggle Pills as in Stitch */}
-            <div className="flex items-center gap-1 bg-[#E6E2D8] px-2 py-0.5 rounded-full shrink-0 border border-[#1C1C16]/15">
+            {/* Multilingual Toggle Pills and Vintage Sepia Toggle */}
+            <div className="flex items-center gap-2 shrink-0">
               <button
                 type="button"
-                onClick={() => handleLangToggle('bn')}
-                className={`font-mono text-[10px] px-2 py-0.5 rounded transition-all ${
-                  currentLang === 'bn' ? 'bg-[#1C1C16] text-[#FDF9EF] font-bold shadow-sm' : 'text-[#1C1C16] hover:text-[#B51C12]'
+                onClick={() => setIsVintageSepia(!isVintageSepia)}
+                className={`font-mono text-[10px] px-2 py-0.5 rounded transition-all border flex items-center gap-1 ${
+                  isVintageSepia
+                    ? 'bg-[#8B5A2B] text-white border-[#8B5A2B] shadow-xs'
+                    : 'bg-[#E6E2D8] text-[#1C1C16] border-[#1C1C16]/20 hover:border-[#B51C12]'
                 }`}
+                title="Toggle 1920s Aged Newsprint Patina & Centerfold Crease"
               >
-                বিয়ের খবর
+                <span>{isVintageSepia ? '🗞️ Aged 1926' : '📰 Fresh Press'}</span>
               </button>
-              <span className="text-[#1C1C16]/30 text-[10px]">•</span>
-              <button
-                type="button"
-                onClick={() => handleLangToggle('hi')}
-                className={`font-mono text-[10px] px-2 py-0.5 rounded transition-all ${
-                  currentLang === 'hi' ? 'bg-[#1C1C16] text-[#FDF9EF] font-bold shadow-sm' : 'text-[#1C1C16] hover:text-[#B51C12]'
-                }`}
-              >
-                शादी समाचार
-              </button>
-              <span className="text-[#1C1C16]/30 text-[10px]">•</span>
-              <button
-                type="button"
-                onClick={() => handleLangToggle('en')}
-                className={`font-mono text-[10px] px-2 py-0.5 rounded transition-all ${
-                  currentLang === 'en' ? 'bg-[#1C1C16] text-[#FDF9EF] font-bold shadow-sm' : 'text-[#1C1C16] hover:text-[#B51C12]'
-                }`}
-              >
-                ENG
-              </button>
+
+              <div className="flex items-center gap-1 bg-[#E6E2D8] px-2 py-0.5 rounded-full shrink-0 border border-[#1C1C16]/15">
+                <button
+                  type="button"
+                  onClick={() => handleLangToggle('bn')}
+                  className={`font-mono text-[10px] px-2 py-0.5 rounded transition-all ${
+                    currentLang === 'bn' ? 'bg-[#1C1C16] text-[#FDF9EF] font-bold shadow-sm' : 'text-[#1C1C16] hover:text-[#B51C12]'
+                  }`}
+                >
+                  বিয়ের খবর
+                </button>
+                <span className="text-[#1C1C16]/30 text-[10px]">•</span>
+                <button
+                  type="button"
+                  onClick={() => handleLangToggle('hi')}
+                  className={`font-mono text-[10px] px-2 py-0.5 rounded transition-all ${
+                    currentLang === 'hi' ? 'bg-[#1C1C16] text-[#FDF9EF] font-bold shadow-sm' : 'text-[#1C1C16] hover:text-[#B51C12]'
+                  }`}
+                >
+                  शादी समाचार
+                </button>
+                <span className="text-[#1C1C16]/30 text-[10px]">•</span>
+                <button
+                  type="button"
+                  onClick={() => handleLangToggle('en')}
+                  className={`font-mono text-[10px] px-2 py-0.5 rounded transition-all ${
+                    currentLang === 'en' ? 'bg-[#1C1C16] text-[#FDF9EF] font-bold shadow-sm' : 'text-[#1C1C16] hover:text-[#B51C12]'
+                  }`}
+                >
+                  ENG
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -490,16 +575,16 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
                   Bachelor status formally revoked by order of council. Candidate will present himself for final family feast (Aiburobhat) followed by unrestrained rhythmic choreography.
                 </p>
                 <div className="flex flex-wrap gap-2 text-[#1C1C16] font-mono text-[11px] mb-3 bg-[#F2EEE4] p-2 rounded border border-[#1C1C16]/10">
-                  <span><strong>DATE:</strong> 11 Dec 2026</span>
+                  <span><strong>DATE:</strong> {sangeetEvent?.date || '11 Dec 2026'}</span>
                   <span>•</span>
-                  <span><strong>DRESS:</strong> Handloom Tussar & Kurtas</span>
+                  <span><strong>DRESS:</strong> {sangeetEvent?.dressCode || 'Handloom Tussar & Kurtas'}</span>
                   <span>•</span>
-                  <span><strong>TIME:</strong> 6:00 PM Onwards</span>
+                  <span><strong>TIME:</strong> {sangeetEvent?.time || '6:00 PM Onwards'}</span>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={() => handleAddToCalendar('Aiburobhat & Sangeet', '2026-12-11T18:00:00')}
+                onClick={() => handleAddToCalendar(sangeetEvent?.title || 'Aiburobhat & Sangeet', sangeetEvent?.calendarTimes?.start || '2026-12-11T18:00:00')}
                 className="self-start flex items-center gap-1.5 bg-[#1C1C16] text-[#FDF9EF] font-mono text-[10px] uppercase px-3 py-1.5 rounded transition-transform active:scale-95 shadow-sm hover:bg-[#B51C12]"
               >
                 <Calendar className="w-3.5 h-3.5" />
@@ -524,16 +609,16 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
                   All esteemed kin and comrades are summoned under the sacred canopy for the saat paak, sindoor daan, and auspicious blowing of shankhas at Godhuli lagna.
                 </p>
                 <div className="flex flex-wrap gap-2 text-[#1C1C16] font-mono text-[11px] mb-3 bg-[#ECE8DE] p-2 rounded border border-[#1C1C16]/10">
-                  <span><strong>DATE:</strong> 12 Dec 2026</span>
+                  <span><strong>DATE:</strong> {vivahEvent?.date || mainDateStr}</span>
                   <span>•</span>
-                  <span><strong>LAGNA:</strong> 6:45 PM Sharp</span>
+                  <span><strong>LAGNA:</strong> {vivahEvent?.time || '6:45 PM Sharp'}</span>
                   <span>•</span>
-                  <span><strong>VENUE:</strong> The Heritage Rajbari</span>
+                  <span><strong>VENUE:</strong> {vivahEvent?.venueName || mainVenueName}</span>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={() => handleAddToCalendar('Shubh Vivah Nuptials', '2026-12-12T18:45:00')}
+                onClick={() => handleAddToCalendar(vivahEvent?.title || 'Shubh Vivah Nuptials', vivahEvent?.calendarTimes?.start || (template?.targetDate || '2026-12-12T18:45:00'))}
                 className="self-start flex items-center gap-1.5 bg-[#B51C12] text-white font-mono text-[10px] uppercase px-3 py-1.5 rounded transition-transform active:scale-95 shadow-sm hover:bg-[#1C1C16]"
               >
                 <Clock className="w-3.5 h-3.5" />
@@ -558,16 +643,16 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
                   Generous provisions of Kolkata Mutton Rezala, Bhetki Paturi, and hot syrupy sweets prepared for guests of honor. Tight waistbands strictly discouraged.
                 </p>
                 <div className="flex flex-wrap gap-2 text-[#1C1C16] font-mono text-[11px] mb-3 bg-[#F2EEE4] p-2 rounded border border-[#1C1C16]/10">
-                  <span><strong>DATE:</strong> 13 Dec 2026</span>
+                  <span><strong>DATE:</strong> {receptionEvent?.date || '13 Dec 2026'}</span>
                   <span>•</span>
-                  <span><strong>DINNER:</strong> 7:30 PM Till Midnight</span>
+                  <span><strong>DINNER:</strong> {receptionEvent?.time || '7:30 PM Till Midnight'}</span>
                   <span>•</span>
-                  <span><strong>HALL:</strong> Grand Regal Pavilion</span>
+                  <span><strong>HALL:</strong> {receptionEvent?.venueName || mainVenueName}</span>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={() => handleAddToCalendar('Royal Reception & Feast', '2026-12-13T19:30:00')}
+                onClick={() => handleAddToCalendar(receptionEvent?.title || 'Royal Reception & Feast', receptionEvent?.calendarTimes?.start || '2026-12-13T19:30:00')}
                 className="self-start flex items-center gap-1.5 bg-[#1C1C16] text-[#FDF9EF] font-mono text-[10px] uppercase px-3 py-1.5 rounded transition-transform active:scale-95 shadow-sm hover:bg-[#B51C12]"
               >
                 <Calendar className="w-3.5 h-3.5" />
@@ -760,6 +845,19 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
                 <span>Reset</span>
               </button>
             </div>
+
+            {/* Victory Rubber Stamp */}
+            {isPuzzleSolved && (
+              <div className="mt-3 p-3.5 bg-[#FFFFFF] rounded-lg border-2 border-dashed border-[#B51C12] text-center transform -rotate-1 shadow-md animate-in fade-in zoom-in-95 duration-300">
+                <div className="flex items-center justify-center gap-1.5 text-[#B51C12] font-mono text-xs font-black uppercase tracking-widest">
+                  <Award className="w-4 h-4 text-[#B51C12]" />
+                  <span>★ 100% PUZZLE SOLVED • CERTIFIED BY CHIEF EDITOR ★</span>
+                </div>
+                <p className="text-xs font-serif italic text-[#1C1C16] mt-1">
+                  Official Gazette Stamp: You are formally accredited as an Honorary VIP Wedding Delegate! Unlimited golden puchkas authorized by editorial order.
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
@@ -967,7 +1065,7 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
       </main>
 
       {/* FIXED BOTTOM NEWSPAPER SECTION NAVIGATION BAR (FROM STITCH) */}
-      <nav className="fixed bottom-0 w-full z-50 bg-[#FDF9EF]/95 backdrop-blur-md border-t border-[#1C1C16]/20 shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
+      <nav className="fixed bottom-0 w-full z-50 bg-[#FDF9EF]/95 backdrop-blur-md border-t border-[#1C1C16]/20 shadow-[0_-2px_12px_rgba(0,0,0,0.06)] print:hidden">
         <div className="max-w-md mx-auto flex justify-around items-center h-14 px-2">
           <button
             type="button"
