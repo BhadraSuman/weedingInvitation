@@ -26,7 +26,8 @@ export const royalNorthTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Tum Prem Ho & Royal Shehnai',
     artist: 'RadhaKrishn Reprise & Royal Shenai',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3',
+    theme: 'royal_north'
   },
   quotes: {
     invocation: '|| श्री गणेशाय नमः ||',

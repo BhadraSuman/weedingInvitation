@@ -26,7 +26,8 @@ export const potKathaTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Potua Gaan & Shonkho Dhaak Baadya',
     artist: 'Traditional Kalighat Folk Troupe',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'pot_katha'
   },
   quotes: {
     invocation: '॥ শ্রী শ্রী প্রজাপতয়ে নমঃ ॥',

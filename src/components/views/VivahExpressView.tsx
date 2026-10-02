@@ -66,13 +66,18 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const unsub = audioManager.subscribe(playing => {
+      setIsPlaying(playing);
+    });
+    return () => unsub();
+  }, []);
+
   const toggleHeaderAudio = () => {
     if (isPlaying) {
       audioManager.pause();
-      setIsPlaying(false);
     } else {
       audioManager.play();
-      setIsPlaying(true);
     }
   };
 

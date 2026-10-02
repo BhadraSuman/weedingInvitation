@@ -26,7 +26,8 @@ export const sholaTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Santiniketan Esraj & Morning Raga',
     artist: 'Classical Bengal Ensemble',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'shola'
   },
   quotes: {
     invocation: '॥ ওঁ শ্রী শ্রী প্রজাপতয়ে নমঃ ॥',

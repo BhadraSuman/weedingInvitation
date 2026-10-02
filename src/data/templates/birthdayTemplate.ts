@@ -26,7 +26,8 @@ export const birthdayTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Happy Birthday Celebration & Joyful Melodies',
     artist: 'Acoustic Joy & Celebration Bells',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'birthday'
   },
   quotes: {
     invocation: '✨ OUR LITTLE PRINCESS TURNS ONE ✨',

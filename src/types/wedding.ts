@@ -122,6 +122,7 @@ export interface CulturalTemplate {
     title: string;
     artist: string;
     url: string;
+    theme?: string;
   };
   quotes: {
     invocation: string;

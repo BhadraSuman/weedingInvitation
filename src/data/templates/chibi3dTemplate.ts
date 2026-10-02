@@ -26,7 +26,8 @@ export const chibi3dTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Acoustic Shehnai & Joyful Ukulele Fusion',
     artist: 'Modern Vivah Beats',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'chibi_3d'
   },
   quotes: {
     invocation: '✨ ॥ श्री गणेशाय नमः ॥ ✨',

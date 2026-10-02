@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CulturalTemplate, Language } from '../../types/wedding';
 import { audioManager } from '../../utils/audioManager';
 import { Link } from 'react-router-dom';
@@ -68,13 +68,18 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
     }
   };
 
+  useEffect(() => {
+    const unsub = audioManager.subscribe(playing => {
+      setIsPlaying(playing);
+    });
+    return () => unsub();
+  }, []);
+
   const toggleAudio = () => {
     if (isPlaying) {
       audioManager.pause();
-      setIsPlaying(false);
     } else {
       audioManager.play();
-      setIsPlaying(true);
     }
   };
 

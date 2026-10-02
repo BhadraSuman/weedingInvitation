@@ -26,7 +26,8 @@ export const punjabTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'High-Energy Wedding Dhol & Boliyaan',
     artist: 'Live Dholi Troupe, Majha Folk Beats',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'rangla_punjab'
   },
   quotes: {
     invocation: 'ੴ ਲਖ ਖੁਸ਼ੀਆਂ ਪਾਤਸ਼ਾਹੀਆਂ ਜੇ ਸਤਿਗੁਰੁ ਨਦਰਿ ਕਰੇਇ ॥',

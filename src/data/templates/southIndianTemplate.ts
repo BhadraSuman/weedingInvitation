@@ -26,7 +26,8 @@ export const southIndianTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Nadaswaram & Thavil Kalyana Melam',
     artist: 'Traditional Carnatic Wedding Melodies',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'south_indian'
   },
   quotes: {
     invocation: '|| ॐ श्री गणेशाय नमः ||',

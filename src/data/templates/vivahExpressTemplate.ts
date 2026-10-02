@@ -26,7 +26,8 @@ export const vivahExpressTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Acoustic Shehnai & Rhythmic Railway Chimes',
     artist: 'Vivah Express Ensemble',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'vivah_express'
   },
   quotes: {
     invocation: '🚂 ॥ BHARAT VIVAH EXPRESS • IRCTC SPECIAL #2026 ॥ 🚂',

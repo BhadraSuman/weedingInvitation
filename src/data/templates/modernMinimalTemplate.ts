@@ -26,7 +26,8 @@ export const modernMinimalTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Acoustic Guitar & Piano Vows',
     artist: 'Serene Sunset Romance',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'modern_minimal'
   },
   quotes: {
     invocation: '— FOREVER STARTS HERE —',

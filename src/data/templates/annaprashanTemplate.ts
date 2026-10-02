@@ -26,7 +26,8 @@ export const annaprashanTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Subho Annaprashan Shehnai & Folk Lullaby',
     artist: 'Traditional Bengali Shehnai & Flute',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'annaprashan'
   },
   quotes: {
     invocation: '|| শ্রী শ্রী নারায়ণ সহায় ||',

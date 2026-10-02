@@ -26,7 +26,8 @@ export const bengaliTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Shehnai & Indian Flute Melody',
     artist: 'Traditional Raag Bhairavi',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'bengali'
   },
   quotes: {
     invocation: '|| শ্রী শ্রী দুর্গা সহায় ||',

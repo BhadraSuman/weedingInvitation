@@ -26,7 +26,8 @@ export const mithilaTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Sita-Ram Vivah Geet & Shehnai',
     artist: 'Traditional Maithili Folk Artists',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'mithila'
   },
   quotes: {
     invocation: '॥ श्री गणेशाय नमः ॥',

@@ -26,7 +26,8 @@ export const weddingGazetteTemplate: CulturalTemplate = {
   audioTrack: {
     title: 'Vintage Gramophone & Morning Santoor',
     artist: 'Calcutta Classical Society',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3'
+    url: '',
+    theme: 'wedding_gazette'
   },
   quotes: {
     invocation: '📰 ★ SPECIAL NUPTIAL DISPATCH • VOL. I, ISSUE 1 ★ 📰',

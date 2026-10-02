@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CulturalTemplate, Language } from '../../types/wedding';
 import { audioManager } from '../../utils/audioManager';
 import { Link } from 'react-router-dom';
@@ -57,13 +57,19 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
     }, 3000);
   };
 
+  useEffect(() => {
+    const unsub = audioManager.subscribe(playing => {
+      setIsPlaying(playing);
+      setIsJukeboxPlaying(playing);
+    });
+    return () => unsub();
+  }, []);
+
   const toggleHeaderAudio = () => {
     if (isPlaying) {
       audioManager.pause();
-      setIsPlaying(false);
     } else {
       audioManager.play();
-      setIsPlaying(true);
     }
   };
 
@@ -657,7 +663,13 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
               </div>
               <button
                 type="button"
-                onClick={() => setIsJukeboxPlaying(!isJukeboxPlaying)}
+                onClick={() => {
+                  if (audioManager.isPlaying()) {
+                    audioManager.pause();
+                  } else {
+                    audioManager.play();
+                  }
+                }}
                 className="w-11 h-11 rounded-full bg-[#F2CA50] text-[#131315] flex items-center justify-center shadow-[0_0_16px_rgba(242,202,80,0.5)] active:scale-95 transition-transform"
               >
                 {isJukeboxPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
@@ -689,7 +701,8 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
                   key={tr.id}
                   onClick={() => {
                     setCurrentTrack({ title: tr.title, artist: 'DJ Rohit & Dhol Squad' });
-                    setIsJukeboxPlaying(true);
+                    audioManager.setBollywoodSubtrack(tr.id);
+                    audioManager.play();
                     showToast(`Now Playing: ${tr.title}`);
                   }}
                   className="flex items-center justify-between p-2.5 rounded bg-[#1C1B1D] cursor-pointer hover:bg-[#353437] transition-colors"
