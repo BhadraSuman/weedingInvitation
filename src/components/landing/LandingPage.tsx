@@ -35,7 +35,7 @@ import { HostDashboardSpotlight } from './HostDashboardSpotlight';
 import { TestimonialsSection } from './TestimonialsSection';
 
 export const LandingPage: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<'all' | EventCategory>('all');
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'folk' | 'vintage' | 'wedding' | 'kids'>('all');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const whatsappInquiryUrl = (packageTitle: string = "Celebration Invitation") => {
@@ -59,7 +59,7 @@ export const LandingPage: React.FC = () => {
     },
     {
       question: "Can UtsavPatra be customized for regional traditions across India?",
-      answer: "Absolutely! We do not believe in one generic template. We craft radically differentiated cultural universes: Bengali Vivah (Parchment scrolls, wooden finials, Topor, Alpona, Shehnai audio), Shubh Vivah — North Indian Shubh Vivah (Emerald-Gold Darbar architecture with pure Sanskrit/Hindi verses), Annaprashan (First Rice Ceremony with silver Payesh bowl and interactive Thali Pariksha game), and 1st Birthday Galas (interactive cake cutting & balloon burst). South Indian and Pan-Indian themes are also fully supported."
+      answer: "Absolutely! We do not believe in one generic template. We craft radically differentiated cultural universes: Mithila Kohbar folk art, Kalighat Patachitra scrolls, Bengali Minimal-Luxury Shola, Rangla Punjab 128 BPM dhol celebration, Vintage Newspaper broadsheets, Bollywood Theatrical Premieres, and IRCTC Vivah Express passes. Annaprashan and 1st Birthday Galas are also fully supported."
     },
     {
       question: "How does the Digital Shagun (Online UPI E-Lifafa) feature work?",
@@ -80,9 +80,14 @@ export const LandingPage: React.FC = () => {
   ];
 
   const allEvents = Object.values(weddingsRegistry);
-  const filteredEvents = selectedCategory === 'all'
-    ? allEvents
-    : allEvents.filter(e => e.category === selectedCategory);
+  const filteredEvents = allEvents.filter(e => {
+    if (selectedCategory === 'all') return true;
+    if (selectedCategory === 'folk') return ['mithila', 'pot_katha', 'shola', 'rangla_punjab'].includes(e.cultureType);
+    if (selectedCategory === 'vintage') return ['wedding_gazette', 'bollywood_premiere', 'vivah_express'].includes(e.cultureType);
+    if (selectedCategory === 'wedding') return ['bengali', 'bihari_marwari', 'chibi_3d'].includes(e.cultureType);
+    if (selectedCategory === 'kids') return ['annaprashan', 'birthday'].includes(e.cultureType);
+    return true;
+  });
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#2C1810] font-sans selection:bg-[#8B181B] selection:text-[#F3E5AB]">
@@ -197,74 +202,106 @@ export const LandingPage: React.FC = () => {
             href="#demos"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-stone-300 bg-white hover:bg-stone-50 text-[#2C1810] font-serif font-semibold text-xs sm:text-sm shadow-sm transition-all whitespace-nowrap shrink-0"
           >
-            <span>Browse 8+ Cultural Themes</span>
+            <span>Browse 12 Distinct Themes</span>
           </a>
         </div>
 
         {/* Hero Quick Demos Buttons */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 max-w-3xl mx-auto">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto">
           <Link
-            to="/anirban-weds-deboleena"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            to="/mithila-vivah"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#962200] hover:bg-[#b93815] text-[#ffdcc3] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
-            <span>🪔 Bengali Wedding</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span>🦚 Mithila Vivah</span>
+            <ArrowRight className="w-3 h-3" />
           </Link>
 
           <Link
-            to="/sandeep-weds-priya"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            to="/pot-katha"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#a51611] hover:bg-[#c83227] text-[#ffdeab] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
-            <span>🚩 Shubh Vivah — North Indian</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#E5C158]" />
+            <span>📜 Pot Katha Scroll</span>
+            <ArrowRight className="w-3 h-3" />
           </Link>
 
           <Link
-            to="/kunal-weds-shreya"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            to="/shola"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#775a19] hover:bg-[#9b7724] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
-            <span>✨ 3D Cartoon Vivah</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#FCE7F3]" />
+            <span>🤍 Shola Luxury</span>
+            <ArrowRight className="w-3 h-3" />
           </Link>
 
           <Link
-            to="/the-grand-premiere"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#E50914] hover:bg-[#B81D24] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            to="/rangla-punjab"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#ff4a8d] hover:bg-[#ff7f1c] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
-            <span>🎬 Bollywood Premiere</span>
-            <ArrowRight className="w-3.5 h-3.5 text-white" />
+            <span>🥁 Rangla Punjab</span>
+            <ArrowRight className="w-3 h-3" />
           </Link>
 
           <Link
             to="/the-wedding-gazette"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#1C1C16] hover:bg-black text-[#FDF9EF] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#1C1C16] hover:bg-black text-[#FDF9EF] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>📰 The Wedding Gazette</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#B51C12]" />
+            <ArrowRight className="w-3 h-3 text-[#B51C12]" />
+          </Link>
+
+          <Link
+            to="/the-grand-premiere"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#E50914] hover:bg-[#B81D24] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+          >
+            <span>🎬 Bollywood Premiere</span>
+            <ArrowRight className="w-3 h-3" />
           </Link>
 
           <Link
             to="/vivah-express"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#002046] hover:bg-[#00132B] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#002046] hover:bg-[#00132B] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🚂 Vivah Express</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#FEA619]" />
+            <ArrowRight className="w-3 h-3 text-[#FEA619]" />
+          </Link>
+
+          <Link
+            to="/anirban-weds-deboleena"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+          >
+            <span>🪔 Bengali Wedding</span>
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+
+          <Link
+            to="/sandeep-weds-priya"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+          >
+            <span>🚩 North Indian Shubh Vivah</span>
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+
+          <Link
+            to="/kunal-weds-shreya"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+          >
+            <span>✨ 3D Cartoon Vivah</span>
+            <ArrowRight className="w-3 h-3" />
           </Link>
 
           <Link
             to="/aarav-annaprashan"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🥣 Baby Annaprashan</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#FEF3C7]" />
+            <ArrowRight className="w-3 h-3" />
           </Link>
 
           <Link
             to="/ananya-turns-1"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🎂 1st Birthday Gala</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#FCE7F3]" />
+            <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
@@ -281,7 +318,7 @@ export const LandingPage: React.FC = () => {
               Live Interactive Portfolio
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#2C1810] mt-1">
-              Select Your Celebration Category
+              Select Your Celebration Theme
             </h2>
             <p className="text-sm sm:text-base text-[#7A6A60] font-serif max-w-md mx-auto mt-2">
               Every client gets a clean, dedicated URL like <code className="bg-white px-2 py-0.5 rounded text-[#8B181B] font-mono">utsavpatra.com/your-event</code> to send directly on WhatsApp.
@@ -291,10 +328,11 @@ export const LandingPage: React.FC = () => {
           {/* Interactive Category Filter Pills */}
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
             {[
-              { id: 'all', label: '🌟 All Celebrations (5)' },
-              { id: 'wedding', label: '💍 Weddings (3)' },
-              { id: 'annaprashan', label: '🥣 Annaprashan (1)' },
-              { id: 'birthday', label: '🎂 Birthdays (1)' }
+              { id: 'all', label: '🌟 All Celebrations (12)' },
+              { id: 'folk', label: '🦚 Regional Folk & Heritage (4)' },
+              { id: 'vintage', label: '🎬 Cinematic & Vintage (3)' },
+              { id: 'wedding', label: '💍 Traditional & 3D (3)' },
+              { id: 'kids', label: '🎈 Baby & Birthdays (2)' }
             ].map(tab => (
               <button
                 key={tab.id}

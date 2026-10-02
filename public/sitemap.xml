@@ -5,15 +5,87 @@
   <!-- Main Platform Landing Page -->
   <url>
     <loc>https://utsavpatra.vercel.app/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Interactive 60-Second Tryout Generator -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/tryout</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Host Management & RSVP Dashboard -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/host-dashboard</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Mithila Vivah (Madhubani Folk Heritage) -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/mithila-vivah</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Pot Katha (Kalighat Patachitra Wedding Scroll) -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/pot-katha</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Shola (Bengali Minimal-Luxury Wedding) -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/shola</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Rangla Punjab (Loud & Kinetic Dhol Wedding) -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/rangla-punjab</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- The Wedding Gazette (Vintage Broadsheet Newspaper) -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/the-wedding-gazette</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- The Grand Premiere (Bollywood & OTT Celebration) -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/the-grand-premiere</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Vivah Express (IRCTC Railway Boarding Pass) -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/vivah-express</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <!-- Bengali Cultural Wedding Suite -->
   <url>
     <loc>https://utsavpatra.vercel.app/anirban-weds-deboleena</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -21,7 +93,15 @@
   <!-- Bihari & Marwari Shubh Vivah Suite -->
   <url>
     <loc>https://utsavpatra.vercel.app/sandeep-weds-priya</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 3D Pixar Cartoon Style Royal Vivah -->
+  <url>
+    <loc>https://utsavpatra.vercel.app/kunal-weds-shreya</loc>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -29,7 +109,7 @@
   <!-- Baby Annaprashan (Mukhe Bhaat / Rice Ceremony) Suite -->
   <url>
     <loc>https://utsavpatra.vercel.app/aarav-annaprashan</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -37,7 +117,7 @@
   <!-- 1st Birthday / Milestone Celebration Suite -->
   <url>
     <loc>https://utsavpatra.vercel.app/ananya-turns-1</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

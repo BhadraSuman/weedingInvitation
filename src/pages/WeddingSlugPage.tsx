@@ -67,9 +67,19 @@ export const WeddingSlugPage: React.FC = () => {
 
       updateMeta('og:title', pageTitle);
       updateMeta('twitter:title', pageTitle, true);
+      const desc = guestName 
+        ? `Namaste ${guestName}! You are warmly invited to grace our celebrations. Tap to open your personalized invitation.`
+        : `${weddingEntry.template.cultureLabel} • ${weddingEntry.template.quotes.weddingTitle}. ${weddingEntry.template.cultureTagline}`;
+      updateMeta('og:description', desc);
+      updateMeta('twitter:description', desc, true);
+      updateMeta('og:url', window.location.href);
+
       if (weddingEntry.previewImage) {
-        updateMeta('og:image', weddingEntry.previewImage);
-        updateMeta('twitter:image', weddingEntry.previewImage, true);
+        const fullImg = weddingEntry.previewImage.startsWith('http')
+          ? weddingEntry.previewImage
+          : `${window.location.origin}${weddingEntry.previewImage}`;
+        updateMeta('og:image', fullImg);
+        updateMeta('twitter:image', fullImg, true);
       }
     } else {
       document.title = "Celebration Invitation | UtsavPatra.com";
