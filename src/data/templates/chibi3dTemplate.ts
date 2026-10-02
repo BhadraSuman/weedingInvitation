@@ -7,7 +7,7 @@ export const chibi3dTemplate: CulturalTemplate = {
   cultureLabel: '3D कार्टून वेडिंग',
   cultureTagline: 'Playful 3D Animation, Bouncy Stickers & Modern Love Story',
   badgeEmoji: '✨',
-  nativeLanguageLabel: 'हिंदी / English',
+  nativeLanguageLabel: 'हिन्दी',
   nativeLanguageCode: 'hi',
   colors: {
     primary: '#E11D48', // Vibrant Rose Pink

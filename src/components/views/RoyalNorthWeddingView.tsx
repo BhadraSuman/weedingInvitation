@@ -282,7 +282,7 @@ export const RoyalNorthWeddingView: React.FC<RoyalNorthWeddingViewProps> = ({
 
                     <div className="p-3 bg-[#FAF6EE] rounded-xl border border-[#D4AF37]/40 text-xs">
                       <span className="font-serif font-bold text-[#7B1113] block uppercase text-[10px] tracking-wider">
-                        {lang === 'native' ? 'थीम एवं पहनावा / Theme' : 'Suggested Attire'}
+                        {lang === 'native' ? 'थीम एवं पहनावा' : 'Suggested Attire'}
                       </span>
                       <span className="text-[#5C0C0F] font-serif mt-0.5 block">
                         {lang === 'native' ? evt.nativeDressCode : evt.dressCode}

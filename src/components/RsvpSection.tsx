@@ -10,27 +10,30 @@ interface RsvpSectionProps {
 
 export const RsvpSection: React.FC<RsvpSectionProps> = ({ template, lang }) => {
   const { colors, rsvpContacts, groom, bride } = template;
-  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
 
   const t = {
-    badge: lang === 'en' ? 'RSVP & Coordination' : isHindi ? 'उपस्थिति की पुष्टि (RSVP)' : 'উপস্থিতি নিশ্চিতকরণ',
-    title: lang === 'en' ? 'Confirm Your Presence' : isHindi ? 'सादर आमंत्रण एवं उपस्थिति' : 'সাদর প্রত্যুত্তর',
+    badge: lang === 'en' ? 'RSVP & Coordination' : isHindi ? 'उपस्थिति की पुष्टि (RSVP)' : isBengali ? 'উপস্থিতি নিশ্চিতকরণ' : 'RSVP & Coordination',
+    title: lang === 'en' ? 'Confirm Your Presence' : isHindi ? 'सादर आमंत्रण एवं उपस्थिति' : isBengali ? 'সাদর প্রত্যুত্তর' : 'Confirm Your Presence',
     subtitle: lang === 'en'
       ? 'To help us prepare for your gracious hosting and dining arrangements, please confirm your attendance.'
       : isHindi
       ? 'विवाह में आपके स्वागत एवं सुगम आतिथ्य सत्कार की व्यवस्था हेतु कृपया अपनी उपस्थिति अवश्य बताएं।'
-      : 'অতিথিদের সুষ্ঠু অভ্যর্থনা ও আপ্যায়নের সুবিধার্থে অনুগ্রহপূর্বক আপনার শুভাগমন নিশ্চিত করুন।',
-    whatsappBtn: lang === 'en' ? 'Confirm on WhatsApp' : isHindi ? 'व्हाट्सएप पर सूचित करें' : 'হোয়াটসঅ্যাপে জানান',
-    awaitingTitle: lang === 'en' ? 'Awaiting Your Gracious Presence' : isHindi ? 'सस्नेह उपस्थिति की प्रतीक्षा में' : 'সানন্দ উপস্থিতি প্রতীক্ষায়',
+      : isBengali
+      ? 'অতিথিদের সুষ্ঠু অভ্যর্থনা ও আপ্যায়নের সুবিধার্থে অনুগ্রহপূর্বক আপনার শুভাগমন নিশ্চিত করুন।'
+      : 'To help us prepare for your gracious hosting and dining arrangements, please confirm your attendance.',
+    whatsappBtn: lang === 'en' ? 'Confirm on WhatsApp' : isHindi ? 'व्हाट्सएप पर सूचित करें' : isBengali ? 'হোয়াটসঅ্যাপে জানান' : 'Confirm on WhatsApp',
+    awaitingTitle: lang === 'en' ? 'Awaiting Your Gracious Presence' : isHindi ? 'सस्नेह उपस्थिति की प्रतीक्षा में' : isBengali ? 'সানন্দ উপস্থিতি প্রতীক্ষায়' : 'Awaiting Your Gracious Presence',
   };
 
   const getWhatsAppUrl = (phone: string) => {
-    let msg = `Namaskar! Delighted to confirm our attendance for ${groom.name} & ${bride.name}'s wedding celebration. Looking forward!`;
+    let msg = `Namaskar! Delighted to confirm our attendance for ${groom.name} & ${bride.name}'s celebration. Looking forward!`;
     if (lang === 'native') {
       if (isHindi) {
-        msg = `सादर प्रणाम! ${groom.name} एवं ${bride.name} के मांगलिक विवाह समारोह में सपरिवार उपस्थिति की पुष्टि करते हैं। हार्दिक शुभकामनाएं!`;
-      } else {
-        msg = `নমস্কার! ${groom.name} ও ${bride.name}-এর শুভ বিবাহ অনুষ্ঠানে সবান্ধব উপস্থিতির আন্তরিক সম্মতি জানাচ্ছি।`;
+        msg = `सादर प्रणाम! ${groom.nativeName || groom.name} एवं ${bride.nativeName || bride.name} के मांगलिक समारोह में सपरिवार उपस्थिति की पुष्टि करते हैं। हार्दिक शुभकामनाएं!`;
+      } else if (isBengali) {
+        msg = `নমস্কার! ${groom.nativeName || groom.name} ও ${bride.nativeName || bride.name}-এর শুভ অনুষ্ঠানে সবান্ধব উপস্থিতির আন্তরিক সম্মতি জানাচ্ছি।`;
       }
     }
     return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;

@@ -63,8 +63,9 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ template, lang }
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
-  const isBengali = template.id === 'bengali' && lang === 'native';
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
+  const isTamil = template.id === 'south_indian' && lang === 'native';
 
   const formatValue = (num: number): string => {
     if (isBengali) return toBengaliNumber(num);
@@ -79,10 +80,13 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ template, lang }
     if (isHindi) {
       return { days: 'दिन', hours: 'घंटे', mins: 'मिनट', secs: 'सेकंड' };
     }
-    if (template.id === 'south_indian') {
+    if (isTamil) {
       return { days: 'நாட்கள்', hours: 'மணி', mins: 'நிமிடம்', secs: 'விநாடி' };
     }
-    return { days: 'দিন', hours: 'ঘণ্টা', mins: 'মিনিট', secs: 'সেকেন্ড' };
+    if (isBengali) {
+      return { days: 'দিন', hours: 'ঘণ্টা', mins: 'মিনিট', secs: 'সেকেন্ড' };
+    }
+    return { days: 'Days', hours: 'Hours', mins: 'Minutes', secs: 'Seconds' };
   };
 
   const labels = getUnitLabels();
@@ -97,15 +101,17 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ template, lang }
   const getBadgeText = () => {
     if (lang === 'en') return 'Countdown to Forever';
     if (isHindi) return 'शुभ लग्न की प्रतीक्षा';
-    if (template.id === 'south_indian') return 'நல்வேளை நோக்கிய காத்திருப்பு';
-    return 'শুভ লগ্নের প্রতীক্ষা';
+    if (isTamil) return 'நல்வேளை நோக்கிய காத்திருப்பு';
+    if (isBengali) return 'শুভ লগ্নের প্রতীক্ষা';
+    return 'Countdown to Forever';
   };
 
   const getHeadingText = () => {
     if (lang === 'en') return 'Counting Down to Our Big Day';
     if (isHindi) return 'पावन विवाह में शेष समय';
-    if (template.id === 'south_indian') return 'திருமண நாளுக்கான காத்திருப்பு';
-    return 'আর মাত্র ক’টা দিন বাকি';
+    if (isTamil) return 'திருமண நாளுக்கான காத்திருப்பு';
+    if (isBengali) return 'আর মাত্র ক’টা দিন বাকি';
+    return 'Counting Down to Our Big Day';
   };
 
   return (

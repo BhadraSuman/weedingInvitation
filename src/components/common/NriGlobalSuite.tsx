@@ -74,6 +74,8 @@ export const NriGlobalSuite: React.FC<NriGlobalSuiteProps> = ({
   liveStreamUrl = 'https://youtube.com/live/'
 }) => {
   const isNative = lang === 'native';
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
   const [selectedTz, setSelectedTz] = useState<string>('IST');
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [blessings, setBlessings] = useState<WorldBlessing[]>(INITIAL_BLESSINGS);
@@ -168,13 +170,31 @@ export const NriGlobalSuite: React.FC<NriGlobalSuiteProps> = ({
               }}
             >
               <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span>{isNative ? 'প্রবাসী ও বৈশ্বিক আত্মীয় পরিজন' : 'NRI & Global Family Suite'}</span>
+              <span>
+                {lang === 'en'
+                  ? 'NRI & Global Family Suite'
+                  : isHindi
+                  ? 'प्रवासी एवं दूरस्थ प्रियजन'
+                  : isBengali
+                  ? 'প্রবাসী ও বৈশ্বিক আত্মীয় পরিজন'
+                  : 'NRI & Global Family Suite'}
+              </span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900">
-              {isNative ? 'গ্লোবাল টাইমজোন ও শুভ লগ্ন সূচি' : 'Global Timezone & Ceremony Schedule'}
+              {lang === 'en'
+                ? 'Global Timezone & Ceremony Schedule'
+                : isHindi
+                ? 'वैश्विक टाइमज़ोन एवं शुभ मुहूर्त'
+                : isBengali
+                ? 'গ্লোবাল টাইমজোন ও শুভ লগ্ন সূচি'
+                : 'Global Timezone & Ceremony Schedule'}
             </h2>
             <p className="text-xs sm:text-sm font-serif text-stone-600 mt-1 max-w-xl">
-              {isNative
+              {lang === 'en'
+                ? 'For our beloved family and friends across the globe — ceremony timings automatically converted to your local time zone with personalized greetings.'
+                : isHindi
+                ? 'देश-विदेश में स्थित समस्त प्रियजनों के लिए आपके स्थानीय समय अनुसार विवाह के शुभ मुहूर्त एवं वर्चुअल लाइव प्रसारण।'
+                : isBengali
                 ? 'দূর দেশে থাকা সমস্ত প্রিয়জনদের জন্য আপনার স্থানীয় সময়ের শুভ লগ্ন সূচি ও শুভেচ্ছা বার্তা।'
                 : 'For our beloved family and friends across the globe — ceremony timings automatically converted to your local time zone with personalized greetings.'}
             </p>
@@ -207,15 +227,25 @@ export const NriGlobalSuite: React.FC<NriGlobalSuiteProps> = ({
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-xs font-serif uppercase tracking-wider font-bold text-stone-700">
-                  {isNative ? 'দূরবর্তী উপস্থিতি ও শুভকামনা' : 'Remote Guest Portal'}
+                  {lang === 'en'
+                    ? 'Remote Guest Portal'
+                    : isHindi
+                    ? 'वर्चुअल उपस्थिति एवं शुभाशीर्वाद'
+                    : isBengali
+                    ? 'দূরবর্তী উপস্থিতি ও শুভকামনা'
+                    : 'Remote Guest Portal'}
                 </span>
               </div>
 
               <h3 className="font-serif text-xl font-bold text-stone-900 mb-2">
-                {template.groom.name} &amp; {template.bride.name}
+                {lang === 'native' ? template.groom.nativeName : template.groom.name} &amp; {lang === 'native' ? template.bride.nativeName : template.bride.name}
               </h3>
               <p className="text-xs font-serif text-stone-600 leading-relaxed">
-                {isNative
+                {lang === 'en'
+                  ? 'Join our sacred celebrations from anywhere in the world. Experience every auspicious muhurat adjusted to your local time and share your personal video wishes with the family.'
+                  : isHindi
+                  ? 'दूर रहकर भी हमारे इस पावन मांगलिक उत्सव का हिस्सा बनें। अपने स्थानीय समय अनुसार शुभ मुहूर्त देखें एवं वीडियो संदेश प्रेषित करें।'
+                  : isBengali
                   ? 'দূর দেশে থেকেও আমাদের আনন্দঘন মুহূর্তে যুক্ত থাকুন। আপনার স্থানীয় সময় অনুযায়ী শুভ মুহূর্ত উপভোগ করুন এবং ভিডিও বার্তা পাঠান।'
                   : 'Join our sacred celebrations from anywhere in the world. Experience every auspicious muhurat adjusted to your local time and share your personal video wishes with the family.'}
               </p>

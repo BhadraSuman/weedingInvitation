@@ -109,7 +109,7 @@ export const FloatingPetals: React.FC<FloatingPetalsProps> = ({
       <div className="fixed bottom-32 right-4 sm:bottom-20 sm:right-6 z-40 flex items-center gap-2">
         <button
           onClick={triggerPetalBurst}
-          title="Shower Flowers on Couple (পুষ্পবৃষ্টি)"
+          title="Shower Flowers on Couple"
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/90 hover:bg-amber-600 text-white backdrop-blur-md shadow-lg border border-amber-300 text-xs font-serif font-bold transition-all hover:scale-105 active:scale-95"
         >
           <span>🌸 Flower Shower</span>

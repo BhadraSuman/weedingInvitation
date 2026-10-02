@@ -49,28 +49,31 @@ export const WishesGuestbook: React.FC<WishesGuestbookProps> = ({ template, lang
 
   const quickWishes = lang === 'native' ? template.quickWishes.native : template.quickWishes.en;
 
-  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
 
   const t = {
-    justNow: lang === 'en' ? 'Just now' : isHindi ? 'अभी-अभी' : 'এইমাত্র',
-    badge: lang === 'en' ? 'Digital Guestbook & Blessings' : isHindi ? 'आशीर्वाद एवं शुभकामनाएं' : 'স্নেহাশিস ও শুভবার্তা',
-    title: lang === 'en' ? 'Shower Your Blessings' : isHindi ? 'नवदंपति को शुभाशीर्वाद दें' : 'দাম্পত্য জীবনের আশীর্বাদ',
+    justNow: lang === 'en' ? 'Just now' : isHindi ? 'अभी-अभी' : isBengali ? 'এইমাত্র' : 'Just now',
+    badge: lang === 'en' ? 'Digital Guestbook & Blessings' : isHindi ? 'आशीर्वाद एवं शुभकामनाएं' : isBengali ? 'স্নেহাশিস ও শুভবার্তা' : 'Digital Guestbook & Blessings',
+    title: lang === 'en' ? 'Shower Your Blessings' : isHindi ? 'नवदंपति को शुभाशीर्वाद दें' : isBengali ? 'দাম্পত্য জীবনের আশীর্বাদ' : 'Shower Your Blessings',
     subtitle: lang === 'en'
       ? 'Leave your loving blessings and heartfelt words for the couple.'
       : isHindi
       ? 'वर-वधू के नव दांपत्य जीवन हेतु अपने मंगल आशीष एवं शुभकामनाएं प्रेषित करें।'
-      : 'নবদম্পতির শুভ সূচনালগ্নে আপনার অন্তরের আশীর্বাদ ও ভালোবাসার বার্তা রেখে যান।',
-    formTitle: lang === 'en' ? 'Send Your Blessings' : isHindi ? 'शुभकामना संदेश भेजें' : 'আশীর্বাদপত্র লিখুন',
-    nameLabel: lang === 'en' ? 'Your Name *' : isHindi ? 'आपका शुभ नाम *' : 'আপনার শুভ নাম *',
-    namePlaceholder: lang === 'en' ? 'e.g., Subhashis Sengupta' : isHindi ? 'जैसे: राहुल अग्रवाल' : 'যেমন: জয়দীপ মুখার্জী',
-    relationLabel: lang === 'en' ? 'Relation / City (Optional)' : isHindi ? 'संबंध / शहर (वैकल्पिक)' : 'সম্পর্ক / পরিচয় (ঐচ্ছিক)',
-    relationPlaceholder: lang === 'en' ? 'e.g., College Friend / Aunt' : isHindi ? 'जैसे: मित्र / परिवारजन' : 'যেমন: বন্ধু / আত্মীয়',
-    quickLabel: lang === 'en' ? 'Quick Ideas:' : isHindi ? 'सुझावित संदेश:' : 'চটজলদি বার্তা:',
-    messageLabel: lang === 'en' ? 'Your Warm Message *' : isHindi ? 'आपका शुभकामना संदेश *' : 'আপনার শুভেচ্ছাবার্তা *',
-    messagePlaceholder: lang === 'en' ? 'Write your loving message here...' : isHindi ? 'अपने मंगल आशीष एवं शुभकामनाएं यहां लिखें...' : 'আপনার সুন্দর বার্তাটি এখানে লিখুন...',
-    submitting: lang === 'en' ? 'Submitting...' : isHindi ? 'संदेश भेजा जा रहा है...' : 'পাঠানো হচ্ছে...',
-    submitBtn: lang === 'en' ? 'Post Blessings' : isHindi ? 'शुभकामनाएं भेजें' : 'শুভবার্তা পাঠান',
-    sacredBlessing: lang === 'en' ? 'Sacred blessing' : isHindi ? 'मंगल आशीष' : 'মাঙ্গলিক আশীর্বাদ'
+      : isBengali
+      ? 'নবদম্পতির শুভ সূচনালগ্নে আপনার অন্তরের আশীর্বাদ ও ভালোবাসার বার্তা রেখে যান।'
+      : 'Leave your loving blessings and heartfelt words for the couple.',
+    formTitle: lang === 'en' ? 'Send Your Blessings' : isHindi ? 'शुभकामना संदेश भेजें' : isBengali ? 'আশীর্বাদপত্র লিখুন' : 'Send Your Blessings',
+    nameLabel: lang === 'en' ? 'Your Name *' : isHindi ? 'आपका शुभ नाम *' : isBengali ? 'আপনার শুভ নাম *' : 'Your Name *',
+    namePlaceholder: lang === 'en' ? 'e.g., Guest Name' : isHindi ? 'जैसे: राहुल अग्रवाल' : isBengali ? 'যেমন: জয়দীপ মুখার্জী' : 'e.g., Guest Name',
+    relationLabel: lang === 'en' ? 'Relation / City (Optional)' : isHindi ? 'संबंध / शहर (वैकल्पिक)' : isBengali ? 'সম্পর্ক / পরিচয় (ঐচ্ছিক)' : 'Relation / City (Optional)',
+    relationPlaceholder: lang === 'en' ? 'e.g., College Friend / Aunt' : isHindi ? 'जैसे: मित्र / परिवारजन' : isBengali ? 'যেমন: বন্ধু / আত্মীয়' : 'e.g., Friend / Family',
+    quickLabel: lang === 'en' ? 'Quick Ideas:' : isHindi ? 'सुझावित संदेश:' : isBengali ? 'চটজলদি বার্তা:' : 'Quick Ideas:',
+    messageLabel: lang === 'en' ? 'Your Warm Message *' : isHindi ? 'आपका शुभकामना संदेश *' : isBengali ? 'আপনার শুভেচ্ছাবার্তা *' : 'Your Warm Message *',
+    messagePlaceholder: lang === 'en' ? 'Write your loving message here...' : isHindi ? 'अपने मंगल आशीष एवं शुभकामनाएं यहां लिखें...' : isBengali ? 'আপনার সুন্দর বার্তাটি এখানে লিখুন...' : 'Write your loving message here...',
+    submitting: lang === 'en' ? 'Submitting...' : isHindi ? 'संदेश भेजा जा रहा है...' : isBengali ? 'পাঠানো হচ্ছে...' : 'Submitting...',
+    submitBtn: lang === 'en' ? 'Post Blessings' : isHindi ? 'शुभकामनाएं भेजें' : isBengali ? 'শুভবার্তা পাঠান' : 'Post Blessings',
+    sacredBlessing: lang === 'en' ? 'Sacred blessing' : isHindi ? 'मंगल आशीष' : isBengali ? 'মাঙ্গলিক আশীর্বাদ' : 'Sacred blessing'
   };
 
   const handleSubmit = (e: React.FormEvent) => {

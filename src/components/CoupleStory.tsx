@@ -10,17 +10,20 @@ interface CoupleStoryProps {
 
 export const CoupleStory: React.FC<CoupleStoryProps> = ({ template, lang }) => {
   const { groom, bride, colors } = template;
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
+  const isTamil = (template.nativeLanguageCode === 'ta' || template.id === 'south_indian') && lang === 'native';
 
   return (
     <section className="py-12 px-4 sm:px-6 max-w-5xl mx-auto">
       <div className="text-center mb-10">
         <div className="flex items-center justify-center gap-2 mb-2">
           <span className="font-serif text-xs uppercase tracking-widest font-semibold" style={{ color: colors.primary }}>
-            {lang === 'native' ? 'বর ও কনে / वर एवं वधू' : 'The Bride & Groom'}
+            {isHindi ? 'वर एवं वधू' : isBengali ? 'বর ও কনে' : isTamil ? 'மணமக்கள்' : 'The Bride & Groom'}
           </span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold font-serif" style={{ color: colors.primary }}>
-          {lang === 'native' ? 'চিরন্তন প্রণয়গাঁথা' : 'Meet The Couple'}
+          {isHindi ? 'शुभ विवाह परिणय कथा' : isBengali ? 'চিরন্তন প্রণয়গাঁথা' : isTamil ? 'இணை பிரியா காதல் கதை' : 'Meet The Couple'}
         </h2>
         <CulturalDivider templateId={template.id} color={colors.accent} />
       </div>
@@ -171,7 +174,7 @@ export const CoupleStory: React.FC<CoupleStoryProps> = ({ template, lang }) => {
           style={{ backgroundColor: colors.primary }}
         >
           <Heart className="w-3.5 h-3.5 fill-current" style={{ color: colors.accent }} />
-          <span>{lang === 'native' ? 'শুভ পরিণয়ের প্রতীক্ষায়' : 'Bonded in Love & Heritage'}</span>
+          <span>{isHindi ? 'शुभ परिणय की पावन बेला' : isBengali ? 'শুভ পরিণয়ের প্রতীক্ষায়' : isTamil ? 'மங்களத் திருமண நன்னாளில்' : 'Bonded in Love & Heritage'}</span>
         </div>
         <div className="h-[1px] w-16" style={{ backgroundColor: colors.accent }} />
       </div>

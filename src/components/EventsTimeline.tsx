@@ -20,22 +20,29 @@ const createGoogleCalendarLink = (event: WeddingEvent, template: CulturalTemplat
 
 export const EventsTimeline: React.FC<EventsTimelineProps> = ({ template, lang }) => {
   const { colors, events } = template;
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
+  const isTamil = (template.nativeLanguageCode === 'ta' || template.id === 'south_indian') && lang === 'native';
 
   return (
     <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto" id="events">
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-2 mb-2">
           <span className="font-serif text-xs uppercase tracking-widest font-semibold" style={{ color: colors.primary }}>
-            {lang === 'native' ? 'মাঙ্গলিক অনুষ্ঠানসূচী / कार्यक्रम' : 'Wedding Itinerary'}
+            {isHindi ? 'मांगलिक कार्यक्रम' : isBengali ? 'মাঙ্গলিক অনুষ্ঠানসূচী' : isTamil ? 'திருமண நிகழ்வுகள்' : 'Wedding Itinerary'}
           </span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold font-serif" style={{ color: colors.primary }}>
-          {lang === 'native' ? 'শুভ উৎসবের দিনপঞ্জী' : 'Celebration Schedule'}
+          {isHindi ? 'उत्सव की शुभ दिनदर्शिका' : isBengali ? 'শুভ উৎসবের দিনপঞ্জী' : isTamil ? 'மங்கள விழா அட்டவணை' : 'Celebration Schedule'}
         </h2>
         <CulturalDivider templateId={template.id} color={colors.accent} />
         <p className="text-xs sm:text-sm font-serif max-w-md mx-auto opacity-80" style={{ color: colors.textColor }}>
-          {lang === 'native'
+          {isHindi
+            ? 'प्रत्येक मांगलिक प्रसंग पर आपकी उपस्थिति हमारे इस पारिवारिक उत्सव को और भी पावन बनाएगी।'
+            : isBengali
             ? 'প্রতিটি মাঙ্গলিক ক্ষণে আপনাদের উপস্থিতি আমাদের আনন্দকে বহুগুণ বাড়িয়ে তুলবে।'
+            : isTamil
+            ? 'ஒவ்வொரு மங்கள நிகழ்விலும் உங்கள் வரவு எங்கள் இல்லத்தை மகிழ்ச்சியால் நிரப்பும்.'
             : 'Join us across every ritual as we celebrate eternal love and timeless traditions.'}
         </p>
       </div>
@@ -61,7 +68,7 @@ export const EventsTimeline: React.FC<EventsTimelineProps> = ({ template, lang }
                   style={{ backgroundColor: colors.primary }}
                 >
                   <Sparkles className="w-3.5 h-3.5" style={{ color: colors.accentLight }} />
-                  <span>{lang === 'native' ? 'প্রধান লগ্ন' : 'Special Event'}</span>
+                  <span>{isHindi ? 'मुख्य लग्न' : isBengali ? 'প্রধান লগ্ন' : isTamil ? 'முக்கிய முகூர்த்தம்' : 'Special Event'}</span>
                 </div>
               )}
 
@@ -153,7 +160,7 @@ export const EventsTimeline: React.FC<EventsTimelineProps> = ({ template, lang }
                     <Shirt className="w-4 h-4 shrink-0 mt-0.5" style={{ color: colors.accent }} />
                     <div>
                       <span className="text-[11px] font-serif uppercase tracking-wider block font-semibold" style={{ color: colors.accent }}>
-                        {lang === 'native' ? 'পোশাক রীতি / Attire' : 'Suggested Attire'}
+                        {isHindi ? 'पहनावा एवं पोशाक' : isBengali ? 'পোশাক রীতি' : isTamil ? 'ஆடை வடிவம்' : 'Suggested Attire'}
                       </span>
                       <span className="text-xs font-serif opacity-90" style={{ color: colors.textColor }}>
                         {lang === 'native' ? evt.nativeDressCode : evt.dressCode}
@@ -170,7 +177,7 @@ export const EventsTimeline: React.FC<EventsTimelineProps> = ({ template, lang }
                     style={{ backgroundColor: colors.primary }}
                   >
                     <Calendar className="w-3.5 h-3.5" style={{ color: colors.accentLight }} />
-                    <span>{lang === 'native' ? 'ক্যালেন্ডারে সেভ করুন' : 'Add to Calendar'}</span>
+                    <span>{isHindi ? 'कैलेंडर में जोड़ें' : isBengali ? 'ক্যালেন্ডারে সেভ করুন' : isTamil ? 'நாட்காட்டியில் சேர்' : 'Add to Calendar'}</span>
                   </a>
 
                 </div>

@@ -14,28 +14,33 @@ export const Footer: React.FC<FooterProps> = ({ template, lang }) => {
   const [customGuest, setCustomGuest] = useState('');
   const [generatedLink, setGeneratedLink] = useState('');
 
-  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
 
   const t = {
-    title: lang === 'en' ? 'You are Cordially Invited' : isHindi ? 'सबान्धव सपरिवार सादर आमंत्रण' : 'সবান্ধব সপরিবারে সাদর আমন্ত্রণ',
+    title: lang === 'en' ? 'You are Cordially Invited' : isHindi ? 'सबान्धव सपरिवार सादर आमंत्रण' : isBengali ? 'সবান্ধব সপরিবারে সাদর আমন্ত্রণ' : 'You are Cordially Invited',
     subtitle: lang === 'en'
       ? 'Your gracious presence and heartfelt blessings will illuminate our new journey together.'
       : isHindi
       ? 'हमारे जीवन के इस पावन मांगलिक अवसर पर आपकी स्नेहिल उपस्थिति एवं शुभाशीर्वाद हमारे लिए अमूल्य है।'
-      : 'আমাদের জীবনের এই মাহেন্দ্রক্ষণে আপনাদের সস্নেহ পদধূলি ও শুভাশিস আমাদের একান্ত কাম্য।',
-    createLinkTitle: lang === 'en' ? 'Create Personalized Guest Invite Link' : isHindi ? 'अतिथि के नाम का व्यक्तिगत निमंत्रण लिंक बनाएं' : 'ব্যক্তিগত ডিজিটাল নিমন্ত্রণপত্র পাঠান',
+      : isBengali
+      ? 'আমাদের জীবনের এই মাহেন্দ্রক্ষণে আপনাদের সস্নেহ পদধূলি ও শুভাশিস আমাদের একান্ত কাম্য।'
+      : 'Your gracious presence and heartfelt blessings will illuminate our new journey together.',
+    createLinkTitle: lang === 'en' ? 'Create Personalized Guest Invite Link' : isHindi ? 'अतिथि के नाम का व्यक्तिगत निमंत्रण लिंक बनाएं' : isBengali ? 'ব্যক্তিগত ডিজিটাল নিমন্ত্রণপত্র পাঠান' : 'Create Personalized Guest Invite Link',
     createLinkSub: lang === 'en'
       ? 'Enter a guest name to generate a tailored invitation link with their name.'
       : isHindi
       ? 'अतिथि का नाम लिखकर लिंक तैयार करें। लिंक खोलने पर उनका नाम आदर सहित प्रदर्शित होगा।'
-      : 'অতিথির নাম লিখে লিংক তৈরি করুন। লিংকে তাঁদের নাম সম্মানের সহিত প্রদর্শিত হইবে।',
-    placeholder: lang === 'en' ? 'e.g., Subhash Da & Family' : isHindi ? 'जैसे: आदरणीय शर्मा जी एवं परिवार' : 'যেমন: সুভাষদা ও পরিবার',
-    genBtn: lang === 'en' ? 'Generate' : isHindi ? 'लिंक बनाएं' : 'লিংক তৈরি',
-    copyBtn: lang === 'en' ? 'Copy' : isHindi ? 'कॉपी करें' : 'কপি',
-    copiedAlert: lang === 'en' ? 'Personalized link copied!' : isHindi ? 'निमंत्रण लिंक कॉपी हो गया!' : 'ব্যক্তিগত লিংক কপি করা হয়েছে!',
-    copyFullLink: lang === 'en' ? 'Copy Invitation Link' : isHindi ? 'विवाह लिंक कॉपी करें' : 'ওয়েবসাইট লিংক কপি করুন',
-    linkCopiedBadge: lang === 'en' ? 'Link Copied!' : isHindi ? 'कॉपी संपन्न!' : 'কপি সম্পন্ন!',
-    inquiries: lang === 'en' ? 'Inquiries & Coordination:' : isHindi ? 'संपर्क एवं समन्वय:' : 'যোগাযোগ ও সমন্বয়:'
+      : isBengali
+      ? 'অতিথির নাম লিখে লিংক তৈরি করুন। লিংকে তাঁদের নাম সম্মানের সহিত প্রদর্শিত হইবে।'
+      : 'Enter a guest name to generate a tailored invitation link with their name.',
+    placeholder: lang === 'en' ? 'e.g., Subhash Da & Family' : isHindi ? 'जैसे: आदरणीय शर्मा जी एवं परिवार' : isBengali ? 'যেমন: সুভাষদা ও পরিবার' : 'e.g., Guest Name & Family',
+    genBtn: lang === 'en' ? 'Generate' : isHindi ? 'लिंक बनाएं' : isBengali ? 'লিংক তৈরি' : 'Generate',
+    copyBtn: lang === 'en' ? 'Copy' : isHindi ? 'कॉपी करें' : isBengali ? 'কপি' : 'Copy',
+    copiedAlert: lang === 'en' ? 'Personalized link copied!' : isHindi ? 'निमंत्रण लिंक कॉपी हो गया!' : isBengali ? 'ব্যক্তিগত লিংক কপি করা হয়েছে!' : 'Personalized link copied!',
+    copyFullLink: lang === 'en' ? 'Copy Invitation Link' : isHindi ? 'विवाह लिंक कॉपी करें' : isBengali ? 'ওয়েবসাইট লিংক কপি করুন' : 'Copy Invitation Link',
+    linkCopiedBadge: lang === 'en' ? 'Link Copied!' : isHindi ? 'कॉपी संपन्न!' : isBengali ? 'কপি সম্পন্ন!' : 'Link Copied!',
+    inquiries: lang === 'en' ? 'Inquiries & Coordination:' : isHindi ? 'संपर्क एवं समन्वय:' : isBengali ? 'যোগাযোগ ও সমন্বয়:' : 'Inquiries & Coordination:'
   };
 
   const handleCopy = () => {

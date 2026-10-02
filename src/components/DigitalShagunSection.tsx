@@ -28,8 +28,8 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
   const config = template.shagunConfig;
   if (!config || !config.enabled) return null;
 
-  const isBengali = lang === 'native' && template.id !== 'bihari_marwari';
-  const isHindi = lang === 'native' && template.id === 'bihari_marwari';
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
 
   const defaultAmounts = config.defaultAmounts || [501, 1001, 2101, 5001];
   const [selectedAmount, setSelectedAmount] = useState<number>(defaultAmounts[1] || 1001);
@@ -161,10 +161,10 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
 
             <div className="p-3 bg-white rounded-xl border border-amber-200 text-xs text-stone-700 italic space-y-1">
               <p className="font-bold text-amber-900">
-                {isBengali ? 'আশীর্বাদের বার্তা:' : 'Blessing Note:'}
+                {isBengali ? 'আশীর্বাদের বার্তা:' : isHindi ? 'शुभकामना संदेश:' : 'Blessing Note:'}
               </p>
-              <p>"{blessingNote || (isBengali ? 'অনেক অনেক স্নেহ ও শুভকামনা!' : 'Warmest love and blessings!')}"</p>
-              <p className="text-[11px] text-stone-500 text-right">— {senderName || (isBengali ? 'শুভাকাঙ্ক্ষী' : 'Well-Wisher')}</p>
+              <p>"{blessingNote || (isBengali ? 'অনেক অনেক স্নেহ ও শুভকামনা!' : isHindi ? 'सदा खुश रहें और मुस्कुराते रहें!' : 'Warmest love and blessings!')}"</p>
+              <p className="text-[11px] text-stone-500 text-right">— {senderName || (isBengali ? 'শুভাকাঙ্ক্ষী' : isHindi ? 'सस्नेह स्वजन' : 'Well-Wisher')}</p>
             </div>
 
             <button
@@ -175,7 +175,7 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
               }}
               className="text-xs text-amber-800 underline font-semibold hover:text-amber-950 pt-2 cursor-pointer"
             >
-              {isBengali ? 'অন্য আশীর্বাদ পাঠান' : 'Send Another Shagun'}
+              {isBengali ? 'অন্য আশীর্বাদ পাঠান' : isHindi ? 'पुनः शगुन भेजें' : 'Send Another Shagun'}
             </button>
           </div>
         ) : (
@@ -193,7 +193,7 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-b pb-3 border-stone-200">
                 <div className="text-center sm:text-left">
                   <span className="text-[11px] uppercase tracking-wider font-serif font-bold text-stone-500 block">
-                    {isBengali ? 'প্রাপক (Recipient)' : isHindi ? 'प्राप्तकर्ता' : 'Recipient'}
+                    {isBengali ? 'প্রাপক' : isHindi ? 'प्राप्तकर्ता' : 'Recipient'}
                   </span>
                   <p
                     className="text-lg sm:text-xl font-bold font-serif"
@@ -255,12 +255,12 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
                         <span>₹{amt}</span>
                         <span className="text-[10px] font-normal opacity-90">
                           {amt === 501
-                            ? (isBengali ? 'স্নেহাশিস' : 'Blessings')
+                            ? (isBengali ? 'স্নেহাশিস' : isHindi ? 'मंगल आशीष' : 'Blessings')
                             : amt === 1001 || amt === 1101
-                            ? (isBengali ? 'শুভকামনা' : 'Best Wishes')
+                            ? (isBengali ? 'শুভকামনা' : isHindi ? 'शुभकामनाएं' : 'Best Wishes')
                             : amt === 2101
-                            ? (isBengali ? 'বিশেষ আশীর্বাদ' : 'Special Blessings')
-                            : (isBengali ? 'রাজকীয় শগুন' : 'Royal Shagun')}
+                            ? (isBengali ? 'বিশেষ আশীর্বাদ' : isHindi ? 'विशेष आशीष' : 'Special Blessings')
+                            : (isBengali ? 'রাজকীয় শগুন' : isHindi ? 'शाही शगुन' : 'Royal Shagun')}
                         </span>
                       </button>
                     );
@@ -276,7 +276,7 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
                     type="number"
                     value={customAmount}
                     onChange={e => setCustomAmount(e.target.value)}
-                    placeholder={isBengali ? 'অন্য কোনো পরিমাণ লিখুন' : 'Or enter custom amount'}
+                    placeholder={isBengali ? 'অন্য কোনো পরিমাণ লিখুন' : isHindi ? 'अन्य राशि दर्ज करें' : 'Or enter custom amount'}
                     className="w-full pl-7 pr-3 py-2 rounded-xl border border-stone-300 text-xs sm:text-sm bg-white focus:outline-none focus:ring-2 focus:ring-amber-500"
                   />
                 </div>
@@ -288,7 +288,7 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
                   title="Add traditional ₹1 coin"
                 >
                   <span>🪙</span>
-                  <span>{isBengali ? '+১ টাকা শুভ মুদ্রা' : '+₹1 Shagun Coin'}</span>
+                  <span>{isBengali ? '+১ টাকা শুভ মুদ্রা' : isHindi ? '+₹1 पावन सिक्का' : '+₹1 Shagun Coin'}</span>
                 </button>
               </div>
 
@@ -302,20 +302,20 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
                     type="text"
                     value={senderName}
                     onChange={e => setSenderName(e.target.value)}
-                    placeholder={isBengali ? 'উদা: রাহুল কাকু ও পরিবার' : 'e.g., Uncle Rajesh & Family'}
+                    placeholder={isBengali ? 'উদা: রাহুল কাকু ও পরিবার' : isHindi ? 'जैसे: राजेश अंकल एवं परिवार' : 'e.g., Uncle Rajesh & Family'}
                     className="w-full px-3 py-2 rounded-xl border border-stone-300 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-amber-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1 font-serif">
-                    {isBengali ? 'আশীর্বাদী চিরকুট (ঐচ্ছিক):' : isHindi ? 'शुभकामना संदेश:' : 'Blessing Note (Optional):'}
+                    {isBengali ? 'আশীর্বাদী চিরকুট (ঐচ্ছিক):' : isHindi ? 'शुभकामना संदेश (वैकल्पिक):' : 'Blessing Note (Optional):'}
                   </label>
                   <input
                     type="text"
                     value={blessingNote}
                     onChange={e => setBlessingNote(e.target.value)}
-                    placeholder={isBengali ? 'নতুন জীবনের অনেক অনেক শুভেচ্ছা...' : 'Heartfelt blessings for your journey...'}
+                    placeholder={isBengali ? 'নতুন জীবনের অনেক অনেক শুভেচ্ছা...' : isHindi ? 'सुखी दांपत्य जीवन की मंगलकामनाएं...' : 'Heartfelt blessings for your journey...'}
                     className="w-full px-3 py-2 rounded-xl border border-stone-300 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-amber-500"
                   />
                 </div>
@@ -355,8 +355,8 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
                   <QrCode className="w-3.5 h-3.5 text-amber-700" />
                   <span>
                     {showQrCode
-                      ? (isBengali ? 'কিউআর কোড বন্ধ করুন' : 'Hide QR Code')
-                      : (isBengali ? 'স্ক্যান করতে কিউআর কোড দেখুন' : 'Scan QR Code')}
+                      ? (isBengali ? 'কিউআর কোড বন্ধ করুন' : isHindi ? 'क्यूआर कोड छिपाएं' : 'Hide QR Code')
+                      : (isBengali ? 'স্ক্যান করতে কিউআর কোড দেখুন' : isHindi ? 'स्कैन हेतु क्यूआर कोड देखें' : 'Scan QR Code')}
                   </span>
                 </button>
 
@@ -367,7 +367,7 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
                 >
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
                   <span>
-                    {isBengali ? 'শগুন পাঠানো সম্পন্ন করেছি' : 'I have sent Shagun'}
+                    {isBengali ? 'শগুন পাঠানো সম্পন্ন করেছি' : isHindi ? 'शगुन भेजा जा चुका है' : 'I have sent Shagun'}
                   </span>
                 </button>
               </div>
@@ -386,6 +386,8 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
                   <p className="text-xs font-bold text-stone-800">
                     {isBengali
                       ? `ক্যামেরা বা যেকোনো ইউপিআই অ্যাপ দিয়ে স্ক্যান করে ₹${activeAmount} পাঠান`
+                      : isHindi
+                      ? `गूगल पे, फोनपे या पेटीएम से स्कैन कर ₹${activeAmount} भेजें`
                       : `Scan with Google Pay, PhonePe, or Paytm to send ₹${activeAmount}`}
                   </p>
                   <p className="text-[11px] text-stone-500">
@@ -401,6 +403,8 @@ export const DigitalShagunSection: React.FC<DigitalShagunSectionProps> = ({
               <span>
                 {isBengali
                   ? '১০০% সরাসরি ব্যাংক-টু-ব্যাংক ইউপিআই স্থানান্তর • কোনো প্ল্যাটফর্ম ফি নেই'
+                  : isHindi
+                  ? '१००% प्रत्यक्ष बैंक-से-बैंक UPI स्थानांतरण • शून्य प्लेटफॉर्म शुल्क'
                   : '100% Direct Bank-to-Bank UPI transfer • Zero platform fee'}
               </span>
             </div>

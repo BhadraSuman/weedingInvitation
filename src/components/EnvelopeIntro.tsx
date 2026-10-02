@@ -21,7 +21,8 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
   const [isOpening, setIsOpening] = useState(false);
   const isAnnaprashan = template.id === 'annaprashan';
   const isBirthday = template.id === 'birthday';
-  const isBengali = lang === 'native';
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
 
   const handleOpen = () => {
     setIsOpening(true);
@@ -171,9 +172,11 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
                 <p className="text-[11px] uppercase font-serif tracking-wider text-[#FDE68A] font-bold">
                   {lang === 'en'
                     ? 'Cordially Invited'
-                    : template.id === 'bihari_marwari' || template.id === 'royal_north'
+                    : isHindi
                     ? 'सादर निमंत्रण'
-                    : 'সাদর নিমন্ত্রণ'}
+                    : isBengali
+                    ? 'সাদর নিমন্ত্রণ'
+                    : 'Cordially Invited'}
                 </p>
                 <p className="font-serif text-lg sm:text-xl text-white font-bold truncate mt-0.5">
                   {guestName}
@@ -201,11 +204,11 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
                 <span className="tracking-wide">
                   {lang === 'en'
                     ? (isBirthday ? 'Enter Celebration' : 'Open Invitation')
-                    : template.id === 'bihari_marwari' || template.id === 'royal_north'
-                    ? 'निमंत्रण पत्र खोलें'
-                    : isBirthday
-                    ? 'উৎসবে প্রবেশ করুন'
-                    : 'পত্র উন্মোচন করুন'}
+                    : isHindi
+                    ? (isBirthday ? 'उत्सव में प्रवेश करें' : 'निमंत्रण पत्र खोलें')
+                    : isBengali
+                    ? (isBirthday ? 'উৎসবে প্রবেশ করুন' : 'পত্র উন্মোচন করুন')
+                    : 'Open Invitation'}
                 </span>
                 <Music className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               </button>
@@ -213,11 +216,21 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
               <p className="text-xs text-stone-200 font-serif font-medium flex items-center gap-1.5 drop-shadow">
                 <span>🎵</span>
                 <span>
-                  {isBirthday
-                    ? 'Tap to enter with joyful birthday music'
-                    : isAnnaprashan
-                    ? 'Tap to enter with auspicious shehnai & flute lullaby'
-                    : 'Tap to enter with traditional auspicious shehnai'}
+                  {lang === 'en'
+                    ? (isBirthday
+                        ? 'Tap to enter with joyful birthday music'
+                        : isAnnaprashan
+                        ? 'Tap to enter with auspicious shehnai & flute lullaby'
+                        : 'Tap to enter with traditional auspicious shehnai')
+                    : isHindi
+                    ? (isBirthday
+                        ? 'जन्मदिन संगीत के साथ प्रवेश करें'
+                        : 'मांगलिक शहनाई की धुन के साथ खोलें')
+                    : (isBirthday
+                        ? 'আনন্দঘন জন্মদিনের সুর সহ প্রবেশ করুন'
+                        : isAnnaprashan
+                        ? 'মাঙ্গলিক সানাই ও বাঁশির সুর সহ প্রবেশ করুন'
+                        : 'ঐতিহ্যবাহী মাঙ্গলিক সানাইয়ের সুর সহ প্রবেশ করুন')}
                 </span>
               </p>
             </div>

@@ -10,16 +10,17 @@ interface VenueLocationProps {
 
 export const VenueLocation: React.FC<VenueLocationProps> = ({ template, lang }) => {
   const { venue, colors } = template;
-  const isHindi = (template.id === 'bihari_marwari' || template.id === 'royal_north') && lang === 'native';
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
 
   const t = {
-    badge: lang === 'en' ? 'Venue & Directions' : isHindi ? 'मांगलिक स्थल एवं दिशा-निर्देश' : 'অনুষ্ঠানস্থল ও অবস্থান',
-    title: lang === 'en' ? 'Our Wedding Venue' : isHindi ? 'विवाह स्थल एवं मार्ग' : 'কীভাবে পৌঁছাবেন',
-    grounds: lang === 'en' ? 'The Celebration Grounds' : isHindi ? 'मुख्य विवाह प्रांगण' : 'প্রধান বিবাহ বাসর',
-    landmark: lang === 'en' ? 'Landmark: ' : isHindi ? 'पहचान चिन्ह: ' : 'ল্যান্ডমার্ক: ',
-    parking: lang === 'en' ? 'Parking: ' : isHindi ? 'पार्किंग: ' : 'পার্কিং: ',
-    openMaps: lang === 'en' ? 'Open in Google Maps' : isHindi ? 'गूगल मैप्स पर देखें' : 'গুগল ম্যাপে দিকনির্দেশ',
-    bookRide: lang === 'en' ? 'Book Ride' : isHindi ? 'कैब बुक करें' : 'ক্যাব বুক করুন',
+    badge: lang === 'en' ? 'Venue & Directions' : isHindi ? 'मांगलिक स्थल एवं दिशा-निर्देश' : isBengali ? 'অনুষ্ঠানস্থল ও অবস্থান' : 'Venue & Directions',
+    title: lang === 'en' ? 'Our Celebration Venue' : isHindi ? 'विवाह स्थल एवं मार्ग' : isBengali ? 'কীভাবে পৌঁছাবেন' : 'Our Celebration Venue',
+    grounds: lang === 'en' ? 'The Celebration Grounds' : isHindi ? 'मुख्य विवाह प्रांगण' : isBengali ? 'প্রধান বিবাহ বাসর' : 'The Celebration Grounds',
+    landmark: lang === 'en' ? 'Landmark: ' : isHindi ? 'पहचान चिन्ह: ' : isBengali ? 'ল্যান্ডমার্ক: ' : 'Landmark: ',
+    parking: lang === 'en' ? 'Parking: ' : isHindi ? 'पार्किंग: ' : isBengali ? 'পার্কিং: ' : 'Parking: ',
+    openMaps: lang === 'en' ? 'Open in Google Maps' : isHindi ? 'गूगल मैप्स पर देखें' : isBengali ? 'গুগল ম্যাপে দিকনির্দেশ' : 'Open in Google Maps',
+    bookRide: lang === 'en' ? 'Book Ride' : isHindi ? 'कैब बुक करें' : isBengali ? 'ক্যাব বুক করুন' : 'Book Ride',
   };
 
   return (

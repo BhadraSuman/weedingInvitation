@@ -10,6 +10,10 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ template, lang, guestName }) => {
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
+  const isTamil = (template.nativeLanguageCode === 'ta' || template.id === 'south_indian') && lang === 'native';
+
   return (
     <section className="relative pt-20 pb-16 px-4 sm:px-6 max-w-4xl mx-auto text-center">
       {/* Auspicious Shloka Card */}
@@ -48,7 +52,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ template, lang, guestN
           }}
         >
           <p className="font-serif text-xs tracking-wider uppercase font-semibold" style={{ color: template.colors.primary }}>
-            {lang === 'native' ? 'সাদর আহ্বান / हार्दिक स्वागत' : 'Cordially Invited'}
+            {isHindi ? 'हार्दिक स्वागत' : isBengali ? 'সাদর আহ্বান' : isTamil ? 'அன்பான அழைப்பு' : 'Cordially Invited'}
           </p>
           <p className="font-serif text-xl sm:text-2xl font-bold mt-0.5" style={{ color: template.colors.primary }}>
             {guestName}
@@ -88,7 +92,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ template, lang, guestN
       {/* The Couple Names */}
       <div className="my-8">
         <p className="font-serif text-xs sm:text-sm tracking-widest uppercase mb-2" style={{ color: template.colors.primary }}>
-          {lang === 'native' ? 'শুভ পরিণয় বন্ধনে আবদ্ধ হতে চলেছেন' : 'Together with their families, invite you to celebrate the wedding of'}
+          {isHindi
+            ? 'शुभ विवाह के पावन बंधन में बंधने जा रहे हैं'
+            : isBengali
+            ? 'শুভ পরিণয় বন্ধনে আবদ্ধ হতে চলেছেন'
+            : isTamil
+            ? 'திருமண பந்தத்தில் இணையும் மங்கள நிகழ்வு'
+            : 'Together with their families, invite you to celebrate the wedding of'}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-3xl sm:text-5xl font-serif">
           <span className="font-bold hover:opacity-90 transition-opacity" style={{ color: template.colors.primary }}>

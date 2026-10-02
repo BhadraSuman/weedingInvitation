@@ -9,6 +9,9 @@ interface StickyActionBarProps {
 
 export const StickyActionBar: React.FC<StickyActionBarProps> = ({ template, lang }) => {
   const { colors } = template;
+  const isHindi = (template.nativeLanguageCode === 'hi' || template.id === 'bihari_marwari' || template.id === 'royal_north' || template.id === 'chibi_3d') && lang === 'native';
+  const isBengali = (template.nativeLanguageCode === 'bn' || template.id === 'bengali' || template.id === 'annaprashan' || template.id === 'birthday') && lang === 'native';
+  const isTamil = (template.nativeLanguageCode === 'ta' || template.id === 'south_indian') && lang === 'native';
 
   const handleShare = async () => {
     const shareData = {
@@ -23,7 +26,15 @@ export const StickyActionBar: React.FC<StickyActionBarProps> = ({ template, lang
       } catch {}
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert(lang === 'native' ? 'লিঙ্ক কপি সম্পন্ন!' : 'Invitation link copied to clipboard!');
+      alert(
+        isHindi
+          ? 'निमंत्रण लिंक कॉपी हो गया!'
+          : isBengali
+          ? 'লিঙ্ক কপি সম্পন্ন!'
+          : isTamil
+          ? 'அழைப்பிதழ் இணைப்பு நகலெடுக்கப்பட்டது!'
+          : 'Invitation link copied to clipboard!'
+      );
     }
   };
 
@@ -39,11 +50,11 @@ export const StickyActionBar: React.FC<StickyActionBarProps> = ({ template, lang
       const enMap = { events: 'Events', map: 'Map', wishes: 'Wishes', rsvp: 'RSVP', share: 'Share' };
       return enMap[type];
     }
-    if (template.id === 'bihari_marwari' || template.id === 'royal_north') {
+    if (isHindi) {
       const hiMap = { events: 'कार्यक्रम', map: 'स्थान', wishes: 'शुभकामनाएं', rsvp: 'उपस्थिति', share: 'शेयर' };
       return hiMap[type];
     }
-    if (template.id === 'south_indian') {
+    if (isTamil) {
       const taMap = { events: 'நிகழ்ச்சி', map: 'இடம்', wishes: 'வாழ்த்துக்கள்', rsvp: 'வருகை', share: 'பகிர்' };
       return taMap[type];
     }
