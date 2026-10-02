@@ -42,6 +42,10 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
   guestName,
   onLangChange
 }) => {
+  const isNative = lang === 'native';
+  const groom = template?.groom?.name || (isNative ? 'দেবাশীষ' : 'Debashish');
+  const bride = template?.bride?.name || (isNative ? 'অদিতি' : 'Aditi');
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [guestCount, setGuestCount] = useState('২ জন');
   const [foodChoice, setFoodChoice] = useState<'nonveg' | 'veg'>('nonveg');
@@ -57,8 +61,6 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
   const [dhaakiBounce, setDhaakiBounce] = useState(false);
   const [fishSwim, setFishSwim] = useState(false);
   const [peacockFan, setPeacockFan] = useState(false);
-
-  const isNative = lang === 'native';
 
   useEffect(() => {
     const unsub = audioManager.subscribe(playing => {
@@ -116,8 +118,8 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
       : (isNative ? 'সাত্বিক নিরামিষ (ঘিয়ে ভাজা পোলাও-ছানা)' : 'Pure Satvik Vegetarian (Ghee Pulao & Paneer)');
 
     const message = isNative
-      ? `নমস্কার! আমি ${guest} দেবাশীষ ও অদিতির পটচিত্র বিবাহ উৎসবে উপস্থিত থাকব।\n\nউপস্থিতি: ${guestCount}\nভোজের রুচি: ${foodText}\n\nনবদম্পতির জীবনের এই শুভলগ্নে জানাই আন্তরিক শুভকামনা ও আশিস!`
-      : `Namaste! I am ${guest}, confirming our presence for Debashish & Aditi's Kalighat Patachitra Wedding.\n\nAttending: ${guestCount}\nFeast Choice: ${foodText}\n\nWishing the couple a lifetime of joy, harmony, and love!`;
+      ? `নমস্কার! আমি ${guest} ${groom} ও ${bride}-র পটচিত্র বিবাহ উৎসবে উপস্থিত থাকব।\n\nউপস্থিতি: ${guestCount}\nভোজের রুচি: ${foodText}\n\nনবদম্পতির জীবনের এই শুভলগ্নে জানাই আন্তরিক শুভকামনা ও আশিস!`
+      : `Namaste! I am ${guest}, confirming our presence for ${groom} & ${bride}'s Kalighat Patachitra Wedding.\n\nAttending: ${guestCount}\nFeast Choice: ${foodText}\n\nWishing the couple a lifetime of joy, harmony, and love!`;
 
     window.open(`https://wa.me/919830123456?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -249,9 +251,9 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
                 : '"Listen with joyful hearts as the sacred scroll unfurls the story of our union."'}
             </p>
             <div className="flex items-center gap-2 mt-3 text-[#6f4c00] font-bold text-sm">
-              <span>{isNative ? 'অদিতি' : 'Aditi'}</span>
+              <span>{bride}</span>
               <Heart className="w-4 h-4 text-[#a51611] fill-[#a51611]" />
-              <span>{isNative ? 'দেবাশীষ' : 'Debashish'}</span>
+              <span>{groom}</span>
             </div>
             <div className="w-16 h-1 bg-[#a51611] mt-3 rounded-full"></div>
           </div>
@@ -292,7 +294,7 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
                 <div className="w-full h-44 rounded-xl overflow-hidden bg-[#eee8da] relative flex items-center justify-center">
                   <img
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBauKDGYMtiLIPMYFDV2XLM1h2P8kFdXQV24zWRcy8Yw8IT4FeEibRb7IpoISxy529-DO61Yg2puH-YZnMf2dHg7G9IyQA-EW3WL3_idZD7OvF_bkLWcA6F_GMwivSm2K58ese2eXXUetfaKH_abFlhRyY-T8bfQC0bgDUeb8bSA8JkPNTVGvfb1jnzfhkQ3o33fs7wxp1r6ixL2kM9ZDcFIum5IrmXOcJkzRI_tDI_tA3pawS1tzn57Q"
-                    alt="Groom Debashish"
+                    alt={`Groom ${groom}`}
                     onError={(e) => {
                       // Fallback to local image if LH3 URL fails
                       (e.target as HTMLImageElement).src = '/images/couples/bengali-groom.jpg';
@@ -300,7 +302,7 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
                     className="w-full h-full object-cover rounded-xl"
                   />
                   <span className="absolute bottom-2 left-2 bg-white/90 text-[#1d1c13] text-[11px] font-bold px-2 py-0.5 rounded-full shadow-sm">
-                    {isNative ? 'দেবাশীষ' : 'Debashish'}
+                    {groom}
                   </span>
                 </div>
                 <div className="flex items-center gap-1 mt-2 text-[#a51611] text-xs font-bold">
@@ -324,14 +326,14 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
                 <div className="w-full h-44 rounded-xl overflow-hidden bg-[#eee8da] relative flex items-center justify-center">
                   <img
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc23LXikUjDAbKwFI7pSyn_L-YRUGfc7GD2Np_120oSPkenl2ny0zXKNEiqtqIt04h60TFuVGbx8KouD1m60SjnGryd2tryEQAOYd8E0q3CehpK3o3VxedYSxTH-XES_Qiwtus5PFCYw5QbHDFnJdSJ2eVSVbwgEgiIpDJLkbjYq7QrwREUOuhhZHOVb-UYo0GBrSvQloJtS3x4fGmaIvknk_cRDBQsRPkwZcRbxqpTETIs_jhKBA-6w"
-                    alt="Bride Aditi"
+                    alt={`Bride ${bride}`}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = '/images/couples/bengali-bride.jpg';
                     }}
                     className="w-full h-full object-cover rounded-xl"
                   />
                   <span className="absolute bottom-2 left-2 bg-white/90 text-[#1d1c13] text-[11px] font-bold px-2 py-0.5 rounded-full shadow-sm">
-                    {isNative ? 'অদিতি' : 'Aditi'}
+                    {bride}
                   </span>
                 </div>
                 <div className="flex items-center gap-1 mt-2 text-[#a51611] text-xs font-bold">
@@ -762,7 +764,7 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
                     key={amt}
                     type="button"
                     onClick={() => {
-                      window.open(`upi://pay?pa=aditi.debashish@upi&pn=Aditi+and+Debashish&am=${amt}&cu=INR`, '_blank');
+                      window.open(`upi://pay?pa=aditi.debashish@upi&pn=${encodeURIComponent(bride + ' and ' + groom)}&am=${amt}&cu=INR`, '_blank');
                     }}
                     className="bg-[#f3eddf] hover:bg-[#ffdeab] text-[#a51611] font-bold px-3 py-1 rounded-full text-xs border border-[#e3beb9]"
                   >

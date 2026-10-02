@@ -52,6 +52,8 @@ export const SholaWeddingView: React.FC<SholaWeddingViewProps> = ({
   });
 
   const isNative = lang === 'native';
+  const groom = template?.groom?.name || (isNative ? 'অনিন্দ্য' : 'Anindya');
+  const bride = template?.bride?.name || (isNative ? 'মহাশ্বেতা' : 'Mahashweta');
 
   useEffect(() => {
     const unsub = audioManager.subscribe(playing => {
@@ -111,8 +113,8 @@ export const SholaWeddingView: React.FC<SholaWeddingViewProps> = ({
       : (isNative ? 'সাত্বিক নিরামিষ ভোজ (ঘিয়ে ভাজা পোলাও ও ছানার ডালনা)' : 'Satvik Pure Veg (Ghee Pulao & Chanar Dalna)');
 
     const message = isNative
-      ? `নমস্কার! আমি ${guest}, অনিন্দ্য ও মহাশ্বেতার শোলার শুভ পরিণয়ে সানন্দে উপস্থিত থাকব।\n\nউপস্থিত সদস্য: ${headcount} জন\nভোজের পছন্দ: ${meal}\n\nনবদম্পতির আগামী জীবনের জন্য রইল আন্তরিক শুভাশিস!`
-      : `Namaste! I am ${guest}, delightedly confirming our attendance for Anindya & Mahashweta's Shola Wedding.\n\nAttending Members: ${headcount}\nDining Preference: ${meal}\n\nWishing the couple a blissful and elegant life together!`;
+      ? `নমস্কার! আমি ${guest}, ${groom} ও ${bride}-র শোলার শুভ পরিণয়ে সানন্দে উপস্থিত থাকব।\n\nউপস্থিত সদস্য: ${headcount} জন\nভোজের পছন্দ: ${meal}\n\nনবদম্পতির আগামী জীবনের জন্য রইল আন্তরিক শুভাশিস!`
+      : `Namaste! I am ${guest}, delightedly confirming our attendance for ${groom} & ${bride}'s Shola Wedding.\n\nAttending Members: ${headcount}\nDining Preference: ${meal}\n\nWishing the couple a blissful and elegant life together!`;
 
     window.open(`https://wa.me/919830011223?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -264,18 +266,10 @@ export const SholaWeddingView: React.FC<SholaWeddingViewProps> = ({
           {/* Couple Engraved Names */}
           <div className="mt-4 space-y-1">
             <h1 className="text-2xl md:text-3xl font-bold text-[#1f1b1a] tracking-wide">
-              {isNative ? (
-                <>
-                  অনিন্দ্য <span className="text-[#9b414c] italic font-serif">ও</span> মহাশ্বেতা
-                </>
-              ) : (
-                <>
-                  Anindya <span className="text-[#9b414c] italic font-serif">&</span> Mahashweta
-                </>
-              )}
+              {groom} <span className="text-[#9b414c] italic font-serif">{isNative ? 'ও' : '&'}</span> {bride}
             </h1>
             <p className="text-sm font-bold text-[#775a19] tracking-wider">
-              Anindya & Mahashweta
+              {groom} & {bride}
             </p>
             <div className="flex items-center justify-center my-2 space-x-2 w-32 mx-auto opacity-70">
               <span className="h-[1px] flex-1 bg-[#c5a059]"></span>

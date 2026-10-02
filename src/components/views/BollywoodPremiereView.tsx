@@ -35,6 +35,14 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
   guestName,
   onLangChange
 }) => {
+  const groom = template?.groom?.name || 'Anirban';
+  const bride = template?.bride?.name || 'Deboleena';
+  const movieTitle = template?.quotes?.weddingTitle && !template.quotes.weddingTitle.includes('&')
+    ? template.quotes.weddingTitle
+    : 'PREM KI KAHANI';
+  const movieTagline = template?.quotes?.verse || '“Do dil. Do parivaar. Ek shaadi.”';
+  const directorCredit = template?.quotes?.subInvocation || 'DHARMA & YASH RAJ PARIVAAR PRESENT';
+
   const isHindi = lang === 'native';
   const [isPlaying, setIsPlaying] = useState(false);
   const [isClassicNoir, setIsClassicNoir] = useState(false);
@@ -249,23 +257,23 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
                 className="text-[13px] tracking-[0.35em] text-[#F2CA50] uppercase drop-shadow-md mb-1 font-bold"
                 style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
               >
-                DHARMA & YASH RAJ PARIVAAR PRESENT
+                {directorCredit}
               </p>
               <h1
-                className="text-4xl sm:text-5xl text-[#F2CA50] tracking-tight font-black drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] leading-tight"
+                className="text-4xl sm:text-5xl text-[#F2CA50] tracking-tight font-black drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] leading-tight uppercase"
                 style={{ fontFamily: "'Bodoni Moda', serif" }}
               >
-                PREM KI KAHANI
+                {movieTitle}
               </h1>
               <div className="flex items-center justify-center gap-3 my-1.5">
                 <span className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#F2CA50]" />
                 <span className="text-base sm:text-lg text-white uppercase tracking-widest font-semibold font-serif">
-                  ANIRBAN <span className="text-[#F2CA50] font-normal">&</span> SIMRAN
+                  {groom} <span className="text-[#F2CA50] font-normal">&</span> {bride}
                 </span>
                 <span className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#F2CA50]" />
               </div>
               <p className="text-xs sm:text-sm italic text-[#D0C5AF] font-serif tracking-wide mt-1 drop-shadow">
-                “Do dil. Do parivaar. Ek shaadi.”
+                {movieTagline}
               </p>
               <button
                 type="button"

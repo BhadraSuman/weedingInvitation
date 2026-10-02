@@ -37,6 +37,15 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
   guestName,
   onLangChange
 }) => {
+  const groom = template?.groom?.name || 'Sandeep';
+  const bride = template?.bride?.name || 'Priya';
+  const trainName = template?.quotes?.weddingTitle || 'BHARAT VIVAH EXPRESS';
+  const trainPnr = template?.quotes?.subInvocation?.includes('PNR:')
+    ? template.quotes.subInvocation.replace(/.*PNR:\s*([^\s•]+).*/, '$1')
+    : '2612-ANIDEB';
+  const departureDate = template?.targetDateNative || "26 DEC '26";
+  const venueTitle = template?.venue?.name || 'Vivah Dham Junction';
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [stampBouncing, setStampBouncing] = useState(true);
   const [passengerName, setPassengerName] = useState(guestName || 'Shri Sharma & Family');
@@ -205,7 +214,7 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
                     className="text-base tracking-wider text-[#002046] font-bold"
                     style={{ fontFamily: "'Space Mono', monospace" }}
                   >
-                    BHARAT VIVAH EXPRESS
+                    {trainName}
                   </span>
                 </div>
                 <span className="text-[11px] font-mono bg-[#002046] text-white px-2 py-0.5 rounded tracking-widest font-bold">
@@ -223,10 +232,10 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
               <div className="flex flex-col">
                 <span className="text-[10px] font-mono text-[#44474E] uppercase">PNR NUMBER</span>
                 <span
-                  className="text-sm text-[#002046] font-bold tracking-widest"
+                  className="text-sm text-[#002046] font-bold tracking-widest uppercase"
                   style={{ fontFamily: "'Space Mono', monospace" }}
                 >
-                  2612-ANIDEB
+                  {trainPnr}
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -311,10 +320,10 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
                 <div className="flex flex-col">
                   <span className="text-[10px] font-mono text-[#44474E]">DEPARTURE</span>
                   <span
-                    className="text-xs text-[#002046] font-bold"
+                    className="text-xs text-[#002046] font-bold uppercase truncate"
                     style={{ fontFamily: "'Space Mono', monospace" }}
                   >
-                    26 DEC '26
+                    {departureDate}
                   </span>
                   <span className="text-[10px] font-mono text-[#855300] font-bold">18:30 HRS IST</span>
                 </div>
@@ -819,7 +828,7 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
             <span>•</span>
             <span>HAPPY JOURNEY</span>
           </div>
-          <span className="text-[11px] text-[#74777F]">Sandeep & Priya's Wedding Transit Portal</span>
+          <span className="text-[11px] text-[#74777F]">{groom} &amp; {bride}'s Wedding Transit Portal</span>
         </footer>
       </main>
 

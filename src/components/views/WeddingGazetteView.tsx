@@ -133,37 +133,42 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
     }
   };
 
+  const groom = template?.groom?.name || 'Anirban';
+  const bride = template?.bride?.name || 'Deboleena';
+  const customHeadline = template?.quotes?.verse;
+  const customSubhead = template?.quotes?.subInvocation;
+
   // Dynamic Headline by language
   const headlines = {
     en: {
       edition: 'THE SPECIAL EDITION • AUTUMN 2026',
-      subdeck: 'Seven sacred pheras scheduled under auspicious planetary alignment; lifelong bachelorhood officially declared an endangered species.',
-      mainTitle: 'ANIRBAN & DEBOLEENA TO TIE THE KNOT; CITY BRACES FOR BIRIYANI!',
-      articleTitle: 'A CHRONICLE OF TWO HEARTS: FROM ROAST COFFEE TO LIFELONG RITUALS',
+      subdeck: customSubhead || 'Seven sacred pheras scheduled under auspicious planetary alignment; lifelong bachelorhood officially declared an endangered species.',
+      mainTitle: customHeadline || `${groom.toUpperCase()} & ${bride.toUpperCase()} TO TIE THE KNOT; CITY BRACES FOR BIRIYANI!`,
+      articleTitle: `A CHRONICLE OF TWO HEARTS: ${groom.toUpperCase()} & ${bride.toUpperCase()}'S SACRED MATRIMONY`,
       articleText:
         'It commenced on a lukewarm autumn dusk when our correspondents noted mutual skirmishes over the bill at Flurys. What seemed to neutral observers as a routine philosophical debate on cinema rapidly matured into an unbreakable treaty. Over four hundred cups of Darjeeling tea, cross-state train commutes, and shared playlists, the verdict was rendered unanimous: life without the other was simply substandard editorial prose.',
-      brideQuote: '"He offered an unconditional treaty: perpetual puchkas & quiet during cricket tests."',
-      groomQuote: '"The presence of a golden fried Kolkata biryani aloo was non-negotiable in the marriage accord."'
+      brideQuote: `"He offered an unconditional treaty: perpetual puchkas & quiet during cricket tests." — ${bride}`,
+      groomQuote: `"The presence of a golden fried Kolkata biryani aloo was non-negotiable in the marriage accord." — ${groom}`
     },
     bn: {
       edition: 'মাঙ্গলিক বিশেষ সংস্করণ • কার্তিক ১৪৩৩',
-      subdeck: 'শুভ গ্রহসমাবেশে মাঙ্গলিক সাত পাকের দিন ধার্য; ব্যাচেলরহুড আনুষ্ঠানিকভাবে বিলুপ্ত প্রজাতি ঘোষিত।',
-      mainTitle: 'অনির্বাণ ও দেবলীনার শুভ পরিণয়; শহরের বিরিয়ানি রসিকরা প্রস্তুত!',
-      articleTitle: 'দুই হৃদয়ের শুভ মিলন কথা: ফ্লুরিসের কফি থেকে চিরন্তন সাত পাক',
+      subdeck: customSubhead || 'শুভ গ্রহসমাবেশে মাঙ্গলিক সাত পাকের দিন ধার্য; ব্যাচেলরহুড আনুষ্ঠানিকভাবে বিলুপ্ত প্রজাতি ঘোষিত।',
+      mainTitle: customHeadline || `${groom} ও ${bride}-র শুভ পরিণয়; শহরের বিরিয়ানি রসিকরা প্রস্তুত!`,
+      articleTitle: `দুই হৃদয়ের শুভ মিলন কথা: ${groom} ও ${bride}-র শুভ পরিণয় বার্তা`,
       articleText:
         'কলকাতার এক মনোরম শরতের সন্ধ্যায় ফ্লুরিসে চায়ের কাপে শুরু হয়েছিল সম্পর্কের শুভ সূচনা। যা ছিল শুধুই সাহিত্যের বিতর্ক, সময়ের সাথে সাথে তা রূপ নিল গভীর প্রণয়ে। চারশত কাপ দার্জিলিং চা, রবীন্দ্রসঙ্গীতের সুর আর মান-অভিমানের পথ পেরিয়ে আজ তারা একসূত্রে বাঁধা। জীবনের এই শুভক্ষণে দুই পরিবার সাক্ষী হতে চলেছে এক অনন্য ঐতিহাসিক মিলন উৎসবের।',
-      brideQuote: '"বিবাহের অপরিবর্তনীয় চুক্তি: অফুরন্ত ফুচকা এবং টেস্ট ক্রিকেটের সময় শান্তি। কাবুলিওয়ালার দেশে ভালোবাসা চিরন্তন।"',
-      groomQuote: '"কলকাতা বিরিয়ানির প্রতিটি প্লেটে সোনালী ভাজা আলুর উপস্থিতি এই বৈবাহিক চুক্তির প্রধান শর্ত ছিল।"'
+      brideQuote: `"বিবাহের অপরিবর্তনীয় চুক্তি: অফুরন্ত ফুচকা এবং টেস্ট ক্রিকেটের সময় শান্তি। কাবুলিওয়ালার দেশে ভালোবাসা চিরন্তন।" — ${bride}`,
+      groomQuote: `"কলকাতা বিরিয়ানির প্রতিটি প্লেটে সোনালী ভাজা আলুর উপস্থিতি এই বৈবাহিক চুক্তির প্রধান শর্ত ছিল।" — ${groom}`
     },
     hi: {
       edition: 'विशेष वैवाहिक संस्करण • शरद ऋतु २०२६',
-      subdeck: 'शुभ लग्न और वैदिक मंत्रोच्चार के साथ सात फेरों की घोषणा; बैचलरहुड की विदाई समारोह शुरू।',
-      mainTitle: 'अनिर्बान एवं देबोलीना का शुभ विवाह; कोलकाता में जश्न का ऐलान!',
-      articleTitle: 'दो दिलों की अमर दास्तान: कॉफी की खुशबू से सात जन्मों के सफर तक',
+      subdeck: customSubhead || 'शुभ लग्न और वैदिक मंत्रोच्चार के साथ सात फेरों की घोषणा; बैचलरहुड की विदाई समारोह शुरू।',
+      mainTitle: customHeadline || `${groom} एवं ${bride} का शुभ विवाह; कोलकाता में जश्न का ऐलान!`,
+      articleTitle: `दो दिलों की अमर दास्तान: ${groom} और ${bride} के सात जन्मों का बंधन`,
       articleText:
         'यह दास्तान शुरू हुई पार्क स्ट्रीट की एक हसीन शाम, जब दोनों परिवारों का स्नेह एक धागे में पिरोया गया। समय के साथ यह दोस्ती अटूट प्रेम और विश्वास में बदल गई। आज ढोल-नगाड़ों और शंखनाद के बीच दोनों जीवन साथी बनने जा रहे हैं। कोलकाता से दिल्ली तक जश्न का माहौल है और सभी आत्मीय परिजन इस मांगलिक उत्सव के साक्षी बन रहे हैं।',
-      brideQuote: '"विवाह की पूर्व शर्त: कभी न खत्म होने वाली फुचका पार्टी और क्रिकेट मैच के दौरान पूर्ण शांति।"',
-      groomQuote: '"शाही कोलकाता दम बिरयानी में खुशबूदार बड़ा आलू हमारे इस नए गठबंधन की सबसे अहम शर्त थी।"'
+      brideQuote: `"विवाह की पूर्व शर्त: कभी न खत्म होने वाली फुचका पार्टी और क्रिकेट मैच के दौरान पूर्ण शांति।" — ${bride}`,
+      groomQuote: `"शाही कोलकाता दम बिरयानी में खुशबूदार बड़ा आलू हमारे इस नए गठबंधन की सबसे अहम शर्त थी।" — ${groom}`
     }
   };
 

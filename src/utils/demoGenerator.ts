@@ -15,6 +15,16 @@ export interface DemoFormData {
   leadName?: string;     // Lead contact person
   customPhotoUrl?: string;
   createdAt?: number;    // Timestamp in ms for 24-hr expiry
+
+  // Theme-Specific Customization Fields
+  trainName?: string;          // vivah_express: e.g. "BHARAT VIVAH EXPRESS #2026"
+  trainPnr?: string;           // vivah_express: e.g. "2612-ANIDEB"
+  newspaperHeadline?: string;  // wedding_gazette: e.g. "ANIRBAN & DEBOLEENA TO TIE THE KNOT; CITY BRACES FOR BIRIYANI!"
+  newspaperSubhead?: string;   // wedding_gazette: e.g. "Seven Sacred Pheras Scheduled Under Auspicious Constellation"
+  movieTagline?: string;       // bollywood_premiere: e.g. "A Blockbuster Romance Written in the Stars"
+  directorCredit?: string;     // bollywood_premiere: e.g. "Directed by Destiny & Two Families"
+  punjabiSlogan?: string;      // rangla_punjab: e.g. "Chak De Phatte! Non-Stop Bhangra & Celebration!"
+  bhojSpecialty?: string;      // mithila / pot_katha / shola: e.g. "Macha-Bhaat, Rohu Curry & Makhana Kheer"
 }
 
 export const PREVIEW_VALIDITY_HOURS = 24;
@@ -32,7 +42,15 @@ export const defaultDemoData: DemoFormData = {
   whatsappNumber: '916203868358',
   leadName: 'Rahul Banerjee',
   customPhotoUrl: '',
-  createdAt: Date.now()
+  createdAt: Date.now(),
+  trainName: 'BHARAT VIVAH EXPRESS',
+  trainPnr: '2612-VIVAH',
+  newspaperHeadline: 'HISTORIC NUPTIAL ALLIANCE DECLARED; LIFELONG TOGETHERNESS AHEAD!',
+  newspaperSubhead: 'Seven Sacred Pheras Scheduled Under Planetary Alignment',
+  movieTagline: 'A Blockbuster Romance Written in the Stars — 100% Certified Fresh',
+  directorCredit: 'Directed by Destiny • Produced by Two Loving Families',
+  punjabiSlogan: 'Chak De Phatte! Balle Balle Celebration in Full Swing!',
+  bhojSpecialty: 'Traditional Regional Bhoj & Sweet Delicacies'
 };
 
 /**
@@ -97,6 +115,7 @@ export const buildCustomDemoTemplate = (data: DemoFormData): {
 
   const targetDateISO = data.eventDate ? `${data.eventDate}T19:00:00` : template.targetDate;
   template.targetDate = targetDateISO;
+  template.targetDateNative = data.eventDate || template.targetDateNative;
 
   if (data.theme === 'annaprashan') {
     const baby = data.childName.trim() || 'Aarav';
@@ -123,13 +142,47 @@ export const buildCustomDemoTemplate = (data: DemoFormData): {
     template.groom.name = groom;
     template.bride.name = bride;
     template.quotes.weddingTitle = `${groom} & ${bride}`;
-    if (data.theme === 'bengali') {
+    if (data.theme === 'bengali' || data.theme === 'pot_katha' || data.theme === 'shola') {
       template.quotes.nativeWeddingTitle = `${groom} ও ${bride}`;
-    } else if (data.theme === 'bihari_marwari') {
+    } else if (data.theme === 'bihari_marwari' || data.theme === 'mithila') {
       template.quotes.nativeWeddingTitle = `${groom} संग ${bride}`;
+    } else if (data.theme === 'rangla_punjab') {
+      template.quotes.nativeWeddingTitle = `${groom} ਤੇ ${bride}`;
     }
     if (data.customPhotoUrl) {
       template.groom.image = data.customPhotoUrl;
+    }
+  }
+
+  // Theme-Specific Overrides
+  if (data.theme === 'vivah_express') {
+    if (data.trainName) {
+      template.quotes.weddingTitle = data.trainName;
+    }
+    if (data.trainPnr) {
+      template.quotes.subInvocation = `PNR: ${data.trainPnr} • CONFIRMED (CNF)`;
+    }
+  } else if (data.theme === 'wedding_gazette') {
+    if (data.newspaperHeadline) {
+      template.quotes.verse = data.newspaperHeadline;
+    }
+    if (data.newspaperSubhead) {
+      template.quotes.subInvocation = data.newspaperSubhead;
+    }
+  } else if (data.theme === 'bollywood_premiere') {
+    if (data.movieTagline) {
+      template.quotes.verse = data.movieTagline;
+    }
+    if (data.directorCredit) {
+      template.quotes.subInvocation = data.directorCredit;
+    }
+  } else if (data.theme === 'rangla_punjab') {
+    if (data.punjabiSlogan) {
+      template.quotes.subInvocation = data.punjabiSlogan;
+    }
+  } else if (data.theme === 'mithila' || data.theme === 'pot_katha' || data.theme === 'shola') {
+    if (data.bhojSpecialty) {
+      template.quotes.subInvocation = data.bhojSpecialty;
     }
   }
 
@@ -183,6 +236,17 @@ export const encodeDemoDataToParams = (data: DemoFormData): string => {
   if (data.whatsappNumber) params.set('wa', data.whatsappNumber);
   if (data.leadName) params.set('lead', data.leadName);
   if (data.customPhotoUrl) params.set('photo', data.customPhotoUrl);
+
+  // Theme-Specific Parameters
+  if (data.trainName) params.set('train', data.trainName);
+  if (data.trainPnr) params.set('pnr', data.trainPnr);
+  if (data.newspaperHeadline) params.set('headline', data.newspaperHeadline);
+  if (data.newspaperSubhead) params.set('subhead', data.newspaperSubhead);
+  if (data.movieTagline) params.set('tagline', data.movieTagline);
+  if (data.directorCredit) params.set('director', data.directorCredit);
+  if (data.punjabiSlogan) params.set('slogan', data.punjabiSlogan);
+  if (data.bhojSpecialty) params.set('bhoj', data.bhojSpecialty);
+
   // Timestamp for 24-hr expiration lock
   params.set('ts', (data.createdAt || Date.now()).toString());
   return params.toString();
@@ -209,7 +273,15 @@ export const decodeDemoParams = (searchParams: URLSearchParams): DemoFormData =>
     whatsappNumber: searchParams.get('wa') || defaultDemoData.whatsappNumber,
     leadName: searchParams.get('lead') || '',
     customPhotoUrl: searchParams.get('photo') || '',
-    createdAt
+    createdAt,
+    trainName: searchParams.get('train') || undefined,
+    trainPnr: searchParams.get('pnr') || undefined,
+    newspaperHeadline: searchParams.get('headline') || undefined,
+    newspaperSubhead: searchParams.get('subhead') || undefined,
+    movieTagline: searchParams.get('tagline') || undefined,
+    directorCredit: searchParams.get('director') || undefined,
+    punjabiSlogan: searchParams.get('slogan') || undefined,
+    bhojSpecialty: searchParams.get('bhoj') || undefined
   };
 };
 

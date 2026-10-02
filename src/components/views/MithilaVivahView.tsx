@@ -45,6 +45,9 @@ export const MithilaVivahView: React.FC<MithilaVivahViewProps> = ({
   guestName,
   onLangChange
 }) => {
+  const groom = template?.groom?.name || 'Abhishek Kumar';
+  const bride = template?.bride?.name || 'Maithili Jha';
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [headcount, setHeadcount] = useState('२');
   const [feastChoice, setFeastChoice] = useState<'traditional' | 'satvik'>('traditional');
@@ -121,8 +124,8 @@ export const MithilaVivahView: React.FC<MithilaVivahViewProps> = ({
       : (isNative ? 'सात्विक शुद्ध शाकाहारी (ओल तरुआ, कढ़ी-बड़ी, मखाना खीर)' : 'Satvik Pure Veg (Ol Tarua, Kadhi Bari)');
     
     const message = isNative
-      ? `प्रणाम! हम ${guest} मिथिला विवाह में उपस्थित होब।\n\nউপস্থিত परिजन: ${headcount} जन\nभोज रुचि: ${feastText}\n\nनव दम्पतिकेँ ढेर सारा आशीर्वाद आ मंगलकामना!`
-      : `Namaste! I am ${guest}, gladly confirming our attendance for Abhishek & Maithili's Mithila Wedding.\n\nAttending Members: ${headcount}\nDining Preference: ${feastText}\n\nWishing the couple a blessed lifetime together!`;
+      ? `प्रणाम! हम ${guest} ${groom} संग ${bride} के मिथिला विवाह में उपस्थित होब।\n\nউপস্থিত परिजन: ${headcount} जन\nभोज रुचि: ${feastText}\n\nनव दम्पतिकेँ ढेर सारा आशीर्वाद आ मंगलकामना!`
+      : `Namaste! I am ${guest}, gladly confirming our attendance for ${groom} & ${bride}'s Mithila Wedding.\n\nAttending Members: ${headcount}\nDining Preference: ${feastText}\n\nWishing the couple a blessed lifetime together!`;
 
     window.open(`https://wa.me/919835012345?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -484,7 +487,7 @@ export const MithilaVivahView: React.FC<MithilaVivahViewProps> = ({
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 flex-wrap">
                 <h3 className="text-base font-bold text-[#1c1c17]">
-                  {isNative ? 'चि० अभिषेक कुमार' : 'Abhishek Kumar'}
+                  {isNative ? `चि० ${groom}` : groom}
                 </h3>
                 <span className="px-2 py-0.5 bg-[#ece8e0] text-[#962200] rounded text-[11px] font-bold">
                   {isNative ? 'सॉफ्टवेयर वास्तुकार' : 'Software Architect'}
@@ -524,7 +527,7 @@ export const MithilaVivahView: React.FC<MithilaVivahViewProps> = ({
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 flex-wrap">
                 <h3 className="text-base font-bold text-[#1c1c17]">
-                  {isNative ? 'आयु० मैथिली झा' : 'Maithili Jha'}
+                  {isNative ? `आयु० ${bride}` : bride}
                 </h3>
                 <span className="px-2 py-0.5 bg-[#ece8e0] text-[#904d00] rounded text-[11px] font-bold">
                   {isNative ? 'सहायक प्राध्यापिका' : 'Assistant Professor'}
@@ -915,7 +918,7 @@ export const MithilaVivahView: React.FC<MithilaVivahViewProps> = ({
                       key={amt}
                       type="button"
                       onClick={() => {
-                        window.open(`upi://pay?pa=mithilavivah@upi&pn=Abhishek+and+Maithili&am=${amt}&cu=INR`, '_blank');
+                        window.open(`upi://pay?pa=mithilavivah@upi&pn=${encodeURIComponent(groom + ' and ' + bride)}&am=${amt}&cu=INR`, '_blank');
                       }}
                       className="flex-1 py-1.5 bg-[#f1ede6] hover:bg-[#ffdcc3] text-[#962200] font-bold rounded-lg border border-[#e1bfb7] text-center"
                     >

@@ -47,6 +47,10 @@ export const RanglaPunjabView: React.FC<RanglaPunjabViewProps> = ({
   guestName,
   onLangChange
 }) => {
+  const groom = template?.groom?.name || 'MANPREET';
+  const bride = template?.bride?.name || 'SIMRAN';
+  const punjabiSlogan = template?.quotes?.subInvocation || 'ANANDUTSAV';
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [confetti, setConfetti] = useState<ConfettiItem[]>([]);
   const [ticketPunched, setTicketPunched] = useState(false);
@@ -281,13 +285,13 @@ export const RanglaPunjabView: React.FC<RanglaPunjabViewProps> = ({
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#432d48] rounded-full shadow-lg border border-[#e9c400]/40 -rotate-1">
             <span className="text-xs font-bold text-[#e9c400]">ੴ ਲਖ ਖੁਸ਼ੀਆਂ ਪਾਤਸ਼ਾਹੀਆਂ</span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#ff4a8d]"></span>
-            <span className="text-xs font-extrabold text-[#ff4a8d] tracking-widest">ANANDUTSAV</span>
+            <span className="text-xs font-extrabold text-[#ff4a8d] tracking-widest uppercase">{punjabiSlogan}</span>
           </div>
 
           {/* Interactive Wobble Couple Names */}
           <div className="space-y-1">
             <div className="flex items-center justify-center gap-1.5 flex-wrap">
-              {"MANPREET".split('').map((char, idx) => (
+              {groom.toUpperCase().split('').map((char, idx) => (
                 <span
                   key={idx}
                   onClick={() => {
@@ -313,7 +317,7 @@ export const RanglaPunjabView: React.FC<RanglaPunjabViewProps> = ({
             </div>
 
             <div className="flex items-center justify-center gap-1.5 flex-wrap">
-              {"SIMRAN".split('').map((char, idx) => (
+              {bride.toUpperCase().split('').map((char, idx) => (
                 <span
                   key={idx}
                   onClick={() => {

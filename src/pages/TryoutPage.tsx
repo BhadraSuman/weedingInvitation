@@ -21,7 +21,12 @@ import {
   Wand2,
   Phone,
   CreditCard,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Train,
+  Newspaper,
+  Film,
+  Music,
+  Utensils
 } from 'lucide-react';
 
 const samplePresets: Record<TemplateId, DemoFormData> = {
@@ -140,7 +145,9 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Mumbai',
     upiId: 'anirban@okaxis',
     whatsappNumber: '916203868358',
-    customPhotoUrl: '/images/couples/bollywood_poster.jpg'
+    customPhotoUrl: '/images/couples/bollywood_poster.jpg',
+    movieTagline: 'A Blockbuster Romance Written in the Stars — 100% Certified Fresh',
+    directorCredit: 'Directed by Destiny • Produced by Two Loving Families'
   },
   wedding_gazette: {
     theme: 'wedding_gazette',
@@ -153,7 +160,9 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Kolkata',
     upiId: 'anirban@okaxis',
     whatsappNumber: '916203868358',
-    customPhotoUrl: '/images/couples/vintage_gazette.jpg'
+    customPhotoUrl: '/images/couples/vintage_gazette.jpg',
+    newspaperHeadline: 'HISTORIC NUPTIAL ALLIANCE DECLARED; CITY BRACES FOR BIRIYANI!',
+    newspaperSubhead: 'Seven Sacred Pheras Scheduled Under Auspicious Planetary Alignment'
   },
   vivah_express: {
     theme: 'vivah_express',
@@ -166,7 +175,9 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Noida NCR',
     upiId: 'sandeep@okaxis',
     whatsappNumber: '916203868358',
-    customPhotoUrl: '/images/couples/north-couple.jpg'
+    customPhotoUrl: '/images/couples/north-couple.jpg',
+    trainName: 'BHARAT VIVAH EXPRESS #2026',
+    trainPnr: '2612-ANIDEB'
   },
   mithila: {
     theme: 'mithila',
@@ -179,7 +190,8 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Darbhanga',
     upiId: 'mithilavivah@upi',
     whatsappNumber: '916203868358',
-    customPhotoUrl: '/images/couples/north-couple.jpg'
+    customPhotoUrl: '/images/couples/north-couple.jpg',
+    bhojSpecialty: 'Macha-Bhaat (Rohu & Katla), Ol Tarua & Makhana Kheer'
   },
   pot_katha: {
     theme: 'pot_katha',
@@ -192,7 +204,8 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Kolkata',
     upiId: 'aditi.debashish@upi',
     whatsappNumber: '916203868358',
-    customPhotoUrl: '/images/couples/bengali-couple.jpg'
+    customPhotoUrl: '/images/couples/bengali-couple.jpg',
+    bhojSpecialty: 'Daab Chingri, Ilish Bhapa & Basanti Pulao'
   },
   shola: {
     theme: 'shola',
@@ -205,7 +218,8 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Kolkata',
     upiId: 'sholavivah@upi',
     whatsappNumber: '916203868358',
-    customPhotoUrl: '/images/couples/bengali_cinematic.jpg'
+    customPhotoUrl: '/images/couples/bengali_cinematic.jpg',
+    bhojSpecialty: 'Bhetki Paturi, Chingri Malai & Gobindobhog Pulao'
   },
   rangla_punjab: {
     theme: 'rangla_punjab',
@@ -218,7 +232,8 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     city: 'Amritsar',
     upiId: 'ranglapunjab@upi',
     whatsappNumber: '916203868358',
-    customPhotoUrl: '/images/couples/north-couple.jpg'
+    customPhotoUrl: '/images/couples/north-couple.jpg',
+    punjabiSlogan: 'Chak De Phatte! Non-Stop Bhangra & Celebration!'
   }
 };
 
@@ -235,7 +250,15 @@ export const TryoutPage: React.FC = () => {
       brideName: preset.brideName || formData.brideName,
       childName: preset.childName || formData.childName,
       venueName: preset.venueName || formData.venueName,
-      city: preset.city || formData.city
+      city: preset.city || formData.city,
+      trainName: preset.trainName,
+      trainPnr: preset.trainPnr,
+      newspaperHeadline: preset.newspaperHeadline,
+      newspaperSubhead: preset.newspaperSubhead,
+      movieTagline: preset.movieTagline,
+      directorCredit: preset.directorCredit,
+      punjabiSlogan: preset.punjabiSlogan,
+      bhojSpecialty: preset.bhojSpecialty
     });
   };
 
@@ -623,7 +646,152 @@ export const TryoutPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Step 4: Contact & WhatsApp Verification (Mandatory Lead Gate) */}
+          {/* Step 4: Theme-Specific Signature Customization */}
+          {(formData.theme === 'vivah_express' ||
+            formData.theme === 'wedding_gazette' ||
+            formData.theme === 'bollywood_premiere' ||
+            formData.theme === 'rangla_punjab' ||
+            formData.theme === 'mithila' ||
+            formData.theme === 'pot_katha' ||
+            formData.theme === 'shola') && (
+            <div className="pt-4 border-t border-stone-200">
+              <div className="bg-amber-50/70 p-4 sm:p-5 rounded-2xl border-2 border-amber-200/80 shadow-sm space-y-4">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-serif uppercase tracking-widest text-[#8B181B] font-bold flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <span>Theme Signature Customization ({formData.theme.replace('_', ' ').toUpperCase()})</span>
+                  </label>
+                  <span className="text-[10px] font-serif bg-amber-200/80 text-amber-900 px-2.5 py-0.5 rounded-full font-bold">
+                    Signature Details
+                  </span>
+                </div>
+
+                {formData.theme === 'vivah_express' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-serif text-stone-700 font-semibold mb-1 flex items-center gap-1">
+                        <Train className="w-3.5 h-3.5 text-blue-700" />
+                        <span>Train Name &amp; Number</span>
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. BHARAT VIVAH EXPRESS #2026"
+                        value={formData.trainName || ''}
+                        onChange={(e) => setFormData({ ...formData, trainName: e.target.value })}
+                        className="w-full px-3.5 py-2 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-xs font-serif"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-serif text-stone-700 font-semibold mb-1">
+                        Custom PNR Code
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 2612-ANIDEB"
+                        value={formData.trainPnr || ''}
+                        onChange={(e) => setFormData({ ...formData, trainPnr: e.target.value })}
+                        className="w-full px-3.5 py-2 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-xs font-serif uppercase font-mono"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {formData.theme === 'wedding_gazette' && (
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-xs font-serif text-stone-700 font-semibold mb-1 flex items-center gap-1">
+                        <Newspaper className="w-3.5 h-3.5 text-stone-700" />
+                        <span>Front-Page Main Headline</span>
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. HISTORIC NUPTIAL ALLIANCE DECLARED; CITY BRACES FOR BIRIYANI!"
+                        value={formData.newspaperHeadline || ''}
+                        onChange={(e) => setFormData({ ...formData, newspaperHeadline: e.target.value })}
+                        className="w-full px-3.5 py-2 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-xs font-serif"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-serif text-stone-700 font-semibold mb-1">
+                        Sub-Headline / Pull Quote
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Seven Sacred Pheras Scheduled Under Auspicious Planetary Alignment"
+                        value={formData.newspaperSubhead || ''}
+                        onChange={(e) => setFormData({ ...formData, newspaperSubhead: e.target.value })}
+                        className="w-full px-3.5 py-2 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-xs font-serif"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {formData.theme === 'bollywood_premiere' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-serif text-stone-700 font-semibold mb-1 flex items-center gap-1">
+                        <Film className="w-3.5 h-3.5 text-red-600" />
+                        <span>Movie Scope Tagline</span>
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 100% Certified Fresh on the Meter of Love"
+                        value={formData.movieTagline || ''}
+                        onChange={(e) => setFormData({ ...formData, movieTagline: e.target.value })}
+                        className="w-full px-3.5 py-2 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-xs font-serif"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-serif text-stone-700 font-semibold mb-1">
+                        Director &amp; Production Credit
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Directed by Destiny • Produced by Two Loving Families"
+                        value={formData.directorCredit || ''}
+                        onChange={(e) => setFormData({ ...formData, directorCredit: e.target.value })}
+                        className="w-full px-3.5 py-2 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-xs font-serif"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {formData.theme === 'rangla_punjab' && (
+                  <div>
+                    <label className="block text-xs font-serif text-stone-700 font-semibold mb-1 flex items-center gap-1">
+                      <Music className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Celebration Slogan &amp; Truck Art</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Chak De Phatte! Non-Stop Bhangra & Celebration!"
+                      value={formData.punjabiSlogan || ''}
+                      onChange={(e) => setFormData({ ...formData, punjabiSlogan: e.target.value })}
+                      className="w-full px-3.5 py-2 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-xs font-serif"
+                    />
+                  </div>
+                )}
+
+                {(formData.theme === 'mithila' || formData.theme === 'pot_katha' || formData.theme === 'shola') && (
+                  <div>
+                    <label className="block text-xs font-serif text-stone-700 font-semibold mb-1 flex items-center gap-1">
+                      <Utensils className="w-3.5 h-3.5 text-emerald-700" />
+                      <span>Regional Bhoj &amp; Banquet Specialties</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Traditional Macha-Bhaat, Chingri Malai & Basanti Pulao"
+                      value={formData.bhojSpecialty || ''}
+                      onChange={(e) => setFormData({ ...formData, bhojSpecialty: e.target.value })}
+                      className="w-full px-3.5 py-2 rounded-xl border border-stone-300 focus:border-[#8B181B] focus:ring-1 focus:ring-[#8B181B] outline-none text-xs font-serif"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Step 5: Contact & WhatsApp Verification (Mandatory Lead Gate) */}
           <div className="pt-4 border-t border-stone-200">
             <div className="flex items-center justify-between mb-3">
               <label className="text-xs font-serif uppercase tracking-widest text-[#8B181B] font-bold flex items-center gap-1.5">
