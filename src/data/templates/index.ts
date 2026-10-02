@@ -10,10 +10,18 @@ import { chibi3dTemplate } from './chibi3dTemplate';
 import { bollywoodPremiereTemplate } from './bollywoodPremiereTemplate';
 import { weddingGazetteTemplate } from './weddingGazetteTemplate';
 import { vivahExpressTemplate } from './vivahExpressTemplate';
+import { mithilaTemplate } from './mithilaTemplate';
+import { potKathaTemplate } from './potKathaTemplate';
+import { sholaTemplate } from './sholaTemplate';
+import { punjabTemplate } from './punjabTemplate';
 
 export const templatesList: CulturalTemplate[] = [
   bengaliTemplate,
   bihariMarwariTemplate,
+  mithilaTemplate,
+  potKathaTemplate,
+  sholaTemplate,
+  punjabTemplate,
   bollywoodPremiereTemplate,
   weddingGazetteTemplate,
   vivahExpressTemplate,
@@ -28,6 +36,10 @@ export const templatesList: CulturalTemplate[] = [
 export const templatesMap: Record<TemplateId, CulturalTemplate> = {
   bengali: bengaliTemplate,
   bihari_marwari: bihariMarwariTemplate,
+  mithila: mithilaTemplate,
+  pot_katha: potKathaTemplate,
+  shola: sholaTemplate,
+  rangla_punjab: punjabTemplate,
   bollywood_premiere: bollywoodPremiereTemplate,
   wedding_gazette: weddingGazetteTemplate,
   vivah_express: vivahExpressTemplate,
@@ -49,6 +61,10 @@ export const getTemplateById = (id: string | null): CulturalTemplate => {
 export {
   bengaliTemplate,
   bihariMarwariTemplate,
+  mithilaTemplate,
+  potKathaTemplate,
+  sholaTemplate,
+  punjabTemplate,
   bollywoodPremiereTemplate,
   weddingGazetteTemplate,
   vivahExpressTemplate,
@@ -59,3 +75,4 @@ export {
   southIndianTemplate,
   modernMinimalTemplate,
 };
+

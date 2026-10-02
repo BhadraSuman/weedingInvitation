@@ -23,6 +23,10 @@ import { ModernMinimalWeddingView } from '../components/views/ModernMinimalWeddi
 import { BollywoodPremiereView } from '../components/views/BollywoodPremiereView';
 import { WeddingGazetteView } from '../components/views/WeddingGazetteView';
 import { VivahExpressView } from '../components/views/VivahExpressView';
+import { MithilaVivahView } from '../components/views/MithilaVivahView';
+import { PotKathaView } from '../components/views/PotKathaView';
+import { SholaWeddingView } from '../components/views/SholaWeddingView';
+import { RanglaPunjabView } from '../components/views/RanglaPunjabView';
 import { Language } from '../types/wedding';
 import { audioManager } from '../utils/audioManager';
 import {
@@ -194,6 +198,58 @@ export const DemoPreviewPage: React.FC = () => {
       <div className="relative">
         <PreviewWatermark remainingHours={remainingHours} />
         <VivahExpressView
+          template={template}
+          lang={lang}
+          onLangChange={setLang}
+        />
+      </div>
+    );
+  }
+
+  if (cultureType === 'mithila') {
+    return (
+      <div className="relative">
+        <PreviewWatermark remainingHours={remainingHours} />
+        <MithilaVivahView
+          template={template}
+          lang={lang}
+          onLangChange={setLang}
+        />
+      </div>
+    );
+  }
+
+  if (cultureType === 'pot_katha') {
+    return (
+      <div className="relative">
+        <PreviewWatermark remainingHours={remainingHours} />
+        <PotKathaView
+          template={template}
+          lang={lang}
+          onLangChange={setLang}
+        />
+      </div>
+    );
+  }
+
+  if (cultureType === 'shola') {
+    return (
+      <div className="relative">
+        <PreviewWatermark remainingHours={remainingHours} />
+        <SholaWeddingView
+          template={template}
+          lang={lang}
+          onLangChange={setLang}
+        />
+      </div>
+    );
+  }
+
+  if (cultureType === 'rangla_punjab') {
+    return (
+      <div className="relative">
+        <PreviewWatermark remainingHours={remainingHours} />
+        <RanglaPunjabView
           template={template}
           lang={lang}
           onLangChange={setLang}

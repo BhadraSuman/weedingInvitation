@@ -11,7 +11,11 @@ export type TemplateId =
   | 'chibi_3d'
   | 'bollywood_premiere'
   | 'wedding_gazette'
-  | 'vivah_express';
+  | 'vivah_express'
+  | 'mithila'
+  | 'pot_katha'
+  | 'shola'
+  | 'rangla_punjab';
 
 export type EventCategory = 'wedding' | 'annaprashan' | 'birthday' | 'griha_pravesh';
 

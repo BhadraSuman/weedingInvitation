@@ -167,6 +167,58 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     upiId: 'sandeep@okaxis',
     whatsappNumber: '916203868358',
     customPhotoUrl: '/images/couples/north-couple.jpg'
+  },
+  mithila: {
+    theme: 'mithila',
+    groomName: 'Abhishek',
+    brideName: 'Maithili',
+    childName: '',
+    eventDate: '2026-11-22',
+    eventTime: '08:30 PM',
+    venueName: 'Raj Darbhanga Palace',
+    city: 'Darbhanga',
+    upiId: 'mithilavivah@upi',
+    whatsappNumber: '916203868358',
+    customPhotoUrl: '/images/couples/north-couple.jpg'
+  },
+  pot_katha: {
+    theme: 'pot_katha',
+    groomName: 'Debashish',
+    brideName: 'Aditi',
+    childName: '',
+    eventDate: '2026-12-12',
+    eventTime: '06:45 PM',
+    venueName: 'Sovabazar Rajbari',
+    city: 'Kolkata',
+    upiId: 'aditi.debashish@upi',
+    whatsappNumber: '916203868358',
+    customPhotoUrl: '/images/couples/bengali-couple.jpg'
+  },
+  shola: {
+    theme: 'shola',
+    groomName: 'Anindya',
+    brideName: 'Mahashweta',
+    childName: '',
+    eventDate: '2026-12-12',
+    eventTime: '06:45 PM',
+    venueName: 'Sovabazar Rajbari Natmandir',
+    city: 'Kolkata',
+    upiId: 'sholavivah@upi',
+    whatsappNumber: '916203868358',
+    customPhotoUrl: '/images/couples/bengali_cinematic.jpg'
+  },
+  rangla_punjab: {
+    theme: 'rangla_punjab',
+    groomName: 'Manpreet',
+    brideName: 'Simran',
+    childName: '',
+    eventDate: '2026-11-28',
+    eventTime: '09:30 AM',
+    venueName: 'Heritage Haveli Resort Lawn',
+    city: 'Amritsar',
+    upiId: 'ranglapunjab@upi',
+    whatsappNumber: '916203868358',
+    customPhotoUrl: '/images/couples/north-couple.jpg'
   }
 };
 

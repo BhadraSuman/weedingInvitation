@@ -12,6 +12,10 @@ import { Chibi3dWeddingView } from '../components/views/Chibi3dWeddingView';
 import { BollywoodPremiereView } from '../components/views/BollywoodPremiereView';
 import { WeddingGazetteView } from '../components/views/WeddingGazetteView';
 import { VivahExpressView } from '../components/views/VivahExpressView';
+import { MithilaVivahView } from '../components/views/MithilaVivahView';
+import { PotKathaView } from '../components/views/PotKathaView';
+import { SholaWeddingView } from '../components/views/SholaWeddingView';
+import { RanglaPunjabView } from '../components/views/RanglaPunjabView';
 import { Language } from '../types/wedding';
 import { audioManager } from '../utils/audioManager';
 import { Sparkles, Home } from 'lucide-react';
@@ -149,6 +153,50 @@ export const WeddingSlugPage: React.FC = () => {
   if (cultureType === 'vivah_express') {
     return (
       <VivahExpressView
+        template={template}
+        lang={lang}
+        guestName={guestName}
+        onLangChange={setLang}
+      />
+    );
+  }
+
+  if (cultureType === 'mithila') {
+    return (
+      <MithilaVivahView
+        template={template}
+        lang={lang}
+        guestName={guestName}
+        onLangChange={setLang}
+      />
+    );
+  }
+
+  if (cultureType === 'pot_katha') {
+    return (
+      <PotKathaView
+        template={template}
+        lang={lang}
+        guestName={guestName}
+        onLangChange={setLang}
+      />
+    );
+  }
+
+  if (cultureType === 'shola') {
+    return (
+      <SholaWeddingView
+        template={template}
+        lang={lang}
+        guestName={guestName}
+        onLangChange={setLang}
+      />
+    );
+  }
+
+  if (cultureType === 'rangla_punjab') {
+    return (
+      <RanglaPunjabView
         template={template}
         lang={lang}
         guestName={guestName}

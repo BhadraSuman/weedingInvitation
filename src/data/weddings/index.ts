@@ -7,6 +7,10 @@ import { chibi3dTemplate } from '../templates/chibi3dTemplate';
 import { bollywoodPremiereTemplate } from '../templates/bollywoodPremiereTemplate';
 import { weddingGazetteTemplate } from '../templates/weddingGazetteTemplate';
 import { vivahExpressTemplate } from '../templates/vivahExpressTemplate';
+import { mithilaTemplate } from '../templates/mithilaTemplate';
+import { potKathaTemplate } from '../templates/potKathaTemplate';
+import { sholaTemplate } from '../templates/sholaTemplate';
+import { punjabTemplate } from '../templates/punjabTemplate';
 
 export interface EventSlugEntry {
   slug: string;
@@ -111,6 +115,50 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     badgeEmoji: '🚂',
     template: vivahExpressTemplate,
     previewImage: '/images/couples/north-couple.jpg'
+  },
+  'mithila-vivah': {
+    slug: 'mithila-vivah',
+    title: 'Mithila Vivah — Madhubani Folk Art Wedding Invitation',
+    coupleNames: 'Abhishek & Maithili',
+    category: 'wedding',
+    cultureType: 'mithila',
+    cultureName: 'मिथिला विवाह (Madhubani Kohbar Heritage)',
+    badgeEmoji: '🦚',
+    template: mithilaTemplate,
+    previewImage: '/images/couples/north-couple.jpg'
+  },
+  'pot-katha': {
+    slug: 'pot-katha',
+    title: 'Pot Katha — Kalighat Patachitra Wedding Scroll',
+    coupleNames: 'Debashish & Aditi',
+    category: 'wedding',
+    cultureType: 'pot_katha',
+    cultureName: 'কালীঘাট পটচিত্র বিবাহগাঁথা (Kalighat Scroll)',
+    badgeEmoji: '📜',
+    template: potKathaTemplate,
+    previewImage: '/images/couples/bengali-couple.jpg'
+  },
+  'shola': {
+    slug: 'shola',
+    title: 'Shola — Bengali Minimal-Luxury Wedding Invitation',
+    coupleNames: 'Anindya & Mahashweta',
+    category: 'wedding',
+    cultureType: 'shola',
+    cultureName: 'শোভা (Shola Minimal Luxury)',
+    badgeEmoji: '🤍',
+    template: sholaTemplate,
+    previewImage: '/images/couples/bengali_cinematic.jpg'
+  },
+  'rangla-punjab': {
+    slug: 'rangla-punjab',
+    title: 'Rangla Punjab — Loud & Joyful Punjabi Wedding Invitation',
+    coupleNames: 'Manpreet & Simran',
+    category: 'wedding',
+    cultureType: 'rangla_punjab',
+    cultureName: 'ਰੰਗਲਾ ਪੰਜਾਬ (Dhol & Dhamaka)',
+    badgeEmoji: '🥁',
+    template: punjabTemplate,
+    previewImage: '/images/couples/north-couple.jpg'
   }
 };
 
@@ -147,6 +195,21 @@ export const getWeddingBySlug = (slug: string): EventSlugEntry | null => {
   if (cleanSlug === 'express' || cleanSlug === 'train' || cleanSlug === 'railway' || cleanSlug === 'vivah-express' || cleanSlug === 'boarding-pass' || cleanSlug === 'irctc') {
     return weddingsRegistry['vivah-express'];
   }
+  if (cleanSlug === 'mithila' || cleanSlug === 'madhubani' || cleanSlug === 'mithila-vivah' || cleanSlug === 'abhishek-weds-maithili' || cleanSlug === 'abhishek') {
+    return weddingsRegistry['mithila-vivah'];
+  }
+  if (cleanSlug === 'pot-katha' || cleanSlug === 'potkatha' || cleanSlug === 'patachitra' || cleanSlug === 'debashish-weds-aditi' || cleanSlug === 'kalighat' || cleanSlug === 'debashish') {
+    return weddingsRegistry['pot-katha'];
+  }
+  if (cleanSlug === 'shola' || cleanSlug === 'sholapith' || cleanSlug === 'anindya-weds-mahashweta' || cleanSlug === 'anindya' || cleanSlug === 'minimal-bengali') {
+    return weddingsRegistry['shola'];
+  }
+  if (cleanSlug === 'rangla-punjab' || cleanSlug === 'punjab' || cleanSlug === 'punjabi' || cleanSlug === 'manpreet-weds-simran' || cleanSlug === 'manpreet' || cleanSlug === 'dhol') {
+    return weddingsRegistry['rangla-punjab'];
+  }
 
   return null;
 };
+
+
+
