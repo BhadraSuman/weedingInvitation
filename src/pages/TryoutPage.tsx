@@ -40,7 +40,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Swabhumi The Heritage Plaza',
     city: 'Kolkata',
     upiId: 'subhajit@okaxis',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/bengali-couple.jpg'
   },
   bihari_marwari: {
@@ -53,7 +53,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Hotel Maurya Grand Ballroom',
     city: 'Patna',
     upiId: 'aditya@okhdfcbank',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/north-couple.jpg'
   },
   chibi_3d: {
@@ -66,7 +66,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'The Oberoi Sukhvilas Spa Resort',
     city: 'Chandigarh',
     upiId: 'kunalshreya@okaxis',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/chibi_couple.jpg'
   },
   annaprashan: {
@@ -79,7 +79,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Club Verde Vista Banquet',
     city: 'Kolkata',
     upiId: 'parents@okaxis',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/baby-aarav.jpg'
   },
   birthday: {
@@ -92,7 +92,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'The Westin Lawn',
     city: 'Bengaluru',
     upiId: 'kiaraparty@okaxis',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/princess-ananya.jpg'
   },
   royal_north: {
@@ -105,7 +105,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Jai Mahal Palace',
     city: 'Jaipur',
     upiId: '',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/north-couple.jpg'
   },
   south_indian: {
@@ -118,7 +118,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Mayor Ramanathan Chettiar Hall',
     city: 'Chennai',
     upiId: '',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/south-bride.jpg'
   },
   modern_minimal: {
@@ -131,7 +131,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Soho House Banquet',
     city: 'Mumbai',
     upiId: '',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/north-couple.jpg'
   },
   bollywood_premiere: {
@@ -144,7 +144,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'The Grand Palace Studios',
     city: 'Mumbai',
     upiId: 'anirban@okaxis',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/bollywood_poster.jpg',
     movieTagline: 'A Blockbuster Romance Written in the Stars — 100% Certified Fresh',
     directorCredit: 'Directed by Destiny • Produced by Two Loving Families'
@@ -159,7 +159,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'The Heritage Townhall Lawns',
     city: 'Kolkata',
     upiId: 'anirban@okaxis',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/vintage_gazette.jpg',
     newspaperHeadline: 'HISTORIC NUPTIAL ALLIANCE DECLARED; CITY BRACES FOR BIRIYANI!',
     newspaperSubhead: 'Seven Sacred Pheras Scheduled Under Auspicious Planetary Alignment'
@@ -174,7 +174,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Vivah Dham Junction',
     city: 'Noida NCR',
     upiId: 'sandeep@okaxis',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/north-couple.jpg',
     trainName: 'BHARAT VIVAH EXPRESS #2026',
     trainPnr: '2612-ANIDEB'
@@ -189,7 +189,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Raj Darbhanga Palace',
     city: 'Darbhanga',
     upiId: 'mithilavivah@upi',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/north-couple.jpg',
     bhojSpecialty: 'Macha-Bhaat (Rohu & Katla), Ol Tarua & Makhana Kheer'
   },
@@ -203,7 +203,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Sovabazar Rajbari',
     city: 'Kolkata',
     upiId: 'aditi.debashish@upi',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/bengali-couple.jpg',
     bhojSpecialty: 'Daab Chingri, Ilish Bhapa & Basanti Pulao'
   },
@@ -217,7 +217,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Sovabazar Rajbari Natmandir',
     city: 'Kolkata',
     upiId: 'sholavivah@upi',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/bengali_cinematic.jpg',
     bhojSpecialty: 'Bhetki Paturi, Chingri Malai & Gobindobhog Pulao'
   },
@@ -231,7 +231,7 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     venueName: 'Heritage Haveli Resort Lawn',
     city: 'Amritsar',
     upiId: 'ranglapunjab@upi',
-    whatsappNumber: '916203868358',
+    whatsappNumber: '',
     customPhotoUrl: '/images/couples/north-couple.jpg',
     punjabiSlogan: 'Chak De Phatte! Non-Stop Bhangra & Celebration!'
   }
@@ -264,7 +264,11 @@ export const TryoutPage: React.FC = () => {
 
   const handleFillSample = () => {
     const preset = samplePresets[formData.theme] || defaultDemoData;
-    setFormData(preset);
+    setFormData(prev => ({
+      ...preset,
+      whatsappNumber: prev.whatsappNumber || '',
+      leadName: prev.leadName || ''
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -811,6 +815,7 @@ export const TryoutPage: React.FC = () => {
                 <input
                   type="text"
                   required
+                  autoComplete="off"
                   placeholder="e.g. Rahul Banerjee / Anita Roy"
                   value={formData.leadName || ''}
                   onChange={(e) => setFormData({ ...formData, leadName: e.target.value })}
@@ -825,6 +830,7 @@ export const TryoutPage: React.FC = () => {
                 <input
                   type="tel"
                   required
+                  autoComplete="off"
                   pattern="[0-9]{10}"
                   placeholder="e.g. 9876543210 (10 digits)"
                   value={formData.whatsappNumber}
