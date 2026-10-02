@@ -214,15 +214,15 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
           </div>
 
           <div className="flex items-center justify-center gap-3 mb-2">
-            <span className="text-[#E5C158] text-sm">卐</span>
-            <p className="font-serif text-xs sm:text-sm uppercase tracking-[0.25em] text-[#E5C158] font-bold">
+            <span className="text-[#E5C158] text-base">卐</span>
+            <p className="font-serif text-sm sm:text-base uppercase tracking-[0.25em] text-[#E5C158] font-bold">
               {quotes.invocation}
             </p>
-            <span className="text-[#E5C158] text-sm">卐</span>
+            <span className="text-[#E5C158] text-base">卐</span>
           </div>
 
-          <div className="my-3 py-3 px-4 sm:px-6 bg-[#042017]/85 rounded-2xl border border-[#E5C158]/40 shadow-inner">
-            <p className="font-serif text-xs sm:text-sm text-[#FDF2C7] whitespace-pre-line leading-relaxed italic">
+          <div className="my-3 py-3.5 px-4 sm:px-6 bg-[#042017]/85 rounded-2xl border border-[#E5C158]/40 shadow-inner">
+            <p className="font-serif text-sm sm:text-base text-[#FDF2C7] whitespace-pre-line leading-relaxed italic">
               {quotes.verse}
             </p>
           </div>
@@ -230,14 +230,14 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
 
         {/* VIP Atithi Badge if Guest Name is present */}
         {guestName && (
-          <div className="relative z-10 inline-block px-6 py-2.5 rounded-full bg-gradient-to-r from-[#E5C158]/20 via-[#0D4A36]/90 to-[#E5C158]/20 border border-[#E5C158] mb-6 shadow-lg backdrop-blur-sm">
-            <span className="text-[11px] uppercase font-serif tracking-[0.2em] text-[#E5C158] block font-semibold">
+          <div className="relative z-10 inline-block px-7 py-3 rounded-full bg-gradient-to-r from-[#E5C158]/20 via-[#0D4A36]/90 to-[#E5C158]/20 border border-[#E5C158] mb-6 shadow-lg backdrop-blur-sm">
+            <span className="text-xs uppercase font-serif tracking-[0.2em] text-[#E5C158] block font-bold">
               {isHindi ? '॥ सादर आमंत्रण ॥' : '॥ Cordially Invited ॥'}
             </span>
-            <span className="text-xl sm:text-2xl font-bold font-serif text-white">
+            <span className="text-2xl sm:text-3xl font-bold font-serif text-white">
               {guestName}
             </span>
-            <span className="text-[10px] text-[#FDF2C7]/80 block font-serif mt-0.5">
+            <span className="text-xs text-[#FDF2C7]/90 block font-serif mt-1">
               {isHindi ? 'सपरिवार सादर आमंत्रित हैं' : 'Invited with Family'}
             </span>
           </div>
@@ -246,7 +246,7 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
         {/* Traditional Maur (मौर) Emblem */}
         <div className="relative z-10 flex flex-col items-center justify-center my-3">
           <MaurIcon className="w-20 h-20 sm:w-24 sm:h-24 transform hover:scale-105 transition-transform drop-shadow-[0_5px_15px_rgba(229,193,88,0.4)]" color="#E5C158" />
-          <span className="text-[10px] uppercase tracking-widest text-[#E5C158] font-serif mt-1 font-semibold">
+          <span className="text-xs uppercase tracking-widest text-[#E5C158] font-serif mt-1.5 font-bold">
             {isHindi ? 'पावन मौर एवं तोरण द्वार' : 'Sacred Maur & Toran Gateway'}
           </span>
         </div>
@@ -256,7 +256,7 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold font-serif tracking-wider text-[#FDF2C7] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
             {isHindi ? quotes.nativeWeddingTitle : quotes.weddingTitle}
           </h1>
-          <p className="text-xs sm:text-sm uppercase font-serif tracking-[0.3em] text-[#E5C158] font-semibold">
+          <p className="text-sm sm:text-base uppercase font-serif tracking-[0.3em] text-[#E5C158] font-semibold">
             {isHindi ? 'बिहारी एवं मारवाड़ी पावन विवाह संस्कार' : 'Shubh Vivah — North Indian Royal Wedding Celebration'}
           </p>
         </div>
@@ -268,16 +268,16 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
           
           {/* Groom Header Card */}
           <div className="text-center sm:text-right p-4 rounded-2xl bg-[#042017]/70 border border-[#E5C158]/30 sm:border-0 sm:bg-transparent sm:p-0">
-            <span className="text-xs uppercase tracking-wider text-[#E5C158] block font-serif font-semibold">
+            <span className="text-xs sm:text-sm uppercase tracking-wider text-[#E5C158] block font-serif font-bold">
               {isHindi ? groom.nativeRole : groom.role}
             </span>
             <h2 className="text-2xl sm:text-4xl font-bold font-serif text-[#FDF2C7] mt-0.5">
               {isHindi ? groom.nativeName : groom.name}
             </h2>
-            <p className="text-xs font-serif text-stone-200 mt-1 max-w-xs sm:ml-auto">
+            <p className="text-sm font-serif text-stone-200 mt-1 max-w-xs sm:ml-auto font-medium">
               {isHindi ? groom.nativeParents : groom.parents}
             </p>
-            <p className="text-[11px] font-serif text-[#E5C158] opacity-90">
+            <p className="text-xs sm:text-sm font-serif text-[#E5C158] opacity-95">
               {isHindi ? groom.nativeGrandparents : groom.grandparents}
             </p>
           </div>
@@ -289,16 +289,16 @@ export const BihariMarwariWeddingView: React.FC<BihariMarwariWeddingViewProps> =
 
           {/* Bride Header Card */}
           <div className="text-center sm:text-left p-4 rounded-2xl bg-[#042017]/70 border border-[#E5C158]/30 sm:border-0 sm:bg-transparent sm:p-0">
-            <span className="text-xs uppercase tracking-wider text-[#E5C158] block font-serif font-semibold">
+            <span className="text-xs sm:text-sm uppercase tracking-wider text-[#E5C158] block font-serif font-bold">
               {isHindi ? bride.nativeRole : bride.role}
             </span>
             <h2 className="text-2xl sm:text-4xl font-bold font-serif text-[#FDF2C7] mt-0.5">
               {isHindi ? bride.nativeName : bride.name}
             </h2>
-            <p className="text-xs font-serif text-stone-200 mt-1 max-w-xs sm:mr-auto">
+            <p className="text-sm font-serif text-stone-200 mt-1 max-w-xs sm:mr-auto font-medium">
               {isHindi ? bride.nativeParents : bride.parents}
             </p>
-            <p className="text-[11px] font-serif text-[#E5C158] opacity-90">
+            <p className="text-xs sm:text-sm font-serif text-[#E5C158] opacity-95">
               {isHindi ? bride.nativeGrandparents : bride.grandparents}
             </p>
           </div>

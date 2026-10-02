@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CulturalTemplate, Language, GuestWish } from '../../types/wedding';
 import { CountdownTimer } from '../CountdownTimer';
 import { DigitalShagunSection } from '../DigitalShagunSection';
+import { FloatingBalloons } from '../birthday/FloatingBalloons';
 import {
   Sparkles,
   Heart,
@@ -192,6 +193,8 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
 
   return (
     <div className="relative max-w-4xl mx-auto px-3 sm:px-6 py-8 space-y-12 sm:space-y-14 font-sans text-[#2E1065]">
+      {/* Interactive Floating Balloons & Pop Physics */}
+      <FloatingBalloons />
 
       {/* 1. Fairytale Wonderland Hero Gala Banner */}
       <section className="relative bg-gradient-to-b from-[#FAF5FF] via-[#FDF2F8] to-[#F0F9FF] rounded-3xl p-6 sm:p-12 border-4 border-[#C084FC] shadow-2xl overflow-hidden text-center">
@@ -221,14 +224,14 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
 
           {/* Guest VIP Badge */}
           {guestName && (
-            <div className="my-4 mx-auto max-w-md text-center bg-white border-2 border-[#BE185D] py-3 px-6 rounded-2xl shadow-md">
-              <span className="text-xs uppercase font-extrabold text-[#BE185D] tracking-wider block">
+            <div className="my-4 mx-auto max-w-md text-center bg-white border-2 border-[#BE185D] py-3.5 px-6 rounded-2xl shadow-md">
+              <span className="text-xs sm:text-sm uppercase font-extrabold text-[#BE185D] tracking-wider block">
                 {isBengali ? 'সাদর নিমন্ত্রণ' : 'You are Cordially Invited'}
               </span>
               <span className="text-2xl sm:text-3xl font-black text-[#4C1D95]">
                 {guestName}
               </span>
-              <span className="text-xs text-stone-600 block mt-0.5 font-medium">
+              <span className="text-sm text-stone-600 block mt-1 font-medium">
                 {isBengali ? 'সপরিবারে আমাদের রাজকন্যার প্রথম জন্মদিনে শুভাগমন কামনা করি' : 'Join us with your family to celebrate this fairytale milestone'}
               </span>
             </div>
@@ -239,7 +242,7 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
             <h1 className="text-4xl sm:text-6xl font-black tracking-wide text-[#4C1D95] drop-shadow-sm">
               {isBengali ? quotes.nativeWeddingTitle : quotes.weddingTitle}
             </h1>
-            <p className="text-xs sm:text-sm uppercase tracking-[0.25em] text-[#9D174D] font-extrabold mt-1">
+            <p className="text-sm sm:text-base uppercase tracking-[0.25em] text-[#9D174D] font-extrabold mt-1">
               {template.cultureLabel}
             </p>
           </div>
@@ -247,15 +250,15 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
           {/* Rhyme Banner - Large, High Contrast & Effortless to Read */}
           <div className="my-6 max-w-xl mx-auto py-5 px-6 sm:px-8 bg-white/95 rounded-2xl border-2 border-[#A855F7] shadow-lg relative text-center">
             <div className="absolute -top-3 left-6 text-xl">🎈</div>
-            <p className="font-serif text-base sm:text-lg text-[#2E1065] whitespace-pre-line leading-relaxed font-bold">
+            <p className="font-serif text-base sm:text-xl text-[#2E1065] whitespace-pre-line leading-relaxed font-bold">
               {isBengali ? quotes.verse : (quotes.verseTranslation || quotes.verse)}
             </p>
             {isBengali && quotes.verseTranslation && (
-              <p className="text-xs text-[#5B21B6] mt-3 pt-2 border-t border-purple-200 italic font-sans leading-relaxed">
+              <p className="text-sm text-[#5B21B6] mt-3 pt-2 border-t border-purple-200 italic font-sans leading-relaxed">
                 "{quotes.verseTranslation}"
               </p>
             )}
-            <span className="text-xs font-serif font-bold text-[#9D174D] block mt-2">
+            <span className="text-sm font-serif font-bold text-[#9D174D] block mt-2">
               {quotes.verseAuthor}
             </span>
           </div>
@@ -432,7 +435,7 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
           <h2 className="text-2xl sm:text-3xl font-bold text-[#7C3AED] mt-2">
             {isBengali ? 'ছোট্ট অনন্যার রূপকথার প্রথম বছর' : 'One Year of Sweet Magic'}
           </h2>
-          <p className="text-xs text-stone-500 mt-1">
+          <p className="text-sm text-stone-600 mt-1">
             {isBengali ? 'প্রথম কান্না থেকে আজ এক বছরে রাজকন্যার মধুর পদচারণা' : 'From tiny newborn sighs to royal first steps'}
           </p>
         </div>
@@ -447,7 +450,7 @@ export const BirthdayView: React.FC<BirthdayViewProps> = ({
                 0{idx + 1}
               </div>
               <p className="font-bold text-xs sm:text-sm text-[#7C3AED]">{m.month}</p>
-              <p className="text-[11px] text-stone-600 leading-tight">{m.note}</p>
+              <p className="text-xs sm:text-sm text-stone-700 leading-tight font-medium">{m.note}</p>
             </div>
           ))}
         </div>

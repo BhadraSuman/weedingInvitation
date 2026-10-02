@@ -51,6 +51,19 @@ const samplePresets: Record<TemplateId, DemoFormData> = {
     whatsappNumber: '916203868358',
     customPhotoUrl: '/images/couples/north-couple.jpg'
   },
+  chibi_3d: {
+    theme: 'chibi_3d',
+    groomName: 'Kunal',
+    brideName: 'Shreya',
+    childName: '',
+    eventDate: '2026-12-18',
+    eventTime: '07:30 PM',
+    venueName: 'The Oberoi Sukhvilas Spa Resort',
+    city: 'Chandigarh',
+    upiId: 'kunalshreya@okaxis',
+    whatsappNumber: '916203868358',
+    customPhotoUrl: '/images/couples/chibi_couple.jpg'
+  },
   annaprashan: {
     theme: 'annaprashan',
     groomName: '',
@@ -268,6 +281,27 @@ export const TryoutPage: React.FC = () => {
                   <h4 className="font-serif font-bold text-sm text-[#2C1810]">Shubh Vivah — North Indian Traditions</h4>
                   <p className="text-[11px] font-serif text-stone-500 mt-0.5">
                     Emerald Darbar, Pure Sanskrit &amp; Hindi shlokas
+                  </p>
+                </div>
+              </button>
+
+              {/* 3D Pixar & Caricature Vivah */}
+              <button
+                type="button"
+                onClick={() => handleThemeChange('chibi_3d')}
+                className={`p-4 rounded-2xl border text-left transition-all flex items-start gap-3 ${
+                  formData.theme === 'chibi_3d'
+                    ? 'border-[#E11D48] bg-[#FFF1F2] shadow-md ring-2 ring-[#E11D48]/20'
+                    : 'border-stone-200 hover:border-rose-300 bg-white'
+                }`}
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#E11D48]/10 text-[#E11D48] flex items-center justify-center font-serif font-bold text-lg shrink-0">
+                  ✨
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-[#2C1810]">3D Animated Vivah</h4>
+                  <p className="text-[11px] font-serif text-stone-500 mt-0.5">
+                    Pixar 3D characters, love story &amp; bouncy carnival
                   </p>
                 </div>
               </button>

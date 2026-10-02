@@ -1,32 +1,73 @@
-// Ambient Bengali Shehnai / Santoor / Flute synthesized acoustic generator
-// plus external MP3 fallback
+// Ambient Cultural Audio Engine
+// Supports dynamic MP3 track per template with Web Audio acoustic synthesizer fallback
+
+export interface AudioTrackInfo {
+  title: string;
+  artist: string;
+  url: string;
+  theme?: string;
+}
 
 class WeddingAudioManager {
   private audioCtx: AudioContext | null = null;
   private isSynthesizing = false;
   private intervalId: number | null = null;
-  private isMuted = false;
   private audioEl: HTMLAudioElement | null = null;
-  private listeners: ((playing: boolean) => void)[] = [];
+  private listeners: ((playing: boolean, title: string) => void)[] = [];
+  
+  private currentTrack: AudioTrackInfo = {
+    title: 'Auspicious Shehnai Melody',
+    artist: 'Traditional Raag Bhairavi',
+    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3',
+    theme: 'bengali'
+  };
 
   constructor() {
-    // Royalty-free Indian classical flute / shehnai melody URL
-    this.audioEl = new Audio('https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3');
+    if (typeof window !== 'undefined') {
+      this.initAudioEl(this.currentTrack.url);
+      window.addEventListener('pagehide', () => this.stop());
+      window.addEventListener('beforeunload', () => this.stop());
+    }
+  }
+
+  private initAudioEl(url: string) {
+    if (this.audioEl) {
+      this.audioEl.pause();
+      this.audioEl.src = '';
+    }
+    this.audioEl = new Audio(url);
     this.audioEl.loop = true;
     this.audioEl.preload = 'auto';
 
     this.audioEl.addEventListener('play', () => this.notify(true));
     this.audioEl.addEventListener('pause', () => this.notify(false));
     this.audioEl.addEventListener('ended', () => this.notify(false));
-
-    // Handle user closing tab, leaving site, or reloading
-    if (typeof window !== 'undefined') {
-      window.addEventListener('pagehide', () => this.stop());
-      window.addEventListener('beforeunload', () => this.stop());
-    }
   }
 
-  public subscribe(cb: (playing: boolean) => void) {
+  public setTrack(track: AudioTrackInfo, templateId?: string) {
+    const theme = templateId || track.theme || 'bengali';
+    const hasChanged = this.currentTrack.url !== track.url || this.currentTrack.theme !== theme;
+
+    this.currentTrack = {
+      ...track,
+      theme
+    };
+
+    if (hasChanged && typeof window !== 'undefined') {
+      const wasPlaying = this.isPlaying();
+      this.initAudioEl(track.url);
+      if (wasPlaying) {
+        this.play().catch(() => {});
+      }
+    }
+    this.notify(this.isPlaying());
+  }
+
+  public getTrack(): AudioTrackInfo {
+    return this.currentTrack;
+  }
+
+  public subscribe(cb: (playing: boolean, title: string) => void) {
     this.listeners.push(cb);
     return () => {
       this.listeners = this.listeners.filter(l => l !== cb);
@@ -34,10 +75,9 @@ class WeddingAudioManager {
   }
 
   private notify(playing: boolean) {
-    this.listeners.forEach(cb => cb(playing));
+    this.listeners.forEach(cb => cb(playing, this.currentTrack.title));
   }
 
-  // Play audio when user opens the envelope
   public async play(): Promise<boolean> {
     try {
       if (this.audioEl) {
@@ -46,8 +86,8 @@ class WeddingAudioManager {
         return true;
       }
     } catch {
-      console.warn("External MP3 blocked or failed, falling back to Web Audio soothing synthesizer.");
-      this.startAmbientDrone();
+      // If external MP3 is blocked by browser policies or network, start tailored Web Audio synthesizer
+      this.startAmbientThemeDrone(this.currentTrack.theme || 'bengali');
       return true;
     }
     return false;
@@ -85,8 +125,8 @@ class WeddingAudioManager {
     return this.isSynthesizing;
   }
 
-  // Fallback Web Audio API synthesizer for serene Raag Bhairav / Yaman drone
-  private startAmbientDrone() {
+  // Tailored Web Audio Synthesizer per cultural theme
+  private startAmbientThemeDrone(theme: string) {
     if (this.isSynthesizing) return;
     try {
       const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
@@ -94,32 +134,82 @@ class WeddingAudioManager {
       this.isSynthesizing = true;
       this.notify(true);
 
-      // Play soft Tanpura / Flute pentatonic notes in Raag Yaman: C, E, G, B, D
-      const frequencies = [261.63, 329.63, 392.00, 493.88, 523.25, 587.33];
-      let noteIndex = 0;
+      if (theme === 'birthday') {
+        // Playful Music Box Chimes (C major arpeggios: C5, E5, G5, A5, C6)
+        const notes = [523.25, 659.25, 783.99, 880.00, 1046.50, 880.00, 783.99, 659.25];
+        let idx = 0;
+        const playChime = () => {
+          if (!this.audioCtx || !this.isSynthesizing) return;
+          const osc = this.audioCtx.createOscillator();
+          const gain = this.audioCtx.createGain();
 
-      const playNote = () => {
-        if (!this.audioCtx || !this.isSynthesizing) return;
-        const osc = this.audioCtx.createOscillator();
-        const gain = this.audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(notes[idx % notes.length], this.audioCtx.currentTime);
+          idx++;
 
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(frequencies[noteIndex % frequencies.length], this.audioCtx.currentTime);
-        noteIndex++;
+          gain.gain.setValueAtTime(0, this.audioCtx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.09, this.audioCtx.currentTime + 0.05);
+          gain.gain.exponentialRampToValueAtTime(0.0001, this.audioCtx.currentTime + 1.4);
 
-        gain.gain.setValueAtTime(0, this.audioCtx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.08, this.audioCtx.currentTime + 1.2);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 4.5);
+          osc.connect(gain);
+          gain.connect(this.audioCtx.destination);
 
-        osc.connect(gain);
-        gain.connect(this.audioCtx.destination);
+          osc.start();
+          osc.stop(this.audioCtx.currentTime + 1.4);
+        };
+        playChime();
+        this.intervalId = window.setInterval(playChime, 650);
+      } else if (theme === 'annaprashan') {
+        // Sweet Bansuri Flute Lullaby (Raag Desh / Pahadi: D4, F#4, A4, B4, D5)
+        const notes = [293.66, 369.99, 440.00, 493.88, 587.33, 493.88];
+        let idx = 0;
+        const playFlute = () => {
+          if (!this.audioCtx || !this.isSynthesizing) return;
+          const osc = this.audioCtx.createOscillator();
+          const gain = this.audioCtx.createGain();
 
-        osc.start();
-        osc.stop(this.audioCtx.currentTime + 4.5);
-      };
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(notes[idx % notes.length], this.audioCtx.currentTime);
+          idx++;
 
-      playNote();
-      this.intervalId = window.setInterval(playNote, 2800);
+          gain.gain.setValueAtTime(0, this.audioCtx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.07, this.audioCtx.currentTime + 0.6);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 3.2);
+
+          osc.connect(gain);
+          gain.connect(this.audioCtx.destination);
+
+          osc.start();
+          osc.stop(this.audioCtx.currentTime + 3.2);
+        };
+        playFlute();
+        this.intervalId = window.setInterval(playFlute, 1800);
+      } else {
+        // Traditional Raag Bhairavi Shehnai & Tanpura Drone (C, E, G, B, D)
+        const frequencies = [261.63, 329.63, 392.00, 493.88, 523.25, 587.33];
+        let noteIndex = 0;
+        const playDrone = () => {
+          if (!this.audioCtx || !this.isSynthesizing) return;
+          const osc = this.audioCtx.createOscillator();
+          const gain = this.audioCtx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(frequencies[noteIndex % frequencies.length], this.audioCtx.currentTime);
+          noteIndex++;
+
+          gain.gain.setValueAtTime(0, this.audioCtx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.08, this.audioCtx.currentTime + 1.2);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 4.5);
+
+          osc.connect(gain);
+          gain.connect(this.audioCtx.destination);
+
+          osc.start();
+          osc.stop(this.audioCtx.currentTime + 4.5);
+        };
+        playDrone();
+        this.intervalId = window.setInterval(playDrone, 2600);
+      }
     } catch (e) {
       console.error("Web Audio synth not supported", e);
     }

@@ -16,6 +16,7 @@ import { BengaliWeddingView } from '../components/views/BengaliWeddingView';
 import { BihariMarwariWeddingView } from '../components/views/BihariMarwariWeddingView';
 import { AnnaprashanView } from '../components/views/AnnaprashanView';
 import { BirthdayView } from '../components/views/BirthdayView';
+import { Chibi3dWeddingView } from '../components/views/Chibi3dWeddingView';
 import { RoyalNorthWeddingView } from '../components/views/RoyalNorthWeddingView';
 import { SouthIndianWeddingView } from '../components/views/SouthIndianWeddingView';
 import { ModernMinimalWeddingView } from '../components/views/ModernMinimalWeddingView';
@@ -66,6 +67,16 @@ export const DemoPreviewPage: React.FC = () => {
   const isExpired = isPreviewExpired(formData.createdAt);
   const remainingHours = getPreviewRemainingHours(formData.createdAt);
   const whatsappOrderUrl = getWhatsAppOrderFromDemoUrl(formData);
+
+  // Configure template-specific audio track
+  useEffect(() => {
+    if (template?.audioTrack) {
+      audioManager.setTrack(template.audioTrack, cultureType);
+    }
+    return () => {
+      audioManager.stop();
+    };
+  }, [template, cultureType]);
 
   // Update document title
   useEffect(() => {
@@ -271,6 +282,12 @@ export const DemoPreviewPage: React.FC = () => {
         )}
         {cultureType === 'birthday' && (
           <BirthdayView
+            template={template}
+            lang={lang}
+          />
+        )}
+        {cultureType === 'chibi_3d' && (
+          <Chibi3dWeddingView
             template={template}
             lang={lang}
           />

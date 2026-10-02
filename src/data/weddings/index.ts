@@ -3,6 +3,7 @@ import { bengaliTemplate } from '../templates/bengaliTemplate';
 import { bihariMarwariTemplate } from '../templates/bihariMarwariTemplate';
 import { annaprashanTemplate } from '../templates/annaprashanTemplate';
 import { birthdayTemplate } from '../templates/birthdayTemplate';
+import { chibi3dTemplate } from '../templates/chibi3dTemplate';
 
 export interface EventSlugEntry {
   slug: string;
@@ -42,6 +43,17 @@ export const weddingsRegistry: Record<string, EventSlugEntry> = {
     template: bihariMarwariTemplate,
     previewImage: '/images/couples/north-couple.jpg'
   },
+  'kunal-weds-shreya': {
+    slug: 'kunal-weds-shreya',
+    title: 'Kunal & Shreya — 3D Animated Royal Vivah Celebration',
+    coupleNames: 'Kunal & Shreya',
+    category: 'wedding',
+    cultureType: 'chibi_3d',
+    cultureName: '3D कार्टून एवं एनिमेटेड विवाह (3D Pixar Style)',
+    badgeEmoji: '✨',
+    template: chibi3dTemplate,
+    previewImage: '/images/couples/chibi_couple.jpg'
+  },
   'aarav-annaprashan': {
     slug: 'aarav-annaprashan',
     title: 'Baby Aarav — Bengali Mukhe Bhaat & Annaprashan Invitation',
@@ -80,6 +92,9 @@ export const getWeddingBySlug = (slug: string): EventSlugEntry | null => {
   }
   if (cleanSlug === 'bihari' || cleanSlug === 'marwari' || cleanSlug === 'North Indian-demo' || cleanSlug === 'sandeep') {
     return weddingsRegistry['sandeep-weds-priya'];
+  }
+  if (cleanSlug === 'chibi' || cleanSlug === '3d' || cleanSlug === 'chibi-3d' || cleanSlug === 'kunal' || cleanSlug === 'animated') {
+    return weddingsRegistry['kunal-weds-shreya'];
   }
   if (cleanSlug === 'annaprashan' || cleanSlug === 'mukhebhaat' || cleanSlug === 'mukhe-bhaat' || cleanSlug === 'aarav') {
     return weddingsRegistry['aarav-annaprashan'];

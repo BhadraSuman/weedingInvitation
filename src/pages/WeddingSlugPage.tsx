@@ -8,6 +8,7 @@ import { BengaliWeddingView } from '../components/views/BengaliWeddingView';
 import { BihariMarwariWeddingView } from '../components/views/BihariMarwariWeddingView';
 import { AnnaprashanView } from '../components/views/AnnaprashanView';
 import { BirthdayView } from '../components/views/BirthdayView';
+import { Chibi3dWeddingView } from '../components/views/Chibi3dWeddingView';
 import { Language } from '../types/wedding';
 import { audioManager } from '../utils/audioManager';
 import { Sparkles, Home } from 'lucide-react';
@@ -21,6 +22,13 @@ export const WeddingSlugPage: React.FC = () => {
   const guestName = searchParams.get('to') || searchParams.get('guest') || undefined;
 
   const weddingEntry = getWeddingBySlug(slug || '');
+
+  // Configure template-specific audio track
+  useEffect(() => {
+    if (weddingEntry?.template?.audioTrack) {
+      audioManager.setTrack(weddingEntry.template.audioTrack, weddingEntry.cultureType);
+    }
+  }, [weddingEntry]);
 
   // Automatically stop background music when user navigates away or unmounts the page
   useEffect(() => {
@@ -159,6 +167,13 @@ export const WeddingSlugPage: React.FC = () => {
         )}
         {cultureType === 'birthday' && (
           <BirthdayView
+            template={template}
+            lang={lang}
+            guestName={guestName}
+          />
+        )}
+        {cultureType === 'chibi_3d' && (
+          <Chibi3dWeddingView
             template={template}
             lang={lang}
             guestName={guestName}

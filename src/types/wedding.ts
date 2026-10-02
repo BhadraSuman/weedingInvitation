@@ -1,6 +1,6 @@
 export type Language = 'native' | 'en';
 
-export type TemplateId = 'bengali' | 'royal_north' | 'south_indian' | 'modern_minimal' | 'bihari_marwari' | 'annaprashan' | 'birthday';
+export type TemplateId = 'bengali' | 'royal_north' | 'south_indian' | 'modern_minimal' | 'bihari_marwari' | 'annaprashan' | 'birthday' | 'chibi_3d';
 
 export type EventCategory = 'wedding' | 'annaprashan' | 'birthday' | 'griha_pravesh';
 

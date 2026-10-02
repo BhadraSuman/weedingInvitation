@@ -261,14 +261,14 @@ export const AnnaprashanView: React.FC<AnnaprashanViewProps> = ({
 
           {/* Guest VIP Badge */}
           {guestName && (
-            <div className="my-5 mx-auto max-w-md text-center bg-amber-50 border-2 border-amber-300 py-3 px-6 rounded-2xl shadow-md">
-              <p className="font-bengali text-xs text-[#92400E] font-bold uppercase tracking-wider">
+            <div className="my-5 mx-auto max-w-md text-center bg-amber-50 border-2 border-amber-300 py-3.5 px-6 rounded-2xl shadow-md">
+              <p className="font-bengali text-xs sm:text-sm text-[#92400E] font-bold uppercase tracking-wider">
                 {isBengali ? 'সাদর নিমন্ত্রণ' : 'Cordially Invited'}
               </p>
-              <p className="font-bengali text-2xl sm:text-3xl text-[#78350F] font-black mt-0.5">
+              <p className="font-bengali text-2xl sm:text-3xl text-[#78350F] font-black mt-1">
                 {guestName}
               </p>
-              <p className="font-bengali text-xs sm:text-sm text-[#451A03] font-medium mt-0.5">
+              <p className="font-bengali text-sm text-[#451A03] font-medium mt-1">
                 {isBengali ? 'সপরিবারে আপনার উপস্থিতি ও স্নেহাশিস একান্ত কাম্য' : 'Awaiting your loving presence and blessings with family'}
               </p>
             </div>
@@ -279,7 +279,7 @@ export const AnnaprashanView: React.FC<AnnaprashanViewProps> = ({
             <h1 className="font-bengali text-4xl sm:text-6xl text-[#78350F] font-black tracking-wide drop-shadow-sm">
               {isBengali ? quotes.nativeWeddingTitle : quotes.weddingTitle}
             </h1>
-            <p className="font-sans text-xs sm:text-sm tracking-[0.2em] text-[#92400E] uppercase font-extrabold mt-1">
+            <p className="font-sans text-sm sm:text-base tracking-[0.2em] text-[#92400E] uppercase font-extrabold mt-1">
               {isBengali ? 'বাঙালি মুখে ভাত ও অন্নপ্রাশন মহোৎসব' : 'Bengali First Rice & Mukhe Bhaat Ceremony'}
             </p>
           </div>
@@ -287,15 +287,15 @@ export const AnnaprashanView: React.FC<AnnaprashanViewProps> = ({
           {/* Sweet Couplet Banner - Large, High Contrast & Effortless to Read */}
           <div className="my-6 max-w-xl mx-auto py-5 px-6 sm:px-8 bg-amber-50/95 rounded-2xl border-2 border-amber-300 shadow-md relative text-center">
             <div className="absolute -top-3 left-6 text-xl">📌</div>
-            <p className="font-bengali text-base sm:text-lg text-[#3B150A] whitespace-pre-line leading-relaxed font-bold">
+            <p className="font-bengali text-base sm:text-xl text-[#3B150A] whitespace-pre-line leading-relaxed font-bold">
               {isBengali ? quotes.verse : (quotes.verseTranslation || quotes.verse)}
             </p>
             {isBengali && quotes.verseTranslation && (
-              <p className="text-xs text-[#78350F] mt-3 pt-2 border-t border-amber-200/80 italic font-sans leading-relaxed">
+              <p className="text-sm text-[#78350F] mt-3 pt-2 border-t border-amber-200/80 italic font-sans leading-relaxed">
                 "{quotes.verseTranslation}"
               </p>
             )}
-            <span className="text-xs font-bengali font-bold text-[#92400E] block mt-2">
+            <span className="text-sm font-bengali font-bold text-[#92400E] block mt-2">
               {quotes.verseAuthor}
             </span>
           </div>

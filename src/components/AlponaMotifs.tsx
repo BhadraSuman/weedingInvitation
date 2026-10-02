@@ -210,3 +210,171 @@ export const CornerAlpona: React.FC<{ className?: string; position?: 'tl' | 'tr'
     </div>
   );
 };
+
+// Heavy Traditional Bengali Alpona Ornamental Border
+export const HeavyAlponaBorder: React.FC<{ className?: string }> = ({ className = "w-full my-6" }) => (
+  <div className={`relative flex items-center justify-center py-2 ${className}`}>
+    <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+    <svg
+      viewBox="0 0 800 64"
+      className="w-full max-w-3xl h-12 text-[#D4AF37]"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern id="alponaRepeat" x="0" y="0" width="80" height="64" patternUnits="userSpaceOnUse">
+          {/* Central Lotus Petal */}
+          <path d="M40 8C34 22 26 28 20 34C30 34 35 40 40 46C45 40 50 34 60 34C54 28 46 22 40 8Z" fill="#D4AF37" fillOpacity="0.85" />
+          {/* Side Lotus Petals */}
+          <path d="M20 34C10 26 2 28 -4 34C6 36 12 38 20 34Z" fill="#D4AF37" fillOpacity="0.7" />
+          <path d="M60 34C70 26 78 28 84 34C74 36 68 38 60 34Z" fill="#D4AF37" fillOpacity="0.7" />
+          {/* Auspicious Sindoor & Chandan bindu */}
+          <circle cx="40" cy="28" r="3" fill="#8B181B" />
+          <circle cx="40" cy="38" r="2" fill="#FFFFFF" />
+          <circle cx="10" cy="34" r="2" fill="#8B181B" />
+          <circle cx="70" cy="34" r="2" fill="#8B181B" />
+          {/* Bottom wave tendril */}
+          <path d="M0 48Q20 56 40 48T80 48" stroke="#D4AF37" strokeWidth="1.5" strokeLinecap="round" />
+        </pattern>
+      </defs>
+      <rect width="800" height="64" fill="url(#alponaRepeat)" />
+    </svg>
+  </div>
+);
+
+// Sacred Lotus Mandala Alpona (পদ্ম আলপনা)
+export const PadmaAlponaMandala: React.FC<{ className?: string; size?: number }> = ({
+  className = "w-64 h-64",
+  size = 256,
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 200 200"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    {/* Outer Ring of Pearls */}
+    <circle cx="100" cy="100" r="92" stroke="#D4AF37" strokeWidth="1.5" strokeDasharray="3 3" />
+    <circle cx="100" cy="100" r="84" stroke="#D4AF37" strokeWidth="2" strokeOpacity="0.8" />
+    
+    {/* 8 Outer Lotus Petals */}
+    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+      <g key={i} transform={`rotate(${angle} 100 100)`}>
+        <path
+          d="M100 16C92 40 82 55 70 65C88 65 94 75 100 85C106 75 112 65 130 65C118 55 108 40 100 16Z"
+          fill="#D4AF37"
+          fillOpacity="0.18"
+          stroke="#D4AF37"
+          strokeWidth="1.5"
+        />
+        <circle cx="100" cy="50" r="3" fill="#8B181B" />
+        <circle cx="100" cy="62" r="2" fill="#D4AF37" />
+      </g>
+    ))}
+
+    {/* Inner Concentric Lotus Ring */}
+    <circle cx="100" cy="100" r="46" stroke="#D4AF37" strokeWidth="1.8" />
+    <circle cx="100" cy="100" r="38" fill="#8B181B" fillOpacity="0.15" stroke="#8B181B" strokeWidth="1.2" />
+
+    {/* 8 Inner Petals */}
+    {[22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5].map((angle, i) => (
+      <g key={`inner-${i}`} transform={`rotate(${angle} 100 100)`}>
+        <path
+          d="M100 58C96 70 92 78 86 82C96 82 98 88 100 92C102 88 104 82 114 82C108 78 104 70 100 58Z"
+          fill="#D4AF37"
+          fillOpacity="0.8"
+        />
+      </g>
+    ))}
+
+    {/* Center Auspicious Bindu */}
+    <circle cx="100" cy="100" r="10" fill="#8B181B" />
+    <circle cx="100" cy="100" r="4" fill="#F3E5AB" />
+  </svg>
+);
+
+// Realistic Glossy Green Betel Leaf (পান পাতা - Pan Pata) for Shubhodrishti
+export const RealisticPaanLeaf: React.FC<{
+  className?: string;
+  isRightLeaf?: boolean;
+}> = ({ className = "w-44 h-60", isRightLeaf = false }) => {
+  return (
+    <svg
+      viewBox="0 0 160 220"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`${isRightLeaf ? 'scale-x-[-1]' : ''} ${className} drop-shadow-2xl filter`}
+    >
+      <defs>
+        <radialGradient id="leafGrad" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stopColor="#4ADE80" />
+          <stop offset="35%" stopColor="#16A34A" />
+          <stop offset="75%" stopColor="#15803D" />
+          <stop offset="100%" stopColor="#14532D" />
+        </radialGradient>
+        <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#15803D" />
+          <stop offset="100%" stopColor="#052E16" />
+        </linearGradient>
+      </defs>
+
+      {/* Heart-shaped Sacred Betel Leaf Silhouette */}
+      <path
+        d="M80 8C52 36 12 70 16 125C20 168 50 196 80 190C110 196 140 168 144 125C148 70 108 36 80 8Z"
+        fill="url(#leafGrad)"
+        stroke="#14532D"
+        strokeWidth="3.5"
+        strokeLinejoin="round"
+      />
+
+      {/* Glossy Top Sheen */}
+      <path
+        d="M80 18C60 42 28 75 30 115C32 145 52 165 72 160C62 140 50 100 80 35"
+        fill="#86EFAC"
+        fillOpacity="0.35"
+      />
+
+      {/* Central Thick Vein */}
+      <path
+        d="M80 10C80 50 79 130 80 194"
+        stroke="#86EFAC"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+
+      {/* Curving Lateral Veins */}
+      <path d="M80 50C62 48 40 58 32 75" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.85" />
+      <path d="M80 50C98 48 120 58 128 75" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.85" />
+
+      <path d="M80 85C58 84 34 100 26 120" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.85" />
+      <path d="M80 85C102 84 126 100 134 120" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.85" />
+
+      <path d="M80 120C60 122 40 138 34 156" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.85" />
+      <path d="M80 120C100 122 120 138 126 156" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.85" />
+
+      <path d="M80 155C66 158 50 170 48 180" stroke="#86EFAC" strokeWidth="1.8" strokeLinecap="round" strokeOpacity="0.8" />
+      <path d="M80 155C94 158 110 170 112 180" stroke="#86EFAC" strokeWidth="1.8" strokeLinecap="round" strokeOpacity="0.8" />
+
+      {/* Sacred Kumkum & Chandan auspicious markings (আলতা ও চন্দন ফোঁটা) */}
+      <circle cx="80" cy="100" r="7" fill="#8B181B" stroke="#FDE047" strokeWidth="2" />
+      <circle cx="80" cy="100" r="2.5" fill="#FEF08A" />
+
+      {/* Surrounding auspicious sandalwood dots */}
+      <circle cx="80" cy="82" r="2.5" fill="#FEF08A" />
+      <circle cx="80" cy="118" r="2.5" fill="#FEF08A" />
+      <circle cx="64" cy="100" r="2.5" fill="#FEF08A" />
+      <circle cx="96" cy="100" r="2.5" fill="#FEF08A" />
+
+      {/* Leaf Stem (বোঁটা) */}
+      <path
+        d="M80 190C80 200 82 212 85 218"
+        stroke="url(#stemGrad)"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};
+

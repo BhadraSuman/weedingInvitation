@@ -197,12 +197,12 @@ export const LandingPage: React.FC = () => {
             href="#demos"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-stone-300 bg-white hover:bg-stone-50 text-[#2C1810] font-serif font-semibold text-xs sm:text-sm shadow-sm transition-all whitespace-nowrap shrink-0"
           >
-            <span>Browse 4 Cultural Demos</span>
+            <span>Browse 5 Cultural Themes</span>
           </a>
         </div>
 
         {/* Hero Quick Demos Buttons */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 max-w-2xl mx-auto">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 max-w-3xl mx-auto">
           <Link
             to="/anirban-weds-deboleena"
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
@@ -213,15 +213,23 @@ export const LandingPage: React.FC = () => {
 
           <Link
             to="/sandeep-weds-priya"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
-            <span>🚩 Shubh Vivah — North Indian Traditions</span>
+            <span>🚩 Shubh Vivah — North Indian</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#E5C158]" />
           </Link>
 
           <Link
+            to="/kunal-weds-shreya"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+          >
+            <span>✨ 3D Cartoon Vivah</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#FCE7F3]" />
+          </Link>
+
+          <Link
             to="/aarav-annaprashan"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🥣 Baby Annaprashan</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#FEF3C7]" />
@@ -229,7 +237,7 @@ export const LandingPage: React.FC = () => {
 
           <Link
             to="/ananya-turns-1"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-serif font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             <span>🎂 1st Birthday Gala</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#FCE7F3]" />
@@ -259,8 +267,8 @@ export const LandingPage: React.FC = () => {
           {/* Interactive Category Filter Pills */}
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
             {[
-              { id: 'all', label: '🌟 All Celebrations (4)' },
-              { id: 'wedding', label: '💍 Weddings (2)' },
+              { id: 'all', label: '🌟 All Celebrations (5)' },
+              { id: 'wedding', label: '💍 Weddings (3)' },
               { id: 'annaprashan', label: '🥣 Annaprashan (1)' },
               { id: 'birthday', label: '🎂 Birthdays (1)' }
             ].map(tab => (

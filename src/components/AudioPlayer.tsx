@@ -4,12 +4,15 @@ import { Volume2, VolumeX, Music } from 'lucide-react';
 
 export const AudioPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [trackTitle, setTrackTitle] = useState(audioManager.getTrack().title);
 
   useEffect(() => {
-    const unsubscribe = audioManager.subscribe((playing) => {
+    const unsubscribe = audioManager.subscribe((playing, title) => {
       setIsPlaying(playing);
+      if (title) setTrackTitle(title);
     });
     setIsPlaying(audioManager.isPlaying());
+    setTrackTitle(audioManager.getTrack().title);
     return () => unsubscribe();
   }, []);
 
@@ -49,8 +52,8 @@ export const AudioPlayer: React.FC = () => {
           <VolumeX className="w-4 h-4 text-[#8B181B]/70" />
         )}
 
-        <span className="text-xs font-serif font-medium hidden sm:inline-block">
-          {isPlaying ? "Shehnai Playing" : "Play Music"}
+        <span className="text-xs font-serif font-medium hidden sm:inline-block max-w-[130px] truncate">
+          {isPlaying ? trackTitle : "Play Music"}
         </span>
       </button>
     </aside>
