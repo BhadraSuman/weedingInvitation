@@ -108,19 +108,11 @@ export const LandingPage: React.FC = () => {
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center gap-5 text-sm font-sans font-medium text-[#5C0C0F]">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-sans font-medium text-[#5C0C0F]">
           <a href="#demos" className="hover:text-[#8B181B] transition-colors">Demos</a>
-          <a href="#personalization-engine" className="hover:text-[#8B181B] transition-colors">Personalized Links</a>
-          <Link to="/host-dashboard" className="text-[#8B181B] font-bold hover:text-[#5E0B0E] transition-colors flex items-center gap-1">
-            <BarChart3 className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>Host Portal</span>
-          </Link>
+          <a href="#personalization-engine" className="hover:text-[#8B181B] transition-colors">Customizer</a>
           <a href="#pricing" className="hover:text-[#8B181B] transition-colors">Pricing</a>
           <a href="#testimonials" className="hover:text-[#8B181B] transition-colors">Reviews</a>
-          <a href="#partners" className="text-[#8B181B] font-bold hover:text-[#5E0B0E] transition-colors flex items-center gap-1">
-            <Handshake className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>Partners</span>
-          </a>
           <a href="#faq" className="hover:text-[#8B181B] transition-colors">FAQ</a>
         </nav>
 
@@ -164,30 +156,13 @@ export const LandingPage: React.FC = () => {
           Share authentic cultural rituals, 1-tap Google Maps directions, and automated WhatsApp RSVPs with zero paper courier hassles.
         </p>
 
-        {/* Pan-India Geographic Trust Pill */}
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 text-[11px] font-serif text-[#7A6A60] max-w-2xl mx-auto">
-          <span className="inline-flex items-center gap-1 font-bold text-[#8B181B]">
-            <MapPin className="w-3 h-3 text-[#D4AF37]" />
-            Serving Pan-India:
-          </span>
-          <span className="hover:text-[#8B181B] transition-colors">Kolkata</span>
-          <span>•</span>
-          <span className="hover:text-[#8B181B] transition-colors">Delhi NCR</span>
-          <span>•</span>
-          <span className="hover:text-[#8B181B] transition-colors">Patna</span>
-          <span>•</span>
-          <span className="hover:text-[#8B181B] transition-colors">Mumbai</span>
-          <span>•</span>
-          <span className="hover:text-[#8B181B] transition-colors">Jaipur</span>
-          <span>•</span>
-          <span className="hover:text-[#8B181B] transition-colors">Bengaluru</span>
-          <span>•</span>
-          <span className="hover:text-[#8B181B] transition-colors">Hyderabad</span>
-          <span>•</span>
-          <span className="font-semibold text-stone-700">NRI Diaspora Worldwide</span>
+        {/* Pan-India Geographic Trust Badge — compact single line */}
+        <div className="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-[#D4AF37]/50 shadow-sm text-[11px] font-serif text-[#6E5D53]">
+          <MapPin className="w-3 h-3 text-[#D4AF37]" />
+          <span><strong className="text-[#8B181B]">Pan-India</strong> · Kolkata · Delhi · Mumbai · Patna · Bengaluru · NRI Worldwide</span>
         </div>
 
-        {/* Hero Tryout Instant Action */}
+        {/* Hero Tryout Action Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto">
           <Link
             to="/tryout"
@@ -206,108 +181,34 @@ export const LandingPage: React.FC = () => {
           </a>
         </div>
 
-        {/* Hero Quick Demos Buttons */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto">
-          <Link
-            to="/mithila-vivah"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#962200] hover:bg-[#b93815] text-[#ffdcc3] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
+        {/* Scrolling Marquee — theme names, no visual noise */}
+        <div className="mt-8 w-full max-w-2xl mx-auto overflow-hidden rounded-full bg-[#2C1810]/5 border border-[#D4AF37]/20 py-2">
+          <div
+            className="flex gap-8 whitespace-nowrap text-xs font-serif text-[#6E5D53] font-semibold"
+            style={{
+              animation: 'marquee 28s linear infinite',
+              display: 'inline-flex',
+            }}
           >
-            <span>🦚 Mithila Vivah</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/pot-katha"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#a51611] hover:bg-[#c83227] text-[#ffdeab] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>📜 Pot Katha Scroll</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/shola"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#775a19] hover:bg-[#9b7724] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>🤍 Shola Luxury</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/rangla-punjab"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#ff4a8d] hover:bg-[#ff7f1c] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>🥁 Rangla Punjab</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/the-wedding-gazette"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#1C1C16] hover:bg-black text-[#FDF9EF] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>📰 The Wedding Gazette</span>
-            <ArrowRight className="w-3 h-3 text-[#B51C12]" />
-          </Link>
-
-          <Link
-            to="/the-grand-premiere"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#E50914] hover:bg-[#B81D24] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>🎬 Bollywood Premiere</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/vivah-express"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#002046] hover:bg-[#00132B] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>🚂 Vivah Express</span>
-            <ArrowRight className="w-3 h-3 text-[#FEA619]" />
-          </Link>
-
-          <Link
-            to="/anirban-weds-deboleena"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>🪔 Bengali Wedding</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/sandeep-weds-priya"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#0D4A36] hover:bg-[#042017] text-[#E5C158] font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>🚩 North Indian Shubh Vivah</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/kunal-weds-shreya"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>✨ 3D Cartoon Vivah</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/aarav-annaprashan"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>🥣 Baby Annaprashan</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <Link
-            to="/ananya-turns-1"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-serif font-bold text-xs shadow transition-all hover:scale-105 whitespace-nowrap shrink-0"
-          >
-            <span>🎂 1st Birthday Gala</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
+            {[
+              '🪔 Bengali Heritage', '📰 Wedding Gazette 1926', '🎬 Bollywood Premiere',
+              '🚂 Vivah Express', '🦚 Mithila Vivah', '📜 Pot Katha Scroll',
+              '🤍 Shola Luxury', '🥁 Rangla Punjab', '🚩 Shubh Vivah North',
+              '🌺 South Indian Kalyanam', '✨ 3D Cartoon Vivah', '🥣 Annaprashan · 🎂 Birthday',
+              // duplicate for seamless loop
+              '🪔 Bengali Heritage', '📰 Wedding Gazette 1926', '🎬 Bollywood Premiere',
+              '🚂 Vivah Express', '🦚 Mithila Vivah', '📜 Pot Katha Scroll',
+              '🤍 Shola Luxury', '🥁 Rangla Punjab', '🚩 Shubh Vivah North',
+              '🌺 South Indian Kalyanam', '✨ 3D Cartoon Vivah', '🥣 Annaprashan · 🎂 Birthday',
+            ].map((label, i) => (
+              <span key={i} className="shrink-0 flex items-center gap-2">
+                <span>{label}</span>
+                <span className="text-[#D4AF37]">•</span>
+              </span>
+            ))}
+          </div>
         </div>
-
-        <p className="text-xs text-[#997819] mt-4 font-serif">
-          ⚡ Sub-second load time on mobile 4G networks • Designed natively for WhatsApp sharing
-        </p>
+        <style>{`@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }`}</style>
       </section>
 
       {/* 3. Live Client Slugs Showcase (The Portfolio with Category Filter) */}
@@ -323,6 +224,15 @@ export const LandingPage: React.FC = () => {
             <p className="text-sm sm:text-base text-[#7A6A60] font-serif max-w-md mx-auto mt-2">
               Every client gets a clean, dedicated URL like <code className="bg-white px-2 py-0.5 rounded text-[#8B181B] font-mono">utsavpatra.com/your-event</code> to send directly on WhatsApp.
             </p>
+            {/* Inline Tryout CTA — replaces the separate section */}
+            <Link
+              to="/tryout"
+              className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-semibold text-xs shadow-md transition-all hover:scale-105"
+            >
+              <Wand2 className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Want to see YOUR names on one? → Try it free in 60 secs</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37]" />
+            </Link>
           </div>
 
           {/* Interactive Category Filter Pills */}
@@ -412,38 +322,11 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3B. Tryout Feature Spotlight Callout */}
-      <section className="py-8 px-4 sm:px-6 max-w-5xl mx-auto -mt-4 mb-8">
-        <div className="bg-gradient-to-r from-[#FFF8F0] via-[#FDF5E6] to-[#FFF8F0] rounded-3xl p-6 sm:p-10 border-2 border-[#D4AF37] shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8B181B] text-[#F3E5AB] text-[10px] font-serif font-bold uppercase tracking-wider">
-              <Sparkles className="w-3 h-3 text-[#D4AF37]" />
-              <span>Instant Tryout Tool</span>
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#8B181B]">
-              Want to see YOUR names and photo on an E-Patra right now?
-            </h3>
-            <p className="text-xs sm:text-sm font-serif text-[#6E5D53] max-w-xl">
-              Zero waiting, zero credit card. Enter your names and venue in our 60-second form to generate an interactive invitation on your phone immediately with music, countdown timer, and opening envelope!
-            </p>
-          </div>
-
-          <Link
-            to="/tryout"
-            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#8B181B] hover:bg-[#5E0B0E] text-[#F3E5AB] font-serif font-bold text-xs sm:text-sm shadow-xl transition-all hover:scale-105 whitespace-nowrap"
-          >
-            <Wand2 className="w-4 h-4 text-[#D4AF37]" />
-            <span>Generate Free Demo</span>
-            <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
-          </Link>
-        </div>
-      </section>
-
       {/* 3C. Bespoke Guest Personalization Sandbox */}
       <PersonalizedLinkSandbox />
 
       {/* 4. Why UtsavPatra Beats Paper Cards (Feature Grid) */}
-      <section className="py-20 px-4 sm:px-6 max-w-5xl mx-auto" id="why-digital">
+      <section className="py-20 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto" id="why-digital">
         <div className="text-center mb-14">
           <span className="text-xs font-serif uppercase tracking-widest text-[#8B181B] font-bold">
             The Digital Advantage
@@ -521,11 +404,8 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4B. Host Management Portal Spotlight (The Software Differentiator) */}
-      <HostDashboardSpotlight />
-
       {/* 5. Transparent Packages & Pricing */}
-      <section className="py-20 px-4 sm:px-6 bg-[#FAF6EE] border-y border-[#D4AF37]/30" id="pricing">
+      <section className="py-20 sm:py-24 px-4 sm:px-6 bg-[#FAF6EE] border-y border-[#D4AF37]/30" id="pricing">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-xs font-serif uppercase tracking-widest text-[#8B181B] font-bold">
@@ -814,7 +694,10 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5B. Real Client Stories & Testimonials */}
+      {/* 5B. Host Management Portal Spotlight (The Software Differentiator) */}
+      <HostDashboardSpotlight />
+
+      {/* 5C. Real Client Stories & Testimonials */}
       <TestimonialsSection />
 
       {/* 5C. Agency & Wedding Planner Partnership Program */}

@@ -73,93 +73,98 @@ const TESTIMONIALS: Testimonial[] = [
 
 export const TestimonialsSection: React.FC = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 max-w-6xl mx-auto" id="testimonials">
-      
-      {/* Section Header */}
-      <div className="text-center mb-14 space-y-3">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8B181B]/10 border border-[#D4AF37]/50 text-xs font-serif font-bold text-[#8B181B] uppercase tracking-wider">
-          <Heart className="w-3.5 h-3.5 text-red-600 fill-current" />
-          <span>Real Client Stories</span>
-        </div>
+    <section className="py-20 sm:py-24 px-4 sm:px-6 bg-[#24120C] text-[#F3E5AB] relative overflow-hidden" id="testimonials">
+      {/* Ambient background glows */}
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#8B181B]/20 rounded-full blur-3xl pointer-events-none" />
 
-        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1810]">
-          Loved by 1,200+ Families &amp; Wedding Planners
-        </h2>
-
-        <p className="text-xs sm:text-sm font-serif text-[#6E5D53] max-w-2xl mx-auto">
-          From Kolkata to London, Patna to California — see why modern Indian couples and families choose UtsavPatra for their most sacred celebrations.
-        </p>
-      </div>
-
-      {/* Testimonials Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {TESTIMONIALS.map((t) => (
-          <div
-            key={t.id}
-            className="rounded-3xl p-6 sm:p-7 bg-white border border-[#D4AF37]/40 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group hover:-translate-y-1"
-          >
-            {/* Top Stars & Badge */}
-            <div>
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <div className="flex items-center gap-0.5 text-amber-500">
-                  {Array.from({ length: t.stars }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-                <span className="text-[10px] font-serif font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200">
-                  {t.culturalBadge}
-                </span>
-              </div>
-
-              {/* Bold Highlight Quote */}
-              <h3 className="font-serif font-bold text-sm sm:text-base text-[#8B181B] mb-2 leading-snug">
-                "{t.highlight}"
-              </h3>
-
-              {/* Review Text */}
-              <p className="text-xs font-serif text-stone-600 leading-relaxed italic mb-6">
-                "{t.review}"
-              </p>
-            </div>
-
-            {/* Author Profile */}
-            <div className="pt-4 border-t border-stone-100 flex items-center gap-3">
-              <img
-                src={t.avatar}
-                alt={t.coupleName}
-                className="w-10 h-10 rounded-full object-cover border-2 border-[#D4AF37] shrink-0"
-              />
-              <div>
-                <div className="font-serif font-bold text-xs text-stone-900 flex items-center gap-1">
-                  <span>{t.coupleName}</span>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                </div>
-                <div className="text-[10px] font-serif text-stone-500 flex items-center gap-1">
-                  <MapPin className="w-2.5 h-2.5 text-[#D4AF37]" />
-                  <span>{t.location} • {t.eventType}</span>
-                </div>
-              </div>
-            </div>
-
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-14 space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-xs font-serif font-bold text-[#F3E5AB] uppercase tracking-wider">
+            <Heart className="w-3.5 h-3.5 text-[#E11D48] fill-current" />
+            <span>Real Client Stories</span>
           </div>
-        ))}
-      </div>
 
-      {/* Trust Banner Callout */}
-      <div className="mt-12 rounded-2xl p-6 bg-gradient-to-r from-[#FAF5E8] to-[#FFFDF9] border border-[#D4AF37]/50 text-center flex flex-col sm:flex-row items-center justify-around gap-4">
-        <div>
-          <span className="text-2xl font-serif font-black text-[#8B181B] block">4.9 / 5.0</span>
-          <span className="text-xs font-serif text-stone-600">Average Family Satisfaction</span>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#FFFDF9]">
+            Loved by 1,200+ Families &amp; Wedding Planners
+          </h2>
+
+          <p className="text-xs sm:text-sm font-serif text-[#D4AF37]/80 max-w-2xl mx-auto">
+            From Kolkata to London, Patna to California — see why modern Indian couples and families choose UtsavPatra for their most sacred celebrations.
+          </p>
         </div>
-        <div className="hidden sm:block w-px h-10 bg-[#D4AF37]/40" />
-        <div>
-          <span className="text-2xl font-serif font-black text-[#8B181B] block">100%</span>
-          <span className="text-xs font-serif text-stone-600">Zero Paper Waste &amp; Carbon Neutral</span>
+
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {TESTIMONIALS.map((t) => (
+            <div
+              key={t.id}
+              className="rounded-3xl p-6 sm:p-7 bg-[#1A0B07]/90 border border-[#D4AF37]/30 shadow-xl hover:border-[#D4AF37] transition-all duration-300 flex flex-col justify-between relative group hover:-translate-y-1 backdrop-blur-sm"
+            >
+              {/* Top Stars & Badge */}
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center gap-0.5 text-[#F59E0B]">
+                    {Array.from({ length: t.stars }).map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-serif font-bold px-2.5 py-0.5 rounded-full bg-[#D4AF37]/15 text-[#F3E5AB] border border-[#D4AF37]/30">
+                    {t.culturalBadge}
+                  </span>
+                </div>
+
+                {/* Bold Highlight Quote */}
+                <h3 className="font-serif font-bold text-sm sm:text-base text-[#FDFBF7] mb-2 leading-snug">
+                  "{t.highlight}"
+                </h3>
+
+                {/* Review Text */}
+                <p className="text-xs font-serif text-[#E2D2B8]/85 leading-relaxed italic mb-6">
+                  "{t.review}"
+                </p>
+              </div>
+
+              {/* Author Profile */}
+              <div className="pt-4 border-t border-[#D4AF37]/20 flex items-center gap-3">
+                <img
+                  src={t.avatar}
+                  alt={t.coupleName}
+                  className="w-10 h-10 rounded-full object-cover border-2 border-[#D4AF37] shrink-0"
+                />
+                <div>
+                  <div className="font-serif font-bold text-xs text-[#FFFDF9] flex items-center gap-1">
+                    <span>{t.coupleName}</span>
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  </div>
+                  <div className="text-[10px] font-serif text-[#D4AF37]/75 flex items-center gap-1">
+                    <MapPin className="w-2.5 h-2.5 text-[#D4AF37]" />
+                    <span>{t.location} • {t.eventType}</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          ))}
         </div>
-        <div className="hidden sm:block w-px h-10 bg-[#D4AF37]/40" />
-        <div>
-          <span className="text-2xl font-serif font-black text-[#8B181B] block">24 Hours</span>
-          <span className="text-xs font-serif text-stone-600">Guaranteed Delivery on WhatsApp</span>
+
+        {/* Trust Banner Callout */}
+        <div className="mt-12 rounded-2xl p-6 bg-[#160805]/95 border border-[#D4AF37]/40 text-center flex flex-col sm:flex-row items-center justify-around gap-4 shadow-inner">
+          <div>
+            <span className="text-2xl font-serif font-black text-[#F3E5AB] block">4.9 / 5.0</span>
+            <span className="text-xs font-serif text-[#E2D2B8]/75">Average Family Satisfaction</span>
+          </div>
+          <div className="hidden sm:block w-px h-10 bg-[#D4AF37]/30" />
+          <div>
+            <span className="text-2xl font-serif font-black text-[#F3E5AB] block">100%</span>
+            <span className="text-xs font-serif text-[#E2D2B8]/75">Zero Paper Waste &amp; Carbon Neutral</span>
+          </div>
+          <div className="hidden sm:block w-px h-10 bg-[#D4AF37]/30" />
+          <div>
+            <span className="text-2xl font-serif font-black text-[#F3E5AB] block">24 Hours</span>
+            <span className="text-xs font-serif text-[#E2D2B8]/75">Guaranteed Delivery on WhatsApp</span>
+          </div>
         </div>
       </div>
 
