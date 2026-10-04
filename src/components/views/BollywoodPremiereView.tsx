@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CulturalTemplate, Language } from '../../types/wedding';
 import { audioManager } from '../../utils/audioManager';
+import gsap from 'gsap';
 import { Link } from 'react-router-dom';
 import {
   Film,
@@ -64,6 +65,53 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
       setToastMsg(null);
     }, 3000);
   };
+
+  // ── GSAP: Curtain Call + Film Reel Entrance ───────────────────────────────
+  const curtainLeftRef = useRef<HTMLDivElement>(null);
+  const curtainRightRef = useRef<HTMLDivElement>(null);
+  const posterRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+
+      // 1. Both curtain panels slide open (left goes left, right goes right)
+      tl.fromTo(
+        curtainLeftRef.current,
+        { x: 0, opacity: 1 },
+        { x: '-100%', opacity: 0.6, duration: 1.1, ease: 'power3.inOut' }
+      )
+      .fromTo(
+        curtainRightRef.current,
+        { x: 0, opacity: 1 },
+        { x: '100%', opacity: 0.6, duration: 1.1, ease: 'power3.inOut' },
+        '<'
+      )
+      // 2. Poster section fades up from darkness
+      .fromTo(
+        posterRef.current,
+        { opacity: 0, scale: 0.97 },
+        { opacity: 1, scale: 1, duration: 0.6 },
+        '-=0.3'
+      )
+      // 3. Film reel icons spin in with stagger
+      .fromTo(
+        '.bollywood-reel',
+        { rotation: -180, opacity: 0, scale: 0.6 },
+        { rotation: 0, opacity: 1, scale: 1, duration: 0.55, stagger: 0.12, ease: 'back.out(1.4)' },
+        '-=0.2'
+      )
+      // 4. Movie title letter-drop stagger
+      .fromTo(
+        '.bollywood-title-letter',
+        { y: -30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, stagger: 0.04, ease: 'power2.out' },
+        '-=0.25'
+      );
+    });
+    return () => ctx.revert();
+  }, []);
+  // ─────────────────────────────────────────────────────────────────────────
 
   useEffect(() => {
     const unsub = audioManager.subscribe(playing => {
@@ -209,7 +257,26 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
         </div>
 
         {/* SECTION 1: BLOCKBUSTER POSTER HERO & WIDESCREEN CINEMATIC CANVAS */}
-        <section id="premiere" className="relative w-full flex flex-col items-center overflow-hidden bg-[#0E0E10] scroll-mt-20">
+        <section ref={posterRef as React.Ref<HTMLElement>} id="premiere" className="relative w-full flex flex-col items-center overflow-hidden bg-[#0E0E10] scroll-mt-20">
+          {/* ── GSAP CURTAIN PANELS ─ slide open on mount ── */}
+          <div
+            ref={curtainLeftRef}
+            className="absolute inset-y-0 left-0 w-1/2 z-40 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to right, #6B0F0A, #A51C10)',
+              boxShadow: '4px 0 24px rgba(0,0,0,0.6)'
+            }}
+          />
+          <div
+            ref={curtainRightRef}
+            className="absolute inset-y-0 right-0 w-1/2 z-40 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to left, #6B0F0A, #A51C10)',
+              boxShadow: '-4px 0 24px rgba(0,0,0,0.6)'
+            }}
+          />
+          {/* ─────────────────────────────────────────────── */}
+
           {/* 2.39:1 Anamorphic Top Matte Bar */}
           <div className="w-full h-7 bg-[#0E0E10] flex items-center justify-between px-4 z-20">
             <span
@@ -263,7 +330,9 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
                 className="text-4xl sm:text-5xl text-[#F2CA50] tracking-tight font-black drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] leading-tight uppercase"
                 style={{ fontFamily: "'Bodoni Moda', serif" }}
               >
-                {movieTitle}
+                {movieTitle.split('').map((ch, i) => (
+                  <span key={i} className="bollywood-title-letter inline-block">{ch === ' ' ? '\u00A0' : ch}</span>
+                ))}
               </h1>
               <div className="flex items-center justify-center gap-3 my-1.5">
                 <span className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#F2CA50]" />
@@ -333,7 +402,7 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
         <section id="synopsis-timings" className="w-full px-4 py-8 flex flex-col gap-6 scroll-mt-20">
           <div className="flex flex-col items-center text-center">
             <div className="flex items-center gap-2 mb-1">
-              <Film className="w-4 h-4 text-[#F2CA50]" />
+              <Film className="bollywood-reel w-4 h-4 text-[#F2CA50]" />
               <span
                 className="text-xs tracking-[0.25em] text-[#F2CA50] uppercase font-bold"
                 style={{ fontFamily: "'Barlow Condensed', sans-serif" }}

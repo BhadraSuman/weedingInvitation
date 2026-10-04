@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CulturalTemplate, Language } from '../../types/wedding';
 import { audioManager } from '../../utils/audioManager';
+import gsap from 'gsap';
 import { Link } from 'react-router-dom';
 import {
   Train,
@@ -53,6 +54,39 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
   const [mealOption, setMealOption] = useState<'veg' | 'nonveg'>('veg');
   const [rsvpConfirmed, setRsvpConfirmed] = useState(false);
   const [activeTab, setActiveTab] = useState<'pass' | 'route' | 'services' | 'seat'>('pass');
+
+  // ── GSAP: Staggered Ticket Stamp Entrance ────────────────────────────────
+  const ticketRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ticketRef.current) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      // Boarding pass card slams down like a stamp
+      tl.fromTo(
+        ticketRef.current,
+        { y: -40, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.5 }
+      )
+      // PNR header row stamps in
+      .fromTo(
+        '.ticket-stamp-row',
+        { scaleX: 0, opacity: 0, transformOrigin: 'left center' },
+        { scaleX: 1, opacity: 1, duration: 0.35, stagger: 0.09, ease: 'back.out(1.2)' },
+        '-=0.1'
+      )
+      // Each detail chip punches in with a small bounce
+      .fromTo(
+        '.ticket-stamp-chip',
+        { scale: 0.3, opacity: 0, rotation: -6 },
+        { scale: 1, opacity: 1, rotation: 0, duration: 0.3, stagger: 0.06, ease: 'back.out(2)' },
+        '-=0.15'
+      );
+    }, ticketRef);
+    return () => ctx.revert();
+  }, []);
+  // ─────────────────────────────────────────────────────────────────────────
 
   // Live countdown state
   const [timeLeft, setTimeLeft] = useState({
@@ -197,16 +231,16 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
       <main className="max-w-xl mx-auto px-4 py-4 flex flex-col gap-6">
         {/* HERO SECTION: PHYSICAL RAILWAY BOARDING PASS */}
         <section id="boarding-pass" className="relative w-full scroll-mt-24">
-          <div className="relative bg-[#FFFDF9] rounded-xl shadow-lg border border-[#002046]/10 overflow-hidden">
+          <div ref={ticketRef} className="relative bg-[#FFFDF9] rounded-xl shadow-lg border border-[#002046]/10 overflow-hidden">
             {/* Top Train Class Accent Bar */}
-            <div className="h-2 w-full bg-[#1B365D] flex items-center justify-between px-3">
+            <div className="ticket-stamp-row h-2 w-full bg-[#1B365D] flex items-center justify-between px-3">
               <span className="h-1 w-8 bg-[#FEA619] rounded-full" />
               <span className="h-1 w-16 bg-white/40 rounded-full" />
               <span className="h-1 w-8 bg-[#FEA619] rounded-full" />
             </div>
 
             {/* Ticket Header: Indian Railways Aesthetic */}
-            <div className="p-4 bg-[#EFF4FF] flex flex-col gap-1 border-b border-[#002046]/10">
+            <div className="ticket-stamp-row p-4 bg-[#EFF4FF] flex flex-col gap-1 border-b border-[#002046]/10">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5">
                   <Train className="w-5 h-5 text-[#002046]" />
@@ -217,22 +251,22 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
                     {trainName}
                   </span>
                 </div>
-                <span className="text-[11px] font-mono bg-[#002046] text-white px-2 py-0.5 rounded tracking-widest font-bold">
+                <span className="ticket-stamp-chip text-[11px] font-mono bg-[#002046] text-white px-2 py-0.5 rounded tracking-widest font-bold">
                   SPL #2026
                 </span>
               </div>
               <div className="flex items-center justify-between text-[#44474E] text-[11px] font-mono">
                 <span>MINISTRY OF CELEBRATIONS • IRCTC SPECIAL</span>
-                <span className="text-[#855300] font-bold">CLASS: 1A (PURE LOVE)</span>
+                <span className="ticket-stamp-chip text-[#855300] font-bold">CLASS: 1A (PURE LOVE)</span>
               </div>
             </div>
 
             {/* PNR & Security Strip */}
-            <div className="px-4 py-2 bg-[#E5EEFF] flex items-center justify-between border-b border-[#002046]/10">
+            <div className="ticket-stamp-row px-4 py-2 bg-[#E5EEFF] flex items-center justify-between border-b border-[#002046]/10">
               <div className="flex flex-col">
                 <span className="text-[10px] font-mono text-[#44474E] uppercase">PNR NUMBER</span>
                 <span
-                  className="text-sm text-[#002046] font-bold tracking-widest uppercase"
+                  className="ticket-stamp-chip text-sm text-[#002046] font-bold tracking-widest uppercase"
                   style={{ fontFamily: "'Space Mono', monospace" }}
                 >
                   {trainPnr}
@@ -249,7 +283,7 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
                   <span className="w-[1px] h-full bg-[#0B1C30]" />
                   <span className="w-1 h-full bg-[#0B1C30]" />
                 </div>
-                <div className="bg-[#002046]/10 text-[#002046] px-1.5 py-0.5 rounded text-[10px] font-mono font-bold flex items-center gap-0.5">
+                <div className="ticket-stamp-chip bg-[#002046]/10 text-[#002046] px-1.5 py-0.5 rounded text-[10px] font-mono font-bold flex items-center gap-0.5">
                   <CheckCircle2 className="w-3 h-3 text-[#005323]" /> QR VERIFIED
                 </div>
               </div>

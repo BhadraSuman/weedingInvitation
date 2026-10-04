@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CulturalTemplate, Language } from '../../types/wedding';
 import { audioManager } from '../../utils/audioManager';
+import gsap from 'gsap';
 import { Link } from 'react-router-dom';
 import {
   Sun,
@@ -70,6 +71,36 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
 
   // Active Bottom Nav Tab
   const [activeTab, setActiveTab] = useState<'front-page' | 'classifieds' | 'feasts' | 'reply'>('front-page');
+
+  // ── GSAP: Newspaper Unfold on Mount ──────────────────────────────────────
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!pageRef.current) return;
+    const ctx = gsap.context(() => {
+      // The broadsheet "unfolds" from a bottom-fold: scaleY 0→1 + perspective tilt
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      tl.fromTo(
+        pageRef.current,
+        { scaleY: 0.04, transformOrigin: 'top center', opacity: 0 },
+        { scaleY: 1, opacity: 1, duration: 0.55 }
+      )
+      .fromTo(
+        '.gazette-unfold-col',
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.07 },
+        '-=0.15'
+      )
+      .fromTo(
+        '.gazette-masthead',
+        { letterSpacing: '0.4em', opacity: 0 },
+        { letterSpacing: '0.02em', opacity: 1, duration: 0.6 },
+        '-=0.3'
+      );
+    }, pageRef);
+    return () => ctx.revert();
+  }, []);
+  // ─────────────────────────────────────────────────────────────────────────
 
   const handleLangToggle = (newLang: 'bn' | 'hi' | 'en') => {
     setCurrentLang(newLang);
@@ -286,6 +317,7 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
 
   return (
     <div
+      ref={pageRef}
       className={`relative min-h-screen ${
         isVintageSepia ? 'bg-[#F4EBD0]' : 'bg-[#FDF9EF]'
       } text-[#1C1C16] selection:bg-[#B51C12] selection:text-white pb-28 antialiased transition-colors duration-500`}
@@ -373,7 +405,7 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
           {/* Masthead Main Title */}
           <div className="flex flex-col items-center justify-center text-center py-1">
             <h1
-              className="text-2xl sm:text-3xl tracking-tight text-[#1C1C16] leading-tight uppercase font-black"
+              className="gazette-masthead text-2xl sm:text-3xl tracking-tight text-[#1C1C16] leading-tight uppercase font-black"
               style={{ fontFamily: "'Bodoni Moda', serif" }}
             >
               The Wedding Gazette
@@ -395,9 +427,9 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
       </header>
 
       {/* MAIN BROADSHEET NEWSPAPER CANVAS */}
-      <main className="max-w-2xl mx-auto px-4 pt-4">
+      <main className="gazette-unfold-col max-w-2xl mx-auto px-4 pt-4">
         {/* VINTAGE NEWSPRINT DATELINE BANNER & LANGUAGE SWITCHER */}
-        <div className="flex flex-col bg-[#ECE8DE] text-[#1C1C16] px-4 py-2.5 mb-5 rounded shadow-sm border border-[#1C1C16]/10">
+        <div className="gazette-unfold-col flex flex-col bg-[#ECE8DE] text-[#1C1C16] px-4 py-2.5 mb-5 rounded shadow-sm border border-[#1C1C16]/10">
           <div className="flex flex-wrap items-center justify-between gap-y-1 font-mono text-[11px] text-[#B51C12] font-bold tracking-widest pb-1 border-b border-[#1C1C16]/10">
             <span>VOL. I, ISSUE 1</span>
             <span>KOLKATA & DELHI EDITIONS</span>
