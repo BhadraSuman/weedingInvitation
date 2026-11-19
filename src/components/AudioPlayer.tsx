@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { audioManager } from '../utils/audioManager';
+import { audioManager, SONGS_ENABLED } from '../utils/audioManager';
 import { Volume2, VolumeX, Music } from 'lucide-react';
 
 export const AudioPlayer: React.FC = () => {
+  if (!SONGS_ENABLED) {
+    return null;
+  }
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackTitle, setTrackTitle] = useState(audioManager.getTrack().title);
 

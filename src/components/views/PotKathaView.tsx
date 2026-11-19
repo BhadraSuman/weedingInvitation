@@ -176,21 +176,6 @@ export const PotKathaView: React.FC<PotKathaViewProps> = ({
             >
               {isNative ? 'বাং / EN' : 'EN / বাং'}
             </button>
-
-            {/* Audio Toggle */}
-            <button
-              onClick={toggleAudio}
-              className={`h-9 px-3 rounded-full flex items-center gap-1.5 transition-colors border ${
-                isPlaying
-                  ? 'bg-[#a51611] text-white border-[#a51611]'
-                  : 'bg-[#f3eddf] text-[#6f4c00] border-[#e3beb9]'
-              }`}
-            >
-              {isPlaying ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-              <span className="text-[11px] font-bold hidden sm:inline">
-                {isPlaying ? (isNative ? 'গান চালু' : 'Playing') : (isNative ? 'গান' : 'Music')}
-              </span>
-            </button>
           </div>
         </div>
       </header>

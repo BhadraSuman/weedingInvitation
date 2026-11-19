@@ -206,15 +206,6 @@ export const VivahExpressView: React.FC<VivahExpressViewProps> = ({
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={toggleHeaderAudio}
-                className="w-8 h-8 rounded-full bg-[#1B365D] flex items-center justify-center text-[#D3E4FE] hover:text-[#FEA619] transition-colors"
-                title="Toggle Audio"
-              >
-                {isPlaying ? <VolumeX className="w-4 h-4 text-[#FEA619]" /> : <Volume2 className="w-4 h-4" />}
-              </button>
-
               <Link
                 to="/"
                 className="w-8 h-8 rounded-full bg-[#1B365D] flex items-center justify-center text-white hover:bg-[#FEA619] hover:text-[#002046] transition-colors"

@@ -11,6 +11,9 @@ export interface AudioTrackInfo {
 
 const GENERIC_PLACEHOLDER_MARKER = 'amantrran.com';
 
+// Master switch: songs/audio playback temporarily disabled
+export const SONGS_ENABLED = false;
+
 class WeddingAudioManager {
   private audioCtx: AudioContext | null = null;
   private isSynthesizing = false;
@@ -22,7 +25,7 @@ class WeddingAudioManager {
   private currentTrack: AudioTrackInfo = {
     title: 'Auspicious Shehnai Melody',
     artist: 'Traditional Raag Bhairavi',
-    url: 'https://amantrran.com/wp-content/uploads/2024/12/Tum-Prem-Ho-Reprise-Lyrical-Video-RadhaKrishn-MOhit-Lalwani-Surya-Raj-Kamal-Bharat-Kamal.mp3',
+    url: '',
     theme: 'bengali'
   };
 
@@ -57,7 +60,7 @@ class WeddingAudioManager {
       theme
     };
 
-    if ((isNewTheme || isNewUrl) && typeof window !== 'undefined') {
+    if (SONGS_ENABLED && (isNewTheme || isNewUrl) && typeof window !== 'undefined') {
       const wasPlaying = this.isPlaying();
       this.stop();
 
@@ -77,7 +80,7 @@ class WeddingAudioManager {
 
   public setBollywoodSubtrack(subtrackId: string) {
     this.bollywoodSubtrack = subtrackId;
-    if (this.isPlaying() && (this.currentTrack.theme === 'bollywood_premiere' || !this.audioEl)) {
+    if (SONGS_ENABLED && this.isPlaying() && (this.currentTrack.theme === 'bollywood_premiere' || !this.audioEl)) {
       this.stopAmbientDrone();
       this.startAmbientThemeDrone('bollywood_premiere');
     }
@@ -110,6 +113,11 @@ class WeddingAudioManager {
   }
 
   public async play(): Promise<boolean> {
+    if (!SONGS_ENABLED) {
+      this.notify(false);
+      return false;
+    }
+
     const hasCustomUniqueUrl = this.currentTrack.url && 
       !this.currentTrack.url.includes(GENERIC_PLACEHOLDER_MARKER) &&
       this.currentTrack.url.trim().length > 0;
@@ -164,6 +172,7 @@ class WeddingAudioManager {
   }
 
   public isPlaying(): boolean {
+    if (!SONGS_ENABLED) return false;
     if (this.audioEl && !this.audioEl.paused) return true;
     return this.isSynthesizing;
   }

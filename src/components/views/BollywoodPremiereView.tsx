@@ -1,25 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CulturalTemplate, Language } from '../../types/wedding';
-import { audioManager } from '../../utils/audioManager';
 import gsap from 'gsap';
 import { Link } from 'react-router-dom';
 import {
   Film,
-  Volume2,
-  VolumeX,
   Home,
   CheckCircle2,
   Calendar,
   Clock,
   MapPin,
   ExternalLink,
-  Disc,
-  Play,
-  Pause,
   Ticket,
   Users,
   Send,
   Sparkles,
+  Volume2,
   Radio
 } from 'lucide-react';
 
@@ -45,17 +40,10 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
   const directorCredit = template?.quotes?.subInvocation || 'DHARMA & YASH RAJ PARIVAAR PRESENT';
 
   const isHindi = lang === 'native';
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isClassicNoir, setIsClassicNoir] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState<string[]>(['B3', 'B4']);
   const [selectedSnack, setSelectedSnack] = useState('Caramel Popcorn');
-  const [activeTab, setActiveTab] = useState<'premiere' | 'events' | 'cast' | 'score' | 'rsvp'>('premiere');
-  const [currentTrack, setCurrentTrack] = useState({
-    title: 'Kala Chashma (Bass Baaraat Mix)',
-    artist: 'DJ Rohit & Dhol Squad'
-  });
-  const [isJukeboxPlaying, setIsJukeboxPlaying] = useState(true);
-  const [djSongInput, setDjSongInput] = useState('');
+  const [activeTab, setActiveTab] = useState<'premiere' | 'events' | 'cast' | 'rsvp'>('premiere');
   const [toastMsg, setToastMsg] = useState<string | null>(null);
   const [rsvpGuestName, setRsvpGuestName] = useState(guestName || '');
 
@@ -113,35 +101,11 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
   }, []);
   // ─────────────────────────────────────────────────────────────────────────
 
-  useEffect(() => {
-    const unsub = audioManager.subscribe(playing => {
-      setIsPlaying(playing);
-      setIsJukeboxPlaying(playing);
-    });
-    return () => unsub();
-  }, []);
-
-  const toggleHeaderAudio = () => {
-    if (isPlaying) {
-      audioManager.pause();
-    } else {
-      audioManager.play();
-    }
-  };
-
   const toggleSeat = (seatId: string) => {
     if (selectedSeats.includes(seatId)) {
       setSelectedSeats(selectedSeats.filter(s => s !== seatId));
     } else {
       setSelectedSeats([...selectedSeats, seatId]);
-    }
-  };
-
-  const handleDjRequest = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (djSongInput.trim()) {
-      showToast(`Song "${djSongInput}" requested and sent to DJ console! 🎧`);
-      setDjSongInput('');
     }
   };
 
@@ -172,7 +136,7 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
     window.open(waUrl, '_blank');
   };
 
-  const scrollTo = (id: string, tab: 'premiere' | 'events' | 'cast' | 'score' | 'rsvp') => {
+  const scrollTo = (id: string, tab: 'premiere' | 'events' | 'cast' | 'rsvp') => {
     setActiveTab(tab);
     const el = document.getElementById(id);
     if (el) {
@@ -213,14 +177,6 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={toggleHeaderAudio}
-              className="w-10 h-10 rounded-full bg-[#1C1B1D] border border-white/10 flex items-center justify-center text-[#D0C5AF] hover:text-[#F2CA50] transition-colors"
-              title="Toggle Audio Track"
-              type="button"
-            >
-              {isPlaying ? <VolumeX className="w-4 h-4 text-[#F2CA50]" /> : <Volume2 className="w-4 h-4" />}
-            </button>
             <div className="w-9 h-9 rounded-full overflow-hidden border border-[#F2CA50]/40">
               <img src="/images/couples/bollywood_poster.jpg" alt="Profile" className="w-full h-full object-cover" />
             </div>
@@ -693,139 +649,6 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
           </div>
         </section>
 
-        {/* SECTION 4: SOUNDTRACK JUKEBOX (SANGEET PLAYLIST) */}
-        <section id="soundtrack" className="w-full px-4 py-8 flex flex-col gap-6 scroll-mt-20">
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-2 mb-1">
-              <Disc className="w-4 h-4 text-[#F2CA50]" />
-              <span
-                className="text-xs tracking-[0.25em] text-[#F2CA50] uppercase font-bold"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-              >
-                OFFICIAL ORIGINAL SOUNDTRACK
-              </span>
-            </div>
-            <h2
-              className="text-2xl text-white font-bold font-serif"
-              style={{ fontFamily: "'Bodoni Moda', serif" }}
-            >
-              The Sangeet Jukebox
-            </h2>
-            <p className="text-xs text-[#D0C5AF]/70">Crank up the volume! Preview our handpicked chartbusters.</p>
-          </div>
-
-          <div className="bg-[#2A2A2C] rounded-xl p-5 shadow-xl flex flex-col gap-4 border border-white/5">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div
-                  className={`w-12 h-12 rounded-full bg-[#0E0E10] border-2 border-[#F2CA50]/40 flex items-center justify-center relative shadow-lg ${
-                    isJukeboxPlaying ? 'animate-spin [animation-duration:6s]' : ''
-                  }`}
-                >
-                  <div className="w-4 h-4 rounded-full bg-[#F2CA50] flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#131315]" />
-                  </div>
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <span
-                    className="text-sm font-bold text-white truncate"
-                    style={{ fontFamily: "'Bodoni Moda', serif" }}
-                  >
-                    {currentTrack.title}
-                  </span>
-                  <span className="text-xs text-[#F2CA50] truncate font-mono">
-                    {isJukeboxPlaying ? 'Playing • Live Sangeet Turntables' : 'Paused • Tap to resume'}
-                  </span>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  if (audioManager.isPlaying()) {
-                    audioManager.pause();
-                  } else {
-                    audioManager.play();
-                  }
-                }}
-                className="w-11 h-11 rounded-full bg-[#F2CA50] text-[#131315] flex items-center justify-center shadow-[0_0_16px_rgba(242,202,80,0.5)] active:scale-95 transition-transform"
-              >
-                {isJukeboxPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-              </button>
-            </div>
-
-            {/* Live Audio Waveform Simulation */}
-            <div className="flex items-end justify-between h-8 px-2 bg-[#0E0E10] rounded gap-1 py-1">
-              {[6, 3, 7, 4, 8, 5, 2, 7, 4, 6].map((h, i) => (
-                <span
-                  key={i}
-                  className={`w-1 bg-[#F2CA50] rounded-full transition-all ${
-                    isJukeboxPlaying ? 'animate-pulse' : 'opacity-40'
-                  }`}
-                  style={{ height: `${h * 3}px`, animationDelay: `${i * 100}ms` }}
-                />
-              ))}
-            </div>
-
-            {/* Tracks */}
-            <div className="flex flex-col gap-2 pt-2">
-              {[
-                { id: '01', title: 'Kala Chashma (Bass Baaraat Mix)', desc: 'High-octane baaraat anthem' },
-                { id: '02', title: 'London Thumakda (Bhangra Overdrive)', desc: 'The aunties floor burner' },
-                { id: '03', title: 'Kesariya (Acoustic Shehnai Romance)', desc: 'Couple first-dance track' },
-                { id: '04', title: 'Gal Mitthi Mitthi Bol', desc: 'Family grand finale mashup' }
-              ].map(tr => (
-                <div
-                  key={tr.id}
-                  onClick={() => {
-                    setCurrentTrack({ title: tr.title, artist: 'DJ Rohit & Dhol Squad' });
-                    audioManager.setBollywoodSubtrack(tr.id);
-                    audioManager.play();
-                    showToast(`Now Playing: ${tr.title}`);
-                  }}
-                  className="flex items-center justify-between p-2.5 rounded bg-[#1C1B1D] cursor-pointer hover:bg-[#353437] transition-colors"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-[#F2CA50] font-bold">{tr.id}</span>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-medium text-white">{tr.title}</span>
-                      <span className="text-[11px] text-[#D0C5AF]/60">{tr.desc}</span>
-                    </div>
-                  </div>
-                  {currentTrack.title === tr.title && isJukeboxPlaying ? (
-                    <Radio className="w-4 h-4 text-[#F2CA50] animate-pulse" />
-                  ) : (
-                    <Play className="w-3.5 h-3.5 text-[#D0C5AF]/40" />
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Song Request to DJ Form */}
-            <form onSubmit={handleDjRequest} className="mt-2 pt-3 border-t border-white/10 flex flex-col gap-2">
-              <label
-                className="text-[10px] text-[#F2CA50] tracking-wider uppercase font-bold font-mono"
-              >
-                WANT TO HEAR YOUR FAVORITE TRACK? TELL THE DJ:
-              </label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={djSongInput}
-                  onChange={e => setDjSongInput(e.target.value)}
-                  placeholder="e.g. Mauja Hi Mauja, Bole Chudiyan..."
-                  className="w-full bg-[#0E0E10] text-white px-3 py-2 rounded text-xs outline-none focus:ring-1 focus:ring-[#F2CA50] border-b border-[#F2CA50]/30"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-[#F2CA50] text-[#131315] rounded text-xs uppercase font-bold shrink-0 hover:bg-[#FFC461] transition-colors"
-                >
-                  DROP BEAT
-                </button>
-              </div>
-            </form>
-          </div>
-        </section>
-
         {/* SECTION 5: "BOX OFFICE" SEAT-SELECTION RSVP */}
         <section id="box-office" className="w-full px-4 py-8 flex flex-col gap-6 bg-[#1C1B1D] border-t border-[#F2CA50]/20 scroll-mt-20">
           <div className="flex flex-col items-center text-center">
@@ -1114,22 +937,6 @@ export const BollywoodPremiereView: React.FC<BollywoodPremiereViewProps> = ({
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
               Cast
-            </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => scrollTo('soundtrack', 'score')}
-            className={`flex flex-col items-center justify-center gap-0.5 min-w-[50px] py-1 px-2 rounded transition-colors ${
-              activeTab === 'score' ? 'text-[#F2CA50] font-bold' : 'text-[#D0C5AF]/60 hover:text-white'
-            }`}
-          >
-            <Disc className="w-4 h-4" />
-            <span
-              className="text-[9px] uppercase tracking-wider"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-            >
-              Score
             </span>
           </button>
 

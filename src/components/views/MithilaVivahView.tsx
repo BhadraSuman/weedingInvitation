@@ -189,22 +189,6 @@ export const MithilaVivahView: React.FC<MithilaVivahViewProps> = ({
             >
               {isNative ? 'मै / EN' : 'EN / मै'}
             </button>
-
-            {/* Audio Toggle */}
-            <button
-              onClick={toggleAudio}
-              className={`h-9 px-2.5 rounded-lg flex items-center gap-1.5 transition-colors border ${
-                isPlaying 
-                  ? 'bg-[#962200] text-white border-[#962200]' 
-                  : 'bg-[#f1ede6] text-[#904d00] border-[#e1bfb7]/50'
-              }`}
-              title={isPlaying ? 'Mute Geeta' : 'Play Maithili Geet'}
-            >
-              {isPlaying ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-              <span className="text-[11px] font-bold hidden sm:inline">
-                {isPlaying ? (isNative ? 'गीत चालू' : 'Playing') : (isNative ? 'गीत' : 'Music')}
-              </span>
-            </button>
           </div>
         </div>
       </header>

@@ -221,19 +221,6 @@ export const RanglaPunjabView: React.FC<RanglaPunjabViewProps> = ({
             >
               <Home className="w-4 h-4" />
             </Link>
-            <button
-              onClick={toggleAudio}
-              className={`h-9 px-2.5 rounded-lg flex items-center gap-1.5 transition-colors border ${
-                isPlaying
-                  ? 'bg-[#ff4a8d] text-white border-[#ff4a8d] shadow-[0_0_12px_rgba(255,74,141,0.5)]'
-                  : 'bg-[#2c1832] text-[#e9c400] border-[#ac878f]/40'
-              }`}
-            >
-              <Music className={`w-4 h-4 ${isPlaying ? 'animate-bounce' : ''}`} />
-              <span className="text-[11px] font-bold uppercase tracking-wider">
-                {isPlaying ? (isNative ? 'ਢੋਲ ਚੱਲ ਰਿਹਾ' : 'Dhol ON') : (isNative ? 'ਢੋਲ ਬੀਟ' : 'Beat')}
-              </span>
-            </button>
           </div>
 
           <div className="flex flex-col items-center">

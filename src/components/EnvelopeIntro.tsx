@@ -53,9 +53,6 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({
       }, 250);
     } catch {}
 
-    // Play celebration audio track
-    audioManager.play();
-
     // Smooth transition to unveil the full invitation view
     setTimeout(() => {
       onOpen();

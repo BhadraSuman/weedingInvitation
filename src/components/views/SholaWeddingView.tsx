@@ -135,17 +135,6 @@ export const SholaWeddingView: React.FC<SholaWeddingViewProps> = ({
             >
               <Home className="w-4 h-4" />
             </Link>
-            <button
-              onClick={toggleAudio}
-              className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors border ${
-                isPlaying
-                  ? 'bg-[#775a19] text-white border-[#775a19]'
-                  : 'bg-[#f6ecea] text-[#775a19] border-[#d1c5b4]/50'
-              }`}
-              title={isPlaying ? 'Mute' : 'Play Music'}
-            >
-              {isPlaying ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-            </button>
           </div>
 
           <div className="flex flex-col items-center justify-center">

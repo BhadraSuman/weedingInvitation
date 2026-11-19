@@ -376,22 +376,6 @@ export const WeddingGazetteView: React.FC<WeddingGazetteViewProps> = ({
             </div>
             <span className="uppercase font-bold tracking-widest text-[#B51C12]">ISSUE NO. XXIV</span>
             <div className="flex items-center gap-2">
-              <button
-                onClick={toggleAudio}
-                className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded-full transition-all border ${
-                  isPlaying
-                    ? 'bg-[#B51C12] text-white border-[#B51C12] shadow-xs'
-                    : 'bg-[#1C1C16]/5 hover:bg-[#1C1C16]/10 text-[#1C1C16] border-[#1C1C16]/15'
-                }`}
-                title={isPlaying ? 'Pause Vintage Gramophone' : 'Play 1920s Acoustic Gramophone'}
-                type="button"
-              >
-                <Disc className={`w-3.5 h-3.5 ${isPlaying ? 'animate-spin' : ''}`} />
-                <span className="font-mono text-[9px] uppercase font-bold tracking-wider hidden sm:inline">
-                  {isPlaying ? '78 RPM Live' : 'Phonograph'}
-                </span>
-                {isPlaying ? <Volume2 className="w-3 h-3 text-white" /> : <VolumeX className="w-3 h-3 text-[#1C1C16]/60" />}
-              </button>
               <Link
                 to="/"
                 className="w-7 h-7 rounded-full bg-[#1C1C16] flex items-center justify-center text-[#FDF9EF] hover:bg-[#B51C12] transition-colors shadow-sm"
